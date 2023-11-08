@@ -5,7 +5,13 @@
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update ."
+    "update": "deno run -A -r https://fresh.deno.dev/update .",
+    "prisma:generate": "deno run -A --unstable npm:prisma@^5.5.2 generate --data-proxy",
+    "prisma:push": "deno run -A --unstable npm:prisma@^5.5.2 db push",
+    "prisma:studio": "deno run -A --unstable npm:prisma@^5.5.2 studio",
+    "prisma:validate": "deno run -A --unstable npm:prisma@^5.5.2 format && deno run -A --unstable npm:prisma@^5.5.2 validate",
+    "seed": "deno run -A --unstable prisma/seed.ts",
+    "test": "deno test --allow-read --allow-env --allow-net"
   },
   "lint": {
     "rules": {

@@ -8,8 +8,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
+model Estudiantes {
+  pk_id_est     Int    @id @default(autoincrement())
+  txt_user_est  String @unique
+  txt_email_est String @unique
+  txt_pass_est  String @db.VarChar(255)
+  num_sub_est   Int @default(0)
+}
