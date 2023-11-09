@@ -1,4 +1,4 @@
-import { IconBook2 } from "@tabler-icons";
+import { IconBook2, IconCircleX } from "@tabler-icons";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
 import RegisterForm from "@/islands/inicio-sesion/RegisterForm.tsx";
 import SessionState from "@/schema/session-state.ts";
@@ -15,6 +15,7 @@ import {
 } from "@/utils/config.ts";
 import { z } from "zod";
 import { setCookie } from "$cookies";
+import { Prisma } from "@/generated/client/deno/edge.ts";
 
 export const handler: Handlers<Data, SessionState> = {
   async GET(_req: Request, ctx: HandlerContext<Data, SessionState>) {
@@ -66,17 +67,40 @@ export const handler: Handlers<Data, SessionState> = {
           error: error.issues.map((issue) => issue.message).join(", "),
         });
       }
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === "P2002") {
+          const columnName = (error.meta?.target as string[])[0];
+          if (columnName === "txt_email_est") {
+            return await ctx.render({
+              error: "Correo electronico ya registrado",
+            });
+          }
+          if (columnName === "txt_user_est") {
+            return await ctx.render({
+              error: "Nombre de usuario ya registrado",
+            });
+          }
+        }
+      }
       throw error;
     }
   },
 };
 
-export default function RegistrarPage(props: PageProps) {
+// TODO: Hacer responsiva esta pantalla
+export default function RegistrarPage({ data }: PageProps) {
   return (
     <div class="w-full h-full flex flex-col justify-center items-center p-4">
       <div class="flex flex-col w-full max-w-2xl gap-4">
-        {props.data.error}
         <IconBook2 size={128} class="self-center" />
+
+        {data.error && (
+          <div class="alert alert-error font-sans">
+            <IconCircleX size={24} />
+            <span>{data.error}</span>
+          </div>
+        )}
+
         <span class="self-center text-5xl font-bold font-sans">
           Nuevo usuario a registrarse
         </span>
