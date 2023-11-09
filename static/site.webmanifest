@@ -1,0 +1,17 @@
+{
+  "name": "Bibliomas",
+  "short_name": "Bibliomas",
+  "theme_color": "#D1C1D7",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "description": "Bibliomas - The Open Source Library",
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ]
+}
