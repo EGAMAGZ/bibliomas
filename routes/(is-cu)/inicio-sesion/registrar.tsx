@@ -1,0 +1,111 @@
+import { IconBook2, IconCircleX } from "@tabler-icons";
+import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
+import RegisterForm from "@/islands/inicio-sesion/RegisterForm.tsx";
+import SessionState from "@/schema/session-state.ts";
+import { Data } from "@/schema/data.ts";
+import { NewStudentSchema } from "@/schema/student.ts";
+import prismaClient from "@/database/prisma.ts";
+import { generateHash } from "@/utils/hash.ts";
+import { signJWT } from "@/utils/jwt.ts";
+import {
+  COOKIE_MAX_AGE,
+  COOKIE_PATH,
+  ROOT_URL,
+  SESSION_COOKIE_NAME,
+} from "@/utils/config.ts";
+import { z } from "zod";
+import { setCookie } from "$cookies";
+import { Prisma } from "@/generated/client/deno/edge.ts";
+
+export const handler: Handlers<Data, SessionState> = {
+  async GET(_req: Request, ctx: HandlerContext<Data, SessionState>) {
+    return await ctx.render({
+      error: "",
+    });
+  },
+  async POST(req: Request, ctx: HandlerContext<Data, SessionState>) {
+    const formData = await req.formData();
+    try {
+      const { username, email, password, confirmPassword } = NewStudentSchema
+        .parse(
+          Object.fromEntries(formData.entries()),
+        );
+
+      const stundet = await prismaClient.estudiantes.create({
+        data: {
+          txt_user_est: username,
+          txt_email_est: email,
+          txt_pass_est: await generateHash(password),
+        },
+      });
+
+      const jwt = await signJWT({
+        id: stundet.pk_id_est,
+        username: stundet.txt_user_est,
+        email: stundet.txt_email_est,
+        subscription: String(stundet.num_sub_est),
+      });
+
+      const headers = new Headers(req.headers);
+
+      setCookie(headers, {
+        name: SESSION_COOKIE_NAME,
+        value: jwt,
+        maxAge: COOKIE_MAX_AGE,
+        path: COOKIE_PATH,
+      });
+
+      headers.append("Location", ROOT_URL);
+
+      return new Response(null, {
+        headers,
+        status: 303,
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return await ctx.render({
+          error: error.issues.map((issue) => issue.message).join(", "),
+        });
+      }
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === "P2002") {
+          const columnName = (error.meta?.target as string[])[0];
+          if (columnName === "txt_email_est") {
+            return await ctx.render({
+              error: "Correo electronico ya registrado",
+            });
+          }
+          if (columnName === "txt_user_est") {
+            return await ctx.render({
+              error: "Nombre de usuario ya registrado",
+            });
+          }
+        }
+      }
+      throw error;
+    }
+  },
+};
+
+// TODO: Hacer responsiva esta pantalla
+export default function RegistrarPage({ data }: PageProps) {
+  return (
+    <div class="w-full h-full flex flex-col justify-center items-center p-4">
+      <div class="flex flex-col w-full max-w-2xl gap-4">
+        <IconBook2 size={128} class="self-center" />
+
+        {data.error && (
+          <div class="alert alert-error font-sans">
+            <IconCircleX size={24} />
+            <span>{data.error}</span>
+          </div>
+        )}
+
+        <span class="self-center text-5xl font-bold font-sans">
+          Nuevo usuario a registrarse
+        </span>
+        <RegisterForm />
+      </div>
+    </div>
+  );
+}
