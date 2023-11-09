@@ -115,6 +115,38 @@ exports.Prisma.EstudiantesScalarFieldEnum = {
   num_sub_est: 'num_sub_est'
 };
 
+exports.Prisma.BibliografiasScalarFieldEnum = {
+  pk_id_biblio: 'pk_id_biblio',
+  txt_tit_biblio: 'txt_tit_biblio',
+  num_tip_biblio: 'num_tip_biblio',
+  num_fmt_biblio: 'num_fmt_biblio',
+  txt_fecha_biblio: 'txt_fecha_biblio',
+  txt_aut_biblio: 'txt_aut_biblio',
+  txt_edit_biblio: 'txt_edit_biblio',
+  txt_dir_biblio: 'txt_dir_biblio',
+  txt_pag_biblio: 'txt_pag_biblio',
+  num_edic_biblio: 'num_edic_biblio',
+  num_volm_biblio: 'num_volm_biblio',
+  num_npag_biblio: 'num_npag_biblio',
+  txt_ubic_biblio: 'txt_ubic_biblio'
+};
+
+exports.Prisma.ArchivosScalarFieldEnum = {
+  pk_id_arch: 'pk_id_arch',
+  txt_dir_arch: 'txt_dir_arch'
+};
+
+exports.Prisma.CarpetasScalarFieldEnum = {
+  pk_id_carp: 'pk_id_carp',
+  txt_nom_carp: 'txt_nom_carp',
+  gruposPk_id_grup: 'gruposPk_id_grup'
+};
+
+exports.Prisma.GruposScalarFieldEnum = {
+  pk_id_grup: 'pk_id_grup',
+  txt_nom_grup: 'txt_nom_grup'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -125,9 +157,18 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  Estudiantes: 'Estudiantes'
+  Estudiantes: 'Estudiantes',
+  Bibliografias: 'Bibliografias',
+  Archivos: 'Archivos',
+  Carpetas: 'Carpetas',
+  Grupos: 'Grupos'
 };
 
 /**

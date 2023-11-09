@@ -14,9 +14,44 @@ datasource db {
 }
 
 model Estudiantes {
-  pk_id_est     Int    @id @default(autoincrement())
+  pk_id_est     String @id @default(uuid())
   txt_user_est  String @unique
   txt_email_est String @unique
   txt_pass_est  String @db.VarChar(255)
-  num_sub_est   Int @default(0)
+  num_sub_est   Int    @default(0)
+}
+
+model Bibliografias {
+  pk_id_biblio     Int      @id @default(autoincrement())
+  txt_tit_biblio   String
+  num_tip_biblio   Int      @db.SmallInt
+  num_fmt_biblio   Int      @db.SmallInt
+  txt_fecha_biblio DateTime
+  txt_aut_biblio   String
+  txt_edit_biblio  String?
+  txt_dir_biblio   String? // Se refiere a URL
+  txt_pag_biblio   String?
+  num_edic_biblio  Int?
+  num_volm_biblio  Int?
+  num_npag_biblio  Int?
+  txt_ubic_biblio  String?
+  //TODO: GRUPO Y CARPETA
+}
+
+model Archivos {
+  pk_id_arch   Int    @id @default(autoincrement())
+  txt_dir_arch String
+}
+
+model Carpetas {
+  pk_id_carp       Int    @id @default(autoincrement())
+  txt_nom_carp     String
+  Grupos           Grupos @relation(fields: [gruposPk_id_grup], references: [pk_id_grup])
+  gruposPk_id_grup Int    @unique
+}
+
+model Grupos {
+  pk_id_grup   Int        @id @default(autoincrement())
+  txt_nom_grup String
+  Carpetas     Carpetas[]
 }
