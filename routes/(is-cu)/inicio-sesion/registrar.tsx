@@ -40,7 +40,9 @@ export const handler: Handlers<Data, SessionState> = {
 
       const jwt = await signJWT({
         id: stundet.pk_id_est,
+        username: stundet.txt_user_est,
         email: stundet.txt_email_est,
+        subscription: String(stundet.num_sub_est),
       });
 
       const headers = new Headers(req.headers);
