@@ -9,7 +9,7 @@ import * as $3 from "./routes/(is-cu)/inicio-sesion/registrar.tsx";
 import * as $4 from "./routes/_404.tsx";
 import * as $5 from "./routes/_app.tsx";
 import * as $6 from "./routes/_middleware.ts";
-import * as $7 from "./routes/index.tsx";
+import * as $7 from "./routes/index.ts";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
 import * as $$2 from "./islands/inicio-sesion/RegisterForm.tsx";
@@ -23,7 +23,7 @@ const manifest = {
     "./routes/_404.tsx": $4,
     "./routes/_app.tsx": $5,
     "./routes/_middleware.ts": $6,
-    "./routes/index.tsx": $7,
+    "./routes/index.ts": $7,
   },
   islands: {
     "./islands/Input.tsx": $$0,
