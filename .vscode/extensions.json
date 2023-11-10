@@ -1,5 +1,8 @@
 {
   "recommendations": [
-    "denoland.vscode-deno"
+    "denoland.vscode-deno",
+    "Prisma.prisma",
+    "EditorConfig.EditorConfig",
+    "AbianS.prisma-generate-uml"
   ]
 }
