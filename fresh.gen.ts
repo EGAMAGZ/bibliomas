@@ -12,7 +12,8 @@ import * as $6 from "./routes/_middleware.ts";
 import * as $7 from "./routes/index.ts";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
-import * as $$2 from "./islands/inicio-sesion/RegisterForm.tsx";
+import * as $$2 from "./islands/inicio-sesion/LoginForm.tsx";
+import * as $$3 from "./islands/inicio-sesion/RegisterForm.tsx";
 
 const manifest = {
   routes: {
@@ -28,7 +29,8 @@ const manifest = {
   islands: {
     "./islands/Input.tsx": $$0,
     "./islands/Select.tsx": $$1,
-    "./islands/inicio-sesion/RegisterForm.tsx": $$2,
+    "./islands/inicio-sesion/LoginForm.tsx": $$2,
+    "./islands/inicio-sesion/RegisterForm.tsx": $$3,
   },
   baseUrl: import.meta.url,
 };
