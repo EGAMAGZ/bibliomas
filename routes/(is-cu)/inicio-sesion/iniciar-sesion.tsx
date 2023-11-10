@@ -36,7 +36,7 @@ export const handler: Handlers<Data, SessionState> = {
 
       if (student === null) {
         return await ctx.render({
-          error: "Usuario o contraseña son incorrectos.",
+          error: "Credenciales invalidas, por favor de verificar sus datos.",
         });
       }
 
@@ -44,7 +44,7 @@ export const handler: Handlers<Data, SessionState> = {
 
       if (!isSame) {
         return await ctx.render({
-          error: "Usuario o contraseña son incorrectos.",
+          error: "Credenciales invalidas, por favor de verificar sus datos.",
         });
       }
 
