@@ -146,6 +146,13 @@ la pantalla de inicio de sesión con la ruta `/login`; `index.tsx` representa la
 raiz ruta de la pantalla con la ruta `/`; y por ultimo
 `inicio-sesion/cerrar-sesion.tsx` representa la ruta de la pantalla de cierre de
 sesión con la ruta `/inicio-sesion/cerrar-sesion`.
+[Más información](https://fresh.deno.dev/docs/getting-started/create-a-route)
+[Más informacion - Rutas dinamicas](https://fresh.deno.dev/docs/getting-started/dynamic-routes)
+
+Para la identificación de que rutas corresponden a los casos de uso, al inicio
+de la ruta se agrega al inicio del grupo de rutas ([id de CU]), por ejemplo
+(is-cu), para poder agrupar las rutas. Dicha carpeta, Fresh la omite por lo que
+no se convertira en una ruta. [Más información](https://deno.com/blog/fresh-1.4)
 
 ## Configuración
 
