@@ -34,10 +34,20 @@ export type Archivos = $Result.DefaultSelection<Prisma.$ArchivosPayload>
  */
 export type Carpetas = $Result.DefaultSelection<Prisma.$CarpetasPayload>
 /**
+ * Model GrupoConAcceso
+ * 
+ */
+export type GrupoConAcceso = $Result.DefaultSelection<Prisma.$GrupoConAccesoPayload>
+/**
  * Model Grupos
  * 
  */
 export type Grupos = $Result.DefaultSelection<Prisma.$GruposPayload>
+/**
+ * Model Cambios
+ * 
+ */
+export type Cambios = $Result.DefaultSelection<Prisma.$CambiosPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -202,6 +212,16 @@ export class PrismaClient<
   get carpetas(): Prisma.CarpetasDelegate<ExtArgs>;
 
   /**
+   * `prisma.grupoConAcceso`: Exposes CRUD operations for the **GrupoConAcceso** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GrupoConAccesos
+    * const grupoConAccesos = await prisma.grupoConAcceso.findMany()
+    * ```
+    */
+  get grupoConAcceso(): Prisma.GrupoConAccesoDelegate<ExtArgs>;
+
+  /**
    * `prisma.grupos`: Exposes CRUD operations for the **Grupos** model.
     * Example usage:
     * ```ts
@@ -210,6 +230,16 @@ export class PrismaClient<
     * ```
     */
   get grupos(): Prisma.GruposDelegate<ExtArgs>;
+
+  /**
+   * `prisma.cambios`: Exposes CRUD operations for the **Cambios** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Cambios
+    * const cambios = await prisma.cambios.findMany()
+    * ```
+    */
+  get cambios(): Prisma.CambiosDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -684,7 +714,9 @@ export namespace Prisma {
     Bibliografias: 'Bibliografias',
     Archivos: 'Archivos',
     Carpetas: 'Carpetas',
-    Grupos: 'Grupos'
+    GrupoConAcceso: 'GrupoConAcceso',
+    Grupos: 'Grupos',
+    Cambios: 'Cambios'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -701,7 +733,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'estudiantes' | 'bibliografias' | 'archivos' | 'carpetas' | 'grupos'
+      modelProps: 'estudiantes' | 'bibliografias' | 'archivos' | 'carpetas' | 'grupoConAcceso' | 'grupos' | 'cambios'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -969,6 +1001,72 @@ export namespace Prisma {
           }
         }
       }
+      GrupoConAcceso: {
+        payload: Prisma.$GrupoConAccesoPayload<ExtArgs>
+        fields: Prisma.GrupoConAccesoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GrupoConAccesoFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GrupoConAccesoFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
+          }
+          findFirst: {
+            args: Prisma.GrupoConAccesoFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GrupoConAccesoFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
+          }
+          findMany: {
+            args: Prisma.GrupoConAccesoFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>[]
+          }
+          create: {
+            args: Prisma.GrupoConAccesoCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
+          }
+          createMany: {
+            args: Prisma.GrupoConAccesoCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GrupoConAccesoDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
+          }
+          update: {
+            args: Prisma.GrupoConAccesoUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
+          }
+          deleteMany: {
+            args: Prisma.GrupoConAccesoDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GrupoConAccesoUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GrupoConAccesoUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
+          }
+          aggregate: {
+            args: Prisma.GrupoConAccesoAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGrupoConAcceso>
+          }
+          groupBy: {
+            args: Prisma.GrupoConAccesoGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GrupoConAccesoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GrupoConAccesoCountArgs<ExtArgs>,
+            result: $Utils.Optional<GrupoConAccesoCountAggregateOutputType> | number
+          }
+        }
+      }
       Grupos: {
         payload: Prisma.$GruposPayload<ExtArgs>
         fields: Prisma.GruposFieldRefs
@@ -1032,6 +1130,72 @@ export namespace Prisma {
           count: {
             args: Prisma.GruposCountArgs<ExtArgs>,
             result: $Utils.Optional<GruposCountAggregateOutputType> | number
+          }
+        }
+      }
+      Cambios: {
+        payload: Prisma.$CambiosPayload<ExtArgs>
+        fields: Prisma.CambiosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CambiosFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CambiosFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>
+          }
+          findFirst: {
+            args: Prisma.CambiosFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CambiosFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>
+          }
+          findMany: {
+            args: Prisma.CambiosFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>[]
+          }
+          create: {
+            args: Prisma.CambiosCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>
+          }
+          createMany: {
+            args: Prisma.CambiosCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.CambiosDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>
+          }
+          update: {
+            args: Prisma.CambiosUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>
+          }
+          deleteMany: {
+            args: Prisma.CambiosDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CambiosUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CambiosUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>
+          }
+          aggregate: {
+            args: Prisma.CambiosAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCambios>
+          }
+          groupBy: {
+            args: Prisma.CambiosGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CambiosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CambiosCountArgs<ExtArgs>,
+            result: $Utils.Optional<CambiosCountAggregateOutputType> | number
           }
         }
       }
@@ -1180,15 +1344,153 @@ export namespace Prisma {
 
 
   /**
+   * Count Type EstudiantesCountOutputType
+   */
+
+  export type EstudiantesCountOutputType = {
+    Cambios: number
+    Grupos: number
+    GrupoConAcceso: number
+  }
+
+  export type EstudiantesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Cambios?: boolean | EstudiantesCountOutputTypeCountCambiosArgs
+    Grupos?: boolean | EstudiantesCountOutputTypeCountGruposArgs
+    GrupoConAcceso?: boolean | EstudiantesCountOutputTypeCountGrupoConAccesoArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * EstudiantesCountOutputType without action
+   */
+  export type EstudiantesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EstudiantesCountOutputType
+     */
+    select?: EstudiantesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * EstudiantesCountOutputType without action
+   */
+  export type EstudiantesCountOutputTypeCountCambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CambiosWhereInput
+  }
+
+
+  /**
+   * EstudiantesCountOutputType without action
+   */
+  export type EstudiantesCountOutputTypeCountGruposArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GruposWhereInput
+  }
+
+
+  /**
+   * EstudiantesCountOutputType without action
+   */
+  export type EstudiantesCountOutputTypeCountGrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrupoConAccesoWhereInput
+  }
+
+
+
+  /**
+   * Count Type BibliografiasCountOutputType
+   */
+
+  export type BibliografiasCountOutputType = {
+    Archivos: number
+  }
+
+  export type BibliografiasCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Archivos?: boolean | BibliografiasCountOutputTypeCountArchivosArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * BibliografiasCountOutputType without action
+   */
+  export type BibliografiasCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BibliografiasCountOutputType
+     */
+    select?: BibliografiasCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * BibliografiasCountOutputType without action
+   */
+  export type BibliografiasCountOutputTypeCountArchivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ArchivosWhereInput
+  }
+
+
+
+  /**
+   * Count Type CarpetasCountOutputType
+   */
+
+  export type CarpetasCountOutputType = {
+    Cambios: number
+    Bibliografias: number
+  }
+
+  export type CarpetasCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Cambios?: boolean | CarpetasCountOutputTypeCountCambiosArgs
+    Bibliografias?: boolean | CarpetasCountOutputTypeCountBibliografiasArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * CarpetasCountOutputType without action
+   */
+  export type CarpetasCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarpetasCountOutputType
+     */
+    select?: CarpetasCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * CarpetasCountOutputType without action
+   */
+  export type CarpetasCountOutputTypeCountCambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CambiosWhereInput
+  }
+
+
+  /**
+   * CarpetasCountOutputType without action
+   */
+  export type CarpetasCountOutputTypeCountBibliografiasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BibliografiasWhereInput
+  }
+
+
+
+  /**
    * Count Type GruposCountOutputType
    */
 
   export type GruposCountOutputType = {
+    Cambios: number
     Carpetas: number
+    Bibliografias: number
+    GrupoConAcceso: number
   }
 
   export type GruposCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Cambios?: boolean | GruposCountOutputTypeCountCambiosArgs
     Carpetas?: boolean | GruposCountOutputTypeCountCarpetasArgs
+    Bibliografias?: boolean | GruposCountOutputTypeCountBibliografiasArgs
+    GrupoConAcceso?: boolean | GruposCountOutputTypeCountGrupoConAccesoArgs
   }
 
   // Custom InputTypes
@@ -1207,8 +1509,32 @@ export namespace Prisma {
   /**
    * GruposCountOutputType without action
    */
+  export type GruposCountOutputTypeCountCambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CambiosWhereInput
+  }
+
+
+  /**
+   * GruposCountOutputType without action
+   */
   export type GruposCountOutputTypeCountCarpetasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CarpetasWhereInput
+  }
+
+
+  /**
+   * GruposCountOutputType without action
+   */
+  export type GruposCountOutputTypeCountBibliografiasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BibliografiasWhereInput
+  }
+
+
+  /**
+   * GruposCountOutputType without action
+   */
+  export type GruposCountOutputTypeCountGrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrupoConAccesoWhereInput
   }
 
 
@@ -1415,6 +1741,10 @@ export namespace Prisma {
     txt_email_est?: boolean
     txt_pass_est?: boolean
     num_sub_est?: boolean
+    Cambios?: boolean | Estudiantes$CambiosArgs<ExtArgs>
+    Grupos?: boolean | Estudiantes$GruposArgs<ExtArgs>
+    GrupoConAcceso?: boolean | Estudiantes$GrupoConAccesoArgs<ExtArgs>
+    _count?: boolean | EstudiantesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["estudiantes"]>
 
   export type EstudiantesSelectScalar = {
@@ -1425,10 +1755,21 @@ export namespace Prisma {
     num_sub_est?: boolean
   }
 
+  export type EstudiantesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Cambios?: boolean | Estudiantes$CambiosArgs<ExtArgs>
+    Grupos?: boolean | Estudiantes$GruposArgs<ExtArgs>
+    GrupoConAcceso?: boolean | Estudiantes$GrupoConAccesoArgs<ExtArgs>
+    _count?: boolean | EstudiantesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $EstudiantesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Estudiantes"
-    objects: {}
+    objects: {
+      Cambios: Prisma.$CambiosPayload<ExtArgs>[]
+      Grupos: Prisma.$GruposPayload<ExtArgs>[]
+      GrupoConAcceso: Prisma.$GrupoConAccesoPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_est: string
       txt_user_est: string
@@ -1800,6 +2141,11 @@ export namespace Prisma {
   export interface Prisma__EstudiantesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    Cambios<T extends Estudiantes$CambiosArgs<ExtArgs> = {}>(args?: Subset<T, Estudiantes$CambiosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    Grupos<T extends Estudiantes$GruposArgs<ExtArgs> = {}>(args?: Subset<T, Estudiantes$GruposArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    GrupoConAcceso<T extends Estudiantes$GrupoConAccesoArgs<ExtArgs> = {}>(args?: Subset<T, Estudiantes$GrupoConAccesoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1848,6 +2194,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * Filter, which Estudiantes to fetch.
      */
     where: EstudiantesWhereUniqueInput
@@ -1863,6 +2213,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * Filter, which Estudiantes to fetch.
      */
     where: EstudiantesWhereUniqueInput
@@ -1877,6 +2231,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Estudiantes
      */
     select?: EstudiantesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
     /**
      * Filter, which Estudiantes to fetch.
      */
@@ -1923,6 +2281,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * Filter, which Estudiantes to fetch.
      */
     where?: EstudiantesWhereInput
@@ -1968,6 +2330,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * Filter, which Estudiantes to fetch.
      */
     where?: EstudiantesWhereInput
@@ -2008,6 +2374,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * The data needed to create a Estudiantes.
      */
     data: XOR<EstudiantesCreateInput, EstudiantesUncheckedCreateInput>
@@ -2034,6 +2404,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Estudiantes
      */
     select?: EstudiantesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
     /**
      * The data needed to update a Estudiantes.
      */
@@ -2069,6 +2443,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * The filter to search for the Estudiantes to update in case it exists.
      */
     where: EstudiantesWhereUniqueInput
@@ -2092,6 +2470,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
      * Filter which Estudiantes to delete.
      */
     where: EstudiantesWhereUniqueInput
@@ -2110,6 +2492,69 @@ export namespace Prisma {
 
 
   /**
+   * Estudiantes.Cambios
+   */
+  export type Estudiantes$CambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    where?: CambiosWhereInput
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    cursor?: CambiosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
+  }
+
+
+  /**
+   * Estudiantes.Grupos
+   */
+  export type Estudiantes$GruposArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grupos
+     */
+    select?: GruposSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GruposInclude<ExtArgs> | null
+    where?: GruposWhereInput
+    orderBy?: GruposOrderByWithRelationInput | GruposOrderByWithRelationInput[]
+    cursor?: GruposWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GruposScalarFieldEnum | GruposScalarFieldEnum[]
+  }
+
+
+  /**
+   * Estudiantes.GrupoConAcceso
+   */
+  export type Estudiantes$GrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    where?: GrupoConAccesoWhereInput
+    orderBy?: GrupoConAccesoOrderByWithRelationInput | GrupoConAccesoOrderByWithRelationInput[]
+    cursor?: GrupoConAccesoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
+  }
+
+
+  /**
    * Estudiantes without action
    */
   export type EstudiantesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2117,6 +2562,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Estudiantes
      */
     select?: EstudiantesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
   }
 
 
@@ -2140,6 +2589,8 @@ export namespace Prisma {
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
+    fk_id_grup: number | null
+    fk_id_carp: number | null
   }
 
   export type BibliografiasSumAggregateOutputType = {
@@ -2149,6 +2600,8 @@ export namespace Prisma {
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
+    fk_id_grup: number | null
+    fk_id_carp: number | null
   }
 
   export type BibliografiasMinAggregateOutputType = {
@@ -2165,6 +2618,8 @@ export namespace Prisma {
     num_volm_biblio: number | null
     num_npag_biblio: number | null
     txt_ubic_biblio: string | null
+    fk_id_grup: number | null
+    fk_id_carp: number | null
   }
 
   export type BibliografiasMaxAggregateOutputType = {
@@ -2181,6 +2636,8 @@ export namespace Prisma {
     num_volm_biblio: number | null
     num_npag_biblio: number | null
     txt_ubic_biblio: string | null
+    fk_id_grup: number | null
+    fk_id_carp: number | null
   }
 
   export type BibliografiasCountAggregateOutputType = {
@@ -2197,6 +2654,8 @@ export namespace Prisma {
     num_volm_biblio: number
     num_npag_biblio: number
     txt_ubic_biblio: number
+    fk_id_grup: number
+    fk_id_carp: number
     _all: number
   }
 
@@ -2208,6 +2667,8 @@ export namespace Prisma {
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
+    fk_id_grup?: true
+    fk_id_carp?: true
   }
 
   export type BibliografiasSumAggregateInputType = {
@@ -2217,6 +2678,8 @@ export namespace Prisma {
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
+    fk_id_grup?: true
+    fk_id_carp?: true
   }
 
   export type BibliografiasMinAggregateInputType = {
@@ -2233,6 +2696,8 @@ export namespace Prisma {
     num_volm_biblio?: true
     num_npag_biblio?: true
     txt_ubic_biblio?: true
+    fk_id_grup?: true
+    fk_id_carp?: true
   }
 
   export type BibliografiasMaxAggregateInputType = {
@@ -2249,6 +2714,8 @@ export namespace Prisma {
     num_volm_biblio?: true
     num_npag_biblio?: true
     txt_ubic_biblio?: true
+    fk_id_grup?: true
+    fk_id_carp?: true
   }
 
   export type BibliografiasCountAggregateInputType = {
@@ -2265,6 +2732,8 @@ export namespace Prisma {
     num_volm_biblio?: true
     num_npag_biblio?: true
     txt_ubic_biblio?: true
+    fk_id_grup?: true
+    fk_id_carp?: true
     _all?: true
   }
 
@@ -2368,6 +2837,8 @@ export namespace Prisma {
     num_volm_biblio: number | null
     num_npag_biblio: number | null
     txt_ubic_biblio: string | null
+    fk_id_grup: number
+    fk_id_carp: number
     _count: BibliografiasCountAggregateOutputType | null
     _avg: BibliografiasAvgAggregateOutputType | null
     _sum: BibliografiasSumAggregateOutputType | null
@@ -2403,6 +2874,12 @@ export namespace Prisma {
     num_volm_biblio?: boolean
     num_npag_biblio?: boolean
     txt_ubic_biblio?: boolean
+    fk_id_grup?: boolean
+    fk_id_carp?: boolean
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
+    Archivos?: boolean | Bibliografias$ArchivosArgs<ExtArgs>
+    _count?: boolean | BibliografiasCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bibliografias"]>
 
   export type BibliografiasSelectScalar = {
@@ -2419,12 +2896,25 @@ export namespace Prisma {
     num_volm_biblio?: boolean
     num_npag_biblio?: boolean
     txt_ubic_biblio?: boolean
+    fk_id_grup?: boolean
+    fk_id_carp?: boolean
+  }
+
+  export type BibliografiasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
+    Archivos?: boolean | Bibliografias$ArchivosArgs<ExtArgs>
+    _count?: boolean | BibliografiasCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
   export type $BibliografiasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Bibliografias"
-    objects: {}
+    objects: {
+      Grupo: Prisma.$GruposPayload<ExtArgs>
+      Carpeta: Prisma.$CarpetasPayload<ExtArgs>
+      Archivos: Prisma.$ArchivosPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_biblio: number
       txt_tit_biblio: string
@@ -2439,6 +2929,8 @@ export namespace Prisma {
       num_volm_biblio: number | null
       num_npag_biblio: number | null
       txt_ubic_biblio: string | null
+      fk_id_grup: number
+      fk_id_carp: number
     }, ExtArgs["result"]["bibliografias"]>
     composites: {}
   }
@@ -2804,6 +3296,11 @@ export namespace Prisma {
   export interface Prisma__BibliografiasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    Grupo<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Carpeta<T extends CarpetasDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarpetasDefaultArgs<ExtArgs>>): Prisma__CarpetasClient<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Archivos<T extends Bibliografias$ArchivosArgs<ExtArgs> = {}>(args?: Subset<T, Bibliografias$ArchivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArchivosPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2846,6 +3343,8 @@ export namespace Prisma {
     readonly num_volm_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly num_npag_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly txt_ubic_biblio: FieldRef<"Bibliografias", 'String'>
+    readonly fk_id_grup: FieldRef<"Bibliografias", 'Int'>
+    readonly fk_id_carp: FieldRef<"Bibliografias", 'Int'>
   }
     
 
@@ -2859,6 +3358,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Bibliografias
      */
     select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
     /**
      * Filter, which Bibliografias to fetch.
      */
@@ -2875,6 +3378,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
      * Filter, which Bibliografias to fetch.
      */
     where: BibliografiasWhereUniqueInput
@@ -2889,6 +3396,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Bibliografias
      */
     select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
     /**
      * Filter, which Bibliografias to fetch.
      */
@@ -2935,6 +3446,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
      * Filter, which Bibliografias to fetch.
      */
     where?: BibliografiasWhereInput
@@ -2980,6 +3495,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
      * Filter, which Bibliografias to fetch.
      */
     where?: BibliografiasWhereInput
@@ -3020,6 +3539,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
      * The data needed to create a Bibliografias.
      */
     data: XOR<BibliografiasCreateInput, BibliografiasUncheckedCreateInput>
@@ -3046,6 +3569,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Bibliografias
      */
     select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
     /**
      * The data needed to update a Bibliografias.
      */
@@ -3081,6 +3608,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
      * The filter to search for the Bibliografias to update in case it exists.
      */
     where: BibliografiasWhereUniqueInput
@@ -3104,6 +3635,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
      * Filter which Bibliografias to delete.
      */
     where: BibliografiasWhereUniqueInput
@@ -3122,6 +3657,27 @@ export namespace Prisma {
 
 
   /**
+   * Bibliografias.Archivos
+   */
+  export type Bibliografias$ArchivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Archivos
+     */
+    select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    where?: ArchivosWhereInput
+    orderBy?: ArchivosOrderByWithRelationInput | ArchivosOrderByWithRelationInput[]
+    cursor?: ArchivosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ArchivosScalarFieldEnum | ArchivosScalarFieldEnum[]
+  }
+
+
+  /**
    * Bibliografias without action
    */
   export type BibliografiasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3129,6 +3685,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Bibliografias
      */
     select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
   }
 
 
@@ -3147,50 +3707,60 @@ export namespace Prisma {
 
   export type ArchivosAvgAggregateOutputType = {
     pk_id_arch: number | null
+    fk_id_biblio: number | null
   }
 
   export type ArchivosSumAggregateOutputType = {
     pk_id_arch: number | null
+    fk_id_biblio: number | null
   }
 
   export type ArchivosMinAggregateOutputType = {
     pk_id_arch: number | null
     txt_dir_arch: string | null
+    fk_id_biblio: number | null
   }
 
   export type ArchivosMaxAggregateOutputType = {
     pk_id_arch: number | null
     txt_dir_arch: string | null
+    fk_id_biblio: number | null
   }
 
   export type ArchivosCountAggregateOutputType = {
     pk_id_arch: number
     txt_dir_arch: number
+    fk_id_biblio: number
     _all: number
   }
 
 
   export type ArchivosAvgAggregateInputType = {
     pk_id_arch?: true
+    fk_id_biblio?: true
   }
 
   export type ArchivosSumAggregateInputType = {
     pk_id_arch?: true
+    fk_id_biblio?: true
   }
 
   export type ArchivosMinAggregateInputType = {
     pk_id_arch?: true
     txt_dir_arch?: true
+    fk_id_biblio?: true
   }
 
   export type ArchivosMaxAggregateInputType = {
     pk_id_arch?: true
     txt_dir_arch?: true
+    fk_id_biblio?: true
   }
 
   export type ArchivosCountAggregateInputType = {
     pk_id_arch?: true
     txt_dir_arch?: true
+    fk_id_biblio?: true
     _all?: true
   }
 
@@ -3283,6 +3853,7 @@ export namespace Prisma {
   export type ArchivosGroupByOutputType = {
     pk_id_arch: number
     txt_dir_arch: string
+    fk_id_biblio: number
     _count: ArchivosCountAggregateOutputType | null
     _avg: ArchivosAvgAggregateOutputType | null
     _sum: ArchivosSumAggregateOutputType | null
@@ -3307,20 +3878,30 @@ export namespace Prisma {
   export type ArchivosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_arch?: boolean
     txt_dir_arch?: boolean
+    fk_id_biblio?: boolean
+    Bibliografias?: boolean | BibliografiasDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["archivos"]>
 
   export type ArchivosSelectScalar = {
     pk_id_arch?: boolean
     txt_dir_arch?: boolean
+    fk_id_biblio?: boolean
+  }
+
+  export type ArchivosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Bibliografias?: boolean | BibliografiasDefaultArgs<ExtArgs>
   }
 
 
   export type $ArchivosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Archivos"
-    objects: {}
+    objects: {
+      Bibliografias: Prisma.$BibliografiasPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_arch: number
       txt_dir_arch: string
+      fk_id_biblio: number
     }, ExtArgs["result"]["archivos"]>
     composites: {}
   }
@@ -3686,6 +4267,7 @@ export namespace Prisma {
   export interface Prisma__ArchivosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    Bibliografias<T extends BibliografiasDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BibliografiasDefaultArgs<ExtArgs>>): Prisma__BibliografiasClient<$Result.GetResult<Prisma.$BibliografiasPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3717,6 +4299,7 @@ export namespace Prisma {
   interface ArchivosFieldRefs {
     readonly pk_id_arch: FieldRef<"Archivos", 'Int'>
     readonly txt_dir_arch: FieldRef<"Archivos", 'String'>
+    readonly fk_id_biblio: FieldRef<"Archivos", 'Int'>
   }
     
 
@@ -3730,6 +4313,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Archivos
      */
     select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
     /**
      * Filter, which Archivos to fetch.
      */
@@ -3746,6 +4333,10 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    /**
      * Filter, which Archivos to fetch.
      */
     where: ArchivosWhereUniqueInput
@@ -3760,6 +4351,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Archivos
      */
     select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
     /**
      * Filter, which Archivos to fetch.
      */
@@ -3806,6 +4401,10 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    /**
      * Filter, which Archivos to fetch.
      */
     where?: ArchivosWhereInput
@@ -3851,6 +4450,10 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    /**
      * Filter, which Archivos to fetch.
      */
     where?: ArchivosWhereInput
@@ -3891,6 +4494,10 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    /**
      * The data needed to create a Archivos.
      */
     data: XOR<ArchivosCreateInput, ArchivosUncheckedCreateInput>
@@ -3917,6 +4524,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Archivos
      */
     select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
     /**
      * The data needed to update a Archivos.
      */
@@ -3952,6 +4563,10 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    /**
      * The filter to search for the Archivos to update in case it exists.
      */
     where: ArchivosWhereUniqueInput
@@ -3974,6 +4589,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Archivos
      */
     select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
     /**
      * Filter which Archivos to delete.
      */
@@ -4000,6 +4619,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Archivos
      */
     select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArchivosInclude<ExtArgs> | null
   }
 
 
@@ -4018,60 +4641,60 @@ export namespace Prisma {
 
   export type CarpetasAvgAggregateOutputType = {
     pk_id_carp: number | null
-    gruposPk_id_grup: number | null
+    fk_id_grup: number | null
   }
 
   export type CarpetasSumAggregateOutputType = {
     pk_id_carp: number | null
-    gruposPk_id_grup: number | null
+    fk_id_grup: number | null
   }
 
   export type CarpetasMinAggregateOutputType = {
     pk_id_carp: number | null
     txt_nom_carp: string | null
-    gruposPk_id_grup: number | null
+    fk_id_grup: number | null
   }
 
   export type CarpetasMaxAggregateOutputType = {
     pk_id_carp: number | null
     txt_nom_carp: string | null
-    gruposPk_id_grup: number | null
+    fk_id_grup: number | null
   }
 
   export type CarpetasCountAggregateOutputType = {
     pk_id_carp: number
     txt_nom_carp: number
-    gruposPk_id_grup: number
+    fk_id_grup: number
     _all: number
   }
 
 
   export type CarpetasAvgAggregateInputType = {
     pk_id_carp?: true
-    gruposPk_id_grup?: true
+    fk_id_grup?: true
   }
 
   export type CarpetasSumAggregateInputType = {
     pk_id_carp?: true
-    gruposPk_id_grup?: true
+    fk_id_grup?: true
   }
 
   export type CarpetasMinAggregateInputType = {
     pk_id_carp?: true
     txt_nom_carp?: true
-    gruposPk_id_grup?: true
+    fk_id_grup?: true
   }
 
   export type CarpetasMaxAggregateInputType = {
     pk_id_carp?: true
     txt_nom_carp?: true
-    gruposPk_id_grup?: true
+    fk_id_grup?: true
   }
 
   export type CarpetasCountAggregateInputType = {
     pk_id_carp?: true
     txt_nom_carp?: true
-    gruposPk_id_grup?: true
+    fk_id_grup?: true
     _all?: true
   }
 
@@ -4164,7 +4787,7 @@ export namespace Prisma {
   export type CarpetasGroupByOutputType = {
     pk_id_carp: number
     txt_nom_carp: string
-    gruposPk_id_grup: number
+    fk_id_grup: number
     _count: CarpetasCountAggregateOutputType | null
     _avg: CarpetasAvgAggregateOutputType | null
     _sum: CarpetasSumAggregateOutputType | null
@@ -4189,30 +4812,38 @@ export namespace Prisma {
   export type CarpetasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_carp?: boolean
     txt_nom_carp?: boolean
-    gruposPk_id_grup?: boolean
-    Grupos?: boolean | GruposDefaultArgs<ExtArgs>
+    fk_id_grup?: boolean
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Cambios?: boolean | Carpetas$CambiosArgs<ExtArgs>
+    Bibliografias?: boolean | Carpetas$BibliografiasArgs<ExtArgs>
+    _count?: boolean | CarpetasCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["carpetas"]>
 
   export type CarpetasSelectScalar = {
     pk_id_carp?: boolean
     txt_nom_carp?: boolean
-    gruposPk_id_grup?: boolean
+    fk_id_grup?: boolean
   }
 
   export type CarpetasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Grupos?: boolean | GruposDefaultArgs<ExtArgs>
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Cambios?: boolean | Carpetas$CambiosArgs<ExtArgs>
+    Bibliografias?: boolean | Carpetas$BibliografiasArgs<ExtArgs>
+    _count?: boolean | CarpetasCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
   export type $CarpetasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Carpetas"
     objects: {
-      Grupos: Prisma.$GruposPayload<ExtArgs>
+      Grupo: Prisma.$GruposPayload<ExtArgs>
+      Cambios: Prisma.$CambiosPayload<ExtArgs>[]
+      Bibliografias: Prisma.$BibliografiasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_carp: number
       txt_nom_carp: string
-      gruposPk_id_grup: number
+      fk_id_grup: number
     }, ExtArgs["result"]["carpetas"]>
     composites: {}
   }
@@ -4578,7 +5209,11 @@ export namespace Prisma {
   export interface Prisma__CarpetasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Grupos<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    Grupo<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Cambios<T extends Carpetas$CambiosArgs<ExtArgs> = {}>(args?: Subset<T, Carpetas$CambiosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    Bibliografias<T extends Carpetas$BibliografiasArgs<ExtArgs> = {}>(args?: Subset<T, Carpetas$BibliografiasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BibliografiasPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4610,7 +5245,7 @@ export namespace Prisma {
   interface CarpetasFieldRefs {
     readonly pk_id_carp: FieldRef<"Carpetas", 'Int'>
     readonly txt_nom_carp: FieldRef<"Carpetas", 'String'>
-    readonly gruposPk_id_grup: FieldRef<"Carpetas", 'Int'>
+    readonly fk_id_grup: FieldRef<"Carpetas", 'Int'>
   }
     
 
@@ -4923,6 +5558,48 @@ export namespace Prisma {
 
 
   /**
+   * Carpetas.Cambios
+   */
+  export type Carpetas$CambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    where?: CambiosWhereInput
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    cursor?: CambiosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
+  }
+
+
+  /**
+   * Carpetas.Bibliografias
+   */
+  export type Carpetas$BibliografiasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bibliografias
+     */
+    select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    where?: BibliografiasWhereInput
+    orderBy?: BibliografiasOrderByWithRelationInput | BibliografiasOrderByWithRelationInput[]
+    cursor?: BibliografiasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
+  }
+
+
+  /**
    * Carpetas without action
    */
   export type CarpetasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4934,6 +5611,930 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: CarpetasInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model GrupoConAcceso
+   */
+
+  export type AggregateGrupoConAcceso = {
+    _count: GrupoConAccesoCountAggregateOutputType | null
+    _avg: GrupoConAccesoAvgAggregateOutputType | null
+    _sum: GrupoConAccesoSumAggregateOutputType | null
+    _min: GrupoConAccesoMinAggregateOutputType | null
+    _max: GrupoConAccesoMaxAggregateOutputType | null
+  }
+
+  export type GrupoConAccesoAvgAggregateOutputType = {
+    fk_id_grup: number | null
+  }
+
+  export type GrupoConAccesoSumAggregateOutputType = {
+    fk_id_grup: number | null
+  }
+
+  export type GrupoConAccesoMinAggregateOutputType = {
+    fk_id_grup: number | null
+    fk_id_est: string | null
+  }
+
+  export type GrupoConAccesoMaxAggregateOutputType = {
+    fk_id_grup: number | null
+    fk_id_est: string | null
+  }
+
+  export type GrupoConAccesoCountAggregateOutputType = {
+    fk_id_grup: number
+    fk_id_est: number
+    _all: number
+  }
+
+
+  export type GrupoConAccesoAvgAggregateInputType = {
+    fk_id_grup?: true
+  }
+
+  export type GrupoConAccesoSumAggregateInputType = {
+    fk_id_grup?: true
+  }
+
+  export type GrupoConAccesoMinAggregateInputType = {
+    fk_id_grup?: true
+    fk_id_est?: true
+  }
+
+  export type GrupoConAccesoMaxAggregateInputType = {
+    fk_id_grup?: true
+    fk_id_est?: true
+  }
+
+  export type GrupoConAccesoCountAggregateInputType = {
+    fk_id_grup?: true
+    fk_id_est?: true
+    _all?: true
+  }
+
+  export type GrupoConAccesoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GrupoConAcceso to aggregate.
+     */
+    where?: GrupoConAccesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrupoConAccesos to fetch.
+     */
+    orderBy?: GrupoConAccesoOrderByWithRelationInput | GrupoConAccesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GrupoConAccesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrupoConAccesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrupoConAccesos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GrupoConAccesos
+    **/
+    _count?: true | GrupoConAccesoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GrupoConAccesoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GrupoConAccesoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GrupoConAccesoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GrupoConAccesoMaxAggregateInputType
+  }
+
+  export type GetGrupoConAccesoAggregateType<T extends GrupoConAccesoAggregateArgs> = {
+        [P in keyof T & keyof AggregateGrupoConAcceso]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGrupoConAcceso[P]>
+      : GetScalarType<T[P], AggregateGrupoConAcceso[P]>
+  }
+
+
+
+
+  export type GrupoConAccesoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrupoConAccesoWhereInput
+    orderBy?: GrupoConAccesoOrderByWithAggregationInput | GrupoConAccesoOrderByWithAggregationInput[]
+    by: GrupoConAccesoScalarFieldEnum[] | GrupoConAccesoScalarFieldEnum
+    having?: GrupoConAccesoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GrupoConAccesoCountAggregateInputType | true
+    _avg?: GrupoConAccesoAvgAggregateInputType
+    _sum?: GrupoConAccesoSumAggregateInputType
+    _min?: GrupoConAccesoMinAggregateInputType
+    _max?: GrupoConAccesoMaxAggregateInputType
+  }
+
+  export type GrupoConAccesoGroupByOutputType = {
+    fk_id_grup: number
+    fk_id_est: string
+    _count: GrupoConAccesoCountAggregateOutputType | null
+    _avg: GrupoConAccesoAvgAggregateOutputType | null
+    _sum: GrupoConAccesoSumAggregateOutputType | null
+    _min: GrupoConAccesoMinAggregateOutputType | null
+    _max: GrupoConAccesoMaxAggregateOutputType | null
+  }
+
+  type GetGrupoConAccesoGroupByPayload<T extends GrupoConAccesoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GrupoConAccesoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GrupoConAccesoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GrupoConAccesoGroupByOutputType[P]>
+            : GetScalarType<T[P], GrupoConAccesoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GrupoConAccesoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    fk_id_grup?: boolean
+    fk_id_est?: boolean
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grupoConAcceso"]>
+
+  export type GrupoConAccesoSelectScalar = {
+    fk_id_grup?: boolean
+    fk_id_est?: boolean
+  }
+
+  export type GrupoConAccesoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GrupoConAccesoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GrupoConAcceso"
+    objects: {
+      Grupo: Prisma.$GruposPayload<ExtArgs>
+      Estudiante: Prisma.$EstudiantesPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      fk_id_grup: number
+      fk_id_est: string
+    }, ExtArgs["result"]["grupoConAcceso"]>
+    composites: {}
+  }
+
+
+  type GrupoConAccesoGetPayload<S extends boolean | null | undefined | GrupoConAccesoDefaultArgs> = $Result.GetResult<Prisma.$GrupoConAccesoPayload, S>
+
+  type GrupoConAccesoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GrupoConAccesoFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: GrupoConAccesoCountAggregateInputType | true
+    }
+
+  export interface GrupoConAccesoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GrupoConAcceso'], meta: { name: 'GrupoConAcceso' } }
+    /**
+     * Find zero or one GrupoConAcceso that matches the filter.
+     * @param {GrupoConAccesoFindUniqueArgs} args - Arguments to find a GrupoConAcceso
+     * @example
+     * // Get one GrupoConAcceso
+     * const grupoConAcceso = await prisma.grupoConAcceso.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GrupoConAccesoFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GrupoConAccesoFindUniqueArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one GrupoConAcceso that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GrupoConAccesoFindUniqueOrThrowArgs} args - Arguments to find a GrupoConAcceso
+     * @example
+     * // Get one GrupoConAcceso
+     * const grupoConAcceso = await prisma.grupoConAcceso.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GrupoConAccesoFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first GrupoConAcceso that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoFindFirstArgs} args - Arguments to find a GrupoConAcceso
+     * @example
+     * // Get one GrupoConAcceso
+     * const grupoConAcceso = await prisma.grupoConAcceso.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GrupoConAccesoFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoFindFirstArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first GrupoConAcceso that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoFindFirstOrThrowArgs} args - Arguments to find a GrupoConAcceso
+     * @example
+     * // Get one GrupoConAcceso
+     * const grupoConAcceso = await prisma.grupoConAcceso.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GrupoConAccesoFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more GrupoConAccesos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GrupoConAccesos
+     * const grupoConAccesos = await prisma.grupoConAcceso.findMany()
+     * 
+     * // Get first 10 GrupoConAccesos
+     * const grupoConAccesos = await prisma.grupoConAcceso.findMany({ take: 10 })
+     * 
+     * // Only select the `fk_id_grup`
+     * const grupoConAccesoWithFk_id_grupOnly = await prisma.grupoConAcceso.findMany({ select: { fk_id_grup: true } })
+     * 
+    **/
+    findMany<T extends GrupoConAccesoFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a GrupoConAcceso.
+     * @param {GrupoConAccesoCreateArgs} args - Arguments to create a GrupoConAcceso.
+     * @example
+     * // Create one GrupoConAcceso
+     * const GrupoConAcceso = await prisma.grupoConAcceso.create({
+     *   data: {
+     *     // ... data to create a GrupoConAcceso
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GrupoConAccesoCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GrupoConAccesoCreateArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many GrupoConAccesos.
+     *     @param {GrupoConAccesoCreateManyArgs} args - Arguments to create many GrupoConAccesos.
+     *     @example
+     *     // Create many GrupoConAccesos
+     *     const grupoConAcceso = await prisma.grupoConAcceso.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GrupoConAccesoCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a GrupoConAcceso.
+     * @param {GrupoConAccesoDeleteArgs} args - Arguments to delete one GrupoConAcceso.
+     * @example
+     * // Delete one GrupoConAcceso
+     * const GrupoConAcceso = await prisma.grupoConAcceso.delete({
+     *   where: {
+     *     // ... filter to delete one GrupoConAcceso
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GrupoConAccesoDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GrupoConAccesoDeleteArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one GrupoConAcceso.
+     * @param {GrupoConAccesoUpdateArgs} args - Arguments to update one GrupoConAcceso.
+     * @example
+     * // Update one GrupoConAcceso
+     * const grupoConAcceso = await prisma.grupoConAcceso.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GrupoConAccesoUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GrupoConAccesoUpdateArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more GrupoConAccesos.
+     * @param {GrupoConAccesoDeleteManyArgs} args - Arguments to filter GrupoConAccesos to delete.
+     * @example
+     * // Delete a few GrupoConAccesos
+     * const { count } = await prisma.grupoConAcceso.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GrupoConAccesoDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GrupoConAccesos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GrupoConAccesos
+     * const grupoConAcceso = await prisma.grupoConAcceso.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GrupoConAccesoUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GrupoConAccesoUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one GrupoConAcceso.
+     * @param {GrupoConAccesoUpsertArgs} args - Arguments to update or create a GrupoConAcceso.
+     * @example
+     * // Update or create a GrupoConAcceso
+     * const grupoConAcceso = await prisma.grupoConAcceso.upsert({
+     *   create: {
+     *     // ... data to create a GrupoConAcceso
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GrupoConAcceso we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GrupoConAccesoUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GrupoConAccesoUpsertArgs<ExtArgs>>
+    ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of GrupoConAccesos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoCountArgs} args - Arguments to filter GrupoConAccesos to count.
+     * @example
+     * // Count the number of GrupoConAccesos
+     * const count = await prisma.grupoConAcceso.count({
+     *   where: {
+     *     // ... the filter for the GrupoConAccesos we want to count
+     *   }
+     * })
+    **/
+    count<T extends GrupoConAccesoCountArgs>(
+      args?: Subset<T, GrupoConAccesoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GrupoConAccesoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GrupoConAcceso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GrupoConAccesoAggregateArgs>(args: Subset<T, GrupoConAccesoAggregateArgs>): Prisma.PrismaPromise<GetGrupoConAccesoAggregateType<T>>
+
+    /**
+     * Group by GrupoConAcceso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrupoConAccesoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GrupoConAccesoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GrupoConAccesoGroupByArgs['orderBy'] }
+        : { orderBy?: GrupoConAccesoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GrupoConAccesoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGrupoConAccesoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GrupoConAcceso model
+   */
+  readonly fields: GrupoConAccesoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GrupoConAcceso.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GrupoConAccesoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Grupo<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Estudiante<T extends EstudiantesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EstudiantesDefaultArgs<ExtArgs>>): Prisma__EstudiantesClient<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the GrupoConAcceso model
+   */ 
+  interface GrupoConAccesoFieldRefs {
+    readonly fk_id_grup: FieldRef<"GrupoConAcceso", 'Int'>
+    readonly fk_id_est: FieldRef<"GrupoConAcceso", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * GrupoConAcceso findUnique
+   */
+  export type GrupoConAccesoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * Filter, which GrupoConAcceso to fetch.
+     */
+    where: GrupoConAccesoWhereUniqueInput
+  }
+
+
+  /**
+   * GrupoConAcceso findUniqueOrThrow
+   */
+  export type GrupoConAccesoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * Filter, which GrupoConAcceso to fetch.
+     */
+    where: GrupoConAccesoWhereUniqueInput
+  }
+
+
+  /**
+   * GrupoConAcceso findFirst
+   */
+  export type GrupoConAccesoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * Filter, which GrupoConAcceso to fetch.
+     */
+    where?: GrupoConAccesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrupoConAccesos to fetch.
+     */
+    orderBy?: GrupoConAccesoOrderByWithRelationInput | GrupoConAccesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GrupoConAccesos.
+     */
+    cursor?: GrupoConAccesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrupoConAccesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrupoConAccesos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrupoConAccesos.
+     */
+    distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
+  }
+
+
+  /**
+   * GrupoConAcceso findFirstOrThrow
+   */
+  export type GrupoConAccesoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * Filter, which GrupoConAcceso to fetch.
+     */
+    where?: GrupoConAccesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrupoConAccesos to fetch.
+     */
+    orderBy?: GrupoConAccesoOrderByWithRelationInput | GrupoConAccesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GrupoConAccesos.
+     */
+    cursor?: GrupoConAccesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrupoConAccesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrupoConAccesos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrupoConAccesos.
+     */
+    distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
+  }
+
+
+  /**
+   * GrupoConAcceso findMany
+   */
+  export type GrupoConAccesoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * Filter, which GrupoConAccesos to fetch.
+     */
+    where?: GrupoConAccesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrupoConAccesos to fetch.
+     */
+    orderBy?: GrupoConAccesoOrderByWithRelationInput | GrupoConAccesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GrupoConAccesos.
+     */
+    cursor?: GrupoConAccesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrupoConAccesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrupoConAccesos.
+     */
+    skip?: number
+    distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
+  }
+
+
+  /**
+   * GrupoConAcceso create
+   */
+  export type GrupoConAccesoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GrupoConAcceso.
+     */
+    data: XOR<GrupoConAccesoCreateInput, GrupoConAccesoUncheckedCreateInput>
+  }
+
+
+  /**
+   * GrupoConAcceso createMany
+   */
+  export type GrupoConAccesoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GrupoConAccesos.
+     */
+    data: GrupoConAccesoCreateManyInput | GrupoConAccesoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * GrupoConAcceso update
+   */
+  export type GrupoConAccesoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GrupoConAcceso.
+     */
+    data: XOR<GrupoConAccesoUpdateInput, GrupoConAccesoUncheckedUpdateInput>
+    /**
+     * Choose, which GrupoConAcceso to update.
+     */
+    where: GrupoConAccesoWhereUniqueInput
+  }
+
+
+  /**
+   * GrupoConAcceso updateMany
+   */
+  export type GrupoConAccesoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GrupoConAccesos.
+     */
+    data: XOR<GrupoConAccesoUpdateManyMutationInput, GrupoConAccesoUncheckedUpdateManyInput>
+    /**
+     * Filter which GrupoConAccesos to update
+     */
+    where?: GrupoConAccesoWhereInput
+  }
+
+
+  /**
+   * GrupoConAcceso upsert
+   */
+  export type GrupoConAccesoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GrupoConAcceso to update in case it exists.
+     */
+    where: GrupoConAccesoWhereUniqueInput
+    /**
+     * In case the GrupoConAcceso found by the `where` argument doesn't exist, create a new GrupoConAcceso with this data.
+     */
+    create: XOR<GrupoConAccesoCreateInput, GrupoConAccesoUncheckedCreateInput>
+    /**
+     * In case the GrupoConAcceso was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GrupoConAccesoUpdateInput, GrupoConAccesoUncheckedUpdateInput>
+  }
+
+
+  /**
+   * GrupoConAcceso delete
+   */
+  export type GrupoConAccesoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * Filter which GrupoConAcceso to delete.
+     */
+    where: GrupoConAccesoWhereUniqueInput
+  }
+
+
+  /**
+   * GrupoConAcceso deleteMany
+   */
+  export type GrupoConAccesoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GrupoConAccesos to delete
+     */
+    where?: GrupoConAccesoWhereInput
+  }
+
+
+  /**
+   * GrupoConAcceso without action
+   */
+  export type GrupoConAccesoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
   }
 
 
@@ -4961,16 +6562,19 @@ export namespace Prisma {
   export type GruposMinAggregateOutputType = {
     pk_id_grup: number | null
     txt_nom_grup: string | null
+    fk_id_est: string | null
   }
 
   export type GruposMaxAggregateOutputType = {
     pk_id_grup: number | null
     txt_nom_grup: string | null
+    fk_id_est: string | null
   }
 
   export type GruposCountAggregateOutputType = {
     pk_id_grup: number
     txt_nom_grup: number
+    fk_id_est: number
     _all: number
   }
 
@@ -4986,16 +6590,19 @@ export namespace Prisma {
   export type GruposMinAggregateInputType = {
     pk_id_grup?: true
     txt_nom_grup?: true
+    fk_id_est?: true
   }
 
   export type GruposMaxAggregateInputType = {
     pk_id_grup?: true
     txt_nom_grup?: true
+    fk_id_est?: true
   }
 
   export type GruposCountAggregateInputType = {
     pk_id_grup?: true
     txt_nom_grup?: true
+    fk_id_est?: true
     _all?: true
   }
 
@@ -5088,6 +6695,7 @@ export namespace Prisma {
   export type GruposGroupByOutputType = {
     pk_id_grup: number
     txt_nom_grup: string
+    fk_id_est: string
     _count: GruposCountAggregateOutputType | null
     _avg: GruposAvgAggregateOutputType | null
     _sum: GruposSumAggregateOutputType | null
@@ -5112,17 +6720,27 @@ export namespace Prisma {
   export type GruposSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_grup?: boolean
     txt_nom_grup?: boolean
+    fk_id_est?: boolean
+    Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
+    Cambios?: boolean | Grupos$CambiosArgs<ExtArgs>
     Carpetas?: boolean | Grupos$CarpetasArgs<ExtArgs>
+    Bibliografias?: boolean | Grupos$BibliografiasArgs<ExtArgs>
+    GrupoConAcceso?: boolean | Grupos$GrupoConAccesoArgs<ExtArgs>
     _count?: boolean | GruposCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["grupos"]>
 
   export type GruposSelectScalar = {
     pk_id_grup?: boolean
     txt_nom_grup?: boolean
+    fk_id_est?: boolean
   }
 
   export type GruposInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
+    Cambios?: boolean | Grupos$CambiosArgs<ExtArgs>
     Carpetas?: boolean | Grupos$CarpetasArgs<ExtArgs>
+    Bibliografias?: boolean | Grupos$BibliografiasArgs<ExtArgs>
+    GrupoConAcceso?: boolean | Grupos$GrupoConAccesoArgs<ExtArgs>
     _count?: boolean | GruposCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5130,11 +6748,16 @@ export namespace Prisma {
   export type $GruposPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Grupos"
     objects: {
+      Estudiante: Prisma.$EstudiantesPayload<ExtArgs>
+      Cambios: Prisma.$CambiosPayload<ExtArgs>[]
       Carpetas: Prisma.$CarpetasPayload<ExtArgs>[]
+      Bibliografias: Prisma.$BibliografiasPayload<ExtArgs>[]
+      GrupoConAcceso: Prisma.$GrupoConAccesoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_grup: number
       txt_nom_grup: string
+      fk_id_est: string
     }, ExtArgs["result"]["grupos"]>
     composites: {}
   }
@@ -5500,7 +7123,15 @@ export namespace Prisma {
   export interface Prisma__GruposClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    Estudiante<T extends EstudiantesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EstudiantesDefaultArgs<ExtArgs>>): Prisma__EstudiantesClient<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Cambios<T extends Grupos$CambiosArgs<ExtArgs> = {}>(args?: Subset<T, Grupos$CambiosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     Carpetas<T extends Grupos$CarpetasArgs<ExtArgs> = {}>(args?: Subset<T, Grupos$CarpetasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    Bibliografias<T extends Grupos$BibliografiasArgs<ExtArgs> = {}>(args?: Subset<T, Grupos$BibliografiasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BibliografiasPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    GrupoConAcceso<T extends Grupos$GrupoConAccesoArgs<ExtArgs> = {}>(args?: Subset<T, Grupos$GrupoConAccesoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5532,6 +7163,7 @@ export namespace Prisma {
   interface GruposFieldRefs {
     readonly pk_id_grup: FieldRef<"Grupos", 'Int'>
     readonly txt_nom_grup: FieldRef<"Grupos", 'String'>
+    readonly fk_id_est: FieldRef<"Grupos", 'String'>
   }
     
 
@@ -5844,6 +7476,27 @@ export namespace Prisma {
 
 
   /**
+   * Grupos.Cambios
+   */
+  export type Grupos$CambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    where?: CambiosWhereInput
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    cursor?: CambiosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
+  }
+
+
+  /**
    * Grupos.Carpetas
    */
   export type Grupos$CarpetasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5865,6 +7518,48 @@ export namespace Prisma {
 
 
   /**
+   * Grupos.Bibliografias
+   */
+  export type Grupos$BibliografiasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bibliografias
+     */
+    select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    where?: BibliografiasWhereInput
+    orderBy?: BibliografiasOrderByWithRelationInput | BibliografiasOrderByWithRelationInput[]
+    cursor?: BibliografiasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grupos.GrupoConAcceso
+   */
+  export type Grupos$GrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    where?: GrupoConAccesoWhereInput
+    orderBy?: GrupoConAccesoOrderByWithRelationInput | GrupoConAccesoOrderByWithRelationInput[]
+    cursor?: GrupoConAccesoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
+  }
+
+
+  /**
    * Grupos without action
    */
   export type GruposDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5876,6 +7571,991 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: GruposInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Cambios
+   */
+
+  export type AggregateCambios = {
+    _count: CambiosCountAggregateOutputType | null
+    _avg: CambiosAvgAggregateOutputType | null
+    _sum: CambiosSumAggregateOutputType | null
+    _min: CambiosMinAggregateOutputType | null
+    _max: CambiosMaxAggregateOutputType | null
+  }
+
+  export type CambiosAvgAggregateOutputType = {
+    pk_id_camb: number | null
+    num_tip_camb: number | null
+    fk_id_carp: number | null
+    fk_id_grup: number | null
+  }
+
+  export type CambiosSumAggregateOutputType = {
+    pk_id_camb: number | null
+    num_tip_camb: number | null
+    fk_id_carp: number | null
+    fk_id_grup: number | null
+  }
+
+  export type CambiosMinAggregateOutputType = {
+    pk_id_camb: number | null
+    num_tip_camb: number | null
+    txt_fecha_camb: Date | null
+    fk_id_est: string | null
+    fk_id_carp: number | null
+    fk_id_grup: number | null
+  }
+
+  export type CambiosMaxAggregateOutputType = {
+    pk_id_camb: number | null
+    num_tip_camb: number | null
+    txt_fecha_camb: Date | null
+    fk_id_est: string | null
+    fk_id_carp: number | null
+    fk_id_grup: number | null
+  }
+
+  export type CambiosCountAggregateOutputType = {
+    pk_id_camb: number
+    num_tip_camb: number
+    txt_fecha_camb: number
+    fk_id_est: number
+    fk_id_carp: number
+    fk_id_grup: number
+    _all: number
+  }
+
+
+  export type CambiosAvgAggregateInputType = {
+    pk_id_camb?: true
+    num_tip_camb?: true
+    fk_id_carp?: true
+    fk_id_grup?: true
+  }
+
+  export type CambiosSumAggregateInputType = {
+    pk_id_camb?: true
+    num_tip_camb?: true
+    fk_id_carp?: true
+    fk_id_grup?: true
+  }
+
+  export type CambiosMinAggregateInputType = {
+    pk_id_camb?: true
+    num_tip_camb?: true
+    txt_fecha_camb?: true
+    fk_id_est?: true
+    fk_id_carp?: true
+    fk_id_grup?: true
+  }
+
+  export type CambiosMaxAggregateInputType = {
+    pk_id_camb?: true
+    num_tip_camb?: true
+    txt_fecha_camb?: true
+    fk_id_est?: true
+    fk_id_carp?: true
+    fk_id_grup?: true
+  }
+
+  export type CambiosCountAggregateInputType = {
+    pk_id_camb?: true
+    num_tip_camb?: true
+    txt_fecha_camb?: true
+    fk_id_est?: true
+    fk_id_carp?: true
+    fk_id_grup?: true
+    _all?: true
+  }
+
+  export type CambiosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Cambios to aggregate.
+     */
+    where?: CambiosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cambios to fetch.
+     */
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CambiosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cambios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cambios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Cambios
+    **/
+    _count?: true | CambiosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CambiosAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CambiosSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CambiosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CambiosMaxAggregateInputType
+  }
+
+  export type GetCambiosAggregateType<T extends CambiosAggregateArgs> = {
+        [P in keyof T & keyof AggregateCambios]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCambios[P]>
+      : GetScalarType<T[P], AggregateCambios[P]>
+  }
+
+
+
+
+  export type CambiosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CambiosWhereInput
+    orderBy?: CambiosOrderByWithAggregationInput | CambiosOrderByWithAggregationInput[]
+    by: CambiosScalarFieldEnum[] | CambiosScalarFieldEnum
+    having?: CambiosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CambiosCountAggregateInputType | true
+    _avg?: CambiosAvgAggregateInputType
+    _sum?: CambiosSumAggregateInputType
+    _min?: CambiosMinAggregateInputType
+    _max?: CambiosMaxAggregateInputType
+  }
+
+  export type CambiosGroupByOutputType = {
+    pk_id_camb: number
+    num_tip_camb: number
+    txt_fecha_camb: Date
+    fk_id_est: string
+    fk_id_carp: number
+    fk_id_grup: number
+    _count: CambiosCountAggregateOutputType | null
+    _avg: CambiosAvgAggregateOutputType | null
+    _sum: CambiosSumAggregateOutputType | null
+    _min: CambiosMinAggregateOutputType | null
+    _max: CambiosMaxAggregateOutputType | null
+  }
+
+  type GetCambiosGroupByPayload<T extends CambiosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CambiosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CambiosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CambiosGroupByOutputType[P]>
+            : GetScalarType<T[P], CambiosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CambiosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    pk_id_camb?: boolean
+    num_tip_camb?: boolean
+    txt_fecha_camb?: boolean
+    fk_id_est?: boolean
+    fk_id_carp?: boolean
+    fk_id_grup?: boolean
+    Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
+    Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cambios"]>
+
+  export type CambiosSelectScalar = {
+    pk_id_camb?: boolean
+    num_tip_camb?: boolean
+    txt_fecha_camb?: boolean
+    fk_id_est?: boolean
+    fk_id_carp?: boolean
+    fk_id_grup?: boolean
+  }
+
+  export type CambiosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
+    Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
+    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+  }
+
+
+  export type $CambiosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Cambios"
+    objects: {
+      Estudiante: Prisma.$EstudiantesPayload<ExtArgs>
+      Carpeta: Prisma.$CarpetasPayload<ExtArgs>
+      Grupo: Prisma.$GruposPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      pk_id_camb: number
+      num_tip_camb: number
+      txt_fecha_camb: Date
+      fk_id_est: string
+      fk_id_carp: number
+      fk_id_grup: number
+    }, ExtArgs["result"]["cambios"]>
+    composites: {}
+  }
+
+
+  type CambiosGetPayload<S extends boolean | null | undefined | CambiosDefaultArgs> = $Result.GetResult<Prisma.$CambiosPayload, S>
+
+  type CambiosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CambiosFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: CambiosCountAggregateInputType | true
+    }
+
+  export interface CambiosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Cambios'], meta: { name: 'Cambios' } }
+    /**
+     * Find zero or one Cambios that matches the filter.
+     * @param {CambiosFindUniqueArgs} args - Arguments to find a Cambios
+     * @example
+     * // Get one Cambios
+     * const cambios = await prisma.cambios.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CambiosFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CambiosFindUniqueArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Cambios that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CambiosFindUniqueOrThrowArgs} args - Arguments to find a Cambios
+     * @example
+     * // Get one Cambios
+     * const cambios = await prisma.cambios.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CambiosFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Cambios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosFindFirstArgs} args - Arguments to find a Cambios
+     * @example
+     * // Get one Cambios
+     * const cambios = await prisma.cambios.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CambiosFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosFindFirstArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Cambios that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosFindFirstOrThrowArgs} args - Arguments to find a Cambios
+     * @example
+     * // Get one Cambios
+     * const cambios = await prisma.cambios.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CambiosFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Cambios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Cambios
+     * const cambios = await prisma.cambios.findMany()
+     * 
+     * // Get first 10 Cambios
+     * const cambios = await prisma.cambios.findMany({ take: 10 })
+     * 
+     * // Only select the `pk_id_camb`
+     * const cambiosWithPk_id_cambOnly = await prisma.cambios.findMany({ select: { pk_id_camb: true } })
+     * 
+    **/
+    findMany<T extends CambiosFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Cambios.
+     * @param {CambiosCreateArgs} args - Arguments to create a Cambios.
+     * @example
+     * // Create one Cambios
+     * const Cambios = await prisma.cambios.create({
+     *   data: {
+     *     // ... data to create a Cambios
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CambiosCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CambiosCreateArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Cambios.
+     *     @param {CambiosCreateManyArgs} args - Arguments to create many Cambios.
+     *     @example
+     *     // Create many Cambios
+     *     const cambios = await prisma.cambios.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends CambiosCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Cambios.
+     * @param {CambiosDeleteArgs} args - Arguments to delete one Cambios.
+     * @example
+     * // Delete one Cambios
+     * const Cambios = await prisma.cambios.delete({
+     *   where: {
+     *     // ... filter to delete one Cambios
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CambiosDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CambiosDeleteArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Cambios.
+     * @param {CambiosUpdateArgs} args - Arguments to update one Cambios.
+     * @example
+     * // Update one Cambios
+     * const cambios = await prisma.cambios.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CambiosUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CambiosUpdateArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Cambios.
+     * @param {CambiosDeleteManyArgs} args - Arguments to filter Cambios to delete.
+     * @example
+     * // Delete a few Cambios
+     * const { count } = await prisma.cambios.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CambiosDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Cambios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Cambios
+     * const cambios = await prisma.cambios.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CambiosUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CambiosUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Cambios.
+     * @param {CambiosUpsertArgs} args - Arguments to update or create a Cambios.
+     * @example
+     * // Update or create a Cambios
+     * const cambios = await prisma.cambios.upsert({
+     *   create: {
+     *     // ... data to create a Cambios
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Cambios we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CambiosUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CambiosUpsertArgs<ExtArgs>>
+    ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Cambios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosCountArgs} args - Arguments to filter Cambios to count.
+     * @example
+     * // Count the number of Cambios
+     * const count = await prisma.cambios.count({
+     *   where: {
+     *     // ... the filter for the Cambios we want to count
+     *   }
+     * })
+    **/
+    count<T extends CambiosCountArgs>(
+      args?: Subset<T, CambiosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CambiosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Cambios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CambiosAggregateArgs>(args: Subset<T, CambiosAggregateArgs>): Prisma.PrismaPromise<GetCambiosAggregateType<T>>
+
+    /**
+     * Group by Cambios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CambiosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CambiosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CambiosGroupByArgs['orderBy'] }
+        : { orderBy?: CambiosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CambiosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCambiosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Cambios model
+   */
+  readonly fields: CambiosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Cambios.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CambiosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Estudiante<T extends EstudiantesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EstudiantesDefaultArgs<ExtArgs>>): Prisma__EstudiantesClient<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Carpeta<T extends CarpetasDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarpetasDefaultArgs<ExtArgs>>): Prisma__CarpetasClient<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    Grupo<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Cambios model
+   */ 
+  interface CambiosFieldRefs {
+    readonly pk_id_camb: FieldRef<"Cambios", 'Int'>
+    readonly num_tip_camb: FieldRef<"Cambios", 'Int'>
+    readonly txt_fecha_camb: FieldRef<"Cambios", 'DateTime'>
+    readonly fk_id_est: FieldRef<"Cambios", 'String'>
+    readonly fk_id_carp: FieldRef<"Cambios", 'Int'>
+    readonly fk_id_grup: FieldRef<"Cambios", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Cambios findUnique
+   */
+  export type CambiosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * Filter, which Cambios to fetch.
+     */
+    where: CambiosWhereUniqueInput
+  }
+
+
+  /**
+   * Cambios findUniqueOrThrow
+   */
+  export type CambiosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * Filter, which Cambios to fetch.
+     */
+    where: CambiosWhereUniqueInput
+  }
+
+
+  /**
+   * Cambios findFirst
+   */
+  export type CambiosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * Filter, which Cambios to fetch.
+     */
+    where?: CambiosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cambios to fetch.
+     */
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Cambios.
+     */
+    cursor?: CambiosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cambios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cambios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Cambios.
+     */
+    distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
+  }
+
+
+  /**
+   * Cambios findFirstOrThrow
+   */
+  export type CambiosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * Filter, which Cambios to fetch.
+     */
+    where?: CambiosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cambios to fetch.
+     */
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Cambios.
+     */
+    cursor?: CambiosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cambios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cambios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Cambios.
+     */
+    distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
+  }
+
+
+  /**
+   * Cambios findMany
+   */
+  export type CambiosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * Filter, which Cambios to fetch.
+     */
+    where?: CambiosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cambios to fetch.
+     */
+    orderBy?: CambiosOrderByWithRelationInput | CambiosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Cambios.
+     */
+    cursor?: CambiosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cambios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cambios.
+     */
+    skip?: number
+    distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
+  }
+
+
+  /**
+   * Cambios create
+   */
+  export type CambiosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Cambios.
+     */
+    data: XOR<CambiosCreateInput, CambiosUncheckedCreateInput>
+  }
+
+
+  /**
+   * Cambios createMany
+   */
+  export type CambiosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Cambios.
+     */
+    data: CambiosCreateManyInput | CambiosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Cambios update
+   */
+  export type CambiosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Cambios.
+     */
+    data: XOR<CambiosUpdateInput, CambiosUncheckedUpdateInput>
+    /**
+     * Choose, which Cambios to update.
+     */
+    where: CambiosWhereUniqueInput
+  }
+
+
+  /**
+   * Cambios updateMany
+   */
+  export type CambiosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Cambios.
+     */
+    data: XOR<CambiosUpdateManyMutationInput, CambiosUncheckedUpdateManyInput>
+    /**
+     * Filter which Cambios to update
+     */
+    where?: CambiosWhereInput
+  }
+
+
+  /**
+   * Cambios upsert
+   */
+  export type CambiosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Cambios to update in case it exists.
+     */
+    where: CambiosWhereUniqueInput
+    /**
+     * In case the Cambios found by the `where` argument doesn't exist, create a new Cambios with this data.
+     */
+    create: XOR<CambiosCreateInput, CambiosUncheckedCreateInput>
+    /**
+     * In case the Cambios was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CambiosUpdateInput, CambiosUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Cambios delete
+   */
+  export type CambiosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * Filter which Cambios to delete.
+     */
+    where: CambiosWhereUniqueInput
+  }
+
+
+  /**
+   * Cambios deleteMany
+   */
+  export type CambiosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Cambios to delete
+     */
+    where?: CambiosWhereInput
+  }
+
+
+  /**
+   * Cambios without action
+   */
+  export type CambiosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CambiosInclude<ExtArgs> | null
   }
 
 
@@ -5918,7 +8598,9 @@ export namespace Prisma {
     num_edic_biblio: 'num_edic_biblio',
     num_volm_biblio: 'num_volm_biblio',
     num_npag_biblio: 'num_npag_biblio',
-    txt_ubic_biblio: 'txt_ubic_biblio'
+    txt_ubic_biblio: 'txt_ubic_biblio',
+    fk_id_grup: 'fk_id_grup',
+    fk_id_carp: 'fk_id_carp'
   };
 
   export type BibliografiasScalarFieldEnum = (typeof BibliografiasScalarFieldEnum)[keyof typeof BibliografiasScalarFieldEnum]
@@ -5926,7 +8608,8 @@ export namespace Prisma {
 
   export const ArchivosScalarFieldEnum: {
     pk_id_arch: 'pk_id_arch',
-    txt_dir_arch: 'txt_dir_arch'
+    txt_dir_arch: 'txt_dir_arch',
+    fk_id_biblio: 'fk_id_biblio'
   };
 
   export type ArchivosScalarFieldEnum = (typeof ArchivosScalarFieldEnum)[keyof typeof ArchivosScalarFieldEnum]
@@ -5935,18 +8618,39 @@ export namespace Prisma {
   export const CarpetasScalarFieldEnum: {
     pk_id_carp: 'pk_id_carp',
     txt_nom_carp: 'txt_nom_carp',
-    gruposPk_id_grup: 'gruposPk_id_grup'
+    fk_id_grup: 'fk_id_grup'
   };
 
   export type CarpetasScalarFieldEnum = (typeof CarpetasScalarFieldEnum)[keyof typeof CarpetasScalarFieldEnum]
 
 
+  export const GrupoConAccesoScalarFieldEnum: {
+    fk_id_grup: 'fk_id_grup',
+    fk_id_est: 'fk_id_est'
+  };
+
+  export type GrupoConAccesoScalarFieldEnum = (typeof GrupoConAccesoScalarFieldEnum)[keyof typeof GrupoConAccesoScalarFieldEnum]
+
+
   export const GruposScalarFieldEnum: {
     pk_id_grup: 'pk_id_grup',
-    txt_nom_grup: 'txt_nom_grup'
+    txt_nom_grup: 'txt_nom_grup',
+    fk_id_est: 'fk_id_est'
   };
 
   export type GruposScalarFieldEnum = (typeof GruposScalarFieldEnum)[keyof typeof GruposScalarFieldEnum]
+
+
+  export const CambiosScalarFieldEnum: {
+    pk_id_camb: 'pk_id_camb',
+    num_tip_camb: 'num_tip_camb',
+    txt_fecha_camb: 'txt_fecha_camb',
+    fk_id_est: 'fk_id_est',
+    fk_id_carp: 'fk_id_carp',
+    fk_id_grup: 'fk_id_grup'
+  };
+
+  export type CambiosScalarFieldEnum = (typeof CambiosScalarFieldEnum)[keyof typeof CambiosScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6046,6 +8750,9 @@ export namespace Prisma {
     txt_email_est?: StringFilter<"Estudiantes"> | string
     txt_pass_est?: StringFilter<"Estudiantes"> | string
     num_sub_est?: IntFilter<"Estudiantes"> | number
+    Cambios?: CambiosListRelationFilter
+    Grupos?: GruposListRelationFilter
+    GrupoConAcceso?: GrupoConAccesoListRelationFilter
   }
 
   export type EstudiantesOrderByWithRelationInput = {
@@ -6054,6 +8761,9 @@ export namespace Prisma {
     txt_email_est?: SortOrder
     txt_pass_est?: SortOrder
     num_sub_est?: SortOrder
+    Cambios?: CambiosOrderByRelationAggregateInput
+    Grupos?: GruposOrderByRelationAggregateInput
+    GrupoConAcceso?: GrupoConAccesoOrderByRelationAggregateInput
   }
 
   export type EstudiantesWhereUniqueInput = Prisma.AtLeast<{
@@ -6065,6 +8775,9 @@ export namespace Prisma {
     NOT?: EstudiantesWhereInput | EstudiantesWhereInput[]
     txt_pass_est?: StringFilter<"Estudiantes"> | string
     num_sub_est?: IntFilter<"Estudiantes"> | number
+    Cambios?: CambiosListRelationFilter
+    Grupos?: GruposListRelationFilter
+    GrupoConAcceso?: GrupoConAccesoListRelationFilter
   }, "pk_id_est" | "txt_user_est" | "txt_email_est">
 
   export type EstudiantesOrderByWithAggregationInput = {
@@ -6108,6 +8821,11 @@ export namespace Prisma {
     num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    fk_id_grup?: IntFilter<"Bibliografias"> | number
+    fk_id_carp?: IntFilter<"Bibliografias"> | number
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Carpeta?: XOR<CarpetasRelationFilter, CarpetasWhereInput>
+    Archivos?: ArchivosListRelationFilter
   }
 
   export type BibliografiasOrderByWithRelationInput = {
@@ -6124,6 +8842,11 @@ export namespace Prisma {
     num_volm_biblio?: SortOrderInput | SortOrder
     num_npag_biblio?: SortOrderInput | SortOrder
     txt_ubic_biblio?: SortOrderInput | SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
+    Grupo?: GruposOrderByWithRelationInput
+    Carpeta?: CarpetasOrderByWithRelationInput
+    Archivos?: ArchivosOrderByRelationAggregateInput
   }
 
   export type BibliografiasWhereUniqueInput = Prisma.AtLeast<{
@@ -6143,6 +8866,11 @@ export namespace Prisma {
     num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    fk_id_grup?: IntFilter<"Bibliografias"> | number
+    fk_id_carp?: IntFilter<"Bibliografias"> | number
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Carpeta?: XOR<CarpetasRelationFilter, CarpetasWhereInput>
+    Archivos?: ArchivosListRelationFilter
   }, "pk_id_biblio">
 
   export type BibliografiasOrderByWithAggregationInput = {
@@ -6159,6 +8887,8 @@ export namespace Prisma {
     num_volm_biblio?: SortOrderInput | SortOrder
     num_npag_biblio?: SortOrderInput | SortOrder
     txt_ubic_biblio?: SortOrderInput | SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
     _count?: BibliografiasCountOrderByAggregateInput
     _avg?: BibliografiasAvgOrderByAggregateInput
     _max?: BibliografiasMaxOrderByAggregateInput
@@ -6183,6 +8913,8 @@ export namespace Prisma {
     num_volm_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
+    fk_id_grup?: IntWithAggregatesFilter<"Bibliografias"> | number
+    fk_id_carp?: IntWithAggregatesFilter<"Bibliografias"> | number
   }
 
   export type ArchivosWhereInput = {
@@ -6191,11 +8923,15 @@ export namespace Prisma {
     NOT?: ArchivosWhereInput | ArchivosWhereInput[]
     pk_id_arch?: IntFilter<"Archivos"> | number
     txt_dir_arch?: StringFilter<"Archivos"> | string
+    fk_id_biblio?: IntFilter<"Archivos"> | number
+    Bibliografias?: XOR<BibliografiasRelationFilter, BibliografiasWhereInput>
   }
 
   export type ArchivosOrderByWithRelationInput = {
     pk_id_arch?: SortOrder
     txt_dir_arch?: SortOrder
+    fk_id_biblio?: SortOrder
+    Bibliografias?: BibliografiasOrderByWithRelationInput
   }
 
   export type ArchivosWhereUniqueInput = Prisma.AtLeast<{
@@ -6204,11 +8940,14 @@ export namespace Prisma {
     OR?: ArchivosWhereInput[]
     NOT?: ArchivosWhereInput | ArchivosWhereInput[]
     txt_dir_arch?: StringFilter<"Archivos"> | string
+    fk_id_biblio?: IntFilter<"Archivos"> | number
+    Bibliografias?: XOR<BibliografiasRelationFilter, BibliografiasWhereInput>
   }, "pk_id_arch">
 
   export type ArchivosOrderByWithAggregationInput = {
     pk_id_arch?: SortOrder
     txt_dir_arch?: SortOrder
+    fk_id_biblio?: SortOrder
     _count?: ArchivosCountOrderByAggregateInput
     _avg?: ArchivosAvgOrderByAggregateInput
     _max?: ArchivosMaxOrderByAggregateInput
@@ -6222,6 +8961,7 @@ export namespace Prisma {
     NOT?: ArchivosScalarWhereWithAggregatesInput | ArchivosScalarWhereWithAggregatesInput[]
     pk_id_arch?: IntWithAggregatesFilter<"Archivos"> | number
     txt_dir_arch?: StringWithAggregatesFilter<"Archivos"> | string
+    fk_id_biblio?: IntWithAggregatesFilter<"Archivos"> | number
   }
 
   export type CarpetasWhereInput = {
@@ -6230,31 +8970,37 @@ export namespace Prisma {
     NOT?: CarpetasWhereInput | CarpetasWhereInput[]
     pk_id_carp?: IntFilter<"Carpetas"> | number
     txt_nom_carp?: StringFilter<"Carpetas"> | string
-    gruposPk_id_grup?: IntFilter<"Carpetas"> | number
-    Grupos?: XOR<GruposRelationFilter, GruposWhereInput>
+    fk_id_grup?: IntFilter<"Carpetas"> | number
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Cambios?: CambiosListRelationFilter
+    Bibliografias?: BibliografiasListRelationFilter
   }
 
   export type CarpetasOrderByWithRelationInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
-    Grupos?: GruposOrderByWithRelationInput
+    fk_id_grup?: SortOrder
+    Grupo?: GruposOrderByWithRelationInput
+    Cambios?: CambiosOrderByRelationAggregateInput
+    Bibliografias?: BibliografiasOrderByRelationAggregateInput
   }
 
   export type CarpetasWhereUniqueInput = Prisma.AtLeast<{
     pk_id_carp?: number
-    gruposPk_id_grup?: number
     AND?: CarpetasWhereInput | CarpetasWhereInput[]
     OR?: CarpetasWhereInput[]
     NOT?: CarpetasWhereInput | CarpetasWhereInput[]
     txt_nom_carp?: StringFilter<"Carpetas"> | string
-    Grupos?: XOR<GruposRelationFilter, GruposWhereInput>
-  }, "pk_id_carp" | "gruposPk_id_grup">
+    fk_id_grup?: IntFilter<"Carpetas"> | number
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Cambios?: CambiosListRelationFilter
+    Bibliografias?: BibliografiasListRelationFilter
+  }, "pk_id_carp">
 
   export type CarpetasOrderByWithAggregationInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
+    fk_id_grup?: SortOrder
     _count?: CarpetasCountOrderByAggregateInput
     _avg?: CarpetasAvgOrderByAggregateInput
     _max?: CarpetasMaxOrderByAggregateInput
@@ -6268,7 +9014,53 @@ export namespace Prisma {
     NOT?: CarpetasScalarWhereWithAggregatesInput | CarpetasScalarWhereWithAggregatesInput[]
     pk_id_carp?: IntWithAggregatesFilter<"Carpetas"> | number
     txt_nom_carp?: StringWithAggregatesFilter<"Carpetas"> | string
-    gruposPk_id_grup?: IntWithAggregatesFilter<"Carpetas"> | number
+    fk_id_grup?: IntWithAggregatesFilter<"Carpetas"> | number
+  }
+
+  export type GrupoConAccesoWhereInput = {
+    AND?: GrupoConAccesoWhereInput | GrupoConAccesoWhereInput[]
+    OR?: GrupoConAccesoWhereInput[]
+    NOT?: GrupoConAccesoWhereInput | GrupoConAccesoWhereInput[]
+    fk_id_grup?: IntFilter<"GrupoConAcceso"> | number
+    fk_id_est?: StringFilter<"GrupoConAcceso"> | string
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
+  }
+
+  export type GrupoConAccesoOrderByWithRelationInput = {
+    fk_id_grup?: SortOrder
+    fk_id_est?: SortOrder
+    Grupo?: GruposOrderByWithRelationInput
+    Estudiante?: EstudiantesOrderByWithRelationInput
+  }
+
+  export type GrupoConAccesoWhereUniqueInput = Prisma.AtLeast<{
+    fk_id_grup_fk_id_est?: GrupoConAccesoFk_id_grupFk_id_estCompoundUniqueInput
+    AND?: GrupoConAccesoWhereInput | GrupoConAccesoWhereInput[]
+    OR?: GrupoConAccesoWhereInput[]
+    NOT?: GrupoConAccesoWhereInput | GrupoConAccesoWhereInput[]
+    fk_id_grup?: IntFilter<"GrupoConAcceso"> | number
+    fk_id_est?: StringFilter<"GrupoConAcceso"> | string
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
+  }, "fk_id_grup_fk_id_est">
+
+  export type GrupoConAccesoOrderByWithAggregationInput = {
+    fk_id_grup?: SortOrder
+    fk_id_est?: SortOrder
+    _count?: GrupoConAccesoCountOrderByAggregateInput
+    _avg?: GrupoConAccesoAvgOrderByAggregateInput
+    _max?: GrupoConAccesoMaxOrderByAggregateInput
+    _min?: GrupoConAccesoMinOrderByAggregateInput
+    _sum?: GrupoConAccesoSumOrderByAggregateInput
+  }
+
+  export type GrupoConAccesoScalarWhereWithAggregatesInput = {
+    AND?: GrupoConAccesoScalarWhereWithAggregatesInput | GrupoConAccesoScalarWhereWithAggregatesInput[]
+    OR?: GrupoConAccesoScalarWhereWithAggregatesInput[]
+    NOT?: GrupoConAccesoScalarWhereWithAggregatesInput | GrupoConAccesoScalarWhereWithAggregatesInput[]
+    fk_id_grup?: IntWithAggregatesFilter<"GrupoConAcceso"> | number
+    fk_id_est?: StringWithAggregatesFilter<"GrupoConAcceso"> | string
   }
 
   export type GruposWhereInput = {
@@ -6277,13 +9069,23 @@ export namespace Prisma {
     NOT?: GruposWhereInput | GruposWhereInput[]
     pk_id_grup?: IntFilter<"Grupos"> | number
     txt_nom_grup?: StringFilter<"Grupos"> | string
+    fk_id_est?: StringFilter<"Grupos"> | string
+    Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
+    Cambios?: CambiosListRelationFilter
     Carpetas?: CarpetasListRelationFilter
+    Bibliografias?: BibliografiasListRelationFilter
+    GrupoConAcceso?: GrupoConAccesoListRelationFilter
   }
 
   export type GruposOrderByWithRelationInput = {
     pk_id_grup?: SortOrder
     txt_nom_grup?: SortOrder
+    fk_id_est?: SortOrder
+    Estudiante?: EstudiantesOrderByWithRelationInput
+    Cambios?: CambiosOrderByRelationAggregateInput
     Carpetas?: CarpetasOrderByRelationAggregateInput
+    Bibliografias?: BibliografiasOrderByRelationAggregateInput
+    GrupoConAcceso?: GrupoConAccesoOrderByRelationAggregateInput
   }
 
   export type GruposWhereUniqueInput = Prisma.AtLeast<{
@@ -6292,12 +9094,18 @@ export namespace Prisma {
     OR?: GruposWhereInput[]
     NOT?: GruposWhereInput | GruposWhereInput[]
     txt_nom_grup?: StringFilter<"Grupos"> | string
+    fk_id_est?: StringFilter<"Grupos"> | string
+    Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
+    Cambios?: CambiosListRelationFilter
     Carpetas?: CarpetasListRelationFilter
+    Bibliografias?: BibliografiasListRelationFilter
+    GrupoConAcceso?: GrupoConAccesoListRelationFilter
   }, "pk_id_grup">
 
   export type GruposOrderByWithAggregationInput = {
     pk_id_grup?: SortOrder
     txt_nom_grup?: SortOrder
+    fk_id_est?: SortOrder
     _count?: GruposCountOrderByAggregateInput
     _avg?: GruposAvgOrderByAggregateInput
     _max?: GruposMaxOrderByAggregateInput
@@ -6311,6 +9119,75 @@ export namespace Prisma {
     NOT?: GruposScalarWhereWithAggregatesInput | GruposScalarWhereWithAggregatesInput[]
     pk_id_grup?: IntWithAggregatesFilter<"Grupos"> | number
     txt_nom_grup?: StringWithAggregatesFilter<"Grupos"> | string
+    fk_id_est?: StringWithAggregatesFilter<"Grupos"> | string
+  }
+
+  export type CambiosWhereInput = {
+    AND?: CambiosWhereInput | CambiosWhereInput[]
+    OR?: CambiosWhereInput[]
+    NOT?: CambiosWhereInput | CambiosWhereInput[]
+    pk_id_camb?: IntFilter<"Cambios"> | number
+    num_tip_camb?: IntFilter<"Cambios"> | number
+    txt_fecha_camb?: DateTimeFilter<"Cambios"> | Date | string
+    fk_id_est?: StringFilter<"Cambios"> | string
+    fk_id_carp?: IntFilter<"Cambios"> | number
+    fk_id_grup?: IntFilter<"Cambios"> | number
+    Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
+    Carpeta?: XOR<CarpetasRelationFilter, CarpetasWhereInput>
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+  }
+
+  export type CambiosOrderByWithRelationInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    txt_fecha_camb?: SortOrder
+    fk_id_est?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+    Estudiante?: EstudiantesOrderByWithRelationInput
+    Carpeta?: CarpetasOrderByWithRelationInput
+    Grupo?: GruposOrderByWithRelationInput
+  }
+
+  export type CambiosWhereUniqueInput = Prisma.AtLeast<{
+    pk_id_camb?: number
+    AND?: CambiosWhereInput | CambiosWhereInput[]
+    OR?: CambiosWhereInput[]
+    NOT?: CambiosWhereInput | CambiosWhereInput[]
+    num_tip_camb?: IntFilter<"Cambios"> | number
+    txt_fecha_camb?: DateTimeFilter<"Cambios"> | Date | string
+    fk_id_est?: StringFilter<"Cambios"> | string
+    fk_id_carp?: IntFilter<"Cambios"> | number
+    fk_id_grup?: IntFilter<"Cambios"> | number
+    Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
+    Carpeta?: XOR<CarpetasRelationFilter, CarpetasWhereInput>
+    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+  }, "pk_id_camb">
+
+  export type CambiosOrderByWithAggregationInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    txt_fecha_camb?: SortOrder
+    fk_id_est?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+    _count?: CambiosCountOrderByAggregateInput
+    _avg?: CambiosAvgOrderByAggregateInput
+    _max?: CambiosMaxOrderByAggregateInput
+    _min?: CambiosMinOrderByAggregateInput
+    _sum?: CambiosSumOrderByAggregateInput
+  }
+
+  export type CambiosScalarWhereWithAggregatesInput = {
+    AND?: CambiosScalarWhereWithAggregatesInput | CambiosScalarWhereWithAggregatesInput[]
+    OR?: CambiosScalarWhereWithAggregatesInput[]
+    NOT?: CambiosScalarWhereWithAggregatesInput | CambiosScalarWhereWithAggregatesInput[]
+    pk_id_camb?: IntWithAggregatesFilter<"Cambios"> | number
+    num_tip_camb?: IntWithAggregatesFilter<"Cambios"> | number
+    txt_fecha_camb?: DateTimeWithAggregatesFilter<"Cambios"> | Date | string
+    fk_id_est?: StringWithAggregatesFilter<"Cambios"> | string
+    fk_id_carp?: IntWithAggregatesFilter<"Cambios"> | number
+    fk_id_grup?: IntWithAggregatesFilter<"Cambios"> | number
   }
 
   export type EstudiantesCreateInput = {
@@ -6319,6 +9196,9 @@ export namespace Prisma {
     txt_email_est: string
     txt_pass_est: string
     num_sub_est?: number
+    Cambios?: CambiosCreateNestedManyWithoutEstudianteInput
+    Grupos?: GruposCreateNestedManyWithoutEstudianteInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutEstudianteInput
   }
 
   export type EstudiantesUncheckedCreateInput = {
@@ -6327,6 +9207,9 @@ export namespace Prisma {
     txt_email_est: string
     txt_pass_est: string
     num_sub_est?: number
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutEstudianteInput
+    Grupos?: GruposUncheckedCreateNestedManyWithoutEstudianteInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutEstudianteInput
   }
 
   export type EstudiantesUpdateInput = {
@@ -6335,6 +9218,9 @@ export namespace Prisma {
     txt_email_est?: StringFieldUpdateOperationsInput | string
     txt_pass_est?: StringFieldUpdateOperationsInput | string
     num_sub_est?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUpdateManyWithoutEstudianteNestedInput
+    Grupos?: GruposUpdateManyWithoutEstudianteNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutEstudianteNestedInput
   }
 
   export type EstudiantesUncheckedUpdateInput = {
@@ -6343,6 +9229,9 @@ export namespace Prisma {
     txt_email_est?: StringFieldUpdateOperationsInput | string
     txt_pass_est?: StringFieldUpdateOperationsInput | string
     num_sub_est?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUncheckedUpdateManyWithoutEstudianteNestedInput
+    Grupos?: GruposUncheckedUpdateManyWithoutEstudianteNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutEstudianteNestedInput
   }
 
   export type EstudiantesCreateManyInput = {
@@ -6382,6 +9271,9 @@ export namespace Prisma {
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
+    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
+    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+    Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUncheckedCreateInput = {
@@ -6398,6 +9290,9 @@ export namespace Prisma {
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
+    fk_id_grup: number
+    fk_id_carp: number
+    Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUpdateInput = {
@@ -6413,6 +9308,9 @@ export namespace Prisma {
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
+    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+    Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateInput = {
@@ -6429,6 +9327,9 @@ export namespace Prisma {
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasCreateManyInput = {
@@ -6445,6 +9346,8 @@ export namespace Prisma {
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
+    fk_id_grup: number
+    fk_id_carp: number
   }
 
   export type BibliografiasUpdateManyMutationInput = {
@@ -6476,29 +9379,36 @@ export namespace Prisma {
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArchivosCreateInput = {
     txt_dir_arch: string
+    Bibliografias: BibliografiasCreateNestedOneWithoutArchivosInput
   }
 
   export type ArchivosUncheckedCreateInput = {
     pk_id_arch?: number
     txt_dir_arch: string
+    fk_id_biblio: number
   }
 
   export type ArchivosUpdateInput = {
     txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    Bibliografias?: BibliografiasUpdateOneRequiredWithoutArchivosNestedInput
   }
 
   export type ArchivosUncheckedUpdateInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
     txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    fk_id_biblio?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArchivosCreateManyInput = {
     pk_id_arch?: number
     txt_dir_arch: string
+    fk_id_biblio: number
   }
 
   export type ArchivosUpdateManyMutationInput = {
@@ -6508,34 +9418,43 @@ export namespace Prisma {
   export type ArchivosUncheckedUpdateManyInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
     txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    fk_id_biblio?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarpetasCreateInput = {
     txt_nom_carp: string
-    Grupos: GruposCreateNestedOneWithoutCarpetasInput
+    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Cambios?: CambiosCreateNestedManyWithoutCarpetaInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutCarpetaInput
   }
 
   export type CarpetasUncheckedCreateInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    gruposPk_id_grup: number
+    fk_id_grup: number
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutCarpetaInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput
   }
 
   export type CarpetasUpdateInput = {
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    Grupos?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Cambios?: CambiosUpdateManyWithoutCarpetaNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutCarpetaNestedInput
   }
 
   export type CarpetasUncheckedUpdateInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    gruposPk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUncheckedUpdateManyWithoutCarpetaNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput
   }
 
   export type CarpetasCreateManyInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    gruposPk_id_grup: number
+    fk_id_grup: number
   }
 
   export type CarpetasUpdateManyMutationInput = {
@@ -6545,34 +9464,85 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateManyInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    gruposPk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrupoConAccesoCreateInput = {
+    Grupo: GruposCreateNestedOneWithoutGrupoConAccesoInput
+    Estudiante: EstudiantesCreateNestedOneWithoutGrupoConAccesoInput
+  }
+
+  export type GrupoConAccesoUncheckedCreateInput = {
+    fk_id_grup: number
+    fk_id_est: string
+  }
+
+  export type GrupoConAccesoUpdateInput = {
+    Grupo?: GruposUpdateOneRequiredWithoutGrupoConAccesoNestedInput
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGrupoConAccesoNestedInput
+  }
+
+  export type GrupoConAccesoUncheckedUpdateInput = {
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GrupoConAccesoCreateManyInput = {
+    fk_id_grup: number
+    fk_id_est: string
+  }
+
+  export type GrupoConAccesoUpdateManyMutationInput = {
+
+  }
+
+  export type GrupoConAccesoUncheckedUpdateManyInput = {
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 
   export type GruposCreateInput = {
     txt_nom_grup: string
-    Carpetas?: CarpetasCreateNestedManyWithoutGruposInput
+    Estudiante: EstudiantesCreateNestedOneWithoutGruposInput
+    Cambios?: CambiosCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutGrupoInput
   }
 
   export type GruposUncheckedCreateInput = {
     pk_id_grup?: number
     txt_nom_grup: string
-    Carpetas?: CarpetasUncheckedCreateNestedManyWithoutGruposInput
+    fk_id_est: string
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasUncheckedCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutGrupoInput
   }
 
   export type GruposUpdateInput = {
     txt_nom_grup?: StringFieldUpdateOperationsInput | string
-    Carpetas?: CarpetasUpdateManyWithoutGruposNestedInput
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGruposNestedInput
+    Cambios?: CambiosUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutGrupoNestedInput
   }
 
   export type GruposUncheckedUpdateInput = {
     pk_id_grup?: IntFieldUpdateOperationsInput | number
     txt_nom_grup?: StringFieldUpdateOperationsInput | string
-    Carpetas?: CarpetasUncheckedUpdateManyWithoutGruposNestedInput
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUncheckedUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUncheckedUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutGrupoNestedInput
   }
 
   export type GruposCreateManyInput = {
     pk_id_grup?: number
     txt_nom_grup: string
+    fk_id_est: string
   }
 
   export type GruposUpdateManyMutationInput = {
@@ -6582,6 +9552,64 @@ export namespace Prisma {
   export type GruposUncheckedUpdateManyInput = {
     pk_id_grup?: IntFieldUpdateOperationsInput | number
     txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CambiosCreateInput = {
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    Estudiante: EstudiantesCreateNestedOneWithoutCambiosInput
+    Carpeta: CarpetasCreateNestedOneWithoutCambiosInput
+    Grupo: GruposCreateNestedOneWithoutCambiosInput
+  }
+
+  export type CambiosUncheckedCreateInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_est: string
+    fk_id_carp: number
+    fk_id_grup: number
+  }
+
+  export type CambiosUpdateInput = {
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutCambiosNestedInput
+    Carpeta?: CarpetasUpdateOneRequiredWithoutCambiosNestedInput
+    Grupo?: GruposUpdateOneRequiredWithoutCambiosNestedInput
+  }
+
+  export type CambiosUncheckedUpdateInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CambiosCreateManyInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_est: string
+    fk_id_carp: number
+    fk_id_grup: number
+  }
+
+  export type CambiosUpdateManyMutationInput = {
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CambiosUncheckedUpdateManyInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6608,6 +9636,36 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type CambiosListRelationFilter = {
+    every?: CambiosWhereInput
+    some?: CambiosWhereInput
+    none?: CambiosWhereInput
+  }
+
+  export type GruposListRelationFilter = {
+    every?: GruposWhereInput
+    some?: GruposWhereInput
+    none?: GruposWhereInput
+  }
+
+  export type GrupoConAccesoListRelationFilter = {
+    every?: GrupoConAccesoWhereInput
+    some?: GrupoConAccesoWhereInput
+    none?: GrupoConAccesoWhereInput
+  }
+
+  export type CambiosOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GruposOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GrupoConAccesoOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type EstudiantesCountOrderByAggregateInput = {
@@ -6713,9 +9771,29 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type GruposRelationFilter = {
+    is?: GruposWhereInput
+    isNot?: GruposWhereInput
+  }
+
+  export type CarpetasRelationFilter = {
+    is?: CarpetasWhereInput
+    isNot?: CarpetasWhereInput
+  }
+
+  export type ArchivosListRelationFilter = {
+    every?: ArchivosWhereInput
+    some?: ArchivosWhereInput
+    none?: ArchivosWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ArchivosOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type BibliografiasCountOrderByAggregateInput = {
@@ -6732,6 +9810,8 @@ export namespace Prisma {
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
     txt_ubic_biblio?: SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
   }
 
   export type BibliografiasAvgOrderByAggregateInput = {
@@ -6741,6 +9821,8 @@ export namespace Prisma {
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
   }
 
   export type BibliografiasMaxOrderByAggregateInput = {
@@ -6757,6 +9839,8 @@ export namespace Prisma {
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
     txt_ubic_biblio?: SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
   }
 
   export type BibliografiasMinOrderByAggregateInput = {
@@ -6773,6 +9857,8 @@ export namespace Prisma {
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
     txt_ubic_biblio?: SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
   }
 
   export type BibliografiasSumOrderByAggregateInput = {
@@ -6782,6 +9868,8 @@ export namespace Prisma {
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
+    fk_id_grup?: SortOrder
+    fk_id_carp?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6832,60 +9920,108 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type BibliografiasRelationFilter = {
+    is?: BibliografiasWhereInput
+    isNot?: BibliografiasWhereInput
+  }
+
   export type ArchivosCountOrderByAggregateInput = {
     pk_id_arch?: SortOrder
     txt_dir_arch?: SortOrder
+    fk_id_biblio?: SortOrder
   }
 
   export type ArchivosAvgOrderByAggregateInput = {
     pk_id_arch?: SortOrder
+    fk_id_biblio?: SortOrder
   }
 
   export type ArchivosMaxOrderByAggregateInput = {
     pk_id_arch?: SortOrder
     txt_dir_arch?: SortOrder
+    fk_id_biblio?: SortOrder
   }
 
   export type ArchivosMinOrderByAggregateInput = {
     pk_id_arch?: SortOrder
     txt_dir_arch?: SortOrder
+    fk_id_biblio?: SortOrder
   }
 
   export type ArchivosSumOrderByAggregateInput = {
     pk_id_arch?: SortOrder
+    fk_id_biblio?: SortOrder
   }
 
-  export type GruposRelationFilter = {
-    is?: GruposWhereInput
-    isNot?: GruposWhereInput
+  export type BibliografiasListRelationFilter = {
+    every?: BibliografiasWhereInput
+    some?: BibliografiasWhereInput
+    none?: BibliografiasWhereInput
+  }
+
+  export type BibliografiasOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type CarpetasCountOrderByAggregateInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
+    fk_id_grup?: SortOrder
   }
 
   export type CarpetasAvgOrderByAggregateInput = {
     pk_id_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
+    fk_id_grup?: SortOrder
   }
 
   export type CarpetasMaxOrderByAggregateInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
+    fk_id_grup?: SortOrder
   }
 
   export type CarpetasMinOrderByAggregateInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
+    fk_id_grup?: SortOrder
   }
 
   export type CarpetasSumOrderByAggregateInput = {
     pk_id_carp?: SortOrder
-    gruposPk_id_grup?: SortOrder
+    fk_id_grup?: SortOrder
+  }
+
+  export type EstudiantesRelationFilter = {
+    is?: EstudiantesWhereInput
+    isNot?: EstudiantesWhereInput
+  }
+
+  export type GrupoConAccesoFk_id_grupFk_id_estCompoundUniqueInput = {
+    fk_id_grup: number
+    fk_id_est: string
+  }
+
+  export type GrupoConAccesoCountOrderByAggregateInput = {
+    fk_id_grup?: SortOrder
+    fk_id_est?: SortOrder
+  }
+
+  export type GrupoConAccesoAvgOrderByAggregateInput = {
+    fk_id_grup?: SortOrder
+  }
+
+  export type GrupoConAccesoMaxOrderByAggregateInput = {
+    fk_id_grup?: SortOrder
+    fk_id_est?: SortOrder
+  }
+
+  export type GrupoConAccesoMinOrderByAggregateInput = {
+    fk_id_grup?: SortOrder
+    fk_id_est?: SortOrder
+  }
+
+  export type GrupoConAccesoSumOrderByAggregateInput = {
+    fk_id_grup?: SortOrder
   }
 
   export type CarpetasListRelationFilter = {
@@ -6901,6 +10037,7 @@ export namespace Prisma {
   export type GruposCountOrderByAggregateInput = {
     pk_id_grup?: SortOrder
     txt_nom_grup?: SortOrder
+    fk_id_est?: SortOrder
   }
 
   export type GruposAvgOrderByAggregateInput = {
@@ -6910,15 +10047,100 @@ export namespace Prisma {
   export type GruposMaxOrderByAggregateInput = {
     pk_id_grup?: SortOrder
     txt_nom_grup?: SortOrder
+    fk_id_est?: SortOrder
   }
 
   export type GruposMinOrderByAggregateInput = {
     pk_id_grup?: SortOrder
     txt_nom_grup?: SortOrder
+    fk_id_est?: SortOrder
   }
 
   export type GruposSumOrderByAggregateInput = {
     pk_id_grup?: SortOrder
+  }
+
+  export type CambiosCountOrderByAggregateInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    txt_fecha_camb?: SortOrder
+    fk_id_est?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+  }
+
+  export type CambiosAvgOrderByAggregateInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+  }
+
+  export type CambiosMaxOrderByAggregateInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    txt_fecha_camb?: SortOrder
+    fk_id_est?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+  }
+
+  export type CambiosMinOrderByAggregateInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    txt_fecha_camb?: SortOrder
+    fk_id_est?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+  }
+
+  export type CambiosSumOrderByAggregateInput = {
+    pk_id_camb?: SortOrder
+    num_tip_camb?: SortOrder
+    fk_id_carp?: SortOrder
+    fk_id_grup?: SortOrder
+  }
+
+  export type CambiosCreateNestedManyWithoutEstudianteInput = {
+    create?: XOR<CambiosCreateWithoutEstudianteInput, CambiosUncheckedCreateWithoutEstudianteInput> | CambiosCreateWithoutEstudianteInput[] | CambiosUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutEstudianteInput | CambiosCreateOrConnectWithoutEstudianteInput[]
+    createMany?: CambiosCreateManyEstudianteInputEnvelope
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+  }
+
+  export type GruposCreateNestedManyWithoutEstudianteInput = {
+    create?: XOR<GruposCreateWithoutEstudianteInput, GruposUncheckedCreateWithoutEstudianteInput> | GruposCreateWithoutEstudianteInput[] | GruposUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GruposCreateOrConnectWithoutEstudianteInput | GruposCreateOrConnectWithoutEstudianteInput[]
+    createMany?: GruposCreateManyEstudianteInputEnvelope
+    connect?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+  }
+
+  export type GrupoConAccesoCreateNestedManyWithoutEstudianteInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutEstudianteInput, GrupoConAccesoUncheckedCreateWithoutEstudianteInput> | GrupoConAccesoCreateWithoutEstudianteInput[] | GrupoConAccesoUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutEstudianteInput | GrupoConAccesoCreateOrConnectWithoutEstudianteInput[]
+    createMany?: GrupoConAccesoCreateManyEstudianteInputEnvelope
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+  }
+
+  export type CambiosUncheckedCreateNestedManyWithoutEstudianteInput = {
+    create?: XOR<CambiosCreateWithoutEstudianteInput, CambiosUncheckedCreateWithoutEstudianteInput> | CambiosCreateWithoutEstudianteInput[] | CambiosUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutEstudianteInput | CambiosCreateOrConnectWithoutEstudianteInput[]
+    createMany?: CambiosCreateManyEstudianteInputEnvelope
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+  }
+
+  export type GruposUncheckedCreateNestedManyWithoutEstudianteInput = {
+    create?: XOR<GruposCreateWithoutEstudianteInput, GruposUncheckedCreateWithoutEstudianteInput> | GruposCreateWithoutEstudianteInput[] | GruposUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GruposCreateOrConnectWithoutEstudianteInput | GruposCreateOrConnectWithoutEstudianteInput[]
+    createMany?: GruposCreateManyEstudianteInputEnvelope
+    connect?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+  }
+
+  export type GrupoConAccesoUncheckedCreateNestedManyWithoutEstudianteInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutEstudianteInput, GrupoConAccesoUncheckedCreateWithoutEstudianteInput> | GrupoConAccesoCreateWithoutEstudianteInput[] | GrupoConAccesoUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutEstudianteInput | GrupoConAccesoCreateOrConnectWithoutEstudianteInput[]
+    createMany?: GrupoConAccesoCreateManyEstudianteInputEnvelope
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6931,6 +10153,116 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type CambiosUpdateManyWithoutEstudianteNestedInput = {
+    create?: XOR<CambiosCreateWithoutEstudianteInput, CambiosUncheckedCreateWithoutEstudianteInput> | CambiosCreateWithoutEstudianteInput[] | CambiosUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutEstudianteInput | CambiosCreateOrConnectWithoutEstudianteInput[]
+    upsert?: CambiosUpsertWithWhereUniqueWithoutEstudianteInput | CambiosUpsertWithWhereUniqueWithoutEstudianteInput[]
+    createMany?: CambiosCreateManyEstudianteInputEnvelope
+    set?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    disconnect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    delete?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    update?: CambiosUpdateWithWhereUniqueWithoutEstudianteInput | CambiosUpdateWithWhereUniqueWithoutEstudianteInput[]
+    updateMany?: CambiosUpdateManyWithWhereWithoutEstudianteInput | CambiosUpdateManyWithWhereWithoutEstudianteInput[]
+    deleteMany?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+  }
+
+  export type GruposUpdateManyWithoutEstudianteNestedInput = {
+    create?: XOR<GruposCreateWithoutEstudianteInput, GruposUncheckedCreateWithoutEstudianteInput> | GruposCreateWithoutEstudianteInput[] | GruposUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GruposCreateOrConnectWithoutEstudianteInput | GruposCreateOrConnectWithoutEstudianteInput[]
+    upsert?: GruposUpsertWithWhereUniqueWithoutEstudianteInput | GruposUpsertWithWhereUniqueWithoutEstudianteInput[]
+    createMany?: GruposCreateManyEstudianteInputEnvelope
+    set?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    disconnect?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    delete?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    connect?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    update?: GruposUpdateWithWhereUniqueWithoutEstudianteInput | GruposUpdateWithWhereUniqueWithoutEstudianteInput[]
+    updateMany?: GruposUpdateManyWithWhereWithoutEstudianteInput | GruposUpdateManyWithWhereWithoutEstudianteInput[]
+    deleteMany?: GruposScalarWhereInput | GruposScalarWhereInput[]
+  }
+
+  export type GrupoConAccesoUpdateManyWithoutEstudianteNestedInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutEstudianteInput, GrupoConAccesoUncheckedCreateWithoutEstudianteInput> | GrupoConAccesoCreateWithoutEstudianteInput[] | GrupoConAccesoUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutEstudianteInput | GrupoConAccesoCreateOrConnectWithoutEstudianteInput[]
+    upsert?: GrupoConAccesoUpsertWithWhereUniqueWithoutEstudianteInput | GrupoConAccesoUpsertWithWhereUniqueWithoutEstudianteInput[]
+    createMany?: GrupoConAccesoCreateManyEstudianteInputEnvelope
+    set?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    disconnect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    delete?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    update?: GrupoConAccesoUpdateWithWhereUniqueWithoutEstudianteInput | GrupoConAccesoUpdateWithWhereUniqueWithoutEstudianteInput[]
+    updateMany?: GrupoConAccesoUpdateManyWithWhereWithoutEstudianteInput | GrupoConAccesoUpdateManyWithWhereWithoutEstudianteInput[]
+    deleteMany?: GrupoConAccesoScalarWhereInput | GrupoConAccesoScalarWhereInput[]
+  }
+
+  export type CambiosUncheckedUpdateManyWithoutEstudianteNestedInput = {
+    create?: XOR<CambiosCreateWithoutEstudianteInput, CambiosUncheckedCreateWithoutEstudianteInput> | CambiosCreateWithoutEstudianteInput[] | CambiosUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutEstudianteInput | CambiosCreateOrConnectWithoutEstudianteInput[]
+    upsert?: CambiosUpsertWithWhereUniqueWithoutEstudianteInput | CambiosUpsertWithWhereUniqueWithoutEstudianteInput[]
+    createMany?: CambiosCreateManyEstudianteInputEnvelope
+    set?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    disconnect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    delete?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    update?: CambiosUpdateWithWhereUniqueWithoutEstudianteInput | CambiosUpdateWithWhereUniqueWithoutEstudianteInput[]
+    updateMany?: CambiosUpdateManyWithWhereWithoutEstudianteInput | CambiosUpdateManyWithWhereWithoutEstudianteInput[]
+    deleteMany?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+  }
+
+  export type GruposUncheckedUpdateManyWithoutEstudianteNestedInput = {
+    create?: XOR<GruposCreateWithoutEstudianteInput, GruposUncheckedCreateWithoutEstudianteInput> | GruposCreateWithoutEstudianteInput[] | GruposUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GruposCreateOrConnectWithoutEstudianteInput | GruposCreateOrConnectWithoutEstudianteInput[]
+    upsert?: GruposUpsertWithWhereUniqueWithoutEstudianteInput | GruposUpsertWithWhereUniqueWithoutEstudianteInput[]
+    createMany?: GruposCreateManyEstudianteInputEnvelope
+    set?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    disconnect?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    delete?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    connect?: GruposWhereUniqueInput | GruposWhereUniqueInput[]
+    update?: GruposUpdateWithWhereUniqueWithoutEstudianteInput | GruposUpdateWithWhereUniqueWithoutEstudianteInput[]
+    updateMany?: GruposUpdateManyWithWhereWithoutEstudianteInput | GruposUpdateManyWithWhereWithoutEstudianteInput[]
+    deleteMany?: GruposScalarWhereInput | GruposScalarWhereInput[]
+  }
+
+  export type GrupoConAccesoUncheckedUpdateManyWithoutEstudianteNestedInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutEstudianteInput, GrupoConAccesoUncheckedCreateWithoutEstudianteInput> | GrupoConAccesoCreateWithoutEstudianteInput[] | GrupoConAccesoUncheckedCreateWithoutEstudianteInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutEstudianteInput | GrupoConAccesoCreateOrConnectWithoutEstudianteInput[]
+    upsert?: GrupoConAccesoUpsertWithWhereUniqueWithoutEstudianteInput | GrupoConAccesoUpsertWithWhereUniqueWithoutEstudianteInput[]
+    createMany?: GrupoConAccesoCreateManyEstudianteInputEnvelope
+    set?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    disconnect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    delete?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    update?: GrupoConAccesoUpdateWithWhereUniqueWithoutEstudianteInput | GrupoConAccesoUpdateWithWhereUniqueWithoutEstudianteInput[]
+    updateMany?: GrupoConAccesoUpdateManyWithWhereWithoutEstudianteInput | GrupoConAccesoUpdateManyWithWhereWithoutEstudianteInput[]
+    deleteMany?: GrupoConAccesoScalarWhereInput | GrupoConAccesoScalarWhereInput[]
+  }
+
+  export type GruposCreateNestedOneWithoutBibliografiasInput = {
+    create?: XOR<GruposCreateWithoutBibliografiasInput, GruposUncheckedCreateWithoutBibliografiasInput>
+    connectOrCreate?: GruposCreateOrConnectWithoutBibliografiasInput
+    connect?: GruposWhereUniqueInput
+  }
+
+  export type CarpetasCreateNestedOneWithoutBibliografiasInput = {
+    create?: XOR<CarpetasCreateWithoutBibliografiasInput, CarpetasUncheckedCreateWithoutBibliografiasInput>
+    connectOrCreate?: CarpetasCreateOrConnectWithoutBibliografiasInput
+    connect?: CarpetasWhereUniqueInput
+  }
+
+  export type ArchivosCreateNestedManyWithoutBibliografiasInput = {
+    create?: XOR<ArchivosCreateWithoutBibliografiasInput, ArchivosUncheckedCreateWithoutBibliografiasInput> | ArchivosCreateWithoutBibliografiasInput[] | ArchivosUncheckedCreateWithoutBibliografiasInput[]
+    connectOrCreate?: ArchivosCreateOrConnectWithoutBibliografiasInput | ArchivosCreateOrConnectWithoutBibliografiasInput[]
+    createMany?: ArchivosCreateManyBibliografiasInputEnvelope
+    connect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+  }
+
+  export type ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput = {
+    create?: XOR<ArchivosCreateWithoutBibliografiasInput, ArchivosUncheckedCreateWithoutBibliografiasInput> | ArchivosCreateWithoutBibliografiasInput[] | ArchivosUncheckedCreateWithoutBibliografiasInput[]
+    connectOrCreate?: ArchivosCreateOrConnectWithoutBibliografiasInput | ArchivosCreateOrConnectWithoutBibliografiasInput[]
+    createMany?: ArchivosCreateManyBibliografiasInputEnvelope
+    connect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -6949,10 +10281,96 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type GruposUpdateOneRequiredWithoutBibliografiasNestedInput = {
+    create?: XOR<GruposCreateWithoutBibliografiasInput, GruposUncheckedCreateWithoutBibliografiasInput>
+    connectOrCreate?: GruposCreateOrConnectWithoutBibliografiasInput
+    upsert?: GruposUpsertWithoutBibliografiasInput
+    connect?: GruposWhereUniqueInput
+    update?: XOR<XOR<GruposUpdateToOneWithWhereWithoutBibliografiasInput, GruposUpdateWithoutBibliografiasInput>, GruposUncheckedUpdateWithoutBibliografiasInput>
+  }
+
+  export type CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput = {
+    create?: XOR<CarpetasCreateWithoutBibliografiasInput, CarpetasUncheckedCreateWithoutBibliografiasInput>
+    connectOrCreate?: CarpetasCreateOrConnectWithoutBibliografiasInput
+    upsert?: CarpetasUpsertWithoutBibliografiasInput
+    connect?: CarpetasWhereUniqueInput
+    update?: XOR<XOR<CarpetasUpdateToOneWithWhereWithoutBibliografiasInput, CarpetasUpdateWithoutBibliografiasInput>, CarpetasUncheckedUpdateWithoutBibliografiasInput>
+  }
+
+  export type ArchivosUpdateManyWithoutBibliografiasNestedInput = {
+    create?: XOR<ArchivosCreateWithoutBibliografiasInput, ArchivosUncheckedCreateWithoutBibliografiasInput> | ArchivosCreateWithoutBibliografiasInput[] | ArchivosUncheckedCreateWithoutBibliografiasInput[]
+    connectOrCreate?: ArchivosCreateOrConnectWithoutBibliografiasInput | ArchivosCreateOrConnectWithoutBibliografiasInput[]
+    upsert?: ArchivosUpsertWithWhereUniqueWithoutBibliografiasInput | ArchivosUpsertWithWhereUniqueWithoutBibliografiasInput[]
+    createMany?: ArchivosCreateManyBibliografiasInputEnvelope
+    set?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    disconnect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    delete?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    connect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    update?: ArchivosUpdateWithWhereUniqueWithoutBibliografiasInput | ArchivosUpdateWithWhereUniqueWithoutBibliografiasInput[]
+    updateMany?: ArchivosUpdateManyWithWhereWithoutBibliografiasInput | ArchivosUpdateManyWithWhereWithoutBibliografiasInput[]
+    deleteMany?: ArchivosScalarWhereInput | ArchivosScalarWhereInput[]
+  }
+
+  export type ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput = {
+    create?: XOR<ArchivosCreateWithoutBibliografiasInput, ArchivosUncheckedCreateWithoutBibliografiasInput> | ArchivosCreateWithoutBibliografiasInput[] | ArchivosUncheckedCreateWithoutBibliografiasInput[]
+    connectOrCreate?: ArchivosCreateOrConnectWithoutBibliografiasInput | ArchivosCreateOrConnectWithoutBibliografiasInput[]
+    upsert?: ArchivosUpsertWithWhereUniqueWithoutBibliografiasInput | ArchivosUpsertWithWhereUniqueWithoutBibliografiasInput[]
+    createMany?: ArchivosCreateManyBibliografiasInputEnvelope
+    set?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    disconnect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    delete?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    connect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
+    update?: ArchivosUpdateWithWhereUniqueWithoutBibliografiasInput | ArchivosUpdateWithWhereUniqueWithoutBibliografiasInput[]
+    updateMany?: ArchivosUpdateManyWithWhereWithoutBibliografiasInput | ArchivosUpdateManyWithWhereWithoutBibliografiasInput[]
+    deleteMany?: ArchivosScalarWhereInput | ArchivosScalarWhereInput[]
+  }
+
+  export type BibliografiasCreateNestedOneWithoutArchivosInput = {
+    create?: XOR<BibliografiasCreateWithoutArchivosInput, BibliografiasUncheckedCreateWithoutArchivosInput>
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutArchivosInput
+    connect?: BibliografiasWhereUniqueInput
+  }
+
+  export type BibliografiasUpdateOneRequiredWithoutArchivosNestedInput = {
+    create?: XOR<BibliografiasCreateWithoutArchivosInput, BibliografiasUncheckedCreateWithoutArchivosInput>
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutArchivosInput
+    upsert?: BibliografiasUpsertWithoutArchivosInput
+    connect?: BibliografiasWhereUniqueInput
+    update?: XOR<XOR<BibliografiasUpdateToOneWithWhereWithoutArchivosInput, BibliografiasUpdateWithoutArchivosInput>, BibliografiasUncheckedUpdateWithoutArchivosInput>
+  }
+
   export type GruposCreateNestedOneWithoutCarpetasInput = {
     create?: XOR<GruposCreateWithoutCarpetasInput, GruposUncheckedCreateWithoutCarpetasInput>
     connectOrCreate?: GruposCreateOrConnectWithoutCarpetasInput
     connect?: GruposWhereUniqueInput
+  }
+
+  export type CambiosCreateNestedManyWithoutCarpetaInput = {
+    create?: XOR<CambiosCreateWithoutCarpetaInput, CambiosUncheckedCreateWithoutCarpetaInput> | CambiosCreateWithoutCarpetaInput[] | CambiosUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutCarpetaInput | CambiosCreateOrConnectWithoutCarpetaInput[]
+    createMany?: CambiosCreateManyCarpetaInputEnvelope
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+  }
+
+  export type BibliografiasCreateNestedManyWithoutCarpetaInput = {
+    create?: XOR<BibliografiasCreateWithoutCarpetaInput, BibliografiasUncheckedCreateWithoutCarpetaInput> | BibliografiasCreateWithoutCarpetaInput[] | BibliografiasUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutCarpetaInput | BibliografiasCreateOrConnectWithoutCarpetaInput[]
+    createMany?: BibliografiasCreateManyCarpetaInputEnvelope
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+  }
+
+  export type CambiosUncheckedCreateNestedManyWithoutCarpetaInput = {
+    create?: XOR<CambiosCreateWithoutCarpetaInput, CambiosUncheckedCreateWithoutCarpetaInput> | CambiosCreateWithoutCarpetaInput[] | CambiosUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutCarpetaInput | CambiosCreateOrConnectWithoutCarpetaInput[]
+    createMany?: CambiosCreateManyCarpetaInputEnvelope
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+  }
+
+  export type BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput = {
+    create?: XOR<BibliografiasCreateWithoutCarpetaInput, BibliografiasUncheckedCreateWithoutCarpetaInput> | BibliografiasCreateWithoutCarpetaInput[] | BibliografiasUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutCarpetaInput | BibliografiasCreateOrConnectWithoutCarpetaInput[]
+    createMany?: BibliografiasCreateManyCarpetaInputEnvelope
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
   }
 
   export type GruposUpdateOneRequiredWithoutCarpetasNestedInput = {
@@ -6963,46 +10381,312 @@ export namespace Prisma {
     update?: XOR<XOR<GruposUpdateToOneWithWhereWithoutCarpetasInput, GruposUpdateWithoutCarpetasInput>, GruposUncheckedUpdateWithoutCarpetasInput>
   }
 
-  export type CarpetasCreateNestedManyWithoutGruposInput = {
-    create?: XOR<CarpetasCreateWithoutGruposInput, CarpetasUncheckedCreateWithoutGruposInput> | CarpetasCreateWithoutGruposInput[] | CarpetasUncheckedCreateWithoutGruposInput[]
-    connectOrCreate?: CarpetasCreateOrConnectWithoutGruposInput | CarpetasCreateOrConnectWithoutGruposInput[]
-    createMany?: CarpetasCreateManyGruposInputEnvelope
+  export type CambiosUpdateManyWithoutCarpetaNestedInput = {
+    create?: XOR<CambiosCreateWithoutCarpetaInput, CambiosUncheckedCreateWithoutCarpetaInput> | CambiosCreateWithoutCarpetaInput[] | CambiosUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutCarpetaInput | CambiosCreateOrConnectWithoutCarpetaInput[]
+    upsert?: CambiosUpsertWithWhereUniqueWithoutCarpetaInput | CambiosUpsertWithWhereUniqueWithoutCarpetaInput[]
+    createMany?: CambiosCreateManyCarpetaInputEnvelope
+    set?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    disconnect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    delete?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    update?: CambiosUpdateWithWhereUniqueWithoutCarpetaInput | CambiosUpdateWithWhereUniqueWithoutCarpetaInput[]
+    updateMany?: CambiosUpdateManyWithWhereWithoutCarpetaInput | CambiosUpdateManyWithWhereWithoutCarpetaInput[]
+    deleteMany?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+  }
+
+  export type BibliografiasUpdateManyWithoutCarpetaNestedInput = {
+    create?: XOR<BibliografiasCreateWithoutCarpetaInput, BibliografiasUncheckedCreateWithoutCarpetaInput> | BibliografiasCreateWithoutCarpetaInput[] | BibliografiasUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutCarpetaInput | BibliografiasCreateOrConnectWithoutCarpetaInput[]
+    upsert?: BibliografiasUpsertWithWhereUniqueWithoutCarpetaInput | BibliografiasUpsertWithWhereUniqueWithoutCarpetaInput[]
+    createMany?: BibliografiasCreateManyCarpetaInputEnvelope
+    set?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    disconnect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    delete?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    update?: BibliografiasUpdateWithWhereUniqueWithoutCarpetaInput | BibliografiasUpdateWithWhereUniqueWithoutCarpetaInput[]
+    updateMany?: BibliografiasUpdateManyWithWhereWithoutCarpetaInput | BibliografiasUpdateManyWithWhereWithoutCarpetaInput[]
+    deleteMany?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
+  }
+
+  export type CambiosUncheckedUpdateManyWithoutCarpetaNestedInput = {
+    create?: XOR<CambiosCreateWithoutCarpetaInput, CambiosUncheckedCreateWithoutCarpetaInput> | CambiosCreateWithoutCarpetaInput[] | CambiosUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutCarpetaInput | CambiosCreateOrConnectWithoutCarpetaInput[]
+    upsert?: CambiosUpsertWithWhereUniqueWithoutCarpetaInput | CambiosUpsertWithWhereUniqueWithoutCarpetaInput[]
+    createMany?: CambiosCreateManyCarpetaInputEnvelope
+    set?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    disconnect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    delete?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    update?: CambiosUpdateWithWhereUniqueWithoutCarpetaInput | CambiosUpdateWithWhereUniqueWithoutCarpetaInput[]
+    updateMany?: CambiosUpdateManyWithWhereWithoutCarpetaInput | CambiosUpdateManyWithWhereWithoutCarpetaInput[]
+    deleteMany?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+  }
+
+  export type BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput = {
+    create?: XOR<BibliografiasCreateWithoutCarpetaInput, BibliografiasUncheckedCreateWithoutCarpetaInput> | BibliografiasCreateWithoutCarpetaInput[] | BibliografiasUncheckedCreateWithoutCarpetaInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutCarpetaInput | BibliografiasCreateOrConnectWithoutCarpetaInput[]
+    upsert?: BibliografiasUpsertWithWhereUniqueWithoutCarpetaInput | BibliografiasUpsertWithWhereUniqueWithoutCarpetaInput[]
+    createMany?: BibliografiasCreateManyCarpetaInputEnvelope
+    set?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    disconnect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    delete?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    update?: BibliografiasUpdateWithWhereUniqueWithoutCarpetaInput | BibliografiasUpdateWithWhereUniqueWithoutCarpetaInput[]
+    updateMany?: BibliografiasUpdateManyWithWhereWithoutCarpetaInput | BibliografiasUpdateManyWithWhereWithoutCarpetaInput[]
+    deleteMany?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
+  }
+
+  export type GruposCreateNestedOneWithoutGrupoConAccesoInput = {
+    create?: XOR<GruposCreateWithoutGrupoConAccesoInput, GruposUncheckedCreateWithoutGrupoConAccesoInput>
+    connectOrCreate?: GruposCreateOrConnectWithoutGrupoConAccesoInput
+    connect?: GruposWhereUniqueInput
+  }
+
+  export type EstudiantesCreateNestedOneWithoutGrupoConAccesoInput = {
+    create?: XOR<EstudiantesCreateWithoutGrupoConAccesoInput, EstudiantesUncheckedCreateWithoutGrupoConAccesoInput>
+    connectOrCreate?: EstudiantesCreateOrConnectWithoutGrupoConAccesoInput
+    connect?: EstudiantesWhereUniqueInput
+  }
+
+  export type GruposUpdateOneRequiredWithoutGrupoConAccesoNestedInput = {
+    create?: XOR<GruposCreateWithoutGrupoConAccesoInput, GruposUncheckedCreateWithoutGrupoConAccesoInput>
+    connectOrCreate?: GruposCreateOrConnectWithoutGrupoConAccesoInput
+    upsert?: GruposUpsertWithoutGrupoConAccesoInput
+    connect?: GruposWhereUniqueInput
+    update?: XOR<XOR<GruposUpdateToOneWithWhereWithoutGrupoConAccesoInput, GruposUpdateWithoutGrupoConAccesoInput>, GruposUncheckedUpdateWithoutGrupoConAccesoInput>
+  }
+
+  export type EstudiantesUpdateOneRequiredWithoutGrupoConAccesoNestedInput = {
+    create?: XOR<EstudiantesCreateWithoutGrupoConAccesoInput, EstudiantesUncheckedCreateWithoutGrupoConAccesoInput>
+    connectOrCreate?: EstudiantesCreateOrConnectWithoutGrupoConAccesoInput
+    upsert?: EstudiantesUpsertWithoutGrupoConAccesoInput
+    connect?: EstudiantesWhereUniqueInput
+    update?: XOR<XOR<EstudiantesUpdateToOneWithWhereWithoutGrupoConAccesoInput, EstudiantesUpdateWithoutGrupoConAccesoInput>, EstudiantesUncheckedUpdateWithoutGrupoConAccesoInput>
+  }
+
+  export type EstudiantesCreateNestedOneWithoutGruposInput = {
+    create?: XOR<EstudiantesCreateWithoutGruposInput, EstudiantesUncheckedCreateWithoutGruposInput>
+    connectOrCreate?: EstudiantesCreateOrConnectWithoutGruposInput
+    connect?: EstudiantesWhereUniqueInput
+  }
+
+  export type CambiosCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<CambiosCreateWithoutGrupoInput, CambiosUncheckedCreateWithoutGrupoInput> | CambiosCreateWithoutGrupoInput[] | CambiosUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutGrupoInput | CambiosCreateOrConnectWithoutGrupoInput[]
+    createMany?: CambiosCreateManyGrupoInputEnvelope
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+  }
+
+  export type CarpetasCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<CarpetasCreateWithoutGrupoInput, CarpetasUncheckedCreateWithoutGrupoInput> | CarpetasCreateWithoutGrupoInput[] | CarpetasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CarpetasCreateOrConnectWithoutGrupoInput | CarpetasCreateOrConnectWithoutGrupoInput[]
+    createMany?: CarpetasCreateManyGrupoInputEnvelope
     connect?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
   }
 
-  export type CarpetasUncheckedCreateNestedManyWithoutGruposInput = {
-    create?: XOR<CarpetasCreateWithoutGruposInput, CarpetasUncheckedCreateWithoutGruposInput> | CarpetasCreateWithoutGruposInput[] | CarpetasUncheckedCreateWithoutGruposInput[]
-    connectOrCreate?: CarpetasCreateOrConnectWithoutGruposInput | CarpetasCreateOrConnectWithoutGruposInput[]
-    createMany?: CarpetasCreateManyGruposInputEnvelope
+  export type BibliografiasCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<BibliografiasCreateWithoutGrupoInput, BibliografiasUncheckedCreateWithoutGrupoInput> | BibliografiasCreateWithoutGrupoInput[] | BibliografiasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutGrupoInput | BibliografiasCreateOrConnectWithoutGrupoInput[]
+    createMany?: BibliografiasCreateManyGrupoInputEnvelope
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+  }
+
+  export type GrupoConAccesoCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutGrupoInput, GrupoConAccesoUncheckedCreateWithoutGrupoInput> | GrupoConAccesoCreateWithoutGrupoInput[] | GrupoConAccesoUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutGrupoInput | GrupoConAccesoCreateOrConnectWithoutGrupoInput[]
+    createMany?: GrupoConAccesoCreateManyGrupoInputEnvelope
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+  }
+
+  export type CambiosUncheckedCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<CambiosCreateWithoutGrupoInput, CambiosUncheckedCreateWithoutGrupoInput> | CambiosCreateWithoutGrupoInput[] | CambiosUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutGrupoInput | CambiosCreateOrConnectWithoutGrupoInput[]
+    createMany?: CambiosCreateManyGrupoInputEnvelope
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+  }
+
+  export type CarpetasUncheckedCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<CarpetasCreateWithoutGrupoInput, CarpetasUncheckedCreateWithoutGrupoInput> | CarpetasCreateWithoutGrupoInput[] | CarpetasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CarpetasCreateOrConnectWithoutGrupoInput | CarpetasCreateOrConnectWithoutGrupoInput[]
+    createMany?: CarpetasCreateManyGrupoInputEnvelope
     connect?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
   }
 
-  export type CarpetasUpdateManyWithoutGruposNestedInput = {
-    create?: XOR<CarpetasCreateWithoutGruposInput, CarpetasUncheckedCreateWithoutGruposInput> | CarpetasCreateWithoutGruposInput[] | CarpetasUncheckedCreateWithoutGruposInput[]
-    connectOrCreate?: CarpetasCreateOrConnectWithoutGruposInput | CarpetasCreateOrConnectWithoutGruposInput[]
-    upsert?: CarpetasUpsertWithWhereUniqueWithoutGruposInput | CarpetasUpsertWithWhereUniqueWithoutGruposInput[]
-    createMany?: CarpetasCreateManyGruposInputEnvelope
+  export type BibliografiasUncheckedCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<BibliografiasCreateWithoutGrupoInput, BibliografiasUncheckedCreateWithoutGrupoInput> | BibliografiasCreateWithoutGrupoInput[] | BibliografiasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutGrupoInput | BibliografiasCreateOrConnectWithoutGrupoInput[]
+    createMany?: BibliografiasCreateManyGrupoInputEnvelope
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+  }
+
+  export type GrupoConAccesoUncheckedCreateNestedManyWithoutGrupoInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutGrupoInput, GrupoConAccesoUncheckedCreateWithoutGrupoInput> | GrupoConAccesoCreateWithoutGrupoInput[] | GrupoConAccesoUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutGrupoInput | GrupoConAccesoCreateOrConnectWithoutGrupoInput[]
+    createMany?: GrupoConAccesoCreateManyGrupoInputEnvelope
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+  }
+
+  export type EstudiantesUpdateOneRequiredWithoutGruposNestedInput = {
+    create?: XOR<EstudiantesCreateWithoutGruposInput, EstudiantesUncheckedCreateWithoutGruposInput>
+    connectOrCreate?: EstudiantesCreateOrConnectWithoutGruposInput
+    upsert?: EstudiantesUpsertWithoutGruposInput
+    connect?: EstudiantesWhereUniqueInput
+    update?: XOR<XOR<EstudiantesUpdateToOneWithWhereWithoutGruposInput, EstudiantesUpdateWithoutGruposInput>, EstudiantesUncheckedUpdateWithoutGruposInput>
+  }
+
+  export type CambiosUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<CambiosCreateWithoutGrupoInput, CambiosUncheckedCreateWithoutGrupoInput> | CambiosCreateWithoutGrupoInput[] | CambiosUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutGrupoInput | CambiosCreateOrConnectWithoutGrupoInput[]
+    upsert?: CambiosUpsertWithWhereUniqueWithoutGrupoInput | CambiosUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: CambiosCreateManyGrupoInputEnvelope
+    set?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    disconnect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    delete?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    update?: CambiosUpdateWithWhereUniqueWithoutGrupoInput | CambiosUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: CambiosUpdateManyWithWhereWithoutGrupoInput | CambiosUpdateManyWithWhereWithoutGrupoInput[]
+    deleteMany?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+  }
+
+  export type CarpetasUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<CarpetasCreateWithoutGrupoInput, CarpetasUncheckedCreateWithoutGrupoInput> | CarpetasCreateWithoutGrupoInput[] | CarpetasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CarpetasCreateOrConnectWithoutGrupoInput | CarpetasCreateOrConnectWithoutGrupoInput[]
+    upsert?: CarpetasUpsertWithWhereUniqueWithoutGrupoInput | CarpetasUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: CarpetasCreateManyGrupoInputEnvelope
     set?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
     disconnect?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
     delete?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
     connect?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
-    update?: CarpetasUpdateWithWhereUniqueWithoutGruposInput | CarpetasUpdateWithWhereUniqueWithoutGruposInput[]
-    updateMany?: CarpetasUpdateManyWithWhereWithoutGruposInput | CarpetasUpdateManyWithWhereWithoutGruposInput[]
+    update?: CarpetasUpdateWithWhereUniqueWithoutGrupoInput | CarpetasUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: CarpetasUpdateManyWithWhereWithoutGrupoInput | CarpetasUpdateManyWithWhereWithoutGrupoInput[]
     deleteMany?: CarpetasScalarWhereInput | CarpetasScalarWhereInput[]
   }
 
-  export type CarpetasUncheckedUpdateManyWithoutGruposNestedInput = {
-    create?: XOR<CarpetasCreateWithoutGruposInput, CarpetasUncheckedCreateWithoutGruposInput> | CarpetasCreateWithoutGruposInput[] | CarpetasUncheckedCreateWithoutGruposInput[]
-    connectOrCreate?: CarpetasCreateOrConnectWithoutGruposInput | CarpetasCreateOrConnectWithoutGruposInput[]
-    upsert?: CarpetasUpsertWithWhereUniqueWithoutGruposInput | CarpetasUpsertWithWhereUniqueWithoutGruposInput[]
-    createMany?: CarpetasCreateManyGruposInputEnvelope
+  export type BibliografiasUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<BibliografiasCreateWithoutGrupoInput, BibliografiasUncheckedCreateWithoutGrupoInput> | BibliografiasCreateWithoutGrupoInput[] | BibliografiasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutGrupoInput | BibliografiasCreateOrConnectWithoutGrupoInput[]
+    upsert?: BibliografiasUpsertWithWhereUniqueWithoutGrupoInput | BibliografiasUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: BibliografiasCreateManyGrupoInputEnvelope
+    set?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    disconnect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    delete?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    update?: BibliografiasUpdateWithWhereUniqueWithoutGrupoInput | BibliografiasUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: BibliografiasUpdateManyWithWhereWithoutGrupoInput | BibliografiasUpdateManyWithWhereWithoutGrupoInput[]
+    deleteMany?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
+  }
+
+  export type GrupoConAccesoUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutGrupoInput, GrupoConAccesoUncheckedCreateWithoutGrupoInput> | GrupoConAccesoCreateWithoutGrupoInput[] | GrupoConAccesoUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutGrupoInput | GrupoConAccesoCreateOrConnectWithoutGrupoInput[]
+    upsert?: GrupoConAccesoUpsertWithWhereUniqueWithoutGrupoInput | GrupoConAccesoUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: GrupoConAccesoCreateManyGrupoInputEnvelope
+    set?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    disconnect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    delete?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    update?: GrupoConAccesoUpdateWithWhereUniqueWithoutGrupoInput | GrupoConAccesoUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: GrupoConAccesoUpdateManyWithWhereWithoutGrupoInput | GrupoConAccesoUpdateManyWithWhereWithoutGrupoInput[]
+    deleteMany?: GrupoConAccesoScalarWhereInput | GrupoConAccesoScalarWhereInput[]
+  }
+
+  export type CambiosUncheckedUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<CambiosCreateWithoutGrupoInput, CambiosUncheckedCreateWithoutGrupoInput> | CambiosCreateWithoutGrupoInput[] | CambiosUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CambiosCreateOrConnectWithoutGrupoInput | CambiosCreateOrConnectWithoutGrupoInput[]
+    upsert?: CambiosUpsertWithWhereUniqueWithoutGrupoInput | CambiosUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: CambiosCreateManyGrupoInputEnvelope
+    set?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    disconnect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    delete?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    connect?: CambiosWhereUniqueInput | CambiosWhereUniqueInput[]
+    update?: CambiosUpdateWithWhereUniqueWithoutGrupoInput | CambiosUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: CambiosUpdateManyWithWhereWithoutGrupoInput | CambiosUpdateManyWithWhereWithoutGrupoInput[]
+    deleteMany?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+  }
+
+  export type CarpetasUncheckedUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<CarpetasCreateWithoutGrupoInput, CarpetasUncheckedCreateWithoutGrupoInput> | CarpetasCreateWithoutGrupoInput[] | CarpetasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: CarpetasCreateOrConnectWithoutGrupoInput | CarpetasCreateOrConnectWithoutGrupoInput[]
+    upsert?: CarpetasUpsertWithWhereUniqueWithoutGrupoInput | CarpetasUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: CarpetasCreateManyGrupoInputEnvelope
     set?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
     disconnect?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
     delete?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
     connect?: CarpetasWhereUniqueInput | CarpetasWhereUniqueInput[]
-    update?: CarpetasUpdateWithWhereUniqueWithoutGruposInput | CarpetasUpdateWithWhereUniqueWithoutGruposInput[]
-    updateMany?: CarpetasUpdateManyWithWhereWithoutGruposInput | CarpetasUpdateManyWithWhereWithoutGruposInput[]
+    update?: CarpetasUpdateWithWhereUniqueWithoutGrupoInput | CarpetasUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: CarpetasUpdateManyWithWhereWithoutGrupoInput | CarpetasUpdateManyWithWhereWithoutGrupoInput[]
     deleteMany?: CarpetasScalarWhereInput | CarpetasScalarWhereInput[]
+  }
+
+  export type BibliografiasUncheckedUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<BibliografiasCreateWithoutGrupoInput, BibliografiasUncheckedCreateWithoutGrupoInput> | BibliografiasCreateWithoutGrupoInput[] | BibliografiasUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: BibliografiasCreateOrConnectWithoutGrupoInput | BibliografiasCreateOrConnectWithoutGrupoInput[]
+    upsert?: BibliografiasUpsertWithWhereUniqueWithoutGrupoInput | BibliografiasUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: BibliografiasCreateManyGrupoInputEnvelope
+    set?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    disconnect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    delete?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
+    update?: BibliografiasUpdateWithWhereUniqueWithoutGrupoInput | BibliografiasUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: BibliografiasUpdateManyWithWhereWithoutGrupoInput | BibliografiasUpdateManyWithWhereWithoutGrupoInput[]
+    deleteMany?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
+  }
+
+  export type GrupoConAccesoUncheckedUpdateManyWithoutGrupoNestedInput = {
+    create?: XOR<GrupoConAccesoCreateWithoutGrupoInput, GrupoConAccesoUncheckedCreateWithoutGrupoInput> | GrupoConAccesoCreateWithoutGrupoInput[] | GrupoConAccesoUncheckedCreateWithoutGrupoInput[]
+    connectOrCreate?: GrupoConAccesoCreateOrConnectWithoutGrupoInput | GrupoConAccesoCreateOrConnectWithoutGrupoInput[]
+    upsert?: GrupoConAccesoUpsertWithWhereUniqueWithoutGrupoInput | GrupoConAccesoUpsertWithWhereUniqueWithoutGrupoInput[]
+    createMany?: GrupoConAccesoCreateManyGrupoInputEnvelope
+    set?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    disconnect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    delete?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    connect?: GrupoConAccesoWhereUniqueInput | GrupoConAccesoWhereUniqueInput[]
+    update?: GrupoConAccesoUpdateWithWhereUniqueWithoutGrupoInput | GrupoConAccesoUpdateWithWhereUniqueWithoutGrupoInput[]
+    updateMany?: GrupoConAccesoUpdateManyWithWhereWithoutGrupoInput | GrupoConAccesoUpdateManyWithWhereWithoutGrupoInput[]
+    deleteMany?: GrupoConAccesoScalarWhereInput | GrupoConAccesoScalarWhereInput[]
+  }
+
+  export type EstudiantesCreateNestedOneWithoutCambiosInput = {
+    create?: XOR<EstudiantesCreateWithoutCambiosInput, EstudiantesUncheckedCreateWithoutCambiosInput>
+    connectOrCreate?: EstudiantesCreateOrConnectWithoutCambiosInput
+    connect?: EstudiantesWhereUniqueInput
+  }
+
+  export type CarpetasCreateNestedOneWithoutCambiosInput = {
+    create?: XOR<CarpetasCreateWithoutCambiosInput, CarpetasUncheckedCreateWithoutCambiosInput>
+    connectOrCreate?: CarpetasCreateOrConnectWithoutCambiosInput
+    connect?: CarpetasWhereUniqueInput
+  }
+
+  export type GruposCreateNestedOneWithoutCambiosInput = {
+    create?: XOR<GruposCreateWithoutCambiosInput, GruposUncheckedCreateWithoutCambiosInput>
+    connectOrCreate?: GruposCreateOrConnectWithoutCambiosInput
+    connect?: GruposWhereUniqueInput
+  }
+
+  export type EstudiantesUpdateOneRequiredWithoutCambiosNestedInput = {
+    create?: XOR<EstudiantesCreateWithoutCambiosInput, EstudiantesUncheckedCreateWithoutCambiosInput>
+    connectOrCreate?: EstudiantesCreateOrConnectWithoutCambiosInput
+    upsert?: EstudiantesUpsertWithoutCambiosInput
+    connect?: EstudiantesWhereUniqueInput
+    update?: XOR<XOR<EstudiantesUpdateToOneWithWhereWithoutCambiosInput, EstudiantesUpdateWithoutCambiosInput>, EstudiantesUncheckedUpdateWithoutCambiosInput>
+  }
+
+  export type CarpetasUpdateOneRequiredWithoutCambiosNestedInput = {
+    create?: XOR<CarpetasCreateWithoutCambiosInput, CarpetasUncheckedCreateWithoutCambiosInput>
+    connectOrCreate?: CarpetasCreateOrConnectWithoutCambiosInput
+    upsert?: CarpetasUpsertWithoutCambiosInput
+    connect?: CarpetasWhereUniqueInput
+    update?: XOR<XOR<CarpetasUpdateToOneWithWhereWithoutCambiosInput, CarpetasUpdateWithoutCambiosInput>, CarpetasUncheckedUpdateWithoutCambiosInput>
+  }
+
+  export type GruposUpdateOneRequiredWithoutCambiosNestedInput = {
+    create?: XOR<GruposCreateWithoutCambiosInput, GruposUncheckedCreateWithoutCambiosInput>
+    connectOrCreate?: GruposCreateOrConnectWithoutCambiosInput
+    upsert?: GruposUpsertWithoutCambiosInput
+    connect?: GruposWhereUniqueInput
+    update?: XOR<XOR<GruposUpdateToOneWithWhereWithoutCambiosInput, GruposUpdateWithoutCambiosInput>, GruposUncheckedUpdateWithoutCambiosInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7168,18 +10852,465 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type CambiosCreateWithoutEstudianteInput = {
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    Carpeta: CarpetasCreateNestedOneWithoutCambiosInput
+    Grupo: GruposCreateNestedOneWithoutCambiosInput
+  }
+
+  export type CambiosUncheckedCreateWithoutEstudianteInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_carp: number
+    fk_id_grup: number
+  }
+
+  export type CambiosCreateOrConnectWithoutEstudianteInput = {
+    where: CambiosWhereUniqueInput
+    create: XOR<CambiosCreateWithoutEstudianteInput, CambiosUncheckedCreateWithoutEstudianteInput>
+  }
+
+  export type CambiosCreateManyEstudianteInputEnvelope = {
+    data: CambiosCreateManyEstudianteInput | CambiosCreateManyEstudianteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GruposCreateWithoutEstudianteInput = {
+    txt_nom_grup: string
+    Cambios?: CambiosCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposUncheckedCreateWithoutEstudianteInput = {
+    pk_id_grup?: number
+    txt_nom_grup: string
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasUncheckedCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposCreateOrConnectWithoutEstudianteInput = {
+    where: GruposWhereUniqueInput
+    create: XOR<GruposCreateWithoutEstudianteInput, GruposUncheckedCreateWithoutEstudianteInput>
+  }
+
+  export type GruposCreateManyEstudianteInputEnvelope = {
+    data: GruposCreateManyEstudianteInput | GruposCreateManyEstudianteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GrupoConAccesoCreateWithoutEstudianteInput = {
+    Grupo: GruposCreateNestedOneWithoutGrupoConAccesoInput
+  }
+
+  export type GrupoConAccesoUncheckedCreateWithoutEstudianteInput = {
+    fk_id_grup: number
+  }
+
+  export type GrupoConAccesoCreateOrConnectWithoutEstudianteInput = {
+    where: GrupoConAccesoWhereUniqueInput
+    create: XOR<GrupoConAccesoCreateWithoutEstudianteInput, GrupoConAccesoUncheckedCreateWithoutEstudianteInput>
+  }
+
+  export type GrupoConAccesoCreateManyEstudianteInputEnvelope = {
+    data: GrupoConAccesoCreateManyEstudianteInput | GrupoConAccesoCreateManyEstudianteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CambiosUpsertWithWhereUniqueWithoutEstudianteInput = {
+    where: CambiosWhereUniqueInput
+    update: XOR<CambiosUpdateWithoutEstudianteInput, CambiosUncheckedUpdateWithoutEstudianteInput>
+    create: XOR<CambiosCreateWithoutEstudianteInput, CambiosUncheckedCreateWithoutEstudianteInput>
+  }
+
+  export type CambiosUpdateWithWhereUniqueWithoutEstudianteInput = {
+    where: CambiosWhereUniqueInput
+    data: XOR<CambiosUpdateWithoutEstudianteInput, CambiosUncheckedUpdateWithoutEstudianteInput>
+  }
+
+  export type CambiosUpdateManyWithWhereWithoutEstudianteInput = {
+    where: CambiosScalarWhereInput
+    data: XOR<CambiosUpdateManyMutationInput, CambiosUncheckedUpdateManyWithoutEstudianteInput>
+  }
+
+  export type CambiosScalarWhereInput = {
+    AND?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+    OR?: CambiosScalarWhereInput[]
+    NOT?: CambiosScalarWhereInput | CambiosScalarWhereInput[]
+    pk_id_camb?: IntFilter<"Cambios"> | number
+    num_tip_camb?: IntFilter<"Cambios"> | number
+    txt_fecha_camb?: DateTimeFilter<"Cambios"> | Date | string
+    fk_id_est?: StringFilter<"Cambios"> | string
+    fk_id_carp?: IntFilter<"Cambios"> | number
+    fk_id_grup?: IntFilter<"Cambios"> | number
+  }
+
+  export type GruposUpsertWithWhereUniqueWithoutEstudianteInput = {
+    where: GruposWhereUniqueInput
+    update: XOR<GruposUpdateWithoutEstudianteInput, GruposUncheckedUpdateWithoutEstudianteInput>
+    create: XOR<GruposCreateWithoutEstudianteInput, GruposUncheckedCreateWithoutEstudianteInput>
+  }
+
+  export type GruposUpdateWithWhereUniqueWithoutEstudianteInput = {
+    where: GruposWhereUniqueInput
+    data: XOR<GruposUpdateWithoutEstudianteInput, GruposUncheckedUpdateWithoutEstudianteInput>
+  }
+
+  export type GruposUpdateManyWithWhereWithoutEstudianteInput = {
+    where: GruposScalarWhereInput
+    data: XOR<GruposUpdateManyMutationInput, GruposUncheckedUpdateManyWithoutEstudianteInput>
+  }
+
+  export type GruposScalarWhereInput = {
+    AND?: GruposScalarWhereInput | GruposScalarWhereInput[]
+    OR?: GruposScalarWhereInput[]
+    NOT?: GruposScalarWhereInput | GruposScalarWhereInput[]
+    pk_id_grup?: IntFilter<"Grupos"> | number
+    txt_nom_grup?: StringFilter<"Grupos"> | string
+    fk_id_est?: StringFilter<"Grupos"> | string
+  }
+
+  export type GrupoConAccesoUpsertWithWhereUniqueWithoutEstudianteInput = {
+    where: GrupoConAccesoWhereUniqueInput
+    update: XOR<GrupoConAccesoUpdateWithoutEstudianteInput, GrupoConAccesoUncheckedUpdateWithoutEstudianteInput>
+    create: XOR<GrupoConAccesoCreateWithoutEstudianteInput, GrupoConAccesoUncheckedCreateWithoutEstudianteInput>
+  }
+
+  export type GrupoConAccesoUpdateWithWhereUniqueWithoutEstudianteInput = {
+    where: GrupoConAccesoWhereUniqueInput
+    data: XOR<GrupoConAccesoUpdateWithoutEstudianteInput, GrupoConAccesoUncheckedUpdateWithoutEstudianteInput>
+  }
+
+  export type GrupoConAccesoUpdateManyWithWhereWithoutEstudianteInput = {
+    where: GrupoConAccesoScalarWhereInput
+    data: XOR<GrupoConAccesoUpdateManyMutationInput, GrupoConAccesoUncheckedUpdateManyWithoutEstudianteInput>
+  }
+
+  export type GrupoConAccesoScalarWhereInput = {
+    AND?: GrupoConAccesoScalarWhereInput | GrupoConAccesoScalarWhereInput[]
+    OR?: GrupoConAccesoScalarWhereInput[]
+    NOT?: GrupoConAccesoScalarWhereInput | GrupoConAccesoScalarWhereInput[]
+    fk_id_grup?: IntFilter<"GrupoConAcceso"> | number
+    fk_id_est?: StringFilter<"GrupoConAcceso"> | string
+  }
+
+  export type GruposCreateWithoutBibliografiasInput = {
+    txt_nom_grup: string
+    Estudiante: EstudiantesCreateNestedOneWithoutGruposInput
+    Cambios?: CambiosCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposUncheckedCreateWithoutBibliografiasInput = {
+    pk_id_grup?: number
+    txt_nom_grup: string
+    fk_id_est: string
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasUncheckedCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposCreateOrConnectWithoutBibliografiasInput = {
+    where: GruposWhereUniqueInput
+    create: XOR<GruposCreateWithoutBibliografiasInput, GruposUncheckedCreateWithoutBibliografiasInput>
+  }
+
+  export type CarpetasCreateWithoutBibliografiasInput = {
+    txt_nom_carp: string
+    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Cambios?: CambiosCreateNestedManyWithoutCarpetaInput
+  }
+
+  export type CarpetasUncheckedCreateWithoutBibliografiasInput = {
+    pk_id_carp?: number
+    txt_nom_carp: string
+    fk_id_grup: number
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutCarpetaInput
+  }
+
+  export type CarpetasCreateOrConnectWithoutBibliografiasInput = {
+    where: CarpetasWhereUniqueInput
+    create: XOR<CarpetasCreateWithoutBibliografiasInput, CarpetasUncheckedCreateWithoutBibliografiasInput>
+  }
+
+  export type ArchivosCreateWithoutBibliografiasInput = {
+    txt_dir_arch: string
+  }
+
+  export type ArchivosUncheckedCreateWithoutBibliografiasInput = {
+    pk_id_arch?: number
+    txt_dir_arch: string
+  }
+
+  export type ArchivosCreateOrConnectWithoutBibliografiasInput = {
+    where: ArchivosWhereUniqueInput
+    create: XOR<ArchivosCreateWithoutBibliografiasInput, ArchivosUncheckedCreateWithoutBibliografiasInput>
+  }
+
+  export type ArchivosCreateManyBibliografiasInputEnvelope = {
+    data: ArchivosCreateManyBibliografiasInput | ArchivosCreateManyBibliografiasInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GruposUpsertWithoutBibliografiasInput = {
+    update: XOR<GruposUpdateWithoutBibliografiasInput, GruposUncheckedUpdateWithoutBibliografiasInput>
+    create: XOR<GruposCreateWithoutBibliografiasInput, GruposUncheckedCreateWithoutBibliografiasInput>
+    where?: GruposWhereInput
+  }
+
+  export type GruposUpdateToOneWithWhereWithoutBibliografiasInput = {
+    where?: GruposWhereInput
+    data: XOR<GruposUpdateWithoutBibliografiasInput, GruposUncheckedUpdateWithoutBibliografiasInput>
+  }
+
+  export type GruposUpdateWithoutBibliografiasInput = {
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGruposNestedInput
+    Cambios?: CambiosUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type GruposUncheckedUpdateWithoutBibliografiasInput = {
+    pk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUncheckedUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUncheckedUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type CarpetasUpsertWithoutBibliografiasInput = {
+    update: XOR<CarpetasUpdateWithoutBibliografiasInput, CarpetasUncheckedUpdateWithoutBibliografiasInput>
+    create: XOR<CarpetasCreateWithoutBibliografiasInput, CarpetasUncheckedCreateWithoutBibliografiasInput>
+    where?: CarpetasWhereInput
+  }
+
+  export type CarpetasUpdateToOneWithWhereWithoutBibliografiasInput = {
+    where?: CarpetasWhereInput
+    data: XOR<CarpetasUpdateWithoutBibliografiasInput, CarpetasUncheckedUpdateWithoutBibliografiasInput>
+  }
+
+  export type CarpetasUpdateWithoutBibliografiasInput = {
+    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Cambios?: CambiosUpdateManyWithoutCarpetaNestedInput
+  }
+
+  export type CarpetasUncheckedUpdateWithoutBibliografiasInput = {
+    pk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUncheckedUpdateManyWithoutCarpetaNestedInput
+  }
+
+  export type ArchivosUpsertWithWhereUniqueWithoutBibliografiasInput = {
+    where: ArchivosWhereUniqueInput
+    update: XOR<ArchivosUpdateWithoutBibliografiasInput, ArchivosUncheckedUpdateWithoutBibliografiasInput>
+    create: XOR<ArchivosCreateWithoutBibliografiasInput, ArchivosUncheckedCreateWithoutBibliografiasInput>
+  }
+
+  export type ArchivosUpdateWithWhereUniqueWithoutBibliografiasInput = {
+    where: ArchivosWhereUniqueInput
+    data: XOR<ArchivosUpdateWithoutBibliografiasInput, ArchivosUncheckedUpdateWithoutBibliografiasInput>
+  }
+
+  export type ArchivosUpdateManyWithWhereWithoutBibliografiasInput = {
+    where: ArchivosScalarWhereInput
+    data: XOR<ArchivosUpdateManyMutationInput, ArchivosUncheckedUpdateManyWithoutBibliografiasInput>
+  }
+
+  export type ArchivosScalarWhereInput = {
+    AND?: ArchivosScalarWhereInput | ArchivosScalarWhereInput[]
+    OR?: ArchivosScalarWhereInput[]
+    NOT?: ArchivosScalarWhereInput | ArchivosScalarWhereInput[]
+    pk_id_arch?: IntFilter<"Archivos"> | number
+    txt_dir_arch?: StringFilter<"Archivos"> | string
+    fk_id_biblio?: IntFilter<"Archivos"> | number
+  }
+
+  export type BibliografiasCreateWithoutArchivosInput = {
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
+    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+  }
+
+  export type BibliografiasUncheckedCreateWithoutArchivosInput = {
+    pk_id_biblio?: number
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    fk_id_grup: number
+    fk_id_carp: number
+  }
+
+  export type BibliografiasCreateOrConnectWithoutArchivosInput = {
+    where: BibliografiasWhereUniqueInput
+    create: XOR<BibliografiasCreateWithoutArchivosInput, BibliografiasUncheckedCreateWithoutArchivosInput>
+  }
+
+  export type BibliografiasUpsertWithoutArchivosInput = {
+    update: XOR<BibliografiasUpdateWithoutArchivosInput, BibliografiasUncheckedUpdateWithoutArchivosInput>
+    create: XOR<BibliografiasCreateWithoutArchivosInput, BibliografiasUncheckedCreateWithoutArchivosInput>
+    where?: BibliografiasWhereInput
+  }
+
+  export type BibliografiasUpdateToOneWithWhereWithoutArchivosInput = {
+    where?: BibliografiasWhereInput
+    data: XOR<BibliografiasUpdateWithoutArchivosInput, BibliografiasUncheckedUpdateWithoutArchivosInput>
+  }
+
+  export type BibliografiasUpdateWithoutArchivosInput = {
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
+    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+  }
+
+  export type BibliografiasUncheckedUpdateWithoutArchivosInput = {
+    pk_id_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+  }
+
   export type GruposCreateWithoutCarpetasInput = {
     txt_nom_grup: string
+    Estudiante: EstudiantesCreateNestedOneWithoutGruposInput
+    Cambios?: CambiosCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutGrupoInput
   }
 
   export type GruposUncheckedCreateWithoutCarpetasInput = {
     pk_id_grup?: number
     txt_nom_grup: string
+    fk_id_est: string
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutGrupoInput
   }
 
   export type GruposCreateOrConnectWithoutCarpetasInput = {
     where: GruposWhereUniqueInput
     create: XOR<GruposCreateWithoutCarpetasInput, GruposUncheckedCreateWithoutCarpetasInput>
+  }
+
+  export type CambiosCreateWithoutCarpetaInput = {
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    Estudiante: EstudiantesCreateNestedOneWithoutCambiosInput
+    Grupo: GruposCreateNestedOneWithoutCambiosInput
+  }
+
+  export type CambiosUncheckedCreateWithoutCarpetaInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_est: string
+    fk_id_grup: number
+  }
+
+  export type CambiosCreateOrConnectWithoutCarpetaInput = {
+    where: CambiosWhereUniqueInput
+    create: XOR<CambiosCreateWithoutCarpetaInput, CambiosUncheckedCreateWithoutCarpetaInput>
+  }
+
+  export type CambiosCreateManyCarpetaInputEnvelope = {
+    data: CambiosCreateManyCarpetaInput | CambiosCreateManyCarpetaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BibliografiasCreateWithoutCarpetaInput = {
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
+    Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
+  }
+
+  export type BibliografiasUncheckedCreateWithoutCarpetaInput = {
+    pk_id_biblio?: number
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    fk_id_grup: number
+    Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
+  }
+
+  export type BibliografiasCreateOrConnectWithoutCarpetaInput = {
+    where: BibliografiasWhereUniqueInput
+    create: XOR<BibliografiasCreateWithoutCarpetaInput, BibliografiasUncheckedCreateWithoutCarpetaInput>
+  }
+
+  export type BibliografiasCreateManyCarpetaInputEnvelope = {
+    data: BibliografiasCreateManyCarpetaInput | BibliografiasCreateManyCarpetaInput[]
+    skipDuplicates?: boolean
   }
 
   export type GruposUpsertWithoutCarpetasInput = {
@@ -7195,46 +11326,377 @@ export namespace Prisma {
 
   export type GruposUpdateWithoutCarpetasInput = {
     txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGruposNestedInput
+    Cambios?: CambiosUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutGrupoNestedInput
   }
 
   export type GruposUncheckedUpdateWithoutCarpetasInput = {
     pk_id_grup?: IntFieldUpdateOperationsInput | number
     txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUncheckedUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutGrupoNestedInput
   }
 
-  export type CarpetasCreateWithoutGruposInput = {
-    txt_nom_carp: string
+  export type CambiosUpsertWithWhereUniqueWithoutCarpetaInput = {
+    where: CambiosWhereUniqueInput
+    update: XOR<CambiosUpdateWithoutCarpetaInput, CambiosUncheckedUpdateWithoutCarpetaInput>
+    create: XOR<CambiosCreateWithoutCarpetaInput, CambiosUncheckedCreateWithoutCarpetaInput>
   }
 
-  export type CarpetasUncheckedCreateWithoutGruposInput = {
-    pk_id_carp?: number
-    txt_nom_carp: string
+  export type CambiosUpdateWithWhereUniqueWithoutCarpetaInput = {
+    where: CambiosWhereUniqueInput
+    data: XOR<CambiosUpdateWithoutCarpetaInput, CambiosUncheckedUpdateWithoutCarpetaInput>
   }
 
-  export type CarpetasCreateOrConnectWithoutGruposInput = {
-    where: CarpetasWhereUniqueInput
-    create: XOR<CarpetasCreateWithoutGruposInput, CarpetasUncheckedCreateWithoutGruposInput>
+  export type CambiosUpdateManyWithWhereWithoutCarpetaInput = {
+    where: CambiosScalarWhereInput
+    data: XOR<CambiosUpdateManyMutationInput, CambiosUncheckedUpdateManyWithoutCarpetaInput>
   }
 
-  export type CarpetasCreateManyGruposInputEnvelope = {
-    data: CarpetasCreateManyGruposInput | CarpetasCreateManyGruposInput[]
+  export type BibliografiasUpsertWithWhereUniqueWithoutCarpetaInput = {
+    where: BibliografiasWhereUniqueInput
+    update: XOR<BibliografiasUpdateWithoutCarpetaInput, BibliografiasUncheckedUpdateWithoutCarpetaInput>
+    create: XOR<BibliografiasCreateWithoutCarpetaInput, BibliografiasUncheckedCreateWithoutCarpetaInput>
+  }
+
+  export type BibliografiasUpdateWithWhereUniqueWithoutCarpetaInput = {
+    where: BibliografiasWhereUniqueInput
+    data: XOR<BibliografiasUpdateWithoutCarpetaInput, BibliografiasUncheckedUpdateWithoutCarpetaInput>
+  }
+
+  export type BibliografiasUpdateManyWithWhereWithoutCarpetaInput = {
+    where: BibliografiasScalarWhereInput
+    data: XOR<BibliografiasUpdateManyMutationInput, BibliografiasUncheckedUpdateManyWithoutCarpetaInput>
+  }
+
+  export type BibliografiasScalarWhereInput = {
+    AND?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
+    OR?: BibliografiasScalarWhereInput[]
+    NOT?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
+    pk_id_biblio?: IntFilter<"Bibliografias"> | number
+    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
+    num_tip_biblio?: IntFilter<"Bibliografias"> | number
+    num_fmt_biblio?: IntFilter<"Bibliografias"> | number
+    txt_fecha_biblio?: DateTimeFilter<"Bibliografias"> | Date | string
+    txt_aut_biblio?: StringFilter<"Bibliografias"> | string
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    txt_ubic_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    fk_id_grup?: IntFilter<"Bibliografias"> | number
+    fk_id_carp?: IntFilter<"Bibliografias"> | number
+  }
+
+  export type GruposCreateWithoutGrupoConAccesoInput = {
+    txt_nom_grup: string
+    Estudiante: EstudiantesCreateNestedOneWithoutGruposInput
+    Cambios?: CambiosCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposUncheckedCreateWithoutGrupoConAccesoInput = {
+    pk_id_grup?: number
+    txt_nom_grup: string
+    fk_id_est: string
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutGrupoInput
+    Carpetas?: CarpetasUncheckedCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposCreateOrConnectWithoutGrupoConAccesoInput = {
+    where: GruposWhereUniqueInput
+    create: XOR<GruposCreateWithoutGrupoConAccesoInput, GruposUncheckedCreateWithoutGrupoConAccesoInput>
+  }
+
+  export type EstudiantesCreateWithoutGrupoConAccesoInput = {
+    pk_id_est?: string
+    txt_user_est: string
+    txt_email_est: string
+    txt_pass_est: string
+    num_sub_est?: number
+    Cambios?: CambiosCreateNestedManyWithoutEstudianteInput
+    Grupos?: GruposCreateNestedManyWithoutEstudianteInput
+  }
+
+  export type EstudiantesUncheckedCreateWithoutGrupoConAccesoInput = {
+    pk_id_est?: string
+    txt_user_est: string
+    txt_email_est: string
+    txt_pass_est: string
+    num_sub_est?: number
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutEstudianteInput
+    Grupos?: GruposUncheckedCreateNestedManyWithoutEstudianteInput
+  }
+
+  export type EstudiantesCreateOrConnectWithoutGrupoConAccesoInput = {
+    where: EstudiantesWhereUniqueInput
+    create: XOR<EstudiantesCreateWithoutGrupoConAccesoInput, EstudiantesUncheckedCreateWithoutGrupoConAccesoInput>
+  }
+
+  export type GruposUpsertWithoutGrupoConAccesoInput = {
+    update: XOR<GruposUpdateWithoutGrupoConAccesoInput, GruposUncheckedUpdateWithoutGrupoConAccesoInput>
+    create: XOR<GruposCreateWithoutGrupoConAccesoInput, GruposUncheckedCreateWithoutGrupoConAccesoInput>
+    where?: GruposWhereInput
+  }
+
+  export type GruposUpdateToOneWithWhereWithoutGrupoConAccesoInput = {
+    where?: GruposWhereInput
+    data: XOR<GruposUpdateWithoutGrupoConAccesoInput, GruposUncheckedUpdateWithoutGrupoConAccesoInput>
+  }
+
+  export type GruposUpdateWithoutGrupoConAccesoInput = {
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGruposNestedInput
+    Cambios?: CambiosUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type GruposUncheckedUpdateWithoutGrupoConAccesoInput = {
+    pk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUncheckedUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUncheckedUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type EstudiantesUpsertWithoutGrupoConAccesoInput = {
+    update: XOR<EstudiantesUpdateWithoutGrupoConAccesoInput, EstudiantesUncheckedUpdateWithoutGrupoConAccesoInput>
+    create: XOR<EstudiantesCreateWithoutGrupoConAccesoInput, EstudiantesUncheckedCreateWithoutGrupoConAccesoInput>
+    where?: EstudiantesWhereInput
+  }
+
+  export type EstudiantesUpdateToOneWithWhereWithoutGrupoConAccesoInput = {
+    where?: EstudiantesWhereInput
+    data: XOR<EstudiantesUpdateWithoutGrupoConAccesoInput, EstudiantesUncheckedUpdateWithoutGrupoConAccesoInput>
+  }
+
+  export type EstudiantesUpdateWithoutGrupoConAccesoInput = {
+    pk_id_est?: StringFieldUpdateOperationsInput | string
+    txt_user_est?: StringFieldUpdateOperationsInput | string
+    txt_email_est?: StringFieldUpdateOperationsInput | string
+    txt_pass_est?: StringFieldUpdateOperationsInput | string
+    num_sub_est?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUpdateManyWithoutEstudianteNestedInput
+    Grupos?: GruposUpdateManyWithoutEstudianteNestedInput
+  }
+
+  export type EstudiantesUncheckedUpdateWithoutGrupoConAccesoInput = {
+    pk_id_est?: StringFieldUpdateOperationsInput | string
+    txt_user_est?: StringFieldUpdateOperationsInput | string
+    txt_email_est?: StringFieldUpdateOperationsInput | string
+    txt_pass_est?: StringFieldUpdateOperationsInput | string
+    num_sub_est?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUncheckedUpdateManyWithoutEstudianteNestedInput
+    Grupos?: GruposUncheckedUpdateManyWithoutEstudianteNestedInput
+  }
+
+  export type EstudiantesCreateWithoutGruposInput = {
+    pk_id_est?: string
+    txt_user_est: string
+    txt_email_est: string
+    txt_pass_est: string
+    num_sub_est?: number
+    Cambios?: CambiosCreateNestedManyWithoutEstudianteInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutEstudianteInput
+  }
+
+  export type EstudiantesUncheckedCreateWithoutGruposInput = {
+    pk_id_est?: string
+    txt_user_est: string
+    txt_email_est: string
+    txt_pass_est: string
+    num_sub_est?: number
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutEstudianteInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutEstudianteInput
+  }
+
+  export type EstudiantesCreateOrConnectWithoutGruposInput = {
+    where: EstudiantesWhereUniqueInput
+    create: XOR<EstudiantesCreateWithoutGruposInput, EstudiantesUncheckedCreateWithoutGruposInput>
+  }
+
+  export type CambiosCreateWithoutGrupoInput = {
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    Estudiante: EstudiantesCreateNestedOneWithoutCambiosInput
+    Carpeta: CarpetasCreateNestedOneWithoutCambiosInput
+  }
+
+  export type CambiosUncheckedCreateWithoutGrupoInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_est: string
+    fk_id_carp: number
+  }
+
+  export type CambiosCreateOrConnectWithoutGrupoInput = {
+    where: CambiosWhereUniqueInput
+    create: XOR<CambiosCreateWithoutGrupoInput, CambiosUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type CambiosCreateManyGrupoInputEnvelope = {
+    data: CambiosCreateManyGrupoInput | CambiosCreateManyGrupoInput[]
     skipDuplicates?: boolean
   }
 
-  export type CarpetasUpsertWithWhereUniqueWithoutGruposInput = {
-    where: CarpetasWhereUniqueInput
-    update: XOR<CarpetasUpdateWithoutGruposInput, CarpetasUncheckedUpdateWithoutGruposInput>
-    create: XOR<CarpetasCreateWithoutGruposInput, CarpetasUncheckedCreateWithoutGruposInput>
+  export type CarpetasCreateWithoutGrupoInput = {
+    txt_nom_carp: string
+    Cambios?: CambiosCreateNestedManyWithoutCarpetaInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutCarpetaInput
   }
 
-  export type CarpetasUpdateWithWhereUniqueWithoutGruposInput = {
-    where: CarpetasWhereUniqueInput
-    data: XOR<CarpetasUpdateWithoutGruposInput, CarpetasUncheckedUpdateWithoutGruposInput>
+  export type CarpetasUncheckedCreateWithoutGrupoInput = {
+    pk_id_carp?: number
+    txt_nom_carp: string
+    Cambios?: CambiosUncheckedCreateNestedManyWithoutCarpetaInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput
   }
 
-  export type CarpetasUpdateManyWithWhereWithoutGruposInput = {
+  export type CarpetasCreateOrConnectWithoutGrupoInput = {
+    where: CarpetasWhereUniqueInput
+    create: XOR<CarpetasCreateWithoutGrupoInput, CarpetasUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type CarpetasCreateManyGrupoInputEnvelope = {
+    data: CarpetasCreateManyGrupoInput | CarpetasCreateManyGrupoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BibliografiasCreateWithoutGrupoInput = {
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+    Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
+  }
+
+  export type BibliografiasUncheckedCreateWithoutGrupoInput = {
+    pk_id_biblio?: number
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    fk_id_carp: number
+    Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
+  }
+
+  export type BibliografiasCreateOrConnectWithoutGrupoInput = {
+    where: BibliografiasWhereUniqueInput
+    create: XOR<BibliografiasCreateWithoutGrupoInput, BibliografiasUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type BibliografiasCreateManyGrupoInputEnvelope = {
+    data: BibliografiasCreateManyGrupoInput | BibliografiasCreateManyGrupoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GrupoConAccesoCreateWithoutGrupoInput = {
+    Estudiante: EstudiantesCreateNestedOneWithoutGrupoConAccesoInput
+  }
+
+  export type GrupoConAccesoUncheckedCreateWithoutGrupoInput = {
+    fk_id_est: string
+  }
+
+  export type GrupoConAccesoCreateOrConnectWithoutGrupoInput = {
+    where: GrupoConAccesoWhereUniqueInput
+    create: XOR<GrupoConAccesoCreateWithoutGrupoInput, GrupoConAccesoUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type GrupoConAccesoCreateManyGrupoInputEnvelope = {
+    data: GrupoConAccesoCreateManyGrupoInput | GrupoConAccesoCreateManyGrupoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EstudiantesUpsertWithoutGruposInput = {
+    update: XOR<EstudiantesUpdateWithoutGruposInput, EstudiantesUncheckedUpdateWithoutGruposInput>
+    create: XOR<EstudiantesCreateWithoutGruposInput, EstudiantesUncheckedCreateWithoutGruposInput>
+    where?: EstudiantesWhereInput
+  }
+
+  export type EstudiantesUpdateToOneWithWhereWithoutGruposInput = {
+    where?: EstudiantesWhereInput
+    data: XOR<EstudiantesUpdateWithoutGruposInput, EstudiantesUncheckedUpdateWithoutGruposInput>
+  }
+
+  export type EstudiantesUpdateWithoutGruposInput = {
+    pk_id_est?: StringFieldUpdateOperationsInput | string
+    txt_user_est?: StringFieldUpdateOperationsInput | string
+    txt_email_est?: StringFieldUpdateOperationsInput | string
+    txt_pass_est?: StringFieldUpdateOperationsInput | string
+    num_sub_est?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUpdateManyWithoutEstudianteNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutEstudianteNestedInput
+  }
+
+  export type EstudiantesUncheckedUpdateWithoutGruposInput = {
+    pk_id_est?: StringFieldUpdateOperationsInput | string
+    txt_user_est?: StringFieldUpdateOperationsInput | string
+    txt_email_est?: StringFieldUpdateOperationsInput | string
+    txt_pass_est?: StringFieldUpdateOperationsInput | string
+    num_sub_est?: IntFieldUpdateOperationsInput | number
+    Cambios?: CambiosUncheckedUpdateManyWithoutEstudianteNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutEstudianteNestedInput
+  }
+
+  export type CambiosUpsertWithWhereUniqueWithoutGrupoInput = {
+    where: CambiosWhereUniqueInput
+    update: XOR<CambiosUpdateWithoutGrupoInput, CambiosUncheckedUpdateWithoutGrupoInput>
+    create: XOR<CambiosCreateWithoutGrupoInput, CambiosUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type CambiosUpdateWithWhereUniqueWithoutGrupoInput = {
+    where: CambiosWhereUniqueInput
+    data: XOR<CambiosUpdateWithoutGrupoInput, CambiosUncheckedUpdateWithoutGrupoInput>
+  }
+
+  export type CambiosUpdateManyWithWhereWithoutGrupoInput = {
+    where: CambiosScalarWhereInput
+    data: XOR<CambiosUpdateManyMutationInput, CambiosUncheckedUpdateManyWithoutGrupoInput>
+  }
+
+  export type CarpetasUpsertWithWhereUniqueWithoutGrupoInput = {
+    where: CarpetasWhereUniqueInput
+    update: XOR<CarpetasUpdateWithoutGrupoInput, CarpetasUncheckedUpdateWithoutGrupoInput>
+    create: XOR<CarpetasCreateWithoutGrupoInput, CarpetasUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type CarpetasUpdateWithWhereUniqueWithoutGrupoInput = {
+    where: CarpetasWhereUniqueInput
+    data: XOR<CarpetasUpdateWithoutGrupoInput, CarpetasUncheckedUpdateWithoutGrupoInput>
+  }
+
+  export type CarpetasUpdateManyWithWhereWithoutGrupoInput = {
     where: CarpetasScalarWhereInput
-    data: XOR<CarpetasUpdateManyMutationInput, CarpetasUncheckedUpdateManyWithoutGruposInput>
+    data: XOR<CarpetasUpdateManyMutationInput, CarpetasUncheckedUpdateManyWithoutGrupoInput>
   }
 
   export type CarpetasScalarWhereInput = {
@@ -7243,26 +11705,519 @@ export namespace Prisma {
     NOT?: CarpetasScalarWhereInput | CarpetasScalarWhereInput[]
     pk_id_carp?: IntFilter<"Carpetas"> | number
     txt_nom_carp?: StringFilter<"Carpetas"> | string
-    gruposPk_id_grup?: IntFilter<"Carpetas"> | number
+    fk_id_grup?: IntFilter<"Carpetas"> | number
   }
 
-  export type CarpetasCreateManyGruposInput = {
+  export type BibliografiasUpsertWithWhereUniqueWithoutGrupoInput = {
+    where: BibliografiasWhereUniqueInput
+    update: XOR<BibliografiasUpdateWithoutGrupoInput, BibliografiasUncheckedUpdateWithoutGrupoInput>
+    create: XOR<BibliografiasCreateWithoutGrupoInput, BibliografiasUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type BibliografiasUpdateWithWhereUniqueWithoutGrupoInput = {
+    where: BibliografiasWhereUniqueInput
+    data: XOR<BibliografiasUpdateWithoutGrupoInput, BibliografiasUncheckedUpdateWithoutGrupoInput>
+  }
+
+  export type BibliografiasUpdateManyWithWhereWithoutGrupoInput = {
+    where: BibliografiasScalarWhereInput
+    data: XOR<BibliografiasUpdateManyMutationInput, BibliografiasUncheckedUpdateManyWithoutGrupoInput>
+  }
+
+  export type GrupoConAccesoUpsertWithWhereUniqueWithoutGrupoInput = {
+    where: GrupoConAccesoWhereUniqueInput
+    update: XOR<GrupoConAccesoUpdateWithoutGrupoInput, GrupoConAccesoUncheckedUpdateWithoutGrupoInput>
+    create: XOR<GrupoConAccesoCreateWithoutGrupoInput, GrupoConAccesoUncheckedCreateWithoutGrupoInput>
+  }
+
+  export type GrupoConAccesoUpdateWithWhereUniqueWithoutGrupoInput = {
+    where: GrupoConAccesoWhereUniqueInput
+    data: XOR<GrupoConAccesoUpdateWithoutGrupoInput, GrupoConAccesoUncheckedUpdateWithoutGrupoInput>
+  }
+
+  export type GrupoConAccesoUpdateManyWithWhereWithoutGrupoInput = {
+    where: GrupoConAccesoScalarWhereInput
+    data: XOR<GrupoConAccesoUpdateManyMutationInput, GrupoConAccesoUncheckedUpdateManyWithoutGrupoInput>
+  }
+
+  export type EstudiantesCreateWithoutCambiosInput = {
+    pk_id_est?: string
+    txt_user_est: string
+    txt_email_est: string
+    txt_pass_est: string
+    num_sub_est?: number
+    Grupos?: GruposCreateNestedManyWithoutEstudianteInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutEstudianteInput
+  }
+
+  export type EstudiantesUncheckedCreateWithoutCambiosInput = {
+    pk_id_est?: string
+    txt_user_est: string
+    txt_email_est: string
+    txt_pass_est: string
+    num_sub_est?: number
+    Grupos?: GruposUncheckedCreateNestedManyWithoutEstudianteInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutEstudianteInput
+  }
+
+  export type EstudiantesCreateOrConnectWithoutCambiosInput = {
+    where: EstudiantesWhereUniqueInput
+    create: XOR<EstudiantesCreateWithoutCambiosInput, EstudiantesUncheckedCreateWithoutCambiosInput>
+  }
+
+  export type CarpetasCreateWithoutCambiosInput = {
+    txt_nom_carp: string
+    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutCarpetaInput
+  }
+
+  export type CarpetasUncheckedCreateWithoutCambiosInput = {
+    pk_id_carp?: number
+    txt_nom_carp: string
+    fk_id_grup: number
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput
+  }
+
+  export type CarpetasCreateOrConnectWithoutCambiosInput = {
+    where: CarpetasWhereUniqueInput
+    create: XOR<CarpetasCreateWithoutCambiosInput, CarpetasUncheckedCreateWithoutCambiosInput>
+  }
+
+  export type GruposCreateWithoutCambiosInput = {
+    txt_nom_grup: string
+    Estudiante: EstudiantesCreateNestedOneWithoutGruposInput
+    Carpetas?: CarpetasCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposUncheckedCreateWithoutCambiosInput = {
+    pk_id_grup?: number
+    txt_nom_grup: string
+    fk_id_est: string
+    Carpetas?: CarpetasUncheckedCreateNestedManyWithoutGrupoInput
+    Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutGrupoInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedCreateNestedManyWithoutGrupoInput
+  }
+
+  export type GruposCreateOrConnectWithoutCambiosInput = {
+    where: GruposWhereUniqueInput
+    create: XOR<GruposCreateWithoutCambiosInput, GruposUncheckedCreateWithoutCambiosInput>
+  }
+
+  export type EstudiantesUpsertWithoutCambiosInput = {
+    update: XOR<EstudiantesUpdateWithoutCambiosInput, EstudiantesUncheckedUpdateWithoutCambiosInput>
+    create: XOR<EstudiantesCreateWithoutCambiosInput, EstudiantesUncheckedCreateWithoutCambiosInput>
+    where?: EstudiantesWhereInput
+  }
+
+  export type EstudiantesUpdateToOneWithWhereWithoutCambiosInput = {
+    where?: EstudiantesWhereInput
+    data: XOR<EstudiantesUpdateWithoutCambiosInput, EstudiantesUncheckedUpdateWithoutCambiosInput>
+  }
+
+  export type EstudiantesUpdateWithoutCambiosInput = {
+    pk_id_est?: StringFieldUpdateOperationsInput | string
+    txt_user_est?: StringFieldUpdateOperationsInput | string
+    txt_email_est?: StringFieldUpdateOperationsInput | string
+    txt_pass_est?: StringFieldUpdateOperationsInput | string
+    num_sub_est?: IntFieldUpdateOperationsInput | number
+    Grupos?: GruposUpdateManyWithoutEstudianteNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutEstudianteNestedInput
+  }
+
+  export type EstudiantesUncheckedUpdateWithoutCambiosInput = {
+    pk_id_est?: StringFieldUpdateOperationsInput | string
+    txt_user_est?: StringFieldUpdateOperationsInput | string
+    txt_email_est?: StringFieldUpdateOperationsInput | string
+    txt_pass_est?: StringFieldUpdateOperationsInput | string
+    num_sub_est?: IntFieldUpdateOperationsInput | number
+    Grupos?: GruposUncheckedUpdateManyWithoutEstudianteNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutEstudianteNestedInput
+  }
+
+  export type CarpetasUpsertWithoutCambiosInput = {
+    update: XOR<CarpetasUpdateWithoutCambiosInput, CarpetasUncheckedUpdateWithoutCambiosInput>
+    create: XOR<CarpetasCreateWithoutCambiosInput, CarpetasUncheckedCreateWithoutCambiosInput>
+    where?: CarpetasWhereInput
+  }
+
+  export type CarpetasUpdateToOneWithWhereWithoutCambiosInput = {
+    where?: CarpetasWhereInput
+    data: XOR<CarpetasUpdateWithoutCambiosInput, CarpetasUncheckedUpdateWithoutCambiosInput>
+  }
+
+  export type CarpetasUpdateWithoutCambiosInput = {
+    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutCarpetaNestedInput
+  }
+
+  export type CarpetasUncheckedUpdateWithoutCambiosInput = {
+    pk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput
+  }
+
+  export type GruposUpsertWithoutCambiosInput = {
+    update: XOR<GruposUpdateWithoutCambiosInput, GruposUncheckedUpdateWithoutCambiosInput>
+    create: XOR<GruposCreateWithoutCambiosInput, GruposUncheckedCreateWithoutCambiosInput>
+    where?: GruposWhereInput
+  }
+
+  export type GruposUpdateToOneWithWhereWithoutCambiosInput = {
+    where?: GruposWhereInput
+    data: XOR<GruposUpdateWithoutCambiosInput, GruposUncheckedUpdateWithoutCambiosInput>
+  }
+
+  export type GruposUpdateWithoutCambiosInput = {
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGruposNestedInput
+    Carpetas?: CarpetasUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type GruposUncheckedUpdateWithoutCambiosInput = {
+    pk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    Carpetas?: CarpetasUncheckedUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type CambiosCreateManyEstudianteInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_carp: number
+    fk_id_grup: number
+  }
+
+  export type GruposCreateManyEstudianteInput = {
+    pk_id_grup?: number
+    txt_nom_grup: string
+  }
+
+  export type GrupoConAccesoCreateManyEstudianteInput = {
+    fk_id_grup: number
+  }
+
+  export type CambiosUpdateWithoutEstudianteInput = {
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    Carpeta?: CarpetasUpdateOneRequiredWithoutCambiosNestedInput
+    Grupo?: GruposUpdateOneRequiredWithoutCambiosNestedInput
+  }
+
+  export type CambiosUncheckedUpdateWithoutEstudianteInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CambiosUncheckedUpdateManyWithoutEstudianteInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GruposUpdateWithoutEstudianteInput = {
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type GruposUncheckedUpdateWithoutEstudianteInput = {
+    pk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUncheckedUpdateManyWithoutGrupoNestedInput
+    Carpetas?: CarpetasUncheckedUpdateManyWithoutGrupoNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutGrupoNestedInput
+    GrupoConAcceso?: GrupoConAccesoUncheckedUpdateManyWithoutGrupoNestedInput
+  }
+
+  export type GruposUncheckedUpdateManyWithoutEstudianteInput = {
+    pk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_nom_grup?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GrupoConAccesoUpdateWithoutEstudianteInput = {
+    Grupo?: GruposUpdateOneRequiredWithoutGrupoConAccesoNestedInput
+  }
+
+  export type GrupoConAccesoUncheckedUpdateWithoutEstudianteInput = {
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrupoConAccesoUncheckedUpdateManyWithoutEstudianteInput = {
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ArchivosCreateManyBibliografiasInput = {
+    pk_id_arch?: number
+    txt_dir_arch: string
+  }
+
+  export type ArchivosUpdateWithoutBibliografiasInput = {
+    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ArchivosUncheckedUpdateWithoutBibliografiasInput = {
+    pk_id_arch?: IntFieldUpdateOperationsInput | number
+    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ArchivosUncheckedUpdateManyWithoutBibliografiasInput = {
+    pk_id_arch?: IntFieldUpdateOperationsInput | number
+    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CambiosCreateManyCarpetaInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_est: string
+    fk_id_grup: number
+  }
+
+  export type BibliografiasCreateManyCarpetaInput = {
+    pk_id_biblio?: number
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    fk_id_grup: number
+  }
+
+  export type CambiosUpdateWithoutCarpetaInput = {
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutCambiosNestedInput
+    Grupo?: GruposUpdateOneRequiredWithoutCambiosNestedInput
+  }
+
+  export type CambiosUncheckedUpdateWithoutCarpetaInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CambiosUncheckedUpdateManyWithoutCarpetaInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BibliografiasUpdateWithoutCarpetaInput = {
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
+    Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
+  }
+
+  export type BibliografiasUncheckedUpdateWithoutCarpetaInput = {
+    pk_id_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
+  }
+
+  export type BibliografiasUncheckedUpdateManyWithoutCarpetaInput = {
+    pk_id_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_grup?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CambiosCreateManyGrupoInput = {
+    pk_id_camb?: number
+    num_tip_camb: number
+    txt_fecha_camb: Date | string
+    fk_id_est: string
+    fk_id_carp: number
+  }
+
+  export type CarpetasCreateManyGrupoInput = {
     pk_id_carp?: number
     txt_nom_carp: string
   }
 
-  export type CarpetasUpdateWithoutGruposInput = {
-    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+  export type BibliografiasCreateManyGrupoInput = {
+    pk_id_biblio?: number
+    txt_tit_biblio: string
+    num_tip_biblio: number
+    num_fmt_biblio: number
+    txt_fecha_biblio: Date | string
+    txt_aut_biblio: string
+    txt_edit_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_pag_biblio?: string | null
+    num_edic_biblio?: number | null
+    num_volm_biblio?: number | null
+    num_npag_biblio?: number | null
+    txt_ubic_biblio?: string | null
+    fk_id_carp: number
   }
 
-  export type CarpetasUncheckedUpdateWithoutGruposInput = {
+  export type GrupoConAccesoCreateManyGrupoInput = {
+    fk_id_est: string
+  }
+
+  export type CambiosUpdateWithoutGrupoInput = {
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutCambiosNestedInput
+    Carpeta?: CarpetasUpdateOneRequiredWithoutCambiosNestedInput
+  }
+
+  export type CambiosUncheckedUpdateWithoutGrupoInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CambiosUncheckedUpdateManyWithoutGrupoInput = {
+    pk_id_camb?: IntFieldUpdateOperationsInput | number
+    num_tip_camb?: IntFieldUpdateOperationsInput | number
+    txt_fecha_camb?: DateTimeFieldUpdateOperationsInput | Date | string
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CarpetasUpdateWithoutGrupoInput = {
+    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUpdateManyWithoutCarpetaNestedInput
+    Bibliografias?: BibliografiasUpdateManyWithoutCarpetaNestedInput
+  }
+
+  export type CarpetasUncheckedUpdateWithoutGrupoInput = {
+    pk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+    Cambios?: CambiosUncheckedUpdateManyWithoutCarpetaNestedInput
+    Bibliografias?: BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput
+  }
+
+  export type CarpetasUncheckedUpdateManyWithoutGrupoInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CarpetasUncheckedUpdateManyWithoutGruposInput = {
-    pk_id_carp?: IntFieldUpdateOperationsInput | number
-    txt_nom_carp?: StringFieldUpdateOperationsInput | string
+  export type BibliografiasUpdateWithoutGrupoInput = {
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+    Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
+  }
+
+  export type BibliografiasUncheckedUpdateWithoutGrupoInput = {
+    pk_id_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
+  }
+
+  export type BibliografiasUncheckedUpdateManyWithoutGrupoInput = {
+    pk_id_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
+    num_tip_biblio?: IntFieldUpdateOperationsInput | number
+    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_aut_biblio?: StringFieldUpdateOperationsInput | string
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    fk_id_carp?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrupoConAccesoUpdateWithoutGrupoInput = {
+    Estudiante?: EstudiantesUpdateOneRequiredWithoutGrupoConAccesoNestedInput
+  }
+
+  export type GrupoConAccesoUncheckedUpdateWithoutGrupoInput = {
+    fk_id_est?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GrupoConAccesoUncheckedUpdateManyWithoutGrupoInput = {
+    fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 
 
@@ -7270,6 +12225,18 @@ export namespace Prisma {
   /**
    * Aliases for legacy arg types
    */
+    /**
+     * @deprecated Use EstudiantesCountOutputTypeDefaultArgs instead
+     */
+    export type EstudiantesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EstudiantesCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BibliografiasCountOutputTypeDefaultArgs instead
+     */
+    export type BibliografiasCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BibliografiasCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CarpetasCountOutputTypeDefaultArgs instead
+     */
+    export type CarpetasCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CarpetasCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use GruposCountOutputTypeDefaultArgs instead
      */
@@ -7291,9 +12258,17 @@ export namespace Prisma {
      */
     export type CarpetasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CarpetasDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use GrupoConAccesoDefaultArgs instead
+     */
+    export type GrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GrupoConAccesoDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use GruposDefaultArgs instead
      */
     export type GruposArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GruposDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CambiosDefaultArgs instead
+     */
+    export type CambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CambiosDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

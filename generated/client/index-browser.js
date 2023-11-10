@@ -128,23 +128,41 @@ exports.Prisma.BibliografiasScalarFieldEnum = {
   num_edic_biblio: 'num_edic_biblio',
   num_volm_biblio: 'num_volm_biblio',
   num_npag_biblio: 'num_npag_biblio',
-  txt_ubic_biblio: 'txt_ubic_biblio'
+  txt_ubic_biblio: 'txt_ubic_biblio',
+  fk_id_grup: 'fk_id_grup',
+  fk_id_carp: 'fk_id_carp'
 };
 
 exports.Prisma.ArchivosScalarFieldEnum = {
   pk_id_arch: 'pk_id_arch',
-  txt_dir_arch: 'txt_dir_arch'
+  txt_dir_arch: 'txt_dir_arch',
+  fk_id_biblio: 'fk_id_biblio'
 };
 
 exports.Prisma.CarpetasScalarFieldEnum = {
   pk_id_carp: 'pk_id_carp',
   txt_nom_carp: 'txt_nom_carp',
-  gruposPk_id_grup: 'gruposPk_id_grup'
+  fk_id_grup: 'fk_id_grup'
+};
+
+exports.Prisma.GrupoConAccesoScalarFieldEnum = {
+  fk_id_grup: 'fk_id_grup',
+  fk_id_est: 'fk_id_est'
 };
 
 exports.Prisma.GruposScalarFieldEnum = {
   pk_id_grup: 'pk_id_grup',
-  txt_nom_grup: 'txt_nom_grup'
+  txt_nom_grup: 'txt_nom_grup',
+  fk_id_est: 'fk_id_est'
+};
+
+exports.Prisma.CambiosScalarFieldEnum = {
+  pk_id_camb: 'pk_id_camb',
+  num_tip_camb: 'num_tip_camb',
+  txt_fecha_camb: 'txt_fecha_camb',
+  fk_id_est: 'fk_id_est',
+  fk_id_carp: 'fk_id_carp',
+  fk_id_grup: 'fk_id_grup'
 };
 
 exports.Prisma.SortOrder = {
@@ -168,7 +186,9 @@ exports.Prisma.ModelName = {
   Bibliografias: 'Bibliografias',
   Archivos: 'Archivos',
   Carpetas: 'Carpetas',
-  Grupos: 'Grupos'
+  GrupoConAcceso: 'GrupoConAcceso',
+  Grupos: 'Grupos',
+  Cambios: 'Cambios'
 };
 
 /**
