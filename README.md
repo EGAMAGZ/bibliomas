@@ -189,3 +189,10 @@ Para los mensajes de los commits, de preferencia hacer uso del estandar de
 
 - [RoomHome](https://github.com/EGAMAGZ/RoomHome)
 - [Dotland](https://github.com/denoland/dotland)
+
+## Deploy
+
+Con cada push que se realiza en cualquier rama, se realizara un deploy de
+previsualización (preview) en Deno Deploy automaticamente. Al hacer push en la
+rama `master`, se creara un deploy de previsualización junto con el de
+producción.
