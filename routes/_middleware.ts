@@ -38,7 +38,7 @@ export async function handler(
   }
 
   try {
-    const { payload, protectedHeader } = await verifyJWT(userSession);
+    const { payload } = await verifyJWT(userSession);
 
     ctx.state.isLoggedIn = true;
     ctx.state._id = payload.id as string;
