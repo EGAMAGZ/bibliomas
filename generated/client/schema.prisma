@@ -19,6 +19,10 @@ model Estudiantes {
   txt_email_est String @unique
   txt_pass_est  String @db.VarChar(255)
   num_sub_est   Int    @default(1)
+
+  Cambios        Cambios[]
+  Grupos         Grupos[]
+  GrupoConAcceso GrupoConAcceso[]
 }
 
 model Bibliografias {
@@ -35,23 +39,69 @@ model Bibliografias {
   num_volm_biblio  Int?
   num_npag_biblio  Int?
   txt_ubic_biblio  String?
-  //TODO: GRUPO Y CARPETA
+
+  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int
+
+  Carpeta    Carpetas @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_carp Int
+
+  Archivos Archivos[]
 }
 
 model Archivos {
   pk_id_arch   Int    @id @default(autoincrement())
-  txt_dir_arch String
+  txt_dir_arch String // Se refiere a URL
+
+  Bibliografias Bibliografias @relation(fields: [fk_id_biblio], references: [pk_id_biblio], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_biblio  Int // TODO: AGREGAR DICCIONARIO
 }
 
 model Carpetas {
-  pk_id_carp       Int    @id @default(autoincrement())
-  txt_nom_carp     String
-  Grupos           Grupos @relation(fields: [gruposPk_id_grup], references: [pk_id_grup])
-  gruposPk_id_grup Int    @unique
+  pk_id_carp   Int    @id @default(autoincrement())
+  txt_nom_carp String
+
+  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int // TODO: AGREGAR EN DICCIONARIO
+
+  Cambios       Cambios[]
+  Bibliografias Bibliografias[]
+}
+
+model GrupoConAcceso {
+  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int
+
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String
+
+  @@id([fk_id_grup, fk_id_est])
 }
 
 model Grupos {
-  pk_id_grup   Int        @id @default(autoincrement())
+  pk_id_grup   Int    @id @default(autoincrement())
   txt_nom_grup String
-  Carpetas     Carpetas[]
+
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String
+
+  Cambios        Cambios[]
+  Carpetas       Carpetas[]
+  Bibliografias  Bibliografias[]
+  GrupoConAcceso GrupoConAcceso[]
+}
+
+model Cambios {
+  pk_id_camb     Int      @id @default(autoincrement())
+  num_tip_camb   Int      @db.SmallInt
+  txt_fecha_camb DateTime
+
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String
+
+  Carpeta    Carpetas @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_carp Int
+
+  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int
 }
