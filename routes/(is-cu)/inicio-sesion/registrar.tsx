@@ -31,7 +31,7 @@ export const handler: Handlers<Data, SessionState> = {
           Object.fromEntries(formData.entries()),
         );
 
-      const stundet = await prismaClient.estudiantes.create({
+      const student = await prismaClient.estudiantes.create({
         data: {
           txt_user_est: username,
           txt_email_est: email,
@@ -40,10 +40,10 @@ export const handler: Handlers<Data, SessionState> = {
       });
 
       const jwt = await signJWT({
-        id: stundet.pk_id_est,
-        username: stundet.txt_user_est,
-        email: stundet.txt_email_est,
-        subscription: String(stundet.num_sub_est),
+        id: student.pk_id_est,
+        username: student.txt_user_est,
+        email: student.txt_email_est,
+        subscription: String(student.num_sub_est),
       });
 
       const headers = new Headers(req.headers);

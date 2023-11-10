@@ -59,3 +59,8 @@ export const NewStudentSchema = StudentSchema.omit({
   message: "Las contraseñas no coinciden",
   path: ["confirmPassword"],
 });
+
+export const LoginStudentSchema = StudentSchema.pick({
+  username: true,
+  password: true,
+});
