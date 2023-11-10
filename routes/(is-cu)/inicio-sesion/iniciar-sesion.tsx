@@ -82,7 +82,7 @@ export const handler: Handlers<Data, SessionState> = {
 
 export default function IniciarSesionPage({ data }: PageProps) {
   return (
-    <div class="w-full h-full flex flex-col justify-center items-center">
+    <div class="w-full h-full flex flex-col justify-center items-center p-4">
       <div class="flex flex-col w-full max-w-2xl gap-4">
         <IconBook2 size={128} class="self-center" />
         {data.error && (
