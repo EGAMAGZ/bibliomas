@@ -2,7 +2,7 @@ import { IconBook2, IconCircleX } from "@tabler-icons";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
 import { Data } from "@/schema/data.ts";
 import SessionState from "@/schema/session-state.ts";
-import LoginForm from "@/islands/inicio-sesion/LoginForm.tsx";
+import LoginForm from "../../../islands/is-cu/LoginForm.tsx";
 import { LoginStudentSchema } from "@/schema/student.ts";
 import prismaClient from "@/database/prisma.ts";
 import { compareHash } from "@/utils/hash.ts";
