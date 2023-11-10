@@ -9,11 +9,12 @@ import * as $3 from "./routes/(is-cu)/inicio-sesion/registrar.tsx";
 import * as $4 from "./routes/_404.tsx";
 import * as $5 from "./routes/_app.tsx";
 import * as $6 from "./routes/_middleware.ts";
-import * as $7 from "./routes/index.ts";
+import * as $7 from "./routes/api/index.ts";
+import * as $8 from "./routes/index.ts";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
-import * as $$2 from "./islands/inicio-sesion/LoginForm.tsx";
-import * as $$3 from "./islands/inicio-sesion/RegisterForm.tsx";
+import * as $$2 from "./islands/is-cu/LoginForm.tsx";
+import * as $$3 from "./islands/is-cu/RegisterForm.tsx";
 
 const manifest = {
   routes: {
@@ -24,13 +25,14 @@ const manifest = {
     "./routes/_404.tsx": $4,
     "./routes/_app.tsx": $5,
     "./routes/_middleware.ts": $6,
-    "./routes/index.ts": $7,
+    "./routes/api/index.ts": $7,
+    "./routes/index.ts": $8,
   },
   islands: {
     "./islands/Input.tsx": $$0,
     "./islands/Select.tsx": $$1,
-    "./islands/inicio-sesion/LoginForm.tsx": $$2,
-    "./islands/inicio-sesion/RegisterForm.tsx": $$3,
+    "./islands/is-cu/LoginForm.tsx": $$2,
+    "./islands/is-cu/RegisterForm.tsx": $$3,
   },
   baseUrl: import.meta.url,
 };

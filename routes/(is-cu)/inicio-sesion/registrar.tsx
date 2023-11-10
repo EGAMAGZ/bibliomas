@@ -1,6 +1,6 @@
 import { IconBook2, IconCircleX } from "@tabler-icons";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
-import RegisterForm from "@/islands/inicio-sesion/RegisterForm.tsx";
+import RegisterForm from "../../../islands/is-cu/RegisterForm.tsx";
 import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
 import { NewStudentSchema } from "@/schema/student.ts";
