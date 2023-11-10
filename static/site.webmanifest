@@ -462,9 +462,9 @@
   ],
   "screenshots": [
     {
-      "src": "img/screenshots/screenshot1.png",
+      "src": "img/screenshots/screenshot1.jpg",
       "sizes": "1280x720",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Register new user"
     }
