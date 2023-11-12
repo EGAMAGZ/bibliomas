@@ -23,7 +23,12 @@ export default function Navbar({ email, username }: NavbarProps) {
       </div>
       <div class="flex-none">
         <div class="badge badge-primary badge-lg">
-          {username} | {email}
+          <span>
+            {username}
+          </span>
+          <span class="hidden md:inline-block">
+            - {email}
+          </span>
         </div>
         <IconBook2 size={36} />
       </div>
