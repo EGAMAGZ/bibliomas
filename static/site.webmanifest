@@ -2,7 +2,7 @@
   "name": "Bibliomas",
   "description": "Bibliomas - The Open Source Library",
   "short_name": "Bibliomas",
-  "theme_color": "#D1C1D7",
+  "theme_color": "#034359",
   "background_color": "#FFFFFF",
   "display": "standalone",
   "display_override": ["window-controls-overlay"],
