@@ -1,5 +1,10 @@
 import { IconBook2, IconCircleX } from "@tabler-icons";
-import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
+import {
+  HandlerContext,
+  Handlers,
+  PageProps,
+  RouteConfig,
+} from "$fresh/server.ts";
 import RegisterForm from "../../../islands/is-cu/RegisterForm.tsx";
 import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
@@ -16,6 +21,10 @@ import {
 import { z } from "zod";
 import { setCookie } from "$cookies";
 import { Prisma } from "@/generated/client/deno/edge.ts";
+
+export const config: RouteConfig = {
+  skipInheritedLayouts: true,
+};
 
 export const handler: Handlers<Data, SessionState> = {
   async GET(_req: Request, ctx: HandlerContext<Data, SessionState>) {
