@@ -8,9 +8,10 @@ import * as $2 from "./routes/(is-cu)/inicio-sesion/iniciar-sesion.tsx";
 import * as $3 from "./routes/(is-cu)/inicio-sesion/registrar.tsx";
 import * as $4 from "./routes/_404.tsx";
 import * as $5 from "./routes/_app.tsx";
-import * as $6 from "./routes/_middleware.ts";
-import * as $7 from "./routes/api/index.ts";
-import * as $8 from "./routes/index.ts";
+import * as $6 from "./routes/_layout.tsx";
+import * as $7 from "./routes/_middleware.ts";
+import * as $8 from "./routes/api/index.ts";
+import * as $9 from "./routes/index.ts";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
 import * as $$2 from "./islands/is-cu/LoginForm.tsx";
@@ -24,9 +25,10 @@ const manifest = {
     "./routes/(is-cu)/inicio-sesion/registrar.tsx": $3,
     "./routes/_404.tsx": $4,
     "./routes/_app.tsx": $5,
-    "./routes/_middleware.ts": $6,
-    "./routes/api/index.ts": $7,
-    "./routes/index.ts": $8,
+    "./routes/_layout.tsx": $6,
+    "./routes/_middleware.ts": $7,
+    "./routes/api/index.ts": $8,
+    "./routes/index.ts": $9,
   },
   islands: {
     "./islands/Input.tsx": $$0,

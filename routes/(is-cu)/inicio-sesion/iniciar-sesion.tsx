@@ -15,6 +15,11 @@ import {
   SESSION_COOKIE_NAME,
 } from "@/utils/config.ts";
 import { z } from "zod";
+import { RouteConfig } from "$fresh/server.ts";
+
+export const config: RouteConfig = {
+  skipInheritedLayouts: true,
+};
 
 export const handler: Handlers<Data, SessionState> = {
   async GET(_req: Request, ctx: HandlerContext<Data, SessionState>) {
