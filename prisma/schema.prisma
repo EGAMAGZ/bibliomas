@@ -23,6 +23,8 @@ model Estudiantes {
   Cambios        Cambios[]
   Grupos         Grupos[]
   GrupoConAcceso GrupoConAcceso[]
+  Carpetas       Carpetas[]
+  Bibliografias  Bibliografias[]
 }
 
 model Bibliografias {
@@ -46,6 +48,9 @@ model Bibliografias {
   Carpeta    Carpetas @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
   fk_id_carp Int
 
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
+
   Archivos Archivos[]
 }
 
@@ -63,6 +68,9 @@ model Carpetas {
 
   Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
   fk_id_grup Int // TODO: AGREGAR EN DICCIONARIO
+
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
 
   Cambios       Cambios[]
   Bibliografias Bibliografias[]
