@@ -3,6 +3,7 @@
     "denoland.vscode-deno",
     "Prisma.prisma",
     "EditorConfig.EditorConfig",
-    "AbianS.prisma-generate-uml"
+    "AbianS.prisma-generate-uml",
+    "heybourn.headwind"
   ]
 }

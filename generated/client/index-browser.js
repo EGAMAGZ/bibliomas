@@ -130,7 +130,8 @@ exports.Prisma.BibliografiasScalarFieldEnum = {
   num_npag_biblio: 'num_npag_biblio',
   txt_ubic_biblio: 'txt_ubic_biblio',
   fk_id_grup: 'fk_id_grup',
-  fk_id_carp: 'fk_id_carp'
+  fk_id_carp: 'fk_id_carp',
+  fk_id_est: 'fk_id_est'
 };
 
 exports.Prisma.ArchivosScalarFieldEnum = {
@@ -142,7 +143,8 @@ exports.Prisma.ArchivosScalarFieldEnum = {
 exports.Prisma.CarpetasScalarFieldEnum = {
   pk_id_carp: 'pk_id_carp',
   txt_nom_carp: 'txt_nom_carp',
-  fk_id_grup: 'fk_id_grup'
+  fk_id_grup: 'fk_id_grup',
+  fk_id_est: 'fk_id_est'
 };
 
 exports.Prisma.GrupoConAccesoScalarFieldEnum = {
