@@ -27,6 +27,12 @@ model Estudiantes {
   Bibliografias  Bibliografias[]
 }
 
+enum TipoPublicacion {
+  SitioWeb
+  Libro
+  Mas
+}
+
 model Bibliografias {
   pk_id_biblio     Int      @id @default(autoincrement())
   txt_tit_biblio   String
