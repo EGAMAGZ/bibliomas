@@ -2,6 +2,7 @@ import Button from "@/components/Button.tsx";
 import { useSignal } from "@preact/signals";
 import { useRef } from "preact/hooks";
 import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
+import ReferenceDialog from "@/islands/gr-cu/gr-cb-cu/RefereceDialog.tsx";
 
 interface CreateReferenceButtonProps {
   disabled: boolean;
@@ -39,7 +40,6 @@ export default function CreateReferenceButton(
 
   function handleSubmit(event: Event) {
     event.preventDefault();
-    console.log("Submit");
 
     dialog.current?.close();
   }
@@ -54,72 +54,12 @@ export default function CreateReferenceButton(
       >
         <span>Crear refencia</span>
       </Button>
-      <dialog ref={dialog} class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <form
-            onSubmit={handleSubmit}
-          >
-            <div class="tabs tabs-boxed font-mono">
-              <button
-                class={`tab ${
-                  typePublication.value === TYPE_PUBLICATION.SitioWeb
-                    ? "tab-active"
-                    : ""
-                }`}
-                onClick={() =>
-                  typePublication.value = TYPE_PUBLICATION.SitioWeb}
-                type="button"
-              >
-                Sitio web
-              </button>
-              <button
-                class={`tab ${
-                  typePublication.value === TYPE_PUBLICATION.Libro
-                    ? "tab-active"
-                    : ""
-                }`}
-                onClick={() => typePublication.value = TYPE_PUBLICATION.Libro}
-                type="button"
-              >
-                Libro
-              </button>
-              <button
-                class={`tab ${
-                  typePublication.value === TYPE_PUBLICATION.Mas
-                    ? "tab-active"
-                    : ""
-                }`}
-                onClick={() => typePublication.value = TYPE_PUBLICATION.Mas}
-                type="button"
-              >
-                Más
-              </button>
-              <button
-                class="tab"
-                type="button"
-              >
-                Ayuda
-              </button>
-            </div>
-            <div>
-              {form()}
-            </div>
-            <div class="join">
-              <Button state="btn-primary" classList="join-item" type="submit">
-                <span>Aceptar</span>
-              </Button>
-              <Button
-                state="btn-secondary"
-                classList="join-item"
-                type="button"
-                onClick={handleCancel}
-              >
-                <span>Cancelar</span>
-              </Button>
-            </div>
-          </form>
-        </div>
-      </dialog>
+      
+      <ReferenceDialog
+        refDialog={dialog}
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+      />
     </>
   );
 }
