@@ -17,8 +17,9 @@ import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
 import * as $$2 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
 import * as $$3 from "./islands/gr-cu/gr-cb-cu/RefereceDialog.tsx";
-import * as $$4 from "./islands/is-cu/LoginForm.tsx";
-import * as $$5 from "./islands/is-cu/RegisterForm.tsx";
+import * as $$4 from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
+import * as $$5 from "./islands/is-cu/LoginForm.tsx";
+import * as $$6 from "./islands/is-cu/RegisterForm.tsx";
 
 const manifest = {
   routes: {
@@ -39,8 +40,9 @@ const manifest = {
     "./islands/Select.tsx": $$1,
     "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$2,
     "./islands/gr-cu/gr-cb-cu/RefereceDialog.tsx": $$3,
-    "./islands/is-cu/LoginForm.tsx": $$4,
-    "./islands/is-cu/RegisterForm.tsx": $$5,
+    "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $$4,
+    "./islands/is-cu/LoginForm.tsx": $$5,
+    "./islands/is-cu/RegisterForm.tsx": $$6,
   },
   baseUrl: import.meta.url,
 };
