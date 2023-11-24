@@ -11,31 +11,14 @@ interface CreateReferenceButtonProps {
 export default function CreateReferenceButton(
   { disabled }: CreateReferenceButtonProps,
 ) {
-  const typePublication = useSignal<TypePublication>(
-    TYPE_PUBLICATION.SitioWeb,
-  );
-
   const dialog = useRef<HTMLDialogElement>(null);
 
-  function handleClick() {
+  function handleCreate() {
     dialog.current?.showModal();
   }
 
   function handleCancel() {
     dialog.current?.close();
-  }
-
-  function form() {
-    switch (typePublication.value) {
-      case TYPE_PUBLICATION.Libro:
-        return <span>Libro</span>;
-      case TYPE_PUBLICATION.SitioWeb:
-        return <span>Sitio web</span>;
-      case TYPE_PUBLICATION.Mas:
-        return <span>Mas</span>;
-      default:
-        return <span>Tipo de publicacion invalido</span>;
-    }
   }
 
   function handleSubmit(event: Event) {
@@ -50,13 +33,13 @@ export default function CreateReferenceButton(
         state="btn-primary"
         type="button"
         disabled={disabled}
-        onClick={handleClick}
+        onClick={handleCreate}
       >
         <span>Crear refencia</span>
       </Button>
-      
+
       <ReferenceDialog
-        refDialog={dialog}
+        dialogRef={dialog}
         onSubmit={handleSubmit}
         onCancel={handleCancel}
       />

@@ -35,9 +35,12 @@ export default function Select(props: SelectProps) {
   };
 
   return (
-    <div class={`form-control ${props.classList ?? ""}`}>
+    <div class={`form-control font-sans ${props.classList ?? ""}`}>
       <label class="label">
-        <span class="label-text font-semibold">{props.label}</span>
+        <span class="label-text font-semibold">
+          {props.label}
+          {props.required && <span class="text-red-500">*</span>}
+        </span>
       </label>
       <select
         name={props.name}

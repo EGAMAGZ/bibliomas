@@ -10,13 +10,13 @@ import {
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface ReferenceDialogProps {
-  refDialog: Ref<HTMLDialogElement>;
+  dialogRef: Ref<HTMLDialogElement>;
   onSubmit: (event: Event) => void;
   onCancel: () => void;
 }
 
 export default function ReferenceDialog(
-  { onCancel, onSubmit, refDialog }: ReferenceDialogProps,
+  { onCancel, onSubmit, dialogRef }: ReferenceDialogProps,
 ) {
   const typePublication = useSignal<TypePublication>(
     TYPE_PUBLICATION.SitioWeb,
@@ -25,7 +25,7 @@ export default function ReferenceDialog(
   const isLoading = useSignal(false);
 
   return (
-    <dialog ref={refDialog} class="modal modal-bottom sm:modal-middle">
+    <dialog ref={dialogRef} class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
         <form
           onSubmit={onSubmit}
@@ -64,10 +64,10 @@ function Form(
 ) {
   function form() {
     switch (typePublication) {
-      case TYPE_PUBLICATION.Libro:
-        return <WebSiteForm />;
       case TYPE_PUBLICATION.SitioWeb:
-        return <BookForm />;
+        return <WebSiteForm disabled={disabled} />;
+      case TYPE_PUBLICATION.Libro:
+        return <BookForm disabled={disabled} />;
       case TYPE_PUBLICATION.Mas:
         return <MoreForm />;
       default:
@@ -88,7 +88,7 @@ interface TabsProps {
 
 function Tabs({ disabled, typePublication }: TabsProps) {
   return (
-    <div class="tabs tabs-boxed font-mono">
+    <div class="tabs tabs-boxed font-mono bg-gray-200">
       <button
         class={`tab ${
           typePublication.value === TYPE_PUBLICATION.SitioWeb
