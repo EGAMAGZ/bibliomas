@@ -1,6 +1,7 @@
 import Button from "@/components/Button.tsx";
 import { useSignal } from "@preact/signals";
 import { useRef } from "preact/hooks";
+import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
 
 interface CreateReferenceButtonProps {
   disabled: boolean;
@@ -9,13 +10,37 @@ interface CreateReferenceButtonProps {
 export default function CreateReferenceButton(
   { disabled }: CreateReferenceButtonProps,
 ) {
+  const typePublication = useSignal<TypePublication>(
+    TYPE_PUBLICATION.SitioWeb,
+  );
+
   const dialog = useRef<HTMLDialogElement>(null);
-  
+
   function handleClick() {
     dialog.current?.showModal();
   }
 
   function handleCancel() {
+    dialog.current?.close();
+  }
+
+  function form() {
+    switch (typePublication.value) {
+      case TYPE_PUBLICATION.Libro:
+        return <span>Libro</span>;
+      case TYPE_PUBLICATION.SitioWeb:
+        return <span>Sitio web</span>;
+      case TYPE_PUBLICATION.Mas:
+        return <span>Mas</span>;
+      default:
+        return <span>Tipo de publicacion invalido</span>;
+    }
+  }
+
+  function handleSubmit(event: Event) {
+    event.preventDefault();
+    console.log("Submit");
+
     dialog.current?.close();
   }
 
@@ -31,41 +56,44 @@ export default function CreateReferenceButton(
       </Button>
       <dialog ref={dialog} class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
-          <form>
+          <form
+            onSubmit={handleSubmit}
+          >
             <div class="tabs tabs-boxed font-mono">
-              {/* <button
+              <button
                 class={`tab ${
-                  tipoPublicacion.value === TipoPublicacion.SitioWeb
+                  typePublication.value === TYPE_PUBLICATION.SitioWeb
                     ? "tab-active"
                     : ""
                 }`}
-                onClick={() => tipoPublicacion.value = TipoPublicacion.SitioWeb}
+                onClick={() =>
+                  typePublication.value = TYPE_PUBLICATION.SitioWeb}
                 type="button"
               >
                 Sitio web
               </button>
               <button
                 class={`tab ${
-                  tipoPublicacion.value === TipoPublicacion.Libro
+                  typePublication.value === TYPE_PUBLICATION.Libro
                     ? "tab-active"
                     : ""
                 }`}
-                onClick={() => tipoPublicacion.value = TipoPublicacion.Libro}
+                onClick={() => typePublication.value = TYPE_PUBLICATION.Libro}
                 type="button"
               >
                 Libro
               </button>
               <button
                 class={`tab ${
-                  tipoPublicacion.value === TipoPublicacion.Mas
+                  typePublication.value === TYPE_PUBLICATION.Mas
                     ? "tab-active"
                     : ""
                 }`}
-                onClick={() => tipoPublicacion.value = TipoPublicacion.Mas}
+                onClick={() => typePublication.value = TYPE_PUBLICATION.Mas}
                 type="button"
               >
                 Más
-              </button> */}
+              </button>
               <button
                 class="tab"
                 type="button"
@@ -74,20 +102,23 @@ export default function CreateReferenceButton(
               </button>
             </div>
             <div>
+              {form()}
+            </div>
+            <div class="join">
+              <Button state="btn-primary" classList="join-item" type="submit">
+                <span>Aceptar</span>
+              </Button>
+              <Button
+                state="btn-secondary"
+                classList="join-item"
+                type="button"
+                onClick={handleCancel}
+              >
+                <span>Cancelar</span>
+              </Button>
             </div>
           </form>
-          <div class="join">
-            <Button state="btn-primary" classList="join-item" type="button">
-              <span>Aceptar</span>
-            </Button>
-            <Button state="btn-secondary" classList="join-item" type="button">
-              <span>Cancelar</span>
-            </Button>
-          </div>
         </div>
-        <form method="dialog" class="modal-backdrop">
-          <button>close</button>
-        </form>
       </dialog>
     </>
   );
