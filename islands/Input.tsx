@@ -131,3 +131,57 @@ export function InputFile(props: InputFileProps) {
     </div>
   );
 }
+
+interface InputCheckbox {
+  value: Signal<boolean>;
+  error: Signal<string>;
+  label: string;
+  name: string;
+  required?: boolean;
+  disabled?: boolean;
+  classList?: string;
+  inputClassList?: string;
+}
+
+export function InputCheckbox(props: InputCheckbox) {
+  const isTouched = useSignal(false);
+
+  const showErrors = useComputed(() =>
+    isTouched.value && props.error.value !== ""
+  );
+
+  const handleFocus = () => {
+    isTouched.value = true;
+  };
+
+  const handleBlur = () => {
+    isTouched.value = true;
+  };
+
+  const handleChange = (event: Event) => {
+    props.value.value = (event.target as HTMLInputElement).checked;
+  };
+
+  return (
+    <div className="form-control">
+      <label className="cursor-pointer label">
+        <span className="label-text font-sans font-semibold">{props.label}</span>
+        <input
+          type="checkbox"
+          checked={props.value.value}
+          name={props.name}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          className={`checkbox 
+                       ${
+            showErrors.value ? "checkbox-error" : "checkbox-primary"
+          } 
+                       ${props.inputClassList ?? ""}`}
+          required={props.required}
+          disabled={!IS_BROWSER || props.disabled}
+        />
+      </label>
+    </div>
+  );
+}

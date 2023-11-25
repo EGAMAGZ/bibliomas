@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import Select from "@/islands/Select.tsx";
-import { Input, InputFile } from "@/islands/Input.tsx";
+import { Input, InputCheckbox, InputFile } from "@/islands/Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface WebSiteFormProps {
@@ -39,9 +39,10 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         value={format}
         error={formatErrors}
         name="format"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       >
+        {/* TODO: AGREGAR FORMATOS */}
         <option>Hello</option>
       </Select>
 
@@ -51,7 +52,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         error={titleErrors}
         name="title"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -61,7 +62,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         error={autorsErrors}
         name="autors"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -71,7 +72,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         error={siteNameErrors}
         name="siteName"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -81,7 +82,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         error={urlErrors}
         name="url"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -91,7 +92,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         error={publicationDateErrors}
         name="publicationDate"
         type="date"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -101,7 +102,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
         error={accessDateErrors}
         name="accessDate"
         type="date"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
     </div>
   );
@@ -155,9 +156,10 @@ export function BookForm({ disabled }: BookFormProps) {
         value={format}
         error={formatErrors}
         name="format"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       >
+        {/* TODO: AGREGAR FORMATOS */}
         <option>Hello</option>
       </Select>
 
@@ -167,7 +169,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={titleErrors}
         name="title"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -177,7 +179,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={autorsErrors}
         name="autors"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -187,7 +189,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={publicationDateErrors}
         name="publicationDate"
         type="date"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         required
       />
 
@@ -197,7 +199,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={locationErrors}
         name="location"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
 
       <Input
@@ -206,7 +208,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={publisherErrors}
         name="publisher"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
 
       <Input
@@ -215,7 +217,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={volumeErrors}
         name="volume"
         type="number"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
 
       <Input
@@ -224,7 +226,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={editionErrors}
         name="edition"
         type="number"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
 
       <Input
@@ -233,7 +235,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={numPagesErrors}
         name="numPages"
         type="number"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
 
       <Input
@@ -242,7 +244,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={urlErrors}
         name="url"
         type="text"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
       />
 
       <InputFile
@@ -250,17 +252,125 @@ export function BookForm({ disabled }: BookFormProps) {
         value={file}
         error={fileErrors}
         name="file"
-        disabled={!IS_BROWSER || disabled}
+        disabled={disabled}
         accept=".pdf"
       />
     </div>
   );
 }
 
-export function MoreForm() {
+interface MoreFormProps {
+  disabled: boolean;
+}
+
+export function MoreForm({ disabled }: MoreFormProps) {
+  const format = useSignal("");
+  const formatErrors = useSignal("");
+
+  const typePublication = useSignal("");
+  const typePublicationErrors = useSignal("");
+
+  const onlineSource = useSignal(false);
+  const onlineSourceErrors = useSignal("");
+
+  const title = useSignal("");
+  const titleErrors = useSignal("");
+
+  const autors = useSignal("");
+  const autorsErrors = useSignal("");
+
+  const publicationDate = useSignal("");
+  const publicationDateErrors = useSignal("");
+
+  const publisher = useSignal("");
+  const publisherErrors = useSignal("");
+
+  const address = useSignal("");
+  const addressErrors = useSignal("");
+
+  // TODO: Agregar validacion y logica
+
   return (
     <div>
-      <span>Más</span>
+      <Select
+        defaultValue="Formato"
+        label="Formato"
+        value={format}
+        error={formatErrors}
+        name="format"
+        disabled={disabled}
+        required
+      >
+        {/* TODO: AGREGAR FORMATOS */}
+        <option>Hello</option>
+      </Select>
+      <Select
+        defaultValue="Tipo de publicacion"
+        value={typePublication}
+        error={typePublicationErrors}
+        label="Tipo de publicacion"
+        name="typePublication"
+        disabled={disabled}
+        required
+      >
+        {/* TODO: AGREGAR tipos */}
+        <option>Hello</option>
+      </Select>
+
+      <InputCheckbox
+        value={onlineSource}
+        error={onlineSourceErrors}
+        label="Fuente online"
+        name="onlineSource"
+        disabled={disabled}
+      />
+
+      <Input
+        label="Título"
+        value={title}
+        error={titleErrors}
+        name="title"
+        type="text"
+        disabled={disabled}
+        required
+      />
+
+      <Input
+        label="Autores"
+        value={autors}
+        error={autorsErrors}
+        name="autors"
+        type="text"
+        disabled={disabled}
+        required
+      />
+
+      <Input
+        label="Fecha de publicación"
+        value={publicationDate}
+        error={publicationDateErrors}
+        name="publicationDate"
+        type="date"
+        disabled={disabled}
+      />
+
+      <Input
+        label="Editorial"
+        value={publisher}
+        error={publisherErrors}
+        name="publisher"
+        type="text"
+        disabled={disabled}
+      />
+
+      <Input
+        label="Dirección"
+        value={address}
+        error={addressErrors}
+        name="address"
+        type="text"
+        disabled={disabled}
+      />
     </div>
   );
 }
