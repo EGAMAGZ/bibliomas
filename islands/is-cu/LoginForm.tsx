@@ -32,7 +32,7 @@ export default function LoginForm() {
   });
 
   return (
-    <form class="flex flex-col items-center" method="POST">
+    <form className="flex flex-col items-center" method="POST">
       <Input
         value={username}
         error={usernameErrors}
@@ -57,7 +57,7 @@ export default function LoginForm() {
         <Button type="submit" state="btn-primary" disabled={!isValid.value}>
           <span>Iniciar sesión</span>
         </Button>
-        <a href={REGISTER_URL} class="btn btn-secondary font-sans">
+        <a href={REGISTER_URL} className="btn btn-secondary font-sans">
           <span>Registrarse</span>
         </a>
       </div>

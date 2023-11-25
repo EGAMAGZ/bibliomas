@@ -7,9 +7,9 @@ export default function GestionarReferenciasPage(
   props: PageProps<Data, SessionState>,
 ) {
   return (
-    <div class="flex justify-center">
-      <div class="container p-4 mt-16 lg:p-0 flex flex-col items-center">
-        <span class="text-4xl lg:text-6xl font-sans font-bold">
+    <div className="flex justify-center">
+      <div className="container p-4 mt-16 lg:p-0 flex flex-col items-center">
+        <span className="text-4xl lg:text-6xl font-sans font-bold">
           Gestionar Referencias
         </span>
         <CreateReferenceButton disabled={false} />

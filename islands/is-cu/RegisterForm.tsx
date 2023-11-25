@@ -44,7 +44,7 @@ export default function RegisterForm() {
   });
 
   return (
-    <form class="flex flex-col items-center" method="POST">
+    <form className="flex flex-col items-center" method="POST">
       <Input
         value={email}
         error={emailErrors}
@@ -89,11 +89,11 @@ export default function RegisterForm() {
         required
       />
 
-      <div class="flex justify-center gap-8">
+      <div className="flex justify-center gap-8">
         <Button type="submit" state="btn-primary" disabled={!isValid.value}>
           <span>Aceptar</span>
         </Button>
-        <a href={LOGIN_URL} class="btn btn-secondary font-sans">
+        <a href={LOGIN_URL} className="btn btn-secondary font-sans">
           <span>Cancelar</span>
         </a>
       </div>

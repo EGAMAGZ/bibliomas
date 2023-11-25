@@ -35,11 +35,11 @@ export default function Select(props: SelectProps) {
   };
 
   return (
-    <div class={`form-control font-sans ${props.classList ?? ""}`}>
-      <label class="label">
-        <span class="label-text font-semibold">
+    <div className={`form-control font-sans ${props.classList ?? ""}`}>
+      <label className="label">
+        <span className="label-text font-semibold">
           {props.label}
-          {props.required && <span class="text-red-500">*</span>}
+          {props.required && <span className="text-red-500">*</span>}
         </span>
       </label>
       <select
@@ -50,15 +50,15 @@ export default function Select(props: SelectProps) {
         disabled={!IS_BROWSER || props.disabled}
         required={props.required}
         onInput={handleInput}
-        class={`select select-bordered ${
+        className={`select select-bordered ${
           showErrors.value ? "select-error" : "select-primary"
         } ${props.selectClassList ?? ""}`}
       >
         <option value="" selected>{props.defaultValue}</option>
         {props.children}
       </select>
-      <label class="label">
-        <span class="label-text text-error">
+      <label className="label">
+        <span className="label-text text-error">
           {showErrors.value && props.error}
         </span>
       </label>

@@ -41,12 +41,12 @@ export function Input(props: InputProps) {
 
   return (
     <div
-      class={`font-sans form-control ${props.classList ?? ""} w-full`}
+      className={`font-sans form-control ${props.classList ?? ""} w-full`}
     >
-      <label class="label">
-        <span class="label-text font-semibold">
+      <label className="label">
+        <span className="label-text font-semibold">
           {props.label}
-          {props.required && <span class="text-red-500">*</span>}
+          {props.required && <span className="text-red-500">*</span>}
         </span>
       </label>
       <input
@@ -58,12 +58,12 @@ export function Input(props: InputProps) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onInput={handleInput}
-        class={`input input-bordered ${
+        className={`input input-bordered ${
           showErrors.value ? "input-error" : "input-primary"
         } ${props.inputClassList ?? ""}`}
       />
-      <label class="label">
-        <span class="label-text text-error">
+      <label className="label">
+        <span className="label-text text-error">
           {showErrors.value && props.error}
         </span>
       </label>

@@ -25,8 +25,8 @@ export default function ReferenceDialog(
   const isLoading = useSignal(false);
 
   return (
-    <dialog ref={dialogRef} class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box">
+    <dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
+      <div className="modal-box">
         <form
           onSubmit={onSubmit}
         >
@@ -35,8 +35,8 @@ export default function ReferenceDialog(
             disabled={isLoading.value}
             typePublication={typePublication.value}
           />
-          <div class="flex justify-center">
-            <div class="flex gap-4">
+          <div className="flex justify-center">
+            <div className="flex gap-4">
               <Button state="btn-primary" type="submit">
                 <span>Aceptar</span>
               </Button>
@@ -88,9 +88,9 @@ interface TabsProps {
 
 function Tabs({ disabled, typePublication }: TabsProps) {
   return (
-    <div class="tabs tabs-boxed font-mono bg-gray-200">
+    <div className="tabs tabs-boxed font-mono bg-gray-200">
       <button
-        class={`tab ${
+        className={`tab ${
           typePublication.value === TYPE_PUBLICATION.SitioWeb
             ? "tab-active"
             : ""
@@ -102,7 +102,7 @@ function Tabs({ disabled, typePublication }: TabsProps) {
         Sitio web
       </button>
       <button
-        class={`tab ${
+        className={`tab ${
           typePublication.value === TYPE_PUBLICATION.Libro ? "tab-active" : ""
         }`}
         onClick={() => typePublication.value = TYPE_PUBLICATION.Libro}
@@ -112,7 +112,7 @@ function Tabs({ disabled, typePublication }: TabsProps) {
         Libro
       </button>
       <button
-        class={`tab ${
+        className={`tab ${
           typePublication.value === TYPE_PUBLICATION.Mas ? "tab-active" : ""
         }`}
         onClick={() => typePublication.value = TYPE_PUBLICATION.Mas}
@@ -122,7 +122,7 @@ function Tabs({ disabled, typePublication }: TabsProps) {
         Más
       </button>
       <button
-        class="tab"
+        className="tab"
         type="button"
         disabled={!IS_BROWSER || disabled}
       >
