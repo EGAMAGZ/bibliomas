@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import Select from "@/islands/Select.tsx";
-import { Input } from "@/islands/Input.tsx";
+import { Input, InputFile } from "@/islands/Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface WebSiteFormProps {
@@ -160,6 +160,98 @@ export function BookForm({ disabled }: BookFormProps) {
       >
         <option>Hello</option>
       </Select>
+
+      <Input
+        label="Título"
+        value={title}
+        error={titleErrors}
+        name="title"
+        type="text"
+        disabled={!IS_BROWSER || disabled}
+        required
+      />
+
+      <Input
+        label="Autores"
+        value={autors}
+        error={autorsErrors}
+        name="autors"
+        type="text"
+        disabled={!IS_BROWSER || disabled}
+        required
+      />
+
+      <Input
+        label="Fecha de publicación"
+        value={publicationDate}
+        error={publicationDateErrors}
+        name="publicationDate"
+        type="date"
+        disabled={!IS_BROWSER || disabled}
+        required
+      />
+
+      <Input
+        label="Ubicación"
+        value={location}
+        error={locationErrors}
+        name="location"
+        type="text"
+        disabled={!IS_BROWSER || disabled}
+      />
+
+      <Input
+        label="Editorial"
+        value={publisher}
+        error={publisherErrors}
+        name="publisher"
+        type="text"
+        disabled={!IS_BROWSER || disabled}
+      />
+
+      <Input
+        label="Volumen"
+        value={volume}
+        error={volumeErrors}
+        name="volume"
+        type="number"
+        disabled={!IS_BROWSER || disabled}
+      />
+
+      <Input
+        label="Edición"
+        value={edition}
+        error={editionErrors}
+        name="edition"
+        type="number"
+        disabled={!IS_BROWSER || disabled}
+      />
+
+      <Input
+        label="Número de páginas"
+        value={numPages}
+        error={numPagesErrors}
+        name="numPages"
+        type="number"
+        disabled={!IS_BROWSER || disabled}
+      />
+
+      <Input
+        label="URL"
+        value={url}
+        error={urlErrors}
+        name="url"
+        type="text"
+        disabled={!IS_BROWSER || disabled}
+      />
+
+      <InputFile
+        label="Archivo"
+        value={file}
+        error={fileErrors}
+        name="file"
+        disabled={!IS_BROWSER || disabled}
+      />
     </div>
   );
 }

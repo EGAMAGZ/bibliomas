@@ -1,4 +1,9 @@
-import { Signal, useComputed, useSignal } from "@preact/signals";
+import {
+  Signal,
+  useComputed,
+  useSignal,
+  useSignalEffect,
+} from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 type InputTypes = "email" | "number" | "password" | "text" | "tel" | "date";
@@ -99,7 +104,7 @@ export function InputFile(props: InputFileProps) {
   return (
     <div className={`form-control w-full font-sans ${props.classList ?? ""}`}>
       <label className="label">
-        <span className="label-text">
+        <span className="label-text font-semibold">
           {props.label}
           {props.required && <span className="text-red-500">*</span>}
         </span>
