@@ -51,6 +51,9 @@ export default function ReferenceDialog(
           </div>
         </form>
       </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
   );
 }
@@ -68,10 +71,8 @@ function Form(
         return <WebSiteForm disabled={disabled} />;
       case TYPE_PUBLICATION.Libro:
         return <BookForm disabled={disabled} />;
-      case TYPE_PUBLICATION.Mas:
-        return <MoreForm />;
       default:
-        return <span>Tipo de publicacion invalido</span>;
+        return <MoreForm disabled={disabled} />;
     }
   }
   return (

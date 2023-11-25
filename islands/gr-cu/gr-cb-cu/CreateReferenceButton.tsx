@@ -2,7 +2,7 @@ import Button from "@/components/Button.tsx";
 import { useSignal } from "@preact/signals";
 import { useRef } from "preact/hooks";
 import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
-import ReferenceDialog from "@/islands/gr-cu/gr-cb-cu/RefereceDialog.tsx";
+import ReferenceDialog from "./ReferenceDialog.tsx";
 
 interface CreateReferenceButtonProps {
   disabled: boolean;
