@@ -251,6 +251,7 @@ export function BookForm({ disabled }: BookFormProps) {
         error={fileErrors}
         name="file"
         disabled={!IS_BROWSER || disabled}
+        accept=".pdf"
       />
     </div>
   );

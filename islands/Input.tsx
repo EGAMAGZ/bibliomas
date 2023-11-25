@@ -80,6 +80,7 @@ interface InputFileProps {
   disabled?: boolean;
   classList?: string;
   inputClassList?: string;
+  accept?: string;
 }
 
 export function InputFile(props: InputFileProps) {
@@ -120,6 +121,7 @@ export function InputFile(props: InputFileProps) {
         className={`file-input file-input-bordered w-full ${
           showErrors.value ? "file-input-error" : "file-input-primary"
         } ${props.inputClassList ?? ""}`}
+        accept={props.accept}
       />
       <label className="label">
         <span className="label-text text-error">
