@@ -1,52 +1,48 @@
 import { z } from "zod";
 
 export const StudentSchema = z.object({
-  _id: z.coerce.number({
+  pk_id_est: z.string({
+    invalid_type_error: "Id de estudiante debe ser texto plano",
     required_error: "Id de estudiante es requerido",
-    invalid_type_error: "Id de estudiante debe ser un numero",
-  }).positive({
-    message: "Id de estudiante debe ser un numero positivo",
-  }).safe({
-    message: "Id de estudiante debe ser un número valido",
+  }).uuid({
+    message: "Id de estudiante debe ser un UUID valido",
   }),
-  username: z.string({
-    required_error: "Usuario es requerido",
+  txt_user_est: z.string({
     invalid_type_error: "Usuario debe ser texto plano",
+    required_error: "Usuario es requerido",
   }).nonempty({
     message: "Usuario es requerido",
   }),
-  email: z.string({
-    required_error: "Correo electrónico es requerido",
+  txt_email_est: z.string({
     invalid_type_error: "Correo electrónico debe ser texto plano",
+    required_error: "Correo electrónico es requerido",
   }).email({
     message: "Correo electrónico invalido",
-  }).nonempty({
-    message: "Correo electrónico es requerido",
   }),
-  password: z.string({
-    required_error: "Contraseña es requerida",
+  txt_pass_est: z.string({
     invalid_type_error: "Contraseña debe ser texto plano",
+    required_error: "Contraseña es requerido",
   }).min(8, {
     message: "Contraseña debe tener al menos 8 caracteres",
   }).max(128, {
     message: "Contraseña debe tener como maximo 128 caracteres",
   }),
-  subscription: z.coerce.number({
-    required_error: "Tipo de subscripción es requerido",
-    invalid_type_error: "Tipo de subscripción debe ser un numero",
+  num_sub_est: z.number({
+    invalid_type_error: "Tipo de suscripción debe ser un numero",
+    required_error: "Tipo de suscripción es requerido",
   }).min(1, {
-    message: "Tipo de subscripción debe ser un número mayor a 1",
+    message: "Tipo de suscripción debe ser un numero positivo",
   }).max(3, {
-    message: "Tipo de subscripción debe ser un numero menor a 3",
+    message: "Tipo de suscripción debe ser un número valido",
   }),
 });
 
 export const NewStudentSchema = StudentSchema.omit({
-  subscription: true,
-  _id: true,
+  pk_id_est: true,
+  num_sub_est: true,
 }).merge(
   z.object({
-    confirmPassword: z.string({
+    txt_pass_conf_est: z.string({
       invalid_type_error: "Confirmar contraseña debe ser texto plano",
       required_error: "Confirmar contraseña es requerida",
     }).min(8, {
@@ -55,12 +51,12 @@ export const NewStudentSchema = StudentSchema.omit({
       message: "Confirmar contraseña debe tener como maximo 128 caracteres",
     }),
   }),
-).refine((data) => data.password === data.confirmPassword, {
+).refine((data) => data.txt_pass_est === data.txt_pass_conf_est, {
   message: "Las contraseñas no coinciden",
-  path: ["confirmPassword"],
+  path: ["txt_pass_conf_est"],
 });
 
 export const LoginStudentSchema = StudentSchema.pick({
-  username: true,
-  password: true,
+  txt_user_est: true,
+  txt_pass_est: true,
 });
