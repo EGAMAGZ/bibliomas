@@ -15,16 +15,18 @@ export default function LoginForm() {
 
   useSignalEffect(() => {
     const result = LoginStudentSchema.safeParse({
-      username: username.value,
-      password: password.value,
+      txt_user_est: username.value,
+      txt_pass_est: password.value,
     });
 
     isValid.value = result.success;
 
     if (!result.success) {
       const formattedErrors = result.error.format();
-      usernameErrors.value = formattedErrors.username?._errors.join(", ") ?? "";
-      passwordErrors.value = formattedErrors.password?._errors.join(", ") ?? "";
+      usernameErrors.value = formattedErrors.txt_user_est?._errors.join(", ") ??
+        "";
+      passwordErrors.value = formattedErrors.txt_pass_est?._errors.join(", ") ??
+        "";
     } else {
       usernameErrors.value = "";
       passwordErrors.value = "";
@@ -38,7 +40,7 @@ export default function LoginForm() {
         error={usernameErrors}
         label="Usuario:"
         type="text"
-        name="username"
+        name="txt_user_est"
         classList="w-full max-w-xs"
         inputClassList="w-full max-w-xs"
         required
@@ -48,7 +50,7 @@ export default function LoginForm() {
         error={passwordErrors}
         label="Contraseña:"
         type="password"
-        name="password"
+        name="txt_pass_est"
         classList="w-full max-w-xs"
         inputClassList="w-full max-w-xs"
         required

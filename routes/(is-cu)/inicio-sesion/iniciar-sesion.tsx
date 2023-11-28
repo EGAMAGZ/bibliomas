@@ -30,12 +30,12 @@ export const handler: Handlers<Data, SessionState> = {
   async POST(req: Request, ctx: HandlerContext<Data, SessionState>) {
     const formData = await req.formData();
     try {
-      const { username, password } = LoginStudentSchema.parse(
+      const { txt_user_est, txt_pass_est } = LoginStudentSchema.parse(
         Object.fromEntries(formData.entries()),
       );
       const student = await prismaClient.estudiantes.findUnique({
         where: {
-          txt_user_est: username,
+          txt_user_est,
         },
       });
 
@@ -45,7 +45,7 @@ export const handler: Handlers<Data, SessionState> = {
         });
       }
 
-      const isSame = compareHash(password, student.txt_pass_est);
+      const isSame = compareHash(txt_pass_est, student.txt_pass_est);
 
       if (!isSame) {
         return await ctx.render({
@@ -57,7 +57,7 @@ export const handler: Handlers<Data, SessionState> = {
         id: student.pk_id_est,
         username: student.txt_user_est,
         email: student.txt_email_est,
-        subscription: String(student.num_sub_est),
+        subscription: Number(student.num_sub_est),
       });
       const headers = new Headers(req.headers);
 
