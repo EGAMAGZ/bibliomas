@@ -30,20 +30,23 @@ model Estudiantes {
 enum TipoPublicacion {
   SitioWeb
   Libro
-  Mas
+  ArticuloRevista
+  ArticuloPeriodica
+  Peliculas
+  Varios
 }
 
 enum TipoFormato {
-  APA
-  CHICAGO
-  MLA
-  IEEE
+  Apa
+  Chicago
+  Mla
+  Ieee
 }
 
 model Bibliografias {
-  pk_id_biblio         Int       @id @default(autoincrement())
-  num_tip_biblio       Int       @db.SmallInt
-  num_fmt_biblio       Int       @db.SmallInt // Formato de referencia
+  pk_id_biblio         Int             @id @default(autoincrement())
+  txt_tip_biblio       TipoPublicacion // Tipo de publicacion
+  num_fmt_biblio       TipoFormato // Formato de referencia
   txt_tit_biblio       String // Titulo
   txt_aut_biblio       String // Autores
   txt_pag_biblio       String? // Nombre de pagina
