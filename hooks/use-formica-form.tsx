@@ -21,7 +21,8 @@ export function useFormicaForm<TValues>(
       errors.value = clearErrors();
     }
   });
-  const handleChange = (value: TValues) => {
+  const handleChange = (value: any) => {
+    console.log(value);
     form.value = value;
   };
 

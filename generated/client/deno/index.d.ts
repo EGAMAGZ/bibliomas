@@ -2658,6 +2658,7 @@ export namespace Prisma {
     pk_id_biblio: number | null
     num_tip_biblio: number | null
     num_fmt_biblio: number | null
+    txt_fecha_pub_biblio: number | null
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
@@ -2669,6 +2670,7 @@ export namespace Prisma {
     pk_id_biblio: number | null
     num_tip_biblio: number | null
     num_fmt_biblio: number | null
+    txt_fecha_pub_biblio: number | null
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
@@ -2678,14 +2680,15 @@ export namespace Prisma {
 
   export type BibliografiasMinAggregateOutputType = {
     pk_id_biblio: number | null
-    txt_tit_biblio: string | null
     num_tip_biblio: number | null
     num_fmt_biblio: number | null
-    txt_fecha_biblio: Date | null
+    txt_tit_biblio: string | null
     txt_aut_biblio: string | null
-    txt_edit_biblio: string | null
-    txt_dir_biblio: string | null
     txt_pag_biblio: string | null
+    txt_dir_biblio: string | null
+    txt_fecha_pub_biblio: number | null
+    txt_fecha_acc_biblio: Date | null
+    txt_edit_biblio: string | null
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
@@ -2697,14 +2700,15 @@ export namespace Prisma {
 
   export type BibliografiasMaxAggregateOutputType = {
     pk_id_biblio: number | null
-    txt_tit_biblio: string | null
     num_tip_biblio: number | null
     num_fmt_biblio: number | null
-    txt_fecha_biblio: Date | null
+    txt_tit_biblio: string | null
     txt_aut_biblio: string | null
-    txt_edit_biblio: string | null
-    txt_dir_biblio: string | null
     txt_pag_biblio: string | null
+    txt_dir_biblio: string | null
+    txt_fecha_pub_biblio: number | null
+    txt_fecha_acc_biblio: Date | null
+    txt_edit_biblio: string | null
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
@@ -2716,14 +2720,15 @@ export namespace Prisma {
 
   export type BibliografiasCountAggregateOutputType = {
     pk_id_biblio: number
-    txt_tit_biblio: number
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: number
+    txt_tit_biblio: number
     txt_aut_biblio: number
-    txt_edit_biblio: number
-    txt_dir_biblio: number
     txt_pag_biblio: number
+    txt_dir_biblio: number
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio: number
+    txt_edit_biblio: number
     num_edic_biblio: number
     num_volm_biblio: number
     num_npag_biblio: number
@@ -2739,6 +2744,7 @@ export namespace Prisma {
     pk_id_biblio?: true
     num_tip_biblio?: true
     num_fmt_biblio?: true
+    txt_fecha_pub_biblio?: true
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
@@ -2750,6 +2756,7 @@ export namespace Prisma {
     pk_id_biblio?: true
     num_tip_biblio?: true
     num_fmt_biblio?: true
+    txt_fecha_pub_biblio?: true
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
@@ -2759,14 +2766,15 @@ export namespace Prisma {
 
   export type BibliografiasMinAggregateInputType = {
     pk_id_biblio?: true
-    txt_tit_biblio?: true
     num_tip_biblio?: true
     num_fmt_biblio?: true
-    txt_fecha_biblio?: true
+    txt_tit_biblio?: true
     txt_aut_biblio?: true
-    txt_edit_biblio?: true
-    txt_dir_biblio?: true
     txt_pag_biblio?: true
+    txt_dir_biblio?: true
+    txt_fecha_pub_biblio?: true
+    txt_fecha_acc_biblio?: true
+    txt_edit_biblio?: true
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
@@ -2778,14 +2786,15 @@ export namespace Prisma {
 
   export type BibliografiasMaxAggregateInputType = {
     pk_id_biblio?: true
-    txt_tit_biblio?: true
     num_tip_biblio?: true
     num_fmt_biblio?: true
-    txt_fecha_biblio?: true
+    txt_tit_biblio?: true
     txt_aut_biblio?: true
-    txt_edit_biblio?: true
-    txt_dir_biblio?: true
     txt_pag_biblio?: true
+    txt_dir_biblio?: true
+    txt_fecha_pub_biblio?: true
+    txt_fecha_acc_biblio?: true
+    txt_edit_biblio?: true
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
@@ -2797,14 +2806,15 @@ export namespace Prisma {
 
   export type BibliografiasCountAggregateInputType = {
     pk_id_biblio?: true
-    txt_tit_biblio?: true
     num_tip_biblio?: true
     num_fmt_biblio?: true
-    txt_fecha_biblio?: true
+    txt_tit_biblio?: true
     txt_aut_biblio?: true
-    txt_edit_biblio?: true
-    txt_dir_biblio?: true
     txt_pag_biblio?: true
+    txt_dir_biblio?: true
+    txt_fecha_pub_biblio?: true
+    txt_fecha_acc_biblio?: true
+    txt_edit_biblio?: true
     num_edic_biblio?: true
     num_volm_biblio?: true
     num_npag_biblio?: true
@@ -2903,14 +2913,15 @@ export namespace Prisma {
 
   export type BibliografiasGroupByOutputType = {
     pk_id_biblio: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio: string | null
-    txt_dir_biblio: string | null
     txt_pag_biblio: string | null
+    txt_dir_biblio: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio: Date | null
+    txt_edit_biblio: string | null
     num_edic_biblio: number | null
     num_volm_biblio: number | null
     num_npag_biblio: number | null
@@ -2941,14 +2952,15 @@ export namespace Prisma {
 
   export type BibliografiasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_biblio?: boolean
-    txt_tit_biblio?: boolean
     num_tip_biblio?: boolean
     num_fmt_biblio?: boolean
-    txt_fecha_biblio?: boolean
+    txt_tit_biblio?: boolean
     txt_aut_biblio?: boolean
-    txt_edit_biblio?: boolean
-    txt_dir_biblio?: boolean
     txt_pag_biblio?: boolean
+    txt_dir_biblio?: boolean
+    txt_fecha_pub_biblio?: boolean
+    txt_fecha_acc_biblio?: boolean
+    txt_edit_biblio?: boolean
     num_edic_biblio?: boolean
     num_volm_biblio?: boolean
     num_npag_biblio?: boolean
@@ -2965,14 +2977,15 @@ export namespace Prisma {
 
   export type BibliografiasSelectScalar = {
     pk_id_biblio?: boolean
-    txt_tit_biblio?: boolean
     num_tip_biblio?: boolean
     num_fmt_biblio?: boolean
-    txt_fecha_biblio?: boolean
+    txt_tit_biblio?: boolean
     txt_aut_biblio?: boolean
-    txt_edit_biblio?: boolean
-    txt_dir_biblio?: boolean
     txt_pag_biblio?: boolean
+    txt_dir_biblio?: boolean
+    txt_fecha_pub_biblio?: boolean
+    txt_fecha_acc_biblio?: boolean
+    txt_edit_biblio?: boolean
     num_edic_biblio?: boolean
     num_volm_biblio?: boolean
     num_npag_biblio?: boolean
@@ -3001,14 +3014,15 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_biblio: number
-      txt_tit_biblio: string
       num_tip_biblio: number
       num_fmt_biblio: number
-      txt_fecha_biblio: Date
+      txt_tit_biblio: string
       txt_aut_biblio: string
-      txt_edit_biblio: string | null
-      txt_dir_biblio: string | null
       txt_pag_biblio: string | null
+      txt_dir_biblio: string | null
+      txt_fecha_pub_biblio: number
+      txt_fecha_acc_biblio: Date | null
+      txt_edit_biblio: string | null
       num_edic_biblio: number | null
       num_volm_biblio: number | null
       num_npag_biblio: number | null
@@ -3418,14 +3432,15 @@ export namespace Prisma {
    */ 
   interface BibliografiasFieldRefs {
     readonly pk_id_biblio: FieldRef<"Bibliografias", 'Int'>
-    readonly txt_tit_biblio: FieldRef<"Bibliografias", 'String'>
     readonly num_tip_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly num_fmt_biblio: FieldRef<"Bibliografias", 'Int'>
-    readonly txt_fecha_biblio: FieldRef<"Bibliografias", 'DateTime'>
+    readonly txt_tit_biblio: FieldRef<"Bibliografias", 'String'>
     readonly txt_aut_biblio: FieldRef<"Bibliografias", 'String'>
-    readonly txt_edit_biblio: FieldRef<"Bibliografias", 'String'>
-    readonly txt_dir_biblio: FieldRef<"Bibliografias", 'String'>
     readonly txt_pag_biblio: FieldRef<"Bibliografias", 'String'>
+    readonly txt_dir_biblio: FieldRef<"Bibliografias", 'String'>
+    readonly txt_fecha_pub_biblio: FieldRef<"Bibliografias", 'Int'>
+    readonly txt_fecha_acc_biblio: FieldRef<"Bibliografias", 'DateTime'>
+    readonly txt_edit_biblio: FieldRef<"Bibliografias", 'String'>
     readonly num_edic_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly num_volm_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly num_npag_biblio: FieldRef<"Bibliografias", 'Int'>
@@ -8691,14 +8706,15 @@ export namespace Prisma {
 
   export const BibliografiasScalarFieldEnum: {
     pk_id_biblio: 'pk_id_biblio',
-    txt_tit_biblio: 'txt_tit_biblio',
     num_tip_biblio: 'num_tip_biblio',
     num_fmt_biblio: 'num_fmt_biblio',
-    txt_fecha_biblio: 'txt_fecha_biblio',
+    txt_tit_biblio: 'txt_tit_biblio',
     txt_aut_biblio: 'txt_aut_biblio',
-    txt_edit_biblio: 'txt_edit_biblio',
-    txt_dir_biblio: 'txt_dir_biblio',
     txt_pag_biblio: 'txt_pag_biblio',
+    txt_dir_biblio: 'txt_dir_biblio',
+    txt_fecha_pub_biblio: 'txt_fecha_pub_biblio',
+    txt_fecha_acc_biblio: 'txt_fecha_acc_biblio',
+    txt_edit_biblio: 'txt_edit_biblio',
     num_edic_biblio: 'num_edic_biblio',
     num_volm_biblio: 'num_volm_biblio',
     num_npag_biblio: 'num_npag_biblio',
@@ -8921,14 +8937,15 @@ export namespace Prisma {
     OR?: BibliografiasWhereInput[]
     NOT?: BibliografiasWhereInput | BibliografiasWhereInput[]
     pk_id_biblio?: IntFilter<"Bibliografias"> | number
-    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     num_tip_biblio?: IntFilter<"Bibliografias"> | number
     num_fmt_biblio?: IntFilter<"Bibliografias"> | number
-    txt_fecha_biblio?: DateTimeFilter<"Bibliografias"> | Date | string
+    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringFilter<"Bibliografias"> | string
-    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
     txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntFilter<"Bibliografias"> | number
+    txt_fecha_acc_biblio?: DateTimeNullableFilter<"Bibliografias"> | Date | string | null
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
     num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
@@ -8944,14 +8961,15 @@ export namespace Prisma {
 
   export type BibliografiasOrderByWithRelationInput = {
     pk_id_biblio?: SortOrder
-    txt_tit_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
-    txt_fecha_biblio?: SortOrder
+    txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
-    txt_edit_biblio?: SortOrderInput | SortOrder
-    txt_dir_biblio?: SortOrderInput | SortOrder
     txt_pag_biblio?: SortOrderInput | SortOrder
+    txt_dir_biblio?: SortOrderInput | SortOrder
+    txt_fecha_pub_biblio?: SortOrder
+    txt_fecha_acc_biblio?: SortOrderInput | SortOrder
+    txt_edit_biblio?: SortOrderInput | SortOrder
     num_edic_biblio?: SortOrderInput | SortOrder
     num_volm_biblio?: SortOrderInput | SortOrder
     num_npag_biblio?: SortOrderInput | SortOrder
@@ -8970,14 +8988,15 @@ export namespace Prisma {
     AND?: BibliografiasWhereInput | BibliografiasWhereInput[]
     OR?: BibliografiasWhereInput[]
     NOT?: BibliografiasWhereInput | BibliografiasWhereInput[]
-    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     num_tip_biblio?: IntFilter<"Bibliografias"> | number
     num_fmt_biblio?: IntFilter<"Bibliografias"> | number
-    txt_fecha_biblio?: DateTimeFilter<"Bibliografias"> | Date | string
+    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringFilter<"Bibliografias"> | string
-    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
     txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntFilter<"Bibliografias"> | number
+    txt_fecha_acc_biblio?: DateTimeNullableFilter<"Bibliografias"> | Date | string | null
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
     num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
@@ -8993,14 +9012,15 @@ export namespace Prisma {
 
   export type BibliografiasOrderByWithAggregationInput = {
     pk_id_biblio?: SortOrder
-    txt_tit_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
-    txt_fecha_biblio?: SortOrder
+    txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
-    txt_edit_biblio?: SortOrderInput | SortOrder
-    txt_dir_biblio?: SortOrderInput | SortOrder
     txt_pag_biblio?: SortOrderInput | SortOrder
+    txt_dir_biblio?: SortOrderInput | SortOrder
+    txt_fecha_pub_biblio?: SortOrder
+    txt_fecha_acc_biblio?: SortOrderInput | SortOrder
+    txt_edit_biblio?: SortOrderInput | SortOrder
     num_edic_biblio?: SortOrderInput | SortOrder
     num_volm_biblio?: SortOrderInput | SortOrder
     num_npag_biblio?: SortOrderInput | SortOrder
@@ -9020,14 +9040,15 @@ export namespace Prisma {
     OR?: BibliografiasScalarWhereWithAggregatesInput[]
     NOT?: BibliografiasScalarWhereWithAggregatesInput | BibliografiasScalarWhereWithAggregatesInput[]
     pk_id_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
-    txt_tit_biblio?: StringWithAggregatesFilter<"Bibliografias"> | string
     num_tip_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
     num_fmt_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
-    txt_fecha_biblio?: DateTimeWithAggregatesFilter<"Bibliografias"> | Date | string
+    txt_tit_biblio?: StringWithAggregatesFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringWithAggregatesFilter<"Bibliografias"> | string
-    txt_edit_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
     txt_pag_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
+    txt_dir_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
+    txt_fecha_acc_biblio?: DateTimeNullableWithAggregatesFilter<"Bibliografias"> | Date | string | null
+    txt_edit_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
     num_edic_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     num_volm_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
@@ -9395,14 +9416,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateInput = {
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -9415,14 +9437,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedCreateInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -9434,14 +9457,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateInput = {
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9454,14 +9478,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9474,14 +9499,15 @@ export namespace Prisma {
 
   export type BibliografiasCreateManyInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -9492,14 +9518,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateManyMutationInput = {
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9508,14 +9535,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateManyInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9902,17 +9930,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9926,6 +9943,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -9971,14 +9999,15 @@ export namespace Prisma {
 
   export type BibliografiasCountOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    txt_tit_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
-    txt_fecha_biblio?: SortOrder
+    txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
-    txt_edit_biblio?: SortOrder
-    txt_dir_biblio?: SortOrder
     txt_pag_biblio?: SortOrder
+    txt_dir_biblio?: SortOrder
+    txt_fecha_pub_biblio?: SortOrder
+    txt_fecha_acc_biblio?: SortOrder
+    txt_edit_biblio?: SortOrder
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
@@ -9992,6 +10021,7 @@ export namespace Prisma {
     pk_id_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
+    txt_fecha_pub_biblio?: SortOrder
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
@@ -10001,14 +10031,15 @@ export namespace Prisma {
 
   export type BibliografiasMaxOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    txt_tit_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
-    txt_fecha_biblio?: SortOrder
+    txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
-    txt_edit_biblio?: SortOrder
-    txt_dir_biblio?: SortOrder
     txt_pag_biblio?: SortOrder
+    txt_dir_biblio?: SortOrder
+    txt_fecha_pub_biblio?: SortOrder
+    txt_fecha_acc_biblio?: SortOrder
+    txt_edit_biblio?: SortOrder
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
@@ -10020,14 +10051,15 @@ export namespace Prisma {
 
   export type BibliografiasMinOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    txt_tit_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
-    txt_fecha_biblio?: SortOrder
+    txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
-    txt_edit_biblio?: SortOrder
-    txt_dir_biblio?: SortOrder
     txt_pag_biblio?: SortOrder
+    txt_dir_biblio?: SortOrder
+    txt_fecha_pub_biblio?: SortOrder
+    txt_fecha_acc_biblio?: SortOrder
+    txt_edit_biblio?: SortOrder
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
@@ -10041,25 +10073,12 @@ export namespace Prisma {
     pk_id_biblio?: SortOrder
     num_tip_biblio?: SortOrder
     num_fmt_biblio?: SortOrder
+    txt_fecha_pub_biblio?: SortOrder
     num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
     num_npag_biblio?: SortOrder
     fk_id_grup?: SortOrder
     fk_id_carp?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10078,6 +10097,20 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10214,6 +10247,17 @@ export namespace Prisma {
     pk_id_grup?: SortOrder
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type CambiosCountOrderByAggregateInput = {
     pk_id_camb?: SortOrder
     num_tip_camb?: SortOrder
@@ -10253,6 +10297,20 @@ export namespace Prisma {
     num_tip_camb?: SortOrder
     fk_id_carp?: SortOrder
     fk_id_grup?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type CambiosCreateNestedManyWithoutEstudianteInput = {
@@ -10509,12 +10567,12 @@ export namespace Prisma {
     connect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -10931,6 +10989,10 @@ export namespace Prisma {
     connect?: GruposWhereUniqueInput
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type EstudiantesUpdateOneRequiredWithoutCambiosNestedInput = {
     create?: XOR<EstudiantesCreateWithoutCambiosInput, EstudiantesUncheckedCreateWithoutCambiosInput>
     connectOrCreate?: EstudiantesCreateOrConnectWithoutCambiosInput
@@ -11024,17 +11086,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11049,6 +11100,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -11058,20 +11120,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11089,6 +11137,20 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11116,6 +11178,31 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type CambiosCreateWithoutEstudianteInput = {
@@ -11214,14 +11301,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutEstudianteInput = {
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -11233,14 +11321,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedCreateWithoutEstudianteInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -11384,14 +11473,15 @@ export namespace Prisma {
     OR?: BibliografiasScalarWhereInput[]
     NOT?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
     pk_id_biblio?: IntFilter<"Bibliografias"> | number
-    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     num_tip_biblio?: IntFilter<"Bibliografias"> | number
     num_fmt_biblio?: IntFilter<"Bibliografias"> | number
-    txt_fecha_biblio?: DateTimeFilter<"Bibliografias"> | Date | string
+    txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringFilter<"Bibliografias"> | string
-    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
     txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntFilter<"Bibliografias"> | number
+    txt_fecha_acc_biblio?: DateTimeNullableFilter<"Bibliografias"> | Date | string | null
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
     num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
@@ -11606,14 +11696,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutArchivosInput = {
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -11625,14 +11716,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedCreateWithoutArchivosInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -11659,14 +11751,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutArchivosInput = {
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11678,14 +11771,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateWithoutArchivosInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11772,14 +11866,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutCarpetaInput = {
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -11791,14 +11886,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedCreateWithoutCarpetaInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -12107,14 +12203,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutGrupoInput = {
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -12126,14 +12223,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedCreateWithoutGrupoInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -12455,14 +12553,15 @@ export namespace Prisma {
 
   export type BibliografiasCreateManyEstudianteInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -12550,14 +12649,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutEstudianteInput = {
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12569,14 +12669,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateWithoutEstudianteInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12588,14 +12689,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateManyWithoutEstudianteInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12633,14 +12735,15 @@ export namespace Prisma {
 
   export type BibliografiasCreateManyCarpetaInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -12673,14 +12776,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutCarpetaInput = {
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12692,14 +12796,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateWithoutCarpetaInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12711,14 +12816,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateManyWithoutCarpetaInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12743,14 +12849,15 @@ export namespace Prisma {
 
   export type BibliografiasCreateManyGrupoInput = {
     pk_id_biblio?: number
-    txt_tit_biblio: string
     num_tip_biblio: number
     num_fmt_biblio: number
-    txt_fecha_biblio: Date | string
+    txt_tit_biblio: string
     txt_aut_biblio: string
-    txt_edit_biblio?: string | null
-    txt_dir_biblio?: string | null
     txt_pag_biblio?: string | null
+    txt_dir_biblio?: string | null
+    txt_fecha_pub_biblio: number
+    txt_fecha_acc_biblio?: Date | string | null
+    txt_edit_biblio?: string | null
     num_edic_biblio?: number | null
     num_volm_biblio?: number | null
     num_npag_biblio?: number | null
@@ -12808,14 +12915,15 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutGrupoInput = {
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12827,14 +12935,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateWithoutGrupoInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12846,14 +12955,15 @@ export namespace Prisma {
 
   export type BibliografiasUncheckedUpdateManyWithoutGrupoInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     num_tip_biblio?: IntFieldUpdateOperationsInput | number
     num_fmt_biblio?: IntFieldUpdateOperationsInput | number
-    txt_fecha_biblio?: DateTimeFieldUpdateOperationsInput | Date | string
+    txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
     num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null

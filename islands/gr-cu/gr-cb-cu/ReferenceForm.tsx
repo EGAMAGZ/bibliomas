@@ -2,12 +2,32 @@ import { useSignal } from "@preact/signals";
 import Select from "@/islands/Select.tsx";
 import { Input, InputCheckbox, InputFile } from "@/islands/Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { CreateWebSiteBibliographieSchema } from "@/schema/bibliographie.ts";
+import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
+import { Form } from "formika";
+import { FormControl } from "formika";
+import { FormControlState } from "@/schema/formica.ts";
 
 interface WebSiteFormProps {
   disabled: boolean;
 }
 
 export function WebSiteForm({ disabled }: WebSiteFormProps) {
+  const { form, handleChange, handleSubmit } = useFormicaForm(
+    CreateWebSiteBibliographieSchema,
+    {
+      txt_tit_biblio: "",
+      txt_aut_biblio: "",
+      txt_dir_biblio: "",
+      txt_fecha_pub_biblio: 0,
+      txt_pag_biblio: "",
+      txt_fecha_acc_biblio: undefined,
+    },
+    (data) => {
+      console.log(data);
+    },
+  );
+
   const format = useSignal("");
   const formatErrors = useSignal("");
 
@@ -33,6 +53,12 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
 
   return (
     <div>
+      <Form value={form.value} onChange={handleChange} onSubmit={handleSubmit}>
+        <FormControl name="txt_tit_biblio">
+          {({ touched, validity }: FormControlState) => <input type="text" />}
+        </FormControl>
+        <button type="submit">Submit</button>
+      </Form>
       <Select
         defaultValue="Formato"
         label="Formato"
