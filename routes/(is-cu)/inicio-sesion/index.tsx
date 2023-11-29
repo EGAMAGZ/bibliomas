@@ -35,49 +35,49 @@ export default async function InicioSesionPage(
   const totalGroups = totalGroupsCreated + totalGroupsJoined;
 
   return (
-    <div class="flex justify-center">
-      <div class="container p-4 mt-16 lg:p-0 flex flex-col items-center gap-4">
-        <div class="flex flex-col lg:text-center">
-          <span class="text-4xl lg:text-6xl font-sans font-bold">
+    <div className="flex justify-center">
+      <div className="container p-4 mt-16 lg:p-0 flex flex-col items-center gap-4">
+        <div className="flex flex-col lg:text-center">
+          <span className="text-4xl lg:text-6xl font-sans font-bold">
             Bienvenido a BIBLIOMAS
           </span>
-          <span class="font-sans text-xl md:text-2xl">
+          <span className="font-sans text-xl md:text-2xl">
             Donde te ayudamos a la mejor calidad de tus fuentes de información
           </span>
         </div>
-        <div class="stats shadow font-sans  stats-vertical md:stats-horizontal">
-          <div class="stat">
-            <div class="stat-figure">
+        <div className="stats shadow font-sans  stats-vertical md:stats-horizontal">
+          <div className="stat">
+            <div className="stat-figure">
               <IconListNumbers size={48} />
             </div>
-            <div class="stat-title">
+            <div className="stat-title">
               Referencias creadas
             </div>
-            <div class="stat-value">
+            <div className="stat-value">
               {totalBibliographies}
             </div>
           </div>
 
-          <div class="stat">
-            <div class="stat-figure">
+          <div className="stat">
+            <div className="stat-figure">
               <IconFolder size={48} />
             </div>
-            <div class="stat-title">
+            <div className="stat-title">
               Carpetas creadas
             </div>
-            <div class="stat-value">
+            <div className="stat-value">
               {totalFolders}
             </div>
           </div>
 
-          <div class="stat">
-            <div class="stat-figure">
+          <div className="stat">
+            <div className="stat-figure">
               <IconUsersGroup size={48} />
             </div>
-            <div class="stat-title">
+            <div className="stat-title">
               Grupos registrados
             </div>
-            <div class="stat-value">
+            <div className="stat-value">
               {totalGroups}
             </div>
           </div>

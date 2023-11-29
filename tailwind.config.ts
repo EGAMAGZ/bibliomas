@@ -9,9 +9,9 @@ export default {
     "./routes/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   plugins: [
-    daisyui,
     tailwindForms,
     tailwindTypography,
+    daisyui,
   ],
   daisyui: {
     themes: [
