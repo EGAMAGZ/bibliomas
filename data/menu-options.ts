@@ -11,7 +11,7 @@ export const menuOptions: MenuOption[] = [
   },
   {
     name: "Mis referencias",
-    href: "#",
+    href: "/gestionar-referencias",
   },
   {
     name: "Mis grupos",

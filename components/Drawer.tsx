@@ -10,17 +10,17 @@ interface DrawerProps {
 
 export default function Drawer({ children, username, email }: DrawerProps) {
   return (
-    <div class="drawer">
-      <input id="app-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col">
+    <div className="drawer">
+      <input id="app-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
         <Navbar username={username} email={email} />
         {children}
       </div>
-      <div class="drawer-side">
+      <div className="drawer-side">
         <label
           for="app-drawer"
           aria-label="close sidebar"
-          class="drawer-overlay"
+          className="drawer-overlay"
         />
 
         <DraweMenu />
@@ -31,7 +31,7 @@ export default function Drawer({ children, username, email }: DrawerProps) {
 
 function DraweMenu() {
   return (
-    <ul class="menu p-4 w-80 min-h-full bg-base-200">
+    <ul className="menu p-4 w-80 min-h-full bg-base-200">
       {menuOptions.map((menuOption) => (
         <DrawerMenuItem menuOption={menuOption} />
       ))}
@@ -46,7 +46,7 @@ interface DrawerMenuItemProps {
 function DrawerMenuItem({ menuOption }: DrawerMenuItemProps) {
   return (
     <li>
-      <a href={menuOption.href} class="font-sans">{menuOption.name}</a>
+      <a href={menuOption.href} className="font-sans">{menuOption.name}</a>
     </li>
   );
 }

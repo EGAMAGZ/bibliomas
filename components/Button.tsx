@@ -25,7 +25,7 @@ interface ButtonProps {
 export default function Button(props: ButtonProps) {
   return (
     <button
-      class={`btn ${props.state} font-sans font-semibold ${
+      className={`btn ${props.state} font-sans font-semibold ${
         props.classList ?? ""
       }`}
       type={props.type}
