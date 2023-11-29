@@ -20,21 +20,24 @@ export default function RegisterForm() {
   const isValid = useSignal(false);
   useSignalEffect(() => {
     const result = NewStudentSchema.safeParse({
-      email: email.value,
-      username: username.value,
-      password: password.value,
-      confirmPassword: confirmPassword.value,
+      txt_email_est: email.value,
+      txt_user_est: username.value,
+      txt_pass_est: password.value,
+      txt_pass_conf_est: confirmPassword.value,
     });
 
     isValid.value = result.success;
 
     if (!result.success) {
       const formattedErrors = result.error.format();
-      emailErrors.value = formattedErrors.email?._errors.join(", ") ?? "";
-      usernameErrors.value = formattedErrors.username?._errors.join(", ") ?? "";
-      passwordErrors.value = formattedErrors.password?._errors.join(", ") ?? "";
+      emailErrors.value = formattedErrors.txt_email_est?._errors.join(", ") ??
+        "";
+      usernameErrors.value = formattedErrors.txt_user_est?._errors.join(", ") ??
+        "";
+      passwordErrors.value = formattedErrors.txt_pass_est?._errors.join(", ") ??
+        "";
       confirmPasswordErrors.value =
-        formattedErrors.confirmPassword?._errors.join(", ") ?? "";
+        formattedErrors.txt_pass_conf_est?._errors.join(", ") ?? "";
     } else {
       emailErrors.value = "";
       usernameErrors.value = "";
@@ -44,13 +47,13 @@ export default function RegisterForm() {
   });
 
   return (
-    <form class="flex flex-col items-center" method="POST">
+    <form className="flex flex-col items-center" method="POST">
       <Input
         value={email}
         error={emailErrors}
         label="Correo:"
         type="email"
-        name="email"
+        name="txt_email_est"
         classList="w-full max-w-xs"
         inputClassList="w-full max-w-xs"
         required
@@ -61,7 +64,7 @@ export default function RegisterForm() {
         error={usernameErrors}
         label="Nombre de usuario:"
         type="text"
-        name="username"
+        name="txt_user_est"
         classList="w-full max-w-xs"
         inputClassList="w-full max-w-xs"
         required
@@ -72,7 +75,7 @@ export default function RegisterForm() {
         error={passwordErrors}
         label="Contraseña:"
         type="password"
-        name="password"
+        name="txt_pass_est"
         classList="w-full max-w-xs"
         inputClassList="w-full max-w-xs"
         required
@@ -83,17 +86,17 @@ export default function RegisterForm() {
         error={confirmPasswordErrors}
         label="Confirmar contraseña:"
         type="password"
-        name="confirmPassword"
+        name="txt_pass_conf_est"
         classList="w-full max-w-xs"
         inputClassList="w-full max-w-xs"
         required
       />
 
-      <div class="flex justify-center gap-8">
+      <div className="flex justify-center gap-8">
         <Button type="submit" state="btn-primary" disabled={!isValid.value}>
           <span>Aceptar</span>
         </Button>
-        <a href={LOGIN_URL} class="btn btn-secondary font-sans">
+        <a href={LOGIN_URL} className="btn btn-secondary font-sans">
           <span>Cancelar</span>
         </a>
       </div>

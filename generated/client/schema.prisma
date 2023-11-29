@@ -23,28 +23,47 @@ model Estudiantes {
   Cambios        Cambios[]
   Grupos         Grupos[]
   GrupoConAcceso GrupoConAcceso[]
+  Carpetas       Carpetas[]
+  Bibliografias  Bibliografias[]
+}
+
+enum TipoPublicacion {
+  SitioWeb
+  Libro
+  Mas
+}
+
+enum TipoFormato {
+  APA
+  CHICAGO
+  MLA
+  IEEE
 }
 
 model Bibliografias {
-  pk_id_biblio     Int      @id @default(autoincrement())
-  txt_tit_biblio   String
-  num_tip_biblio   Int      @db.SmallInt
-  num_fmt_biblio   Int      @db.SmallInt
-  txt_fecha_biblio DateTime
-  txt_aut_biblio   String
-  txt_edit_biblio  String?
-  txt_dir_biblio   String? // Se refiere a URL
-  txt_pag_biblio   String?
-  num_edic_biblio  Int?
-  num_volm_biblio  Int?
-  num_npag_biblio  Int?
-  txt_ubic_biblio  String?
+  pk_id_biblio         Int       @id @default(autoincrement())
+  num_tip_biblio       Int       @db.SmallInt
+  num_fmt_biblio       Int       @db.SmallInt // Formato de referencia
+  txt_tit_biblio       String // Titulo
+  txt_aut_biblio       String // Autores
+  txt_pag_biblio       String? // Nombre de pagina
+  txt_dir_biblio       String? // Se refiere a URL
+  txt_fecha_pub_biblio Int // Fecha de publicacion
+  txt_fecha_acc_biblio DateTime? // Fecha de acceso
+  txt_edit_biblio      String?
+  num_edic_biblio      Int?
+  num_volm_biblio      Int?
+  num_npag_biblio      Int?
+  txt_ubic_biblio      String?
 
   Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
   fk_id_grup Int
 
   Carpeta    Carpetas @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
   fk_id_carp Int
+
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
 
   Archivos Archivos[]
 }
@@ -63,6 +82,9 @@ model Carpetas {
 
   Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
   fk_id_grup Int // TODO: AGREGAR EN DICCIONARIO
+
+  Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
 
   Cambios       Cambios[]
   Bibliografias Bibliografias[]

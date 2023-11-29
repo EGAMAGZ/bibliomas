@@ -1,5 +1,10 @@
 import { IconBook2, IconCircleX } from "@tabler-icons";
-import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
+import {
+  HandlerContext,
+  Handlers,
+  PageProps,
+  RouteConfig,
+} from "$fresh/server.ts";
 import RegisterForm from "../../../islands/is-cu/RegisterForm.tsx";
 import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
@@ -16,6 +21,10 @@ import {
 import { z } from "zod";
 import { setCookie } from "$cookies";
 import { Prisma } from "@/generated/client/deno/edge.ts";
+
+export const config: RouteConfig = {
+  skipInheritedLayouts: true,
+};
 
 export const handler: Handlers<Data, SessionState> = {
   async GET(_req: Request, ctx: HandlerContext<Data, SessionState>) {
@@ -90,18 +99,18 @@ export const handler: Handlers<Data, SessionState> = {
 // TODO: Hacer responsiva esta pantalla
 export default function RegistrarPage({ data }: PageProps) {
   return (
-    <div class="w-full h-full flex flex-col justify-center items-center p-4">
-      <div class="flex flex-col w-full max-w-2xl gap-4">
-        <IconBook2 size={128} class="self-center" />
+    <div className="w-full h-full flex flex-col justify-center items-center p-4">
+      <div className="flex flex-col w-full max-w-2xl gap-4">
+        <IconBook2 size={128} className="self-center" />
 
         {data.error && (
-          <div class="alert alert-error font-sans">
+          <div className="alert alert-error font-sans">
             <IconCircleX size={24} />
             <span>{data.error}</span>
           </div>
         )}
 
-        <span class="self-center text-5xl font-bold font-sans">
+        <span className="self-center text-5xl font-bold font-sans">
           Nuevo usuario a registrarse
         </span>
         <RegisterForm />
