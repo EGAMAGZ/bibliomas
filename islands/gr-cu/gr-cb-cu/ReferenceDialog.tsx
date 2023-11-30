@@ -1,6 +1,5 @@
 import { Signal, useSignal } from "@preact/signals";
 import { Ref } from "preact";
-import Button from "@/components/Button.tsx";
 import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
 import {
   BookForm,
@@ -11,7 +10,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface ReferenceDialogProps {
   dialogRef: Ref<HTMLDialogElement>;
-  onSubmit: (event: Event) => void;
+  onSubmit: () => void;
   onCancel: () => void;
 }
 
@@ -27,29 +26,13 @@ export default function ReferenceDialog(
   return (
     <dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
-        <form
+        <Tabs disabled={isLoading.value} typePublication={typePublication} />
+        <Form
+          disabled={isLoading.value}
+          typePublication={typePublication.value}
+          onCancel={onCancel}
           onSubmit={onSubmit}
-        >
-          <Tabs disabled={isLoading.value} typePublication={typePublication} />
-          <Form
-            disabled={isLoading.value}
-            typePublication={typePublication.value}
-          />
-          <div className="flex justify-center">
-            <div className="flex gap-4">
-              <Button state="btn-primary" type="submit">
-                <span>Aceptar</span>
-              </Button>
-              <Button
-                state="btn-secondary"
-                type="button"
-                onClick={onCancel}
-              >
-                <span>Cancelar</span>
-              </Button>
-            </div>
-          </div>
-        </form>
+        />
       </div>
       <form method="dialog" class="modal-backdrop">
         <button>close</button>
@@ -61,18 +44,39 @@ export default function ReferenceDialog(
 interface FormProps {
   typePublication: TypePublication;
   disabled: boolean;
+  onCancel: () => void;
+  onSubmit: () => void;
 }
+
 function Form(
-  { disabled, typePublication }: FormProps,
+  { disabled, typePublication, onCancel, onSubmit }: FormProps,
 ) {
   function form() {
     switch (typePublication) {
       case TYPE_PUBLICATION.SitioWeb:
-        return <WebSiteForm disabled={disabled} />;
+        return (
+          <WebSiteForm
+            disabled={disabled}
+            onCancel={onCancel}
+            onSubmit={onSubmit}
+          />
+        );
       case TYPE_PUBLICATION.Libro:
-        return <BookForm disabled={disabled} />;
+        return (
+          <BookForm
+            disabled={disabled}
+            onCancel={onCancel}
+            onSubmit={onSubmit}
+          />
+        );
       default:
-        return <MoreForm disabled={disabled} />;
+        return (
+          <MoreForm
+            disabled={disabled}
+            onCancel={onCancel}
+            onSubmit={onSubmit}
+          />
+        );
     }
   }
   return (
@@ -114,9 +118,12 @@ function Tabs({ disabled, typePublication }: TabsProps) {
       </button>
       <button
         className={`tab ${
-          typePublication.value === TYPE_PUBLICATION.Mas ? "tab-active" : ""
+          (typePublication.value !== TYPE_PUBLICATION.SitioWeb &&
+              typePublication.value !== TYPE_PUBLICATION.Libro)
+            ? "tab-active"
+            : ""
         }`}
-        onClick={() => typePublication.value = TYPE_PUBLICATION.Mas}
+        onClick={() => typePublication.value = TYPE_PUBLICATION.ArticuloRevista}
         type="button"
         disabled={!IS_BROWSER || disabled}
       >

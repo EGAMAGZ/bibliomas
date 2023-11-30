@@ -1,8 +1,4 @@
-import {
-  Signal,
-  useComputed,
-  useSignal,
-} from "@preact/signals";
+import { Signal, useComputed, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 type InputTypes = "email" | "number" | "password" | "text" | "tel" | "date";
@@ -164,7 +160,9 @@ export function InputCheckbox(props: InputCheckbox) {
   return (
     <div className="form-control">
       <label className="cursor-pointer label">
-        <span className="label-text font-sans font-semibold">{props.label}</span>
+        <span className="label-text font-sans font-semibold">
+          {props.label}
+        </span>
         <input
           type="checkbox"
           checked={props.value.value}

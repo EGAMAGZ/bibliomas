@@ -118,7 +118,7 @@ exports.Prisma.EstudiantesScalarFieldEnum = {
 exports.Prisma.BibliografiasScalarFieldEnum = {
   pk_id_biblio: 'pk_id_biblio',
   txt_tip_biblio: 'txt_tip_biblio',
-  num_fmt_biblio: 'num_fmt_biblio',
+  txt_fmt_biblio: 'txt_fmt_biblio',
   txt_tit_biblio: 'txt_tit_biblio',
   txt_aut_biblio: 'txt_aut_biblio',
   txt_pag_biblio: 'txt_pag_biblio',

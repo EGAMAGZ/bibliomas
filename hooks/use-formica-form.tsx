@@ -22,7 +22,6 @@ export function useFormicaForm<TValues>(
     }
   });
   const handleChange = (value: any) => {
-    console.log(value);
     form.value = value;
   };
 

@@ -7,15 +7,22 @@ import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
 import { Form } from "formika";
 import { FormControl } from "formika";
 import { FormControlState } from "@/schema/formica.ts";
+import DialogAction from "@/components/gr-cu/gr-cb-cu/DialogAction.tsx";
 
 interface WebSiteFormProps {
   disabled: boolean;
+  onCancel: () => void;
+  onSubmit: () => void;
 }
 
-export function WebSiteForm({ disabled }: WebSiteFormProps) {
+export function WebSiteForm(
+  { disabled, onCancel, onSubmit }: WebSiteFormProps,
+) {
   const { form, handleChange, handleSubmit } = useFormicaForm(
     CreateWebSiteBibliographieSchema,
     {
+      txt_tip_biblio: "SitioWeb",
+      txt_fmt_biblio: "Apa",
       txt_tit_biblio: "",
       txt_aut_biblio: "",
       txt_dir_biblio: "",
@@ -25,6 +32,7 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
     },
     (data) => {
       console.log(data);
+      onSubmit();
     },
   );
 
@@ -55,9 +63,19 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
     <div>
       <Form value={form.value} onChange={handleChange} onSubmit={handleSubmit}>
         <FormControl name="txt_tit_biblio">
-          {({ touched, validity }: FormControlState) => <input type="text" />}
+          {({ touched, validity }: FormControlState) => (
+            <div className="font-sans form-control w-full">
+              <label className="label">
+                <span className="label-text font-semibold">
+                  Titulo
+                </span>
+              </label>
+              <input type="text" className="input input-primary" />
+            </div>
+          )}
         </FormControl>
-        <button type="submit">Submit</button>
+
+        <DialogAction disabled={disabled} onCancel={onCancel} />
       </Form>
       <Select
         defaultValue="Formato"
@@ -136,6 +154,8 @@ export function WebSiteForm({ disabled }: WebSiteFormProps) {
 
 interface BookFormProps {
   disabled: boolean;
+  onCancel: () => void;
+  onSubmit: () => void;
 }
 
 export function BookForm({ disabled }: BookFormProps) {
@@ -287,6 +307,8 @@ export function BookForm({ disabled }: BookFormProps) {
 
 interface MoreFormProps {
   disabled: boolean;
+  onCancel: () => void;
+  onSubmit: () => void;
 }
 
 export function MoreForm({ disabled }: MoreFormProps) {

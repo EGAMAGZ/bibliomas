@@ -46,7 +46,7 @@ enum TipoFormato {
 model Bibliografias {
   pk_id_biblio         Int             @id @default(autoincrement())
   txt_tip_biblio       TipoPublicacion // Tipo de publicacion
-  num_fmt_biblio       TipoFormato // Formato de referencia
+  txt_fmt_biblio       TipoFormato // Formato de referencia
   txt_tit_biblio       String // Titulo
   txt_aut_biblio       String // Autores
   txt_pag_biblio       String? // Nombre de pagina

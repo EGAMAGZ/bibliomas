@@ -12,12 +12,12 @@ export const TYPE_PUBLICATION = {
 
 export type TypePublication = keyof typeof TYPE_PUBLICATION;
 
-const TYPE_FORMATS = {
+export const TYPE_FORMATS = {
   Apa: "Apa",
   Chicago: "Chicago",
   Mla: "Mla",
   Ieee: "Ieee",
-};
+} as const;
 
 export type TypeFormat = keyof typeof TYPE_FORMATS;
 
@@ -29,6 +29,14 @@ const Bibliographie = z.object({
     message: "Id de bibliografía debe ser un numero positivo",
   }).safe({
     message: "Id de bibliografía debe ser un numero valido",
+  }),
+  txt_tip_biblio: z.nativeEnum(TYPE_PUBLICATION, {
+    required_error: "Tipo de bibliografía es requerido",
+    invalid_type_error: "Tipo de bibliografía debe ser una opción válida",
+  }),
+  txt_fmt_biblio: z.nativeEnum(TYPE_FORMATS, {
+    required_error: "Formato de bibliografía es requerido",
+    invalid_type_error: "Formato de bibliografía debe ser una opción válida",
   }),
   txt_tit_biblio: z.string({
     invalid_type_error: "Título de bibliografía debe ser texto plano",
@@ -76,6 +84,8 @@ const Bibliographie = z.object({
 
 const WebSiteBibliographie = Bibliographie.pick({
   pk_id_biblio: true,
+  txt_tip_biblio: true,
+  txt_fmt_biblio: true,
   txt_tit_biblio: true,
   txt_aut_biblio: true,
   txt_pag_biblio: true,

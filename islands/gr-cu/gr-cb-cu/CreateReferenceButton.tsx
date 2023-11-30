@@ -21,9 +21,9 @@ export default function CreateReferenceButton(
     dialog.current?.close();
   }
 
-  function handleSubmit(event: Event) {
-    event.preventDefault();
-
+  function handleSubmit() {
+    console.log("ASD");
+    
     dialog.current?.close();
   }
 
