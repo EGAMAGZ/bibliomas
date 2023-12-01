@@ -1,13 +1,19 @@
 import { useSignal } from "@preact/signals";
 import Select from "@/islands/Select.tsx";
-import { Input, InputCheckbox, InputFile } from "@/islands/Input.tsx";
+import { Input, InputCheckbox, InputFile } from "../../Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { CreateWebSiteBibliographieSchema } from "@/schema/bibliographie.ts";
+import {
+  CreateWebSiteBibliographieSchema,
+  TYPE_FORMATS,
+  TYPE_PUBLICATION,
+} from "@/schema/bibliographie.ts";
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
 import { Form } from "formika";
-import { FormControl } from "formika";
-import { FormControlState } from "@/schema/formica.ts";
 import DialogAction from "@/components/gr-cu/gr-cb-cu/DialogAction.tsx";
+import { z } from "zod";
+import FormControl from "@/components/FormControl.tsx";
+import { getActualYear } from "@/utils/date.ts";
+import { useRef } from "preact/hooks";
 
 interface WebSiteFormProps {
   disabled: boolean;
@@ -18,136 +24,144 @@ interface WebSiteFormProps {
 export function WebSiteForm(
   { disabled, onCancel, onSubmit }: WebSiteFormProps,
 ) {
-  const { form, handleChange, handleSubmit } = useFormicaForm(
+  const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateWebSiteBibliographieSchema,
     {
       txt_tip_biblio: "SitioWeb",
       txt_fmt_biblio: "Apa",
       txt_tit_biblio: "",
       txt_aut_biblio: "",
-      txt_dir_biblio: "",
-      txt_fecha_pub_biblio: 0,
       txt_pag_biblio: "",
+      txt_dir_biblio: "",
+      txt_fecha_pub_biblio: getActualYear(),
       txt_fecha_acc_biblio: undefined,
     },
     (data) => {
-      console.log(data);
       onSubmit();
     },
   );
-
-  const format = useSignal("");
-  const formatErrors = useSignal("");
-
-  const title = useSignal("");
-  const titleErrors = useSignal("");
-
-  const autors = useSignal("");
-  const autorsErrors = useSignal("");
-
-  const siteName = useSignal("");
-  const siteNameErrors = useSignal("");
-
-  const url = useSignal("");
-  const urlErrors = useSignal("");
-
-  const publicationDate = useSignal("");
-  const publicationDateErrors = useSignal("");
-
-  const accessDate = useSignal("");
-  const accessDateErrors = useSignal("");
-
-  // TODO: Agregar validacion y logica
+  const refForm = useRef<HTMLFormElement>(null);
 
   return (
     <div>
-      <Form value={form.value} onChange={handleChange} onSubmit={handleSubmit}>
-        <FormControl name="txt_tit_biblio">
-          {({ touched, validity }: FormControlState) => (
-            <div className="font-sans form-control w-full">
-              <label className="label">
-                <span className="label-text font-semibold">
-                  Titulo
-                </span>
-              </label>
-              <input type="text" className="input input-primary" />
-            </div>
-          )}
+      <Form
+        value={form.value}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        class="validated"
+      >
+        <input
+          type="hidden"
+          name="txt_tip_biblio"
+          value={TYPE_PUBLICATION.SitioWeb}
+        />
+
+        <FormControl
+          label="Formato"
+          error={errors.value.txt_fmt_biblio}
+          required
+        >
+          <select
+            className="select select-primary select-bordered"
+            name="txt_fmt_biblio"
+            required
+          >
+            <option value="">Seleccione un formato</option>
+            {Object.entries(TYPE_FORMATS).map(([key, value]) => (
+              <option value={key} className="uppercase">{value}</option>
+            ))}
+          </select>
         </FormControl>
 
-        <DialogAction disabled={disabled} onCancel={onCancel} />
+        <FormControl
+          label="Titulo"
+          error={errors.value.txt_tit_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            disabled={disabled}
+            name="txt_tit_biblio"
+            required
+          />
+        </FormControl>
+
+        <FormControl
+          label="Autores"
+          error={errors.value.txt_aut_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            disabled={disabled}
+            name="txt_aut_biblio"
+            required
+          />
+        </FormControl>
+
+        <FormControl
+          label="Nombre de la pagina"
+          error={errors.value.txt_pag_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            disabled={disabled}
+            name="txt_pag_biblio"
+            required
+          />
+        </FormControl>
+
+        <FormControl
+          label="URL"
+          error={errors.value.txt_dir_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            disabled={disabled}
+            name="txt_dir_biblio"
+            required
+          />
+        </FormControl>
+
+        <FormControl
+          label="Fecha de publicación"
+          error={errors.value.txt_fecha_pub_biblio}
+          required
+        >
+          <input
+            type="number"
+            className="input input-primary"
+            name="txt_fecha_pub_biblio"
+            disabled={disabled}
+            required
+          />
+        </FormControl>
+
+        <FormControl
+          label="Fecha de acceso"
+          error={errors.value.txt_fecha_acc_biblio}
+          required
+        >
+          <input
+            type="date"
+            className="input input-primary"
+            name="txt_fecha_acc_biblio"
+            disabled={disabled}
+            required
+          />
+        </FormControl>
+
+        <DialogAction
+          disabled={disabled}
+          onCancel={onCancel}
+        />
       </Form>
-      <Select
-        defaultValue="Formato"
-        label="Formato"
-        value={format}
-        error={formatErrors}
-        name="format"
-        disabled={disabled}
-        required
-      >
-        {/* TODO: AGREGAR FORMATOS */}
-        <option>Hello</option>
-      </Select>
-
-      <Input
-        label="Título"
-        value={title}
-        error={titleErrors}
-        name="title"
-        type="text"
-        disabled={disabled}
-        required
-      />
-
-      <Input
-        label="Autores"
-        value={autors}
-        error={autorsErrors}
-        name="autors"
-        type="text"
-        disabled={disabled}
-        required
-      />
-
-      <Input
-        label="Nombre de la pagina"
-        value={siteName}
-        error={siteNameErrors}
-        name="siteName"
-        type="text"
-        disabled={disabled}
-        required
-      />
-
-      <Input
-        label="URL"
-        value={url}
-        error={urlErrors}
-        name="url"
-        type="text"
-        disabled={disabled}
-        required
-      />
-
-      <Input
-        label="Fecha de publicación"
-        value={publicationDate}
-        error={publicationDateErrors}
-        name="publicationDate"
-        type="date"
-        disabled={disabled}
-        required
-      />
-
-      <Input
-        label="Fecha de acceso"
-        value={accessDate}
-        error={accessDateErrors}
-        name="accessDate"
-        type="date"
-        disabled={disabled}
-      />
     </div>
   );
 }

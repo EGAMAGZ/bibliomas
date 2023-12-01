@@ -72,7 +72,7 @@ const Bibliographie = z.object({
   }).max(getActualYear(), {
     message: `Fecha de publicacion debe tener como maximo ${getActualYear()}`,
   }),
-  txt_fecha_acc_biblio: z.date({
+  txt_fecha_acc_biblio: z.coerce.date({
     required_error: "Fecha de acceso es requerido",
     invalid_type_error: "Fecha de acceso debe ser un fecha",
   }).max(new Date(), {
