@@ -4,7 +4,7 @@ import { z, ZodFormattedError } from "zod";
 export function useFormicaForm<TValues>(
   schema: z.ZodSchema<TValues>,
   initialValues: TValues,
-  onSubmit: (values: TValues) => void,
+  onSubmit: (values: TValues) => Promise<void>,
 ) {
   type FormErrors = { [key in keyof TValues]: string };
 
@@ -15,14 +15,14 @@ export function useFormicaForm<TValues>(
     form.value = value;
   };
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
     const result = schema.safeParse(form.value);
     if (!result.success) {
       errors.value = formatErrors(result.error);
     } else {
       errors.value = clearErrors();
-      onSubmit(result.data);
+      await onSubmit(result.data);
 
     }
   };

@@ -38,7 +38,7 @@ export function WebSiteForm(
       txt_fecha_pub_biblio: getActualYear(),
       txt_fecha_acc_biblio: undefined,
     },
-    (data) => {
+    async (data) => {
       onSubmit();
     },
   );
@@ -173,7 +173,7 @@ interface BookFormProps {
   onSubmit: () => void;
 }
 
-export function BookForm({ disabled, onCancel, onSubmit }: BookFormProps) {
+export function BookForm({ disabled, onCancel }: BookFormProps) {
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateBookBibliographieSchema,
     {
@@ -188,38 +188,9 @@ export function BookForm({ disabled, onCancel, onSubmit }: BookFormProps) {
       num_npag_biblio: undefined,
       txt_url_biblio: "",
     },
-    (data) => {
+    async (data) => {
     },
   );
-  const format = useSignal("");
-  const formatErrors = useSignal("");
-
-  const title = useSignal("");
-  const titleErrors = useSignal("");
-
-  const autors = useSignal("");
-  const autorsErrors = useSignal("");
-
-  const publicationDate = useSignal("");
-  const publicationDateErrors = useSignal("");
-
-  const location = useSignal("");
-  const locationErrors = useSignal("");
-
-  const publisher = useSignal("");
-  const publisherErrors = useSignal("");
-
-  const volume = useSignal("");
-  const volumeErrors = useSignal("");
-
-  const edition = useSignal("");
-  const editionErrors = useSignal("");
-
-  const numPages = useSignal("");
-  const numPagesErrors = useSignal("");
-
-  const url = useSignal("");
-  const urlErrors = useSignal("");
 
   const file = useSignal<File | null>(null);
   const fileErrors = useSignal("");
@@ -377,7 +348,7 @@ interface MoreFormProps {
   onSubmit: () => void;
 }
 
-export function MoreForm({ disabled, onCancel, onSubmit }: MoreFormProps) {
+export function MoreForm({ disabled, onCancel }: MoreFormProps) {
   const { form, errors, handleChange, handleSubmit } = useFormicaForm(
     CreateMoreBibliographieSchema,
     {
@@ -390,31 +361,9 @@ export function MoreForm({ disabled, onCancel, onSubmit }: MoreFormProps) {
       txt_fecha_pub_biblio: undefined,
       txt_url_biblio: undefined,
     },
-    (data) => {},
+    async () => {
+    },
   );
-  const format = useSignal("");
-  const formatErrors = useSignal("");
-
-  const typePublication = useSignal("");
-  const typePublicationErrors = useSignal("");
-
-  const onlineSource = useSignal(false);
-  const onlineSourceErrors = useSignal("");
-
-  const title = useSignal("");
-  const titleErrors = useSignal("");
-
-  const autors = useSignal("");
-  const autorsErrors = useSignal("");
-
-  const publicationDate = useSignal("");
-  const publicationDateErrors = useSignal("");
-
-  const publisher = useSignal("");
-  const publisherErrors = useSignal("");
-
-  const address = useSignal("");
-  const addressErrors = useSignal("");
 
   // TODO: Agregar validacion y logica
 
