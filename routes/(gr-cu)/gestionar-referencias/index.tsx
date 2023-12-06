@@ -12,7 +12,7 @@ export default function GestionarReferenciasPage(
         <span className="text-4xl lg:text-6xl font-sans font-bold">
           Gestionar Referencias
         </span>
-        <CreateReferenceButton disabled={false} />
+        <CreateReferenceButton />
       </div>
     </div>
   );

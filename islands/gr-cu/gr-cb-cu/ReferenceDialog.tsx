@@ -28,14 +28,14 @@ export default function ReferenceDialog(
       <div className="modal-box">
         <Tabs disabled={isLoading.value} typePublication={typePublication} />
         <Form
-          disabled={isLoading.value}
+          loading={isLoading}
           typePublication={typePublication.value}
           onCancel={onCancel}
           onSubmit={onSubmit}
         />
       </div>
       <form method="dialog" class="modal-backdrop">
-        <button>close</button>
+        <button disabled={isLoading.value}>close</button>
       </form>
     </dialog>
   );
@@ -43,20 +43,20 @@ export default function ReferenceDialog(
 
 interface FormProps {
   typePublication: TypePublication;
-  disabled: boolean;
+  loading: Signal<boolean>;
   onCancel: () => void;
   onSubmit: () => void;
 }
 
 function Form(
-  { disabled, typePublication, onCancel, onSubmit }: FormProps,
+  { loading, typePublication, onCancel, onSubmit }: FormProps,
 ) {
   function form() {
     switch (typePublication) {
       case TYPE_PUBLICATION.SitioWeb:
         return (
           <WebSiteForm
-            disabled={disabled}
+            loading={loading}
             onCancel={onCancel}
             onSubmit={onSubmit}
           />
@@ -64,7 +64,7 @@ function Form(
       case TYPE_PUBLICATION.Libro:
         return (
           <BookForm
-            disabled={disabled}
+            loading={loading}
             onCancel={onCancel}
             onSubmit={onSubmit}
           />
@@ -72,7 +72,7 @@ function Form(
       default:
         return (
           <MoreForm
-            disabled={disabled}
+            loading={loading}
             onCancel={onCancel}
             onSubmit={onSubmit}
           />

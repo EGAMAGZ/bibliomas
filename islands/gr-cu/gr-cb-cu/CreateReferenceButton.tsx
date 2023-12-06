@@ -4,13 +4,7 @@ import { useRef } from "preact/hooks";
 import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
 import ReferenceDialog from "./ReferenceDialog.tsx";
 
-interface CreateReferenceButtonProps {
-  disabled: boolean;
-}
-
-export default function CreateReferenceButton(
-  { disabled }: CreateReferenceButtonProps,
-) {
+export default function CreateReferenceButton() {
   const dialog = useRef<HTMLDialogElement>(null);
 
   function handleCreate() {
@@ -22,8 +16,6 @@ export default function CreateReferenceButton(
   }
 
   function handleSubmit() {
-    console.log("ASD");
-    
     dialog.current?.close();
   }
 
@@ -32,7 +24,6 @@ export default function CreateReferenceButton(
       <Button
         state="btn-primary"
         type="button"
-        disabled={disabled}
         onClick={handleCreate}
       >
         <span>Crear refencia</span>

@@ -4,10 +4,11 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 interface DialogActionProps {
   onCancel: () => void;
   disabled: boolean;
+  loading: boolean;
 }
 
 export default function DialogAction(
-  { onCancel, disabled }: DialogActionProps,
+  { onCancel, disabled, loading }: DialogActionProps,
 ) {
   return (
     <div className="flex justify-center">
@@ -16,6 +17,7 @@ export default function DialogAction(
           state="btn-primary"
           type="submit"
           disabled={disabled}
+          loading={loading}
         >
           <span>Aceptar</span>
         </Button>

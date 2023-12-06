@@ -1,6 +1,5 @@
-import { useSignal } from "@preact/signals";
-import Select from "@/islands/Select.tsx";
-import { Input, InputCheckbox, InputFile } from "../../Input.tsx";
+import { Signal, useSignal } from "@preact/signals";
+import { InputFile } from "../../Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import {
   CreateBookBibliographieSchema,
@@ -12,19 +11,17 @@ import {
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
 import { Form } from "formika";
 import DialogAction from "@/components/gr-cu/gr-cb-cu/DialogAction.tsx";
-import { z } from "zod";
 import FormControl from "@/components/FormControl.tsx";
 import { getActualYear } from "@/utils/date.ts";
-import { useRef } from "preact/hooks";
 
-interface WebSiteFormProps {
-  disabled: boolean;
+interface FormProps {
+  loading: Signal<boolean>;
   onCancel: () => void;
   onSubmit: () => void;
 }
 
 export function WebSiteForm(
-  { disabled, onCancel, onSubmit }: WebSiteFormProps,
+  { loading, onCancel, onSubmit }: FormProps,
 ) {
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateWebSiteBibliographieSchema,
@@ -39,6 +36,8 @@ export function WebSiteForm(
       txt_fecha_acc_biblio: undefined,
     },
     async (data) => {
+      loading.value = true;
+      loading.value = false;
       onSubmit();
     },
   );
@@ -64,7 +63,7 @@ export function WebSiteForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -82,7 +81,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             name="txt_tit_biblio"
             required
           />
@@ -96,7 +95,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             name="txt_aut_biblio"
             required
           />
@@ -110,7 +109,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             name="txt_pag_biblio"
             required
           />
@@ -124,7 +123,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             name="txt_url_biblio"
             required
           />
@@ -139,7 +138,7 @@ export function WebSiteForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           />
         </FormControl>
@@ -153,13 +152,14 @@ export function WebSiteForm(
             type="date"
             className="input input-primary"
             name="txt_fecha_acc_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           />
         </FormControl>
 
         <DialogAction
-          disabled={!IS_BROWSER || disabled}
+          disabled={!IS_BROWSER || loading.value}
+          loading={loading.value}
           onCancel={onCancel}
         />
       </Form>
@@ -167,13 +167,7 @@ export function WebSiteForm(
   );
 }
 
-interface BookFormProps {
-  disabled: boolean;
-  onCancel: () => void;
-  onSubmit: () => void;
-}
-
-export function BookForm({ disabled, onCancel }: BookFormProps) {
+export function BookForm({ loading, onCancel }: FormProps) {
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateBookBibliographieSchema,
     {
@@ -218,7 +212,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -236,7 +230,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             name="txt_tit_biblio"
             required
           />
@@ -250,7 +244,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             name="txt_aut_biblio"
             required
           />
@@ -265,7 +259,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           />
         </FormControl>
@@ -275,7 +269,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="text"
             className="input input-primary"
             name="txt_ubic_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
@@ -284,7 +278,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
@@ -293,7 +287,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="number"
             className="input input-primary"
             name="num_volm_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
@@ -302,7 +296,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="number"
             className="input input-primary"
             name="num_edic_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
@@ -314,7 +308,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="number"
             className="input input-primary"
             name="num_npag_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
         <FormControl label="URL" error={errors.value.txt_url_biblio}>
@@ -322,11 +316,12 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
             type="text"
             className="input input-primary"
             name="txt_url_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
         <DialogAction
-          disabled={!IS_BROWSER || disabled}
+          disabled={!IS_BROWSER || loading.value}
+          loading={loading.value}
           onCancel={onCancel}
         />
         <InputFile
@@ -334,7 +329,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
           value={file}
           error={fileErrors}
           name="file"
-          disabled={disabled}
+          disabled={loading.value}
           accept=".pdf"
         />
       </Form>
@@ -342,13 +337,7 @@ export function BookForm({ disabled, onCancel }: BookFormProps) {
   );
 }
 
-interface MoreFormProps {
-  disabled: boolean;
-  onCancel: () => void;
-  onSubmit: () => void;
-}
-
-export function MoreForm({ disabled, onCancel }: MoreFormProps) {
+export function MoreForm({ loading, onCancel }: FormProps) {
   const { form, errors, handleChange, handleSubmit } = useFormicaForm(
     CreateMoreBibliographieSchema,
     {
@@ -378,7 +367,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -395,7 +384,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
           <select
             className="select select-primary select-bordered"
             name="txt_tip_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
@@ -416,7 +405,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
               type="checkbox"
               class="checkbox checkbox-primary"
               name="bool_online_biblio"
-              disabled={!IS_BROWSER || disabled}
+              disabled={!IS_BROWSER || loading.value}
             />
           </label>
         </div>
@@ -430,7 +419,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
             type="text"
             className="input input-primary"
             name="txt_tit_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           />
         </FormControl>
@@ -444,7 +433,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
             type="text"
             className="input input-primary"
             name="txt_aut_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
             required
           />
         </FormControl>
@@ -457,7 +446,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
             type="date"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
@@ -466,7 +455,7 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
@@ -478,12 +467,13 @@ export function MoreForm({ disabled, onCancel }: MoreFormProps) {
             type="text"
             className="input input-primary"
             name="txt_url_biblio"
-            disabled={!IS_BROWSER || disabled}
+            disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
 
         <DialogAction
-          disabled={!IS_BROWSER || disabled}
+          disabled={!IS_BROWSER || loading.value}
+          loading={loading.value}
           onCancel={onCancel}
         />
       </Form>
