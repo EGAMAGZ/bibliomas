@@ -3,6 +3,8 @@ import Select from "@/islands/Select.tsx";
 import { Input, InputCheckbox, InputFile } from "../../Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import {
+  CreateBookBibliographieSchema,
+  CreateMoreBibliographieSchema,
   CreateWebSiteBibliographieSchema,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
@@ -27,12 +29,12 @@ export function WebSiteForm(
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateWebSiteBibliographieSchema,
     {
-      txt_tip_biblio: "SitioWeb",
-      txt_fmt_biblio: "Apa",
+      txt_tip_biblio: TYPE_PUBLICATION.SitioWeb,
+      txt_fmt_biblio: TYPE_FORMATS.Apa,
       txt_tit_biblio: "",
       txt_aut_biblio: "",
       txt_pag_biblio: "",
-      txt_dir_biblio: "",
+      txt_url_biblio: "",
       txt_fecha_pub_biblio: getActualYear(),
       txt_fecha_acc_biblio: undefined,
     },
@@ -40,7 +42,6 @@ export function WebSiteForm(
       onSubmit();
     },
   );
-  const refForm = useRef<HTMLFormElement>(null);
 
   return (
     <div>
@@ -48,7 +49,6 @@ export function WebSiteForm(
         value={form.value}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        class="validated"
       >
         <input
           type="hidden"
@@ -64,9 +64,10 @@ export function WebSiteForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
+            disabled={!IS_BROWSER || disabled}
             required
           >
-            <option value="">Seleccione un formato</option>
+            <option value="" disabled>Seleccione un formato</option>
             {Object.entries(TYPE_FORMATS).map(([key, value]) => (
               <option value={key} className="uppercase">{value}</option>
             ))}
@@ -81,7 +82,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={disabled}
+            disabled={!IS_BROWSER || disabled}
             name="txt_tit_biblio"
             required
           />
@@ -95,7 +96,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={disabled}
+            disabled={!IS_BROWSER || disabled}
             name="txt_aut_biblio"
             required
           />
@@ -109,7 +110,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={disabled}
+            disabled={!IS_BROWSER || disabled}
             name="txt_pag_biblio"
             required
           />
@@ -117,14 +118,14 @@ export function WebSiteForm(
 
         <FormControl
           label="URL"
-          error={errors.value.txt_dir_biblio}
+          error={errors.value.txt_url_biblio}
           required
         >
           <input
             type="text"
             className="input input-primary"
-            disabled={disabled}
-            name="txt_dir_biblio"
+            disabled={!IS_BROWSER || disabled}
+            name="txt_url_biblio"
             required
           />
         </FormControl>
@@ -138,7 +139,7 @@ export function WebSiteForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={disabled}
+            disabled={!IS_BROWSER || disabled}
             required
           />
         </FormControl>
@@ -152,13 +153,13 @@ export function WebSiteForm(
             type="date"
             className="input input-primary"
             name="txt_fecha_acc_biblio"
-            disabled={disabled}
+            disabled={!IS_BROWSER || disabled}
             required
           />
         </FormControl>
 
         <DialogAction
-          disabled={disabled}
+          disabled={!IS_BROWSER || disabled}
           onCancel={onCancel}
         />
       </Form>
@@ -172,7 +173,24 @@ interface BookFormProps {
   onSubmit: () => void;
 }
 
-export function BookForm({ disabled }: BookFormProps) {
+export function BookForm({ disabled, onCancel, onSubmit }: BookFormProps) {
+  const { form, handleChange, handleSubmit, errors } = useFormicaForm(
+    CreateBookBibliographieSchema,
+    {
+      txt_tip_biblio: TYPE_PUBLICATION.Libro,
+      txt_fmt_biblio: TYPE_FORMATS.Apa,
+      txt_tit_biblio: "",
+      txt_aut_biblio: "",
+      txt_fecha_pub_biblio: getActualYear(),
+      txt_edit_biblio: "",
+      num_volm_biblio: undefined,
+      num_edic_biblio: undefined,
+      num_npag_biblio: undefined,
+      txt_url_biblio: "",
+    },
+    (data) => {
+    },
+  );
   const format = useSignal("");
   const formatErrors = useSignal("");
 
@@ -210,111 +228,145 @@ export function BookForm({ disabled }: BookFormProps) {
 
   return (
     <div>
-      <Select
-        defaultValue="Formato"
-        label="Formato"
-        value={format}
-        error={formatErrors}
-        name="format"
-        disabled={disabled}
-        required
+      <Form
+        value={form.value}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
       >
-        {/* TODO: AGREGAR FORMATOS */}
-        <option>Hello</option>
-      </Select>
+        <input
+          type="hidden"
+          name="txt_tip_biblio"
+          value={TYPE_PUBLICATION.Libro}
+        />
 
-      <Input
-        label="Título"
-        value={title}
-        error={titleErrors}
-        name="title"
-        type="text"
-        disabled={disabled}
-        required
-      />
+        <FormControl
+          label="Formato"
+          error={errors.value.txt_fmt_biblio}
+          required
+        >
+          <select
+            className="select select-primary select-bordered"
+            name="txt_fmt_biblio"
+            disabled={!IS_BROWSER || disabled}
+            required
+          >
+            <option value="" disabled>Seleccione un formato</option>
+            {Object.entries(TYPE_FORMATS).map(([key, value]) => (
+              <option value={key} className="uppercase">{value}</option>
+            ))}
+          </select>
+        </FormControl>
 
-      <Input
-        label="Autores"
-        value={autors}
-        error={autorsErrors}
-        name="autors"
-        type="text"
-        disabled={disabled}
-        required
-      />
+        <FormControl
+          label="Titulo"
+          error={errors.value.txt_tit_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            disabled={!IS_BROWSER || disabled}
+            name="txt_tit_biblio"
+            required
+          />
+        </FormControl>
 
-      <Input
-        label="Fecha de publicación"
-        value={publicationDate}
-        error={publicationDateErrors}
-        name="publicationDate"
-        type="date"
-        disabled={disabled}
-        required
-      />
+        <FormControl
+          label="Autores"
+          error={errors.value.txt_aut_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            disabled={!IS_BROWSER || disabled}
+            name="txt_aut_biblio"
+            required
+          />
+        </FormControl>
 
-      <Input
-        label="Ubicación"
-        value={location}
-        error={locationErrors}
-        name="location"
-        type="text"
-        disabled={disabled}
-      />
+        <FormControl
+          label="Fecha de publicación"
+          error={errors.value.txt_fecha_pub_biblio}
+          required
+        >
+          <input
+            type="number"
+            className="input input-primary"
+            name="txt_fecha_pub_biblio"
+            disabled={!IS_BROWSER || disabled}
+            required
+          />
+        </FormControl>
 
-      <Input
-        label="Editorial"
-        value={publisher}
-        error={publisherErrors}
-        name="publisher"
-        type="text"
-        disabled={disabled}
-      />
+        <FormControl label="Ubicación" error={errors.value.txt_ubic_biblio}>
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_ubic_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
 
-      <Input
-        label="Volumen"
-        value={volume}
-        error={volumeErrors}
-        name="volume"
-        type="number"
-        disabled={disabled}
-      />
+        <FormControl label="Editorial" error={errors.value.txt_edit_biblio}>
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_edit_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
 
-      <Input
-        label="Edición"
-        value={edition}
-        error={editionErrors}
-        name="edition"
-        type="number"
-        disabled={disabled}
-      />
+        <FormControl label="Volumen" error={errors.value.num_volm_biblio}>
+          <input
+            type="number"
+            className="input input-primary"
+            name="num_volm_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
 
-      <Input
-        label="Número de páginas"
-        value={numPages}
-        error={numPagesErrors}
-        name="numPages"
-        type="number"
-        disabled={disabled}
-      />
+        <FormControl label="Edición" error={errors.value.num_edic_biblio}>
+          <input
+            type="number"
+            className="input input-primary"
+            name="num_edic_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
 
-      <Input
-        label="URL"
-        value={url}
-        error={urlErrors}
-        name="url"
-        type="text"
-        disabled={disabled}
-      />
-
-      <InputFile
-        label="Archivo"
-        value={file}
-        error={fileErrors}
-        name="file"
-        disabled={disabled}
-        accept=".pdf"
-      />
+        <FormControl
+          label="Número de página"
+          error={errors.value.num_npag_biblio}
+        >
+          <input
+            type="number"
+            className="input input-primary"
+            name="num_npag_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
+        <FormControl label="URL" error={errors.value.txt_url_biblio}>
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_url_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
+        <DialogAction
+          disabled={!IS_BROWSER || disabled}
+          onCancel={onCancel}
+        />
+        <InputFile
+          label="Archivo"
+          value={file}
+          error={fileErrors}
+          name="file"
+          disabled={disabled}
+          accept=".pdf"
+        />
+      </Form>
     </div>
   );
 }
@@ -325,7 +377,21 @@ interface MoreFormProps {
   onSubmit: () => void;
 }
 
-export function MoreForm({ disabled }: MoreFormProps) {
+export function MoreForm({ disabled, onCancel, onSubmit }: MoreFormProps) {
+  const { form, errors, handleChange, handleSubmit } = useFormicaForm(
+    CreateMoreBibliographieSchema,
+    {
+      txt_aut_biblio: "",
+      txt_tit_biblio: "",
+      txt_tip_biblio: "ArticuloRevista",
+      txt_fmt_biblio: "Apa",
+      bool_online_biblio: false,
+      txt_edit_biblio: undefined,
+      txt_fecha_pub_biblio: undefined,
+      txt_url_biblio: undefined,
+    },
+    (data) => {},
+  );
   const format = useSignal("");
   const formatErrors = useSignal("");
 
@@ -354,85 +420,124 @@ export function MoreForm({ disabled }: MoreFormProps) {
 
   return (
     <div>
-      <Select
-        defaultValue="Formato"
-        label="Formato"
-        value={format}
-        error={formatErrors}
-        name="format"
-        disabled={disabled}
-        required
-      >
-        {/* TODO: AGREGAR FORMATOS */}
-        <option>Hello</option>
-      </Select>
-      <Select
-        defaultValue="Tipo de publicacion"
-        value={typePublication}
-        error={typePublicationErrors}
-        label="Tipo de publicacion"
-        name="typePublication"
-        disabled={disabled}
-        required
-      >
-        {/* TODO: AGREGAR tipos */}
-        <option>Hello</option>
-      </Select>
+      <Form value={form.value} onChange={handleChange} onSubmit={handleSubmit}>
+        <FormControl
+          label="Formato"
+          error={errors.value.txt_fmt_biblio}
+          required
+        >
+          <select
+            className="select select-primary select-bordered"
+            name="txt_fmt_biblio"
+            disabled={!IS_BROWSER || disabled}
+            required
+          >
+            <option value="" disabled>Seleccione un formato</option>
+            {Object.entries(TYPE_FORMATS).map(([key, value]) => (
+              <option value={key} className="uppercase">{value}</option>
+            ))}
+          </select>
+        </FormControl>
+        <FormControl
+          label="Tipo de publicación"
+          error={errors.value.txt_tip_biblio}
+          required
+        >
+          <select
+            className="select select-primary select-bordered"
+            name="txt_tip_biblio"
+            disabled={!IS_BROWSER || disabled}
+            required
+          >
+            <option value="" disabled>Seleccione un tipo de publicación</option>
+            // TODO: Remover sitioweb y libro
 
-      <InputCheckbox
-        value={onlineSource}
-        error={onlineSourceErrors}
-        label="Fuente online"
-        name="onlineSource"
-        disabled={disabled}
-      />
+            {
+              /* {Object.entries(TYPE_PUBLICATION).map(([key, value]) => (
+              <option value={key} className="uppercase">{value}</option>
+            ))} */
+            }
+          </select>
+        </FormControl>
 
-      <Input
-        label="Título"
-        value={title}
-        error={titleErrors}
-        name="title"
-        type="text"
-        disabled={disabled}
-        required
-      />
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <span class="label-text font-sans">Recurso online</span>
+            <input
+              type="checkbox"
+              class="checkbox checkbox-primary"
+              name="bool_online_biblio"
+              disabled={!IS_BROWSER || disabled}
+            />
+          </label>
+        </div>
 
-      <Input
-        label="Autores"
-        value={autors}
-        error={autorsErrors}
-        name="autors"
-        type="text"
-        disabled={disabled}
-        required
-      />
+        <FormControl
+          label="Titulo"
+          error={errors.value.txt_tit_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_tit_biblio"
+            disabled={!IS_BROWSER || disabled}
+            required
+          />
+        </FormControl>
 
-      <Input
-        label="Fecha de publicación"
-        value={publicationDate}
-        error={publicationDateErrors}
-        name="publicationDate"
-        type="date"
-        disabled={disabled}
-      />
+        <FormControl
+          label="Autores"
+          error={errors.value.txt_aut_biblio}
+          required
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_aut_biblio"
+            disabled={!IS_BROWSER || disabled}
+            required
+          />
+        </FormControl>
 
-      <Input
-        label="Editorial"
-        value={publisher}
-        error={publisherErrors}
-        name="publisher"
-        type="text"
-        disabled={disabled}
-      />
+        <FormControl
+          label="Fecha de publicacion"
+          error={errors.value.txt_fecha_pub_biblio}
+        >
+          <input
+            type="date"
+            className="input input-primary"
+            name="txt_fecha_pub_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
 
-      <Input
-        label="Dirección"
-        value={address}
-        error={addressErrors}
-        name="address"
-        type="text"
-        disabled={disabled}
-      />
+        <FormControl label="Editorial" error={errors.value.txt_edit_biblio}>
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_edit_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
+
+        <FormControl
+          label="URL"
+          error={errors.value.txt_url_biblio}
+        >
+          <input
+            type="text"
+            className="input input-primary"
+            name="txt_url_biblio"
+            disabled={!IS_BROWSER || disabled}
+          />
+        </FormControl>
+
+        <DialogAction
+          disabled={!IS_BROWSER || disabled}
+          onCancel={onCancel}
+        />
+      </Form>
     </div>
   );
 }
