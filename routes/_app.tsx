@@ -1,6 +1,11 @@
 import { AppProps } from "$fresh/server.ts";
+import BibliomasSessionProvider from "@/islands/SessionProvider.tsx";
+import { Data } from "@/schema/data.ts";
+import SessionState from "@/schema/session-state.ts";
 
-export default function App({ Component }: AppProps) {
+export default function App(
+  { Component }: AppProps<Data, SessionState>,
+) {
   return (
     <html lang="es">
       <head>
@@ -13,8 +18,8 @@ export default function App({ Component }: AppProps) {
         />
         <meta name="theme-color" content="#D1C1D7" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-title" content="Bibliomas"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Bibliomas" />
         <title>Bibliomas</title>
       </head>
       <body>

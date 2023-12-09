@@ -31,7 +31,7 @@ enum TipoPublicacion {
   SitioWeb
   Libro
   ArticuloRevista
-  ArticuloPeriodica
+  ArticuloPeriodico
   Peliculas
   Varios
 }
@@ -51,7 +51,7 @@ model Bibliografias {
   txt_aut_biblio       String // Autores
   txt_pag_biblio       String? // Nombre de pagina
   txt_url_biblio       String? // URL
-  txt_fecha_pub_biblio Int // Fecha de publicacion
+  txt_fecha_pub_biblio Int? // Fecha de publicacion
   txt_fecha_acc_biblio DateTime? // Fecha de acceso
   txt_ubic_biblio      String? // Ubicacion
   txt_edit_biblio      String? // Editorial
@@ -60,11 +60,11 @@ model Bibliografias {
   num_npag_biblio      Int? // Numero de pagina
   bool_online_biblio   Boolean? // Fuente online
 
-  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
-  fk_id_grup Int
+  Grupo      Grupos? @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int?
 
-  Carpeta    Carpetas @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
-  fk_id_carp Int
+  Carpeta    Carpetas? @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_carp Int?
 
   Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
   fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
@@ -84,8 +84,8 @@ model Carpetas {
   pk_id_carp   Int    @id @default(autoincrement())
   txt_nom_carp String
 
-  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
-  fk_id_grup Int // TODO: AGREGAR EN DICCIONARIO
+  Grupo      Grupos? @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int? // TODO: AGREGAR EN DICCIONARIO
 
   Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
   fk_id_est  String // TODO: AGREGAR EN DICCIONARIO

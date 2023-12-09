@@ -2,6 +2,7 @@ import { PageProps } from "$fresh/server.ts";
 import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
 import CreateReferenceButton from "@/islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
+import BibliomasSessionProvider from "@/islands/SessionProvider.tsx";
 
 export default function GestionarReferenciasPage(
   props: PageProps<Data, SessionState>,
@@ -12,7 +13,14 @@ export default function GestionarReferenciasPage(
         <span className="text-4xl lg:text-6xl font-sans font-bold">
           Gestionar Referencias
         </span>
-        <CreateReferenceButton />
+
+        <BibliomasSessionProvider
+          value={{
+            userId: props.state._id,
+          }}
+        >
+          <CreateReferenceButton />
+        </BibliomasSessionProvider>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ import { Form } from "formika";
 import DialogAction from "@/components/gr-cu/gr-cb-cu/DialogAction.tsx";
 import FormControl from "@/components/FormControl.tsx";
 import { getActualYear } from "@/utils/date.ts";
+import { useBibliomasSessionContext } from "@/context/session-context.ts";
 
 interface FormProps {
   loading: Signal<boolean>;
@@ -23,6 +24,8 @@ interface FormProps {
 export function WebSiteForm(
   { loading, onCancel, onSubmit }: FormProps,
 ) {
+  const bibliomasSessionContext = useBibliomasSessionContext();
+
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateWebSiteBibliographieSchema,
     {
@@ -34,9 +37,19 @@ export function WebSiteForm(
       txt_url_biblio: "",
       txt_fecha_pub_biblio: getActualYear(),
       txt_fecha_acc_biblio: undefined,
+      fk_id_est: bibliomasSessionContext.userId,
+      fk_id_carp: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
     },
     async (data) => {
       loading.value = true;
+      await fetch("/api/bibliographie", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
       loading.value = false;
       onSubmit();
     },
@@ -167,7 +180,9 @@ export function WebSiteForm(
   );
 }
 
-export function BookForm({ loading, onCancel }: FormProps) {
+export function BookForm({ loading, onCancel, onSubmit }: FormProps) {
+  const bibliomasSessionContext = useBibliomasSessionContext();
+
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateBookBibliographieSchema,
     {
@@ -181,15 +196,26 @@ export function BookForm({ loading, onCancel }: FormProps) {
       num_edic_biblio: undefined,
       num_npag_biblio: undefined,
       txt_url_biblio: "",
+      fk_id_est: bibliomasSessionContext.userId,
+      fk_id_carp: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
     },
     async (data) => {
+      loading.value = true;
+      await fetch("/api/bibliographie", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      loading.value = false;
+      onSubmit();
     },
   );
 
   const file = useSignal<File | null>(null);
   const fileErrors = useSignal("");
-
-  // TODO: Agregar validacion y logica
 
   return (
     <div>
@@ -338,6 +364,8 @@ export function BookForm({ loading, onCancel }: FormProps) {
 }
 
 export function MoreForm({ loading, onCancel }: FormProps) {
+  const bibliomasSessionContext = useBibliomasSessionContext();
+
   const { form, errors, handleChange, handleSubmit } = useFormicaForm(
     CreateMoreBibliographieSchema,
     {
@@ -349,12 +377,23 @@ export function MoreForm({ loading, onCancel }: FormProps) {
       txt_edit_biblio: undefined,
       txt_fecha_pub_biblio: undefined,
       txt_url_biblio: undefined,
+      fk_id_est: bibliomasSessionContext.userId,
+      fk_id_carp: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
     },
     async () => {
+      loading.value = true;
+      await fetch("/api/bibliographie", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form.value),
+      });
+      loading.value = false;
+      onCancel();
     },
   );
-
-  // TODO: Agregar validacion y logica
 
   return (
     <div>
