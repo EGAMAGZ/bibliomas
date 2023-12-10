@@ -1,4 +1,8 @@
-import { Signal, useComputed, useSignal } from "@preact/signals";
+import {
+  Signal,
+  useComputed,
+  useSignal,
+} from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 type InputTypes = "email" | "number" | "password" | "text" | "tel" | "date";

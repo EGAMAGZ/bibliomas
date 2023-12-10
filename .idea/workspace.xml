@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fbcc8fc7-1b2e-4b2d-a4cd-7b1af51267b1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/hooks/use-formica-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/use-formica-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/islands/gr-cu/gr-cb-cu/ReferenceForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/islands/gr-cu/gr-cb-cu/ReferenceForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema/bibliographie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/schema/bibliographie.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2Ycjw2wykdwxH7rmGBxTGGQj0Tx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/gr-cb-cu1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\gazap\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Deno: Start" type="DenoConfigurationType" programParameters="task start">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fbcc8fc7-1b2e-4b2d-a4cd-7b1af51267b1" name="Changes" comment="" />
+      <created>1700831998949</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700831998949</updated>
+      <workItem from="1700832003431" duration="632000" />
+      <workItem from="1700834114118" duration="115000" />
+      <workItem from="1700834241990" duration="2271000" />
+      <workItem from="1700871514114" duration="990000" />
+      <workItem from="1700872520218" duration="406000" />
+      <workItem from="1700872951921" duration="78000" />
+      <workItem from="1700873039430" duration="507000" />
+      <workItem from="1700935918202" duration="863000" />
+      <workItem from="1700944478306" duration="1505000" />
+      <workItem from="1700952290335" duration="146000" />
+      <workItem from="1701011413815" duration="220000" />
+      <workItem from="1701038262811" duration="672000" />
+      <workItem from="1701044412533" duration="2568000" />
+      <workItem from="1701117065227" duration="82000" />
+      <workItem from="1701264573580" duration="55000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/generated/client/deno/edge.js" />
+      </list>
+    </option>
+  </component>
+</project>
