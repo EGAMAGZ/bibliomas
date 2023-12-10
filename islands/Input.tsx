@@ -98,8 +98,6 @@ export function InputFile(props: InputFileProps) {
   };
 
   const handleChange = (event: Event) => {
-    console.log((event.target as HTMLInputElement).files![0]);
-    
     props.value.value = (event.target as HTMLInputElement).files![0];
   };
 
