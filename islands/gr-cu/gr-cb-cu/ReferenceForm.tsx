@@ -15,6 +15,10 @@ import DialogAction from "@/components/gr-cu/gr-cb-cu/DialogAction.tsx";
 import FormControl from "@/components/FormControl.tsx";
 import { getActualYear } from "@/utils/date.ts";
 import { useBibliomasSessionContext } from "@/context/session-context.ts";
+import { ApiResponse } from "@/schema/api-response.ts";
+import { Bibliografias } from "@/generated/client/deno/edge.ts";
+import { Bucket, supabase } from "@/database/supabase.ts";
+import { BibliographieFile } from "@/schema/files.ts";
 
 interface FormProps {
   loading: Signal<boolean>;
@@ -189,32 +193,38 @@ export function BookForm(
 ) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
+  const DEFAULT_FORM = {
+    txt_tip_biblio: TYPE_PUBLICATION.Libro,
+    txt_fmt_biblio: TYPE_FORMATS.Apa,
+    txt_tit_biblio: "",
+    txt_aut_biblio: "",
+    txt_fecha_pub_biblio: getActualYear(),
+    txt_edit_biblio: "",
+    num_volm_biblio: undefined,
+    num_edic_biblio: undefined,
+    num_npag_biblio: undefined,
+    txt_url_biblio: "",
+    fk_id_est: bibliomasSessionContext.userId,
+    fk_id_carp: bibliomasSessionContext.folderId,
+    fk_id_grup: bibliomasSessionContext.groupId,
+  };
+
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateBookBibliographieSchema,
-    {
-      txt_tip_biblio: TYPE_PUBLICATION.Libro,
-      txt_fmt_biblio: TYPE_FORMATS.Apa,
-      txt_tit_biblio: "",
-      txt_aut_biblio: "",
-      txt_fecha_pub_biblio: getActualYear(),
-      txt_edit_biblio: "",
-      num_volm_biblio: undefined,
-      num_edic_biblio: undefined,
-      num_npag_biblio: undefined,
-      txt_url_biblio: "",
-      fk_id_est: bibliomasSessionContext.userId,
-      fk_id_carp: bibliomasSessionContext.folderId,
-      fk_id_grup: bibliomasSessionContext.groupId,
-    },
+    DEFAULT_FORM,
     async (data) => {
       loading.value = true;
-      await fetch("/api/bibliographie", {
+      const response = await fetch("/api/bibliographie", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+      if (response.status === 200) {
+        const { data } = (await response.json()) as ApiResponse<Bibliografias>;
+        await uploadFile(data.pk_id_biblio, bibliomasSessionContext.userId);
+      }
       loading.value = false;
       onSubmit();
     },
@@ -222,6 +232,38 @@ export function BookForm(
 
   const file = useSignal<File | null>(null);
   const fileErrors = useSignal("");
+
+  async function uploadFile(bibliographieId: number, userId: string) {
+    if (!file.value) {
+      return;
+    }
+
+    const bibliographieFile = file.value;
+    const filePath = `${userId}/${crypto.randomUUID()}.pdf`;
+    const { data, error } = await supabase
+      .storage
+      .from(Bucket.bibliographyDocuments)
+      .upload(
+        filePath,
+        bibliographieFile,
+      );
+
+    if (error) {
+      return;
+    }
+    const body = {
+      fk_id_biblio: bibliographieId,
+      txt_url_arch: data.path,
+    } as BibliographieFile;
+
+    await fetch("/api/bibliographie/file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  }
 
   return (
     <div>
@@ -351,11 +393,6 @@ export function BookForm(
             disabled={!IS_BROWSER || loading.value}
           />
         </FormControl>
-        <DialogAction
-          disabled={!IS_BROWSER || loading.value}
-          loading={loading.value}
-          onCancel={onCancel}
-        />
         <InputFile
           label="Archivo"
           value={file}
@@ -363,6 +400,11 @@ export function BookForm(
           name="file"
           disabled={loading.value}
           accept=".pdf"
+        />
+        <DialogAction
+          disabled={!IS_BROWSER || loading.value}
+          loading={loading.value}
+          onCancel={onCancel}
         />
       </Form>
     </div>
@@ -374,21 +416,23 @@ export function MoreForm(
 ) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
+  const DEFAULT_FORM = {
+    txt_aut_biblio: "",
+    txt_tit_biblio: "",
+    txt_tip_biblio: TYPE_PUBLICATION.ArticuloRevista,
+    txt_fmt_biblio: TYPE_FORMATS.Apa,
+    bool_online_biblio: false,
+    txt_edit_biblio: undefined,
+    txt_fecha_pub_biblio: undefined,
+    txt_url_biblio: undefined,
+    fk_id_est: bibliomasSessionContext.userId,
+    fk_id_carp: bibliomasSessionContext.folderId,
+    fk_id_grup: bibliomasSessionContext.groupId,
+  };
+
   const { form, errors, handleChange, handleSubmit } = useFormicaForm(
     CreateMoreBibliographieSchema,
-    {
-      txt_aut_biblio: "",
-      txt_tit_biblio: "",
-      txt_tip_biblio: "ArticuloRevista",
-      txt_fmt_biblio: "Apa",
-      bool_online_biblio: false,
-      txt_edit_biblio: undefined,
-      txt_fecha_pub_biblio: undefined,
-      txt_url_biblio: undefined,
-      fk_id_est: bibliomasSessionContext.userId,
-      fk_id_carp: bibliomasSessionContext.folderId,
-      fk_id_grup: bibliomasSessionContext.groupId,
-    },
+    DEFAULT_FORM,
     async () => {
       loading.value = true;
       await fetch("/api/bibliographie", {

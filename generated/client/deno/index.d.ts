@@ -3890,19 +3890,19 @@ export namespace Prisma {
 
   export type ArchivosMinAggregateOutputType = {
     pk_id_arch: number | null
-    txt_dir_arch: string | null
+    txt_url_arch: string | null
     fk_id_biblio: number | null
   }
 
   export type ArchivosMaxAggregateOutputType = {
     pk_id_arch: number | null
-    txt_dir_arch: string | null
+    txt_url_arch: string | null
     fk_id_biblio: number | null
   }
 
   export type ArchivosCountAggregateOutputType = {
     pk_id_arch: number
-    txt_dir_arch: number
+    txt_url_arch: number
     fk_id_biblio: number
     _all: number
   }
@@ -3920,19 +3920,19 @@ export namespace Prisma {
 
   export type ArchivosMinAggregateInputType = {
     pk_id_arch?: true
-    txt_dir_arch?: true
+    txt_url_arch?: true
     fk_id_biblio?: true
   }
 
   export type ArchivosMaxAggregateInputType = {
     pk_id_arch?: true
-    txt_dir_arch?: true
+    txt_url_arch?: true
     fk_id_biblio?: true
   }
 
   export type ArchivosCountAggregateInputType = {
     pk_id_arch?: true
-    txt_dir_arch?: true
+    txt_url_arch?: true
     fk_id_biblio?: true
     _all?: true
   }
@@ -4025,7 +4025,7 @@ export namespace Prisma {
 
   export type ArchivosGroupByOutputType = {
     pk_id_arch: number
-    txt_dir_arch: string
+    txt_url_arch: string
     fk_id_biblio: number
     _count: ArchivosCountAggregateOutputType | null
     _avg: ArchivosAvgAggregateOutputType | null
@@ -4050,14 +4050,14 @@ export namespace Prisma {
 
   export type ArchivosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_arch?: boolean
-    txt_dir_arch?: boolean
+    txt_url_arch?: boolean
     fk_id_biblio?: boolean
     Bibliografias?: boolean | BibliografiasDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["archivos"]>
 
   export type ArchivosSelectScalar = {
     pk_id_arch?: boolean
-    txt_dir_arch?: boolean
+    txt_url_arch?: boolean
     fk_id_biblio?: boolean
   }
 
@@ -4073,7 +4073,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_arch: number
-      txt_dir_arch: string
+      txt_url_arch: string
       fk_id_biblio: number
     }, ExtArgs["result"]["archivos"]>
     composites: {}
@@ -4471,7 +4471,7 @@ export namespace Prisma {
    */ 
   interface ArchivosFieldRefs {
     readonly pk_id_arch: FieldRef<"Archivos", 'Int'>
-    readonly txt_dir_arch: FieldRef<"Archivos", 'String'>
+    readonly txt_url_arch: FieldRef<"Archivos", 'String'>
     readonly fk_id_biblio: FieldRef<"Archivos", 'Int'>
   }
     
@@ -8816,7 +8816,7 @@ export namespace Prisma {
 
   export const ArchivosScalarFieldEnum: {
     pk_id_arch: 'pk_id_arch',
-    txt_dir_arch: 'txt_dir_arch',
+    txt_url_arch: 'txt_url_arch',
     fk_id_biblio: 'fk_id_biblio'
   };
 
@@ -9190,14 +9190,14 @@ export namespace Prisma {
     OR?: ArchivosWhereInput[]
     NOT?: ArchivosWhereInput | ArchivosWhereInput[]
     pk_id_arch?: IntFilter<"Archivos"> | number
-    txt_dir_arch?: StringFilter<"Archivos"> | string
+    txt_url_arch?: StringFilter<"Archivos"> | string
     fk_id_biblio?: IntFilter<"Archivos"> | number
     Bibliografias?: XOR<BibliografiasRelationFilter, BibliografiasWhereInput>
   }
 
   export type ArchivosOrderByWithRelationInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
     Bibliografias?: BibliografiasOrderByWithRelationInput
   }
@@ -9207,14 +9207,14 @@ export namespace Prisma {
     AND?: ArchivosWhereInput | ArchivosWhereInput[]
     OR?: ArchivosWhereInput[]
     NOT?: ArchivosWhereInput | ArchivosWhereInput[]
-    txt_dir_arch?: StringFilter<"Archivos"> | string
+    txt_url_arch?: StringFilter<"Archivos"> | string
     fk_id_biblio?: IntFilter<"Archivos"> | number
     Bibliografias?: XOR<BibliografiasRelationFilter, BibliografiasWhereInput>
   }, "pk_id_arch">
 
   export type ArchivosOrderByWithAggregationInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
     _count?: ArchivosCountOrderByAggregateInput
     _avg?: ArchivosAvgOrderByAggregateInput
@@ -9228,7 +9228,7 @@ export namespace Prisma {
     OR?: ArchivosScalarWhereWithAggregatesInput[]
     NOT?: ArchivosScalarWhereWithAggregatesInput | ArchivosScalarWhereWithAggregatesInput[]
     pk_id_arch?: IntWithAggregatesFilter<"Archivos"> | number
-    txt_dir_arch?: StringWithAggregatesFilter<"Archivos"> | string
+    txt_url_arch?: StringWithAggregatesFilter<"Archivos"> | string
     fk_id_biblio?: IntWithAggregatesFilter<"Archivos"> | number
   }
 
@@ -9688,40 +9688,40 @@ export namespace Prisma {
   }
 
   export type ArchivosCreateInput = {
-    txt_dir_arch: string
+    txt_url_arch: string
     Bibliografias: BibliografiasCreateNestedOneWithoutArchivosInput
   }
 
   export type ArchivosUncheckedCreateInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
     fk_id_biblio: number
   }
 
   export type ArchivosUpdateInput = {
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
     Bibliografias?: BibliografiasUpdateOneRequiredWithoutArchivosNestedInput
   }
 
   export type ArchivosUncheckedUpdateInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
     fk_id_biblio?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArchivosCreateManyInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
     fk_id_biblio: number
   }
 
   export type ArchivosUpdateManyMutationInput = {
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosUncheckedUpdateManyInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
     fk_id_biblio?: IntFieldUpdateOperationsInput | number
   }
 
@@ -10093,17 +10093,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -10282,20 +10271,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -10341,7 +10316,7 @@ export namespace Prisma {
 
   export type ArchivosCountOrderByAggregateInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
   }
 
@@ -10352,13 +10327,13 @@ export namespace Prisma {
 
   export type ArchivosMaxOrderByAggregateInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
   }
 
   export type ArchivosMinOrderByAggregateInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
   }
 
@@ -10792,10 +10767,6 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -11351,17 +11322,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -11424,20 +11384,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11875,12 +11821,12 @@ export namespace Prisma {
   }
 
   export type ArchivosCreateWithoutBibliografiasInput = {
-    txt_dir_arch: string
+    txt_url_arch: string
   }
 
   export type ArchivosUncheckedCreateWithoutBibliografiasInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
   }
 
   export type ArchivosCreateOrConnectWithoutBibliografiasInput = {
@@ -12003,7 +11949,7 @@ export namespace Prisma {
     OR?: ArchivosScalarWhereInput[]
     NOT?: ArchivosScalarWhereInput | ArchivosScalarWhereInput[]
     pk_id_arch?: IntFilter<"Archivos"> | number
-    txt_dir_arch?: StringFilter<"Archivos"> | string
+    txt_url_arch?: StringFilter<"Archivos"> | string
     fk_id_biblio?: IntFilter<"Archivos"> | number
   }
 
@@ -13032,21 +12978,21 @@ export namespace Prisma {
 
   export type ArchivosCreateManyBibliografiasInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
   }
 
   export type ArchivosUpdateWithoutBibliografiasInput = {
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosUncheckedUpdateWithoutBibliografiasInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosUncheckedUpdateManyWithoutBibliografiasInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type CambiosCreateManyCarpetaInput = {

@@ -138,7 +138,7 @@ exports.Prisma.BibliografiasScalarFieldEnum = {
 
 exports.Prisma.ArchivosScalarFieldEnum = {
   pk_id_arch: 'pk_id_arch',
-  txt_dir_arch: 'txt_dir_arch',
+  txt_url_arch: 'txt_url_arch',
   fk_id_biblio: 'fk_id_biblio'
 };
 

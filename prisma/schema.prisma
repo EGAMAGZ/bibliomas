@@ -74,7 +74,7 @@ model Bibliografias {
 
 model Archivos {
   pk_id_arch   Int    @id @default(autoincrement())
-  txt_dir_arch String // Se refiere a URL
+  txt_url_arch String // Se refiere a URL @map("txt_dir_arch")
 
   Bibliografias Bibliografias @relation(fields: [fk_id_biblio], references: [pk_id_biblio], onDelete: Cascade, onUpdate: Cascade)
   fk_id_biblio  Int // TODO: AGREGAR DICCIONARIO
