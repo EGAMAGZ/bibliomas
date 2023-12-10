@@ -4,31 +4,27 @@ import { z, ZodFormattedError } from "zod";
 export function useFormicaForm<TValues>(
   schema: z.ZodSchema<TValues>,
   initialValues: TValues,
-  onSubmit: (values: TValues) => void,
+  onSubmit: (values: TValues) => Promise<void>,
 ) {
   type FormErrors = { [key in keyof TValues]: string };
 
-  const isValid = useSignal(false);
   const form = useSignal<TValues>(initialValues);
   const errors = useSignal<FormErrors>({} as FormErrors);
 
-  useSignalEffect(() => {
+  const handleChange = (value: TValues) => {
+    form.value = value;
+  };
+
+  const handleSubmit = async (event: Event) => {
+    event.preventDefault();
     const result = schema.safeParse(form.value);
-    isValid.value = result.success;
     if (!result.success) {
       errors.value = formatErrors(result.error);
     } else {
       errors.value = clearErrors();
-    }
-  });
-  const handleChange = (value: any) => {
-    console.log(value);
-    form.value = value;
-  };
+      await onSubmit(result.data);
 
-  const handleSubmit = (event: Event) => {
-    event.preventDefault();
-    onSubmit(form.value);
+    }
   };
 
   const formatErrors = (error: z.ZodError<TValues>) => {
@@ -55,7 +51,6 @@ export function useFormicaForm<TValues>(
     form,
     handleChange,
     errors,
-    isValid,
     handleSubmit,
   };
 }

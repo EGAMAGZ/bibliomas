@@ -11,15 +11,18 @@ import * as $5 from "./routes/_404.tsx";
 import * as $6 from "./routes/_app.tsx";
 import * as $7 from "./routes/_layout.tsx";
 import * as $8 from "./routes/_middleware.ts";
-import * as $9 from "./routes/api/index.ts";
-import * as $10 from "./routes/index.ts";
+import * as $9 from "./routes/api/bibliographie/file/index.ts";
+import * as $10 from "./routes/api/bibliographie/index.ts";
+import * as $11 from "./routes/api/index.ts";
+import * as $12 from "./routes/index.ts";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
-import * as $$2 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
-import * as $$3 from "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx";
-import * as $$4 from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
-import * as $$5 from "./islands/is-cu/LoginForm.tsx";
-import * as $$6 from "./islands/is-cu/RegisterForm.tsx";
+import * as $$2 from "./islands/SessionProvider.tsx";
+import * as $$3 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
+import * as $$4 from "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx";
+import * as $$5 from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
+import * as $$6 from "./islands/is-cu/LoginForm.tsx";
+import * as $$7 from "./islands/is-cu/RegisterForm.tsx";
 
 const manifest = {
   routes: {
@@ -32,17 +35,20 @@ const manifest = {
     "./routes/_app.tsx": $6,
     "./routes/_layout.tsx": $7,
     "./routes/_middleware.ts": $8,
-    "./routes/api/index.ts": $9,
-    "./routes/index.ts": $10,
+    "./routes/api/bibliographie/file/index.ts": $9,
+    "./routes/api/bibliographie/index.ts": $10,
+    "./routes/api/index.ts": $11,
+    "./routes/index.ts": $12,
   },
   islands: {
     "./islands/Input.tsx": $$0,
     "./islands/Select.tsx": $$1,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$2,
-    "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx": $$3,
-    "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $$4,
-    "./islands/is-cu/LoginForm.tsx": $$5,
-    "./islands/is-cu/RegisterForm.tsx": $$6,
+    "./islands/SessionProvider.tsx": $$2,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$3,
+    "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx": $$4,
+    "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $$5,
+    "./islands/is-cu/LoginForm.tsx": $$6,
+    "./islands/is-cu/RegisterForm.tsx": $$7,
   },
   baseUrl: import.meta.url,
 };

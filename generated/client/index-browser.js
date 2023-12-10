@@ -117,19 +117,20 @@ exports.Prisma.EstudiantesScalarFieldEnum = {
 
 exports.Prisma.BibliografiasScalarFieldEnum = {
   pk_id_biblio: 'pk_id_biblio',
-  num_tip_biblio: 'num_tip_biblio',
-  num_fmt_biblio: 'num_fmt_biblio',
+  txt_tip_biblio: 'txt_tip_biblio',
+  txt_fmt_biblio: 'txt_fmt_biblio',
   txt_tit_biblio: 'txt_tit_biblio',
   txt_aut_biblio: 'txt_aut_biblio',
   txt_pag_biblio: 'txt_pag_biblio',
-  txt_dir_biblio: 'txt_dir_biblio',
+  txt_url_biblio: 'txt_url_biblio',
   txt_fecha_pub_biblio: 'txt_fecha_pub_biblio',
   txt_fecha_acc_biblio: 'txt_fecha_acc_biblio',
-  txt_edit_biblio: 'txt_edit_biblio',
-  num_edic_biblio: 'num_edic_biblio',
-  num_volm_biblio: 'num_volm_biblio',
-  num_npag_biblio: 'num_npag_biblio',
   txt_ubic_biblio: 'txt_ubic_biblio',
+  txt_edit_biblio: 'txt_edit_biblio',
+  num_volm_biblio: 'num_volm_biblio',
+  num_edic_biblio: 'num_edic_biblio',
+  num_npag_biblio: 'num_npag_biblio',
+  bool_online_biblio: 'bool_online_biblio',
   fk_id_grup: 'fk_id_grup',
   fk_id_carp: 'fk_id_carp',
   fk_id_est: 'fk_id_est'
@@ -137,7 +138,7 @@ exports.Prisma.BibliografiasScalarFieldEnum = {
 
 exports.Prisma.ArchivosScalarFieldEnum = {
   pk_id_arch: 'pk_id_arch',
-  txt_dir_arch: 'txt_dir_arch',
+  txt_url_arch: 'txt_url_arch',
   fk_id_biblio: 'fk_id_biblio'
 };
 
@@ -182,7 +183,21 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.TipoPublicacion = exports.$Enums.TipoPublicacion = {
+  SitioWeb: 'SitioWeb',
+  Libro: 'Libro',
+  ArticuloRevista: 'ArticuloRevista',
+  ArticuloPeriodico: 'ArticuloPeriodico',
+  Peliculas: 'Peliculas',
+  Varios: 'Varios'
+};
 
+exports.TipoFormato = exports.$Enums.TipoFormato = {
+  Apa: 'Apa',
+  Chicago: 'Chicago',
+  Mla: 'Mla',
+  Ieee: 'Ieee'
+};
 
 exports.Prisma.ModelName = {
   Estudiantes: 'Estudiantes',

@@ -35,16 +35,16 @@ export const handler: Handlers<Data, SessionState> = {
   async POST(req: Request, ctx: HandlerContext<Data, SessionState>) {
     const formData = await req.formData();
     try {
-      const { username, email, password, confirmPassword } = NewStudentSchema
+      const { txt_email_est, txt_pass_est, txt_user_est } = NewStudentSchema
         .parse(
           Object.fromEntries(formData.entries()),
         );
 
       const student = await prismaClient.estudiantes.create({
         data: {
-          txt_user_est: username,
-          txt_email_est: email,
-          txt_pass_est: await generateHash(password),
+          txt_user_est,
+          txt_email_est,
+          txt_pass_est: await generateHash(txt_pass_est),
         },
       });
 

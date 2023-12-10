@@ -164,7 +164,9 @@ export function InputCheckbox(props: InputCheckbox) {
   return (
     <div className="form-control">
       <label className="cursor-pointer label">
-        <span className="label-text font-sans font-semibold">{props.label}</span>
+        <span className="label-text font-sans font-semibold">
+          {props.label}
+        </span>
         <input
           type="checkbox"
           checked={props.value.value}

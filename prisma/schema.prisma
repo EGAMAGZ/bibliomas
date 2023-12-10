@@ -31,7 +31,7 @@ enum TipoPublicacion {
   SitioWeb
   Libro
   ArticuloRevista
-  ArticuloPeriodica
+  ArticuloPeriodico
   Peliculas
   Varios
 }
@@ -46,24 +46,25 @@ enum TipoFormato {
 model Bibliografias {
   pk_id_biblio         Int             @id @default(autoincrement())
   txt_tip_biblio       TipoPublicacion // Tipo de publicacion
-  num_fmt_biblio       TipoFormato // Formato de referencia
+  txt_fmt_biblio       TipoFormato // Formato de referencia
   txt_tit_biblio       String // Titulo
   txt_aut_biblio       String // Autores
   txt_pag_biblio       String? // Nombre de pagina
-  txt_dir_biblio       String? // Se refiere a URL
-  txt_fecha_pub_biblio Int // Fecha de publicacion
+  txt_url_biblio       String? // URL
+  txt_fecha_pub_biblio Int? // Fecha de publicacion
   txt_fecha_acc_biblio DateTime? // Fecha de acceso
-  txt_edit_biblio      String?
-  num_edic_biblio      Int?
-  num_volm_biblio      Int?
-  num_npag_biblio      Int?
-  txt_ubic_biblio      String?
+  txt_ubic_biblio      String? // Ubicacion
+  txt_edit_biblio      String? // Editorial
+  num_volm_biblio      Int? // Volumen
+  num_edic_biblio      Int? // Edicion
+  num_npag_biblio      Int? // Numero de pagina
+  bool_online_biblio   Boolean? // Fuente online
 
-  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
-  fk_id_grup Int
+  Grupo      Grupos? @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int?
 
-  Carpeta    Carpetas @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
-  fk_id_carp Int
+  Carpeta    Carpetas? @relation(fields: [fk_id_carp], references: [pk_id_carp], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_carp Int?
 
   Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
   fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
@@ -73,7 +74,7 @@ model Bibliografias {
 
 model Archivos {
   pk_id_arch   Int    @id @default(autoincrement())
-  txt_dir_arch String // Se refiere a URL
+  txt_url_arch String // Se refiere a URL @map("txt_dir_arch")
 
   Bibliografias Bibliografias @relation(fields: [fk_id_biblio], references: [pk_id_biblio], onDelete: Cascade, onUpdate: Cascade)
   fk_id_biblio  Int // TODO: AGREGAR DICCIONARIO
@@ -83,8 +84,8 @@ model Carpetas {
   pk_id_carp   Int    @id @default(autoincrement())
   txt_nom_carp String
 
-  Grupo      Grupos @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
-  fk_id_grup Int // TODO: AGREGAR EN DICCIONARIO
+  Grupo      Grupos? @relation(fields: [fk_id_grup], references: [pk_id_grup], onDelete: Cascade, onUpdate: Cascade)
+  fk_id_grup Int? // TODO: AGREGAR EN DICCIONARIO
 
   Estudiante Estudiantes @relation(fields: [fk_id_est], references: [pk_id_est], onDelete: Cascade, onUpdate: Cascade)
   fk_id_est  String // TODO: AGREGAR EN DICCIONARIO
