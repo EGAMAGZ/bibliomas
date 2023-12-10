@@ -7,6 +7,7 @@ import {
   CreateWebSiteBibliographieSchema,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
+  TypePublication,
 } from "@/schema/bibliographie.ts";
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
 import { Form } from "formika";
@@ -26,21 +27,23 @@ export function WebSiteForm(
 ) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
+  const DEFAULT_FORM = {
+    txt_tip_biblio: TYPE_PUBLICATION.SitioWeb,
+    txt_fmt_biblio: TYPE_FORMATS.Apa,
+    txt_tit_biblio: "",
+    txt_aut_biblio: "",
+    txt_pag_biblio: "",
+    txt_url_biblio: "",
+    txt_fecha_pub_biblio: getActualYear(),
+    txt_fecha_acc_biblio: undefined,
+    fk_id_est: bibliomasSessionContext.userId,
+    fk_id_carp: bibliomasSessionContext.folderId,
+    fk_id_grup: bibliomasSessionContext.groupId,
+  };
+
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateWebSiteBibliographieSchema,
-    {
-      txt_tip_biblio: TYPE_PUBLICATION.SitioWeb,
-      txt_fmt_biblio: TYPE_FORMATS.Apa,
-      txt_tit_biblio: "",
-      txt_aut_biblio: "",
-      txt_pag_biblio: "",
-      txt_url_biblio: "",
-      txt_fecha_pub_biblio: getActualYear(),
-      txt_fecha_acc_biblio: undefined,
-      fk_id_est: bibliomasSessionContext.userId,
-      fk_id_carp: bibliomasSessionContext.folderId,
-      fk_id_grup: bibliomasSessionContext.groupId,
-    },
+    DEFAULT_FORM,
     async (data) => {
       loading.value = true;
       await fetch("/api/bibliographie", {
@@ -50,6 +53,7 @@ export function WebSiteForm(
         },
         body: JSON.stringify(data),
       });
+      form.value = DEFAULT_FORM;
       loading.value = false;
       onSubmit();
     },
@@ -180,7 +184,9 @@ export function WebSiteForm(
   );
 }
 
-export function BookForm({ loading, onCancel, onSubmit }: FormProps) {
+export function BookForm(
+  { loading, onCancel, onSubmit }: FormProps,
+) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
@@ -363,7 +369,9 @@ export function BookForm({ loading, onCancel, onSubmit }: FormProps) {
   );
 }
 
-export function MoreForm({ loading, onCancel }: FormProps) {
+export function MoreForm(
+  { loading, onCancel, onSubmit }: FormProps,
+) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
   const { form, errors, handleChange, handleSubmit } = useFormicaForm(
@@ -391,7 +399,7 @@ export function MoreForm({ loading, onCancel }: FormProps) {
         body: JSON.stringify(form.value),
       });
       loading.value = false;
-      onCancel();
+      onSubmit();
     },
   );
 
@@ -428,18 +436,17 @@ export function MoreForm({ loading, onCancel }: FormProps) {
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
             // TODO: Remover sitioweb y libro
-
-            {
-              /* {Object.entries(TYPE_PUBLICATION).map(([key, value]) => (
+            {Object.entries(TYPE_PUBLICATION).map(([key, value]) => (
               <option value={key} className="uppercase">{value}</option>
-            ))} */
-            }
+            ))}
           </select>
         </FormControl>
 
         <div class="form-control">
           <label class="label cursor-pointer">
-            <span class="label-text font-sans">Recurso online</span>
+            <span class="label-text font-sans font-semibold">
+              Recurso online
+            </span>
             <input
               type="checkbox"
               class="checkbox checkbox-primary"
@@ -482,7 +489,7 @@ export function MoreForm({ loading, onCancel }: FormProps) {
           error={errors.value.txt_fecha_pub_biblio}
         >
           <input
-            type="date"
+            type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
             disabled={!IS_BROWSER || loading.value}

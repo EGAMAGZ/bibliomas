@@ -29,7 +29,7 @@ export default function ReferenceDialog(
         <Tabs disabled={isLoading.value} typePublication={typePublication} />
         <Form
           loading={isLoading}
-          typePublication={typePublication.value}
+          typePublication={typePublication}
           onCancel={onCancel}
           onSubmit={onSubmit}
         />
@@ -42,7 +42,7 @@ export default function ReferenceDialog(
 }
 
 interface FormProps {
-  typePublication: TypePublication;
+  typePublication: Signal<TypePublication>;
   loading: Signal<boolean>;
   onCancel: () => void;
   onSubmit: () => void;
@@ -51,14 +51,19 @@ interface FormProps {
 function Form(
   { loading, typePublication, onCancel, onSubmit }: FormProps,
 ) {
+  const handleSubmit = () => {
+    typePublication.value = TYPE_PUBLICATION.SitioWeb;
+    onSubmit();
+  };
+
   function form() {
-    switch (typePublication) {
+    switch (typePublication.value) {
       case TYPE_PUBLICATION.SitioWeb:
         return (
           <WebSiteForm
             loading={loading}
             onCancel={onCancel}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
           />
         );
       case TYPE_PUBLICATION.Libro:
@@ -66,7 +71,7 @@ function Form(
           <BookForm
             loading={loading}
             onCancel={onCancel}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
           />
         );
       default:
@@ -74,7 +79,7 @@ function Form(
           <MoreForm
             loading={loading}
             onCancel={onCancel}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
           />
         );
     }

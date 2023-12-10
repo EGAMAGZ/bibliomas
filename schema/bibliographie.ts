@@ -166,11 +166,11 @@ const BookBibliographie = z.object({
     required_error: "Numero de pagina es requerido",
   }).optional(),
   txt_url_biblio: z.string({
-    invalid_type_error: "URL debe ser texto plano",
-    required_error: "URL es requerido",
+    invalid_type_error: "Url debe ser texto plano",
+    required_error: "Url es requerido",
   }).url({
-    message: "URL invalida",
-  }).optional(),
+    message: "Url invalida",
+  }).optional().or(z.literal("")),
   fk_id_grup: z.number({
     invalid_type_error: "Id de grupo debe ser un numero",
     required_error: "Id de grupo es requerido",
@@ -243,11 +243,11 @@ export const MoreBibliographieSchema = z.object({
     required_error: "Editorial es requerido",
   }).optional(),
   txt_url_biblio: z.string({
-    invalid_type_error: "URL debe ser texto plano",
-    required_error: "URL es requerido",
+    invalid_type_error: "Url debe ser texto plano",
+    required_error: "Url es requerido",
   }).url({
-    message: "URL invalida",
-  }).optional(),
+    message: "Url invalida",
+  }).optional().or(z.literal("")),
   fk_id_grup: z.number({
     invalid_type_error: "Id de grupo debe ser un numero",
     required_error: "Id de grupo es requerido",
@@ -307,11 +307,11 @@ export const Bibliographie = z.object({
     required_error: "Nombre de la página es requerido",
   }).optional(),
   txt_url_biblio: z.string({
-    invalid_type_error: "URL debe ser texto plano",
-    required_error: "URL es requerido",
+    invalid_type_error: "Url debe ser texto plano",
+    required_error: "Url es requerido",
   }).url({
-    message: "URL invalida",
-  }).optional(),
+    message: "Url invalida",
+  }).optional().or(z.literal("")),
   txt_fecha_pub_biblio: z.number({
     required_error: "Fecha de publicacion es requerido",
     invalid_type_error: "Fecha de publicacion debe ser un numero",
