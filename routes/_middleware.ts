@@ -12,7 +12,9 @@ export async function handler(
   if (ctx.destination !== "route") return await ctx.next();
 
   const url = new URL(req.url);
-  console.log(`Main middleware - Pathname: ${url.pathname}`);
+  console.log(
+    `Main middleware - Pathname: ${url.pathname} - Method: ${req.method}`,
+  );
 
   // Se salta validacion para API
   if (url.pathname.startsWith("/api")) {

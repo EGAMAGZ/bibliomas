@@ -5,33 +5,46 @@ import {
   IconChevronRightPipe,
 } from "@tabler-icons";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { Signal } from "@preact/signals";
 
 interface PaginationButtonsProps {
   disabled: boolean;
-  page: number;
+  actualPage: Signal<number>;
   totalPages: number;
-  onFirstPage: () => void;
-  onPreviousPage: () => void;
-  onNextPage: () => void;
-  onLastPage: () => void;
 }
 
 export default function PaginationButtons(props: PaginationButtonsProps) {
+  const handleFirstPage = () => {
+    props.actualPage.value = 1;
+  };
+
+  const handlePreviousPage = () => {
+    props.actualPage.value = props.actualPage.value - 1;
+  };
+
+  const handleNextPage = () => {
+    props.actualPage.value = props.actualPage.value + 1;
+  };
+
+  const handleLastPage = () => {
+    props.actualPage.value = props.totalPages;
+  };
+
   return (
     <div class="join">
       <button
         type="button"
         class="btn btn-secondary btn-sm join-item"
-        disabled={!IS_BROWSER || props.disabled || props.page === 1}
-        onClick={props.onFirstPage}
+        disabled={!IS_BROWSER || props.disabled || props.actualPage.value === 1}
+        onClick={handleFirstPage}
       >
         <IconChevronLeftPipe />
       </button>
       <button
         type="button"
         class="btn btn-secondary btn-sm join-item"
-        disabled={!IS_BROWSER || props.disabled || props.page === 1}
-        onClick={props.onPreviousPage}
+        disabled={!IS_BROWSER || props.disabled || props.actualPage.value === 1}
+        onClick={handlePreviousPage}
       >
         <IconChevronLeft />
       </button>
@@ -40,14 +53,14 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
         class="btn btn-ghost btn-sm join-item no-animation font-mono"
         disabled={!IS_BROWSER || props.disabled}
       >
-        {props.page}
+        {props.actualPage}
       </button>
       <button
         type="button"
         class="btn btn-secondary btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled ||
-          props.page === props.totalPages}
-        onClick={props.onNextPage}
+          props.actualPage.value === props.totalPages}
+        onClick={handleNextPage}
       >
         <IconChevronRight />
       </button>
@@ -55,8 +68,8 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
         type="button"
         class="btn btn-secondary btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled ||
-          props.page === props.totalPages}
-        onClick={props.onLastPage}
+          props.actualPage.value === props.totalPages}
+        onClick={handleLastPage}
       >
         <IconChevronRightPipe />
       </button>

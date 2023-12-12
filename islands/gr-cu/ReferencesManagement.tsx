@@ -6,18 +6,22 @@ import { Bibliografias } from "@/generated/client/deno/edge.ts";
 import { useBibliomasSessionContext } from "@/context/session-context.ts";
 import { Pagination } from "@/schema/pagination.ts";
 import { ApiResponse } from "@/schema/api-response.ts";
-import PaginationButtons from "@/components/PaginationButtons.tsx";
+import PaginationButtons from "../PaginationButtons.tsx";
+import DeleteReferenceDialog from "@/islands/gr-cu/DeleteReferenceDialog.tsx";
+import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
 
   const isLoading = useSignal(true);
-  const page = useSignal(1);
+  const actualPage = useSignal(1);
   const pagination = useSignal<Pagination<Bibliografias> | null>(null);
-  const fetchData = async () => {
+  const deletableBibliographie = useSignal<number | null>(null);
+
+  const fetchBibliographies = async () => {
     const searchParams = new URLSearchParams();
-    searchParams.append("limit", "10");
-    searchParams.append("page", page.value.toString());
+    searchParams.append("limit", String(DEFAULT_PAGINATION_LIMIT));
+    searchParams.append("page", actualPage.value.toString());
     searchParams.append("userId", bibliomasContext.userId);
 
     const response = await fetch(
@@ -31,9 +35,10 @@ export default function ReferencesManagement() {
     }
   };
 
+  // Carga bibliografías al cargar la página
   useSignalEffect(() => {
     isLoading.value = true;
-    fetchData();
+    fetchBibliographies();
     isLoading.value = false;
   });
 
@@ -57,7 +62,9 @@ export default function ReferencesManagement() {
                   bibliography={bibliography}
                   onSelect={() => {}}
                   onEdit={() => {}}
-                  onDelete={() => {}}
+                  onDelete={() => {
+                    deletableBibliographie.value = bibliography.pk_id_biblio;
+                  }}
                   onCopy={() => {
                     console.log("copiar");
                   }}
@@ -68,29 +75,19 @@ export default function ReferencesManagement() {
           </table>
           <div class="self-end">
             <PaginationButtons
-              page={page.value}
+              actualPage={actualPage}
               totalPages={pagination.value?.pagination.totalPages ?? 1}
               disabled={isLoading.value}
-              onFirstPage={() => {
-                page.value = 1;
-              }}
-              onPreviousPage={() => {
-                page.value = page.value - 1;
-              }}
-              onNextPage={() => {
-                page.value = page.value + 1;
-              }}
-              onLastPage={() => {
-                page.value = pagination.value?.pagination.totalPages ?? 1;
-              }}
             />
           </div>
+          <DeleteReferenceDialog
+            bibliographyId={deletableBibliographie}
+            onAccept={fetchBibliographies}
+          />
         </div>
 
         <CreateReferenceButton
-          onSubmit={() => {
-            fetchData();
-          }}
+          onSubmit={fetchBibliographies}
         />
       </div>
     </>
@@ -117,10 +114,18 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
       <td>{props.bibliography.txt_tit_biblio}</td>
       <td>
         <div className="flex gap-2">
-          <IconButton tooltip="Editar" disabled={props.disabled}>
+          <IconButton
+            tooltip="Editar"
+            disabled={props.disabled}
+            onClick={props.onEdit}
+          >
             <IconEdit size={20} />
           </IconButton>
-          <IconButton tooltip="Eliminar" disabled={props.disabled}>
+          <IconButton
+            tooltip="Eliminar"
+            disabled={props.disabled}
+            onClick={props.onDelete}
+          >
             <IconTrash size={20} />
           </IconButton>
           <IconButton

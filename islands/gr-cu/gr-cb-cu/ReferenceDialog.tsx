@@ -34,9 +34,6 @@ export default function ReferenceDialog(
           onSubmit={onSubmit}
         />
       </div>
-      <form method="dialog" class="modal-backdrop">
-        <button disabled={isLoading.value}>close</button>
-      </form>
     </dialog>
   );
 }
