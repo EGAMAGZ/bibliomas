@@ -45,3 +45,26 @@ export default function Button(props: ButtonProps) {
     </button>
   );
 }
+
+interface IconButtonProps {
+  onClick?: (event: Event) => void;
+  children: ComponentChildren;
+  tooltip: string;
+}
+
+export function IconButton(props: IconButtonProps) {
+  return (
+    <div
+      class="tooltip tooltip-secondary"
+      data-tip={props.tooltip}
+    >
+      <button
+        class="btn btn-circle btn-sm btn-secondary"
+        onClick={props.onClick}
+        type="button"
+      >
+        {props.children}
+      </button>
+    </div>
+  );
+}
