@@ -108,6 +108,12 @@ export type CreateWebSiteBibliographie = z.infer<
   typeof CreateWebSiteBibliographieSchema
 >;
 
+export const UpdateWebSiteBibliographieSchema = WebSiteBibliographie;
+
+export type UpdateWebSiteBibliographie = z.infer<
+  typeof UpdateWebSiteBibliographieSchema
+>;
+
 const BookBibliographie = z.object({
   pk_id_biblio: z.number({
     invalid_type_error: "Id de bibliografía debe ser un numero",
@@ -197,6 +203,12 @@ export type CreateBookBibliographie = z.infer<
   typeof CreateBookBibliographieSchema
 >;
 
+export const UpdateBookBibliographieSchema = BookBibliographie;
+
+export type UpdateBookBibliographie = z.infer<
+  typeof UpdateBookBibliographieSchema
+>;
+
 export const MoreBibliographieSchema = z.object({
   pk_id_biblio: z.number({
     invalid_type_error: "Id de bibliografía debe ser un numero",
@@ -273,7 +285,13 @@ export type CreateMoreBibliographie = z.infer<
   typeof CreateMoreBibliographieSchema
 >;
 
-export const Bibliographie = z.object({
+export const UpdateMoreBibliographieSchema = MoreBibliographieSchema;
+
+export type UpdateMoreBibliographie = z.infer<
+  typeof UpdateMoreBibliographieSchema
+>;
+
+export const BibliographieSchema = z.object({
   pk_id_biblio: z.number({
     invalid_type_error: "Id de bibliografía debe ser un numero",
     required_error: "Id de bibliografía es requerido",
@@ -370,6 +388,8 @@ export const Bibliographie = z.object({
   }),
 });
 
-export const CreateBibliographieSchema = Bibliographie.omit({
+export const CreateBibliographieSchema = BibliographieSchema.omit({
   pk_id_biblio: true,
 });
+
+export const UpdateBookBibliographie = BibliographieSchema;

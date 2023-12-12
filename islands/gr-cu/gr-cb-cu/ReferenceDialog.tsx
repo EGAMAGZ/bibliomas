@@ -12,26 +12,25 @@ interface ReferenceDialogProps {
   dialogRef: Ref<HTMLDialogElement>;
   onSubmit: () => void;
   onCancel: () => void;
+  loading: Signal<boolean>;
 }
 
 export default function ReferenceDialog(
-  { onCancel, onSubmit, dialogRef }: ReferenceDialogProps,
+  props: ReferenceDialogProps,
 ) {
   const typePublication = useSignal<TypePublication>(
     TYPE_PUBLICATION.SitioWeb,
   );
 
-  const isLoading = useSignal(false);
-
   return (
-    <dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
+    <dialog ref={props.dialogRef} className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
-        <Tabs disabled={isLoading.value} typePublication={typePublication} />
+        <Tabs disabled={props.loading.value} typePublication={typePublication} />
         <Form
-          loading={isLoading}
+          loading={props.loading}
           typePublication={typePublication}
-          onCancel={onCancel}
-          onSubmit={onSubmit}
+          onCancel={props.onCancel}
+          onSubmit={props.onSubmit}
         />
       </div>
     </dialog>
