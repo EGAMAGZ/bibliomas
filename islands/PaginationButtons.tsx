@@ -34,7 +34,7 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
     <div class="join">
       <button
         type="button"
-        class="btn btn-secondary btn-sm join-item"
+        class="btn btn-secondary btn-md lg:btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled || props.actualPage.value === 1}
         onClick={handleFirstPage}
       >
@@ -42,7 +42,7 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
       </button>
       <button
         type="button"
-        class="btn btn-secondary btn-sm join-item"
+        class="btn btn-secondary btn-md lg:btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled || props.actualPage.value === 1}
         onClick={handlePreviousPage}
       >
@@ -50,14 +50,14 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
       </button>
       <button
         type="button"
-        class="btn btn-ghost btn-sm join-item no-animation font-mono"
+        class="btn btn-ghost btn-md lg:btn-sm join-item no-animation font-mono"
         disabled={!IS_BROWSER || props.disabled}
       >
         {props.actualPage}
       </button>
       <button
         type="button"
-        class="btn btn-secondary btn-sm join-item"
+        class="btn btn-secondary btn-md lg:btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled ||
           props.actualPage.value === props.totalPages}
         onClick={handleNextPage}
@@ -66,7 +66,7 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
       </button>
       <button
         type="button"
-        class="btn btn-secondary btn-sm join-item"
+        class="btn btn-secondary btn-md lg:btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled ||
           props.actualPage.value === props.totalPages}
         onClick={handleLastPage}

@@ -45,7 +45,8 @@ export default function ReferencesManagement() {
   return (
     <>
       <div class="flex flex-col gap-4 w-full">
-        <div className="overflow-x-auto">
+        {/* FIXME: ARREGLAR OVERFLOW O BARRA DE NAVEGACION PARA RESPONSIVIDAD */}
+        <div class="overflow-x-auto">
           <table className="table table-zebra">
             <thead>
               <tr className="font-mono">
