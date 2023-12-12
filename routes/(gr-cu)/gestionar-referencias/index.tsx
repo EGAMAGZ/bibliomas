@@ -3,7 +3,7 @@ import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
 import CreateReferenceButton from "@/islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
 import BibliomasSessionProvider from "@/islands/SessionProvider.tsx";
-import BibliographiesTable from "@/islands/gr-cu/ReferencesTable.tsx";
+import BibliographiesTable from "../../../islands/gr-cu/ReferencesManagement.tsx";
 
 export default function GestionarReferenciasPage(
   props: PageProps<Data, SessionState>,

@@ -2,7 +2,13 @@ import Button from "@/components/Button.tsx";
 import { useRef } from "preact/hooks";
 import ReferenceDialog from "./ReferenceDialog.tsx";
 
-export default function CreateReferenceButton() {
+interface CreateReferenceButtonProps {
+  onSubmit: () => void;
+}
+
+export default function CreateReferenceButton(
+  { onSubmit }: CreateReferenceButtonProps,
+) {
   const dialog = useRef<HTMLDialogElement>(null);
 
   function handleCreate() {
@@ -14,6 +20,7 @@ export default function CreateReferenceButton() {
   }
 
   function handleSubmit() {
+    onSubmit();
     dialog.current?.close();
   }
 

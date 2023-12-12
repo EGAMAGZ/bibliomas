@@ -19,7 +19,7 @@ import * as $13 from "./routes/index.ts";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/Select.tsx";
 import * as $$2 from "./islands/SessionProvider.tsx";
-import * as $$3 from "./islands/gr-cu/ReferencesTable.tsx";
+import * as $$3 from "./islands/gr-cu/ReferencesManagement.tsx";
 import * as $$4 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
 import * as $$5 from "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx";
 import * as $$6 from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
@@ -47,7 +47,7 @@ const manifest = {
     "./islands/Input.tsx": $$0,
     "./islands/Select.tsx": $$1,
     "./islands/SessionProvider.tsx": $$2,
-    "./islands/gr-cu/ReferencesTable.tsx": $$3,
+    "./islands/gr-cu/ReferencesManagement.tsx": $$3,
     "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$4,
     "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx": $$5,
     "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $$6,

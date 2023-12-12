@@ -18,9 +18,18 @@ export const PaginationParamsSchema = z.object({
     .positive({
       message: "Limite debe ser un numero positivo",
     }),
+  userId: z.string({
+    invalid_type_error: "Id de usuario debe ser un texto",
+    required_error: "Id de usuario es requerido",
+  }).nonempty({
+    message: "Id de usuario es requerido",
+  }).uuid({
+    message: "Id de usuario invalido",
+  }),
 });
 
-export type Pagination<T> = ApiResponse<T[]> & {
+export type Pagination<T> = {
+  content: T[];
   pagination: {
     totalRecords: number;
     totalPages: number;

@@ -9,15 +9,19 @@ export const handler: Handlers = {
   async GET(req: Request, _ctx: HandlerContext) {
     const url = new URL(req.url);
 
-    const { page, limit } = PaginationParamsSchema.parse({
+    const { page, limit, userId } = PaginationParamsSchema.parse({
       page: url.searchParams.get("page"),
       limit: url.searchParams.get("limit"),
+      userId: url.searchParams.get("userId"),
     });
 
-    const [data, totalRecords] = await Promise.all([
+    const [bibliographie, totalRecords] = await Promise.all([
       prismaClient.bibliografias.findMany({
         skip: (page - 1) * limit,
         take: limit,
+        where: {
+          fk_id_est: userId,
+        },
       }),
       prismaClient.bibliografias.count(),
     ]);
@@ -26,14 +30,16 @@ export const handler: Handlers = {
 
     return new Response(
       JSON.stringify({
-        data,
-        pagination: {
-          totalRecords,
-          totalPages,
-          currentPage: page,
+        data: {
+          content: bibliographie,
+          pagination: {
+            currentPage: page,
+            totalPages,
+            totalRecords,
+          },
         },
         message: "Bibliografias obtenidas exitosamente",
-      } as Pagination<Bibliografias>),
+      } as ApiResponse<Pagination<Bibliografias>>),
       {
         headers: {
           "Content-Type": "application/json",

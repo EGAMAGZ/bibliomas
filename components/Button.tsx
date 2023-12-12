@@ -50,6 +50,7 @@ interface IconButtonProps {
   onClick?: (event: Event) => void;
   children: ComponentChildren;
   tooltip: string;
+  disabled?: boolean;
 }
 
 export function IconButton(props: IconButtonProps) {
@@ -62,6 +63,7 @@ export function IconButton(props: IconButtonProps) {
         class="btn btn-circle btn-sm btn-secondary"
         onClick={props.onClick}
         type="button"
+        disabled={!IS_BROWSER || props.disabled}
       >
         {props.children}
       </button>
