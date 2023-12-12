@@ -9,6 +9,7 @@ import { ApiResponse } from "@/schema/api-response.ts";
 import PaginationButtons from "../PaginationButtons.tsx";
 import DeleteReferenceDialog from "@/islands/gr-cu/DeleteReferenceDialog.tsx";
 import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
+import DownloadFileButton from "@/islands/gr-cu/DownloadFileButton.tsx";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
@@ -91,8 +92,6 @@ export default function ReferencesManagement() {
             disabled={isLoading.value}
           />
         </div>
-        <div class="flex justify-center">
-        </div>
         <CreateReferenceButton
           onSubmit={fetchBibliographies}
           classList="lg:w-fit lg:self-center"
@@ -143,6 +142,12 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
           >
             <IconCopy size={20} />
           </IconButton>
+
+          <DownloadFileButton
+            bibliographyId={props.bibliography.pk_id_biblio}
+            title={props.bibliography.txt_tit_biblio}
+            disabled={props.disabled}
+          />
         </div>
       </td>
     </tr>
