@@ -10,11 +10,10 @@ export default function GestionarReferenciasPage(
 ) {
   return (
     <div className="flex justify-center">
-      <div className="container p-4 mt-16 lg:p-0 flex flex-col items-center">
-        <span className="text-4xl lg:text-6xl font-sans font-bold">
+      <div className="container p-4 lg:p-0 flex flex-col items-center">
+        <span className="text-4xl lg:text-6xl font-sans font-bold mt-8 mb-16">
           Gestionar Referencias
         </span>
-
         <BibliomasSessionProvider
           value={{
             userId: props.state._id,
