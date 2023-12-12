@@ -60,10 +60,12 @@ export default function ReferencesManagement() {
               </tr>
             </thead>
             <tbody>
-              {pagination.value?.content.map((bibliography) => (
+              {pagination.value?.content.map((bibliography, index) => (
                 <ReferencesTableRow
+                  numberBibliography={(index + 1) +
+                    ((actualPage.value - 1) * DEFAULT_PAGINATION_LIMIT)}
+                  key={bibliography.pk_id_biblio}
                   bibliography={bibliography}
-                  onSelect={() => {}}
                   onEdit={() => {}}
                   onDelete={() => {
                     deletableBibliographie.value = bibliography.pk_id_biblio;
@@ -102,7 +104,7 @@ export default function ReferencesManagement() {
 
 interface ReferencesTableRowProps {
   bibliography: Bibliografias;
-  onSelect: () => void;
+  numberBibliography: number;
   onEdit: () => void;
   onDelete: () => void;
   onCopy: () => void;
@@ -113,7 +115,7 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
   return (
     <tr className="font-sans hover">
       <th>
-        <input type="checkbox" className="checkbox" onChange={props.onSelect} />
+        {props.numberBibliography}
       </th>
       <td>{props.bibliography.txt_aut_biblio}</td>
       <td>{props.bibliography.txt_fecha_pub_biblio}</td>
