@@ -59,7 +59,8 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
         type="button"
         class="btn btn-secondary btn-md lg:btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled ||
-          props.actualPage.value === props.totalPages}
+          props.actualPage.value === props.totalPages ||
+          props.totalPages === 0}
         onClick={handleNextPage}
       >
         <IconChevronRight />
@@ -68,7 +69,8 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
         type="button"
         class="btn btn-secondary btn-md lg:btn-sm join-item"
         disabled={!IS_BROWSER || props.disabled ||
-          props.actualPage.value === props.totalPages}
+          props.actualPage.value === props.totalPages ||
+          props.totalPages === 0}
         onClick={handleLastPage}
       >
         <IconChevronRightPipe />

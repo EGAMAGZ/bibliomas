@@ -9,6 +9,7 @@ import { ApiResponse } from "@/schema/api-response.ts";
 import PaginationButtons from "../PaginationButtons.tsx";
 import DeleteReferenceDialog from "@/islands/gr-cu/DeleteReferenceDialog.tsx";
 import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
+import DownloadFileButton from "@/islands/gr-cu/DownloadFileButton.tsx";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
@@ -19,6 +20,8 @@ export default function ReferencesManagement() {
   const deletableBibliographie = useSignal<number | null>(null);
 
   const fetchBibliographies = async () => {
+    isLoading.value = true;
+
     const searchParams = new URLSearchParams();
     searchParams.append("limit", String(DEFAULT_PAGINATION_LIMIT));
     searchParams.append("page", actualPage.value.toString());
@@ -33,13 +36,13 @@ export default function ReferencesManagement() {
     if (response.status === 200) {
       pagination.value = data;
     }
+
+    isLoading.value = false;
   };
 
   // Carga bibliografías al cargar la página
   useSignalEffect(() => {
-    isLoading.value = true;
     fetchBibliographies();
-    isLoading.value = false;
   });
 
   return (
@@ -58,10 +61,12 @@ export default function ReferencesManagement() {
               </tr>
             </thead>
             <tbody>
-              {pagination.value?.content.map((bibliography) => (
+              {pagination.value?.content.map((bibliography, index) => (
                 <ReferencesTableRow
+                  numberBibliography={(index + 1) +
+                    ((actualPage.value - 1) * DEFAULT_PAGINATION_LIMIT)}
+                  key={bibliography.pk_id_biblio}
                   bibliography={bibliography}
-                  onSelect={() => {}}
                   onEdit={() => {}}
                   onDelete={() => {
                     deletableBibliographie.value = bibliography.pk_id_biblio;
@@ -87,8 +92,6 @@ export default function ReferencesManagement() {
             disabled={isLoading.value}
           />
         </div>
-        <div class="flex justify-center">
-        </div>
         <CreateReferenceButton
           onSubmit={fetchBibliographies}
           classList="lg:w-fit lg:self-center"
@@ -100,7 +103,7 @@ export default function ReferencesManagement() {
 
 interface ReferencesTableRowProps {
   bibliography: Bibliografias;
-  onSelect: () => void;
+  numberBibliography: number;
   onEdit: () => void;
   onDelete: () => void;
   onCopy: () => void;
@@ -111,7 +114,7 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
   return (
     <tr className="font-sans hover">
       <th>
-        <input type="checkbox" className="checkbox" onChange={props.onSelect} />
+        {props.numberBibliography}
       </th>
       <td>{props.bibliography.txt_aut_biblio}</td>
       <td>{props.bibliography.txt_fecha_pub_biblio}</td>
@@ -139,6 +142,12 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
           >
             <IconCopy size={20} />
           </IconButton>
+
+          <DownloadFileButton
+            bibliographyId={props.bibliography.pk_id_biblio}
+            title={props.bibliography.txt_tit_biblio}
+            disabled={props.disabled}
+          />
         </div>
       </td>
     </tr>

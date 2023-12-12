@@ -21,6 +21,7 @@ export default function DeleteReferenceDialog(props: DeleteReferenceDialog) {
   });
 
   const deleteBibliographie = async () => {
+    isLoading.value = true;
     const response = await fetch(
       `/api/bibliographie/${props.bibliographyId.value}`,
       {
@@ -30,12 +31,11 @@ export default function DeleteReferenceDialog(props: DeleteReferenceDialog) {
     if (response.status === 200) {
       props.onAccept();
     }
+    isLoading.value = false;
   };
 
   const handleAccept = () => {
-    isLoading.value = true;
     deleteBibliographie();
-    isLoading.value = false;
 
     props.bibliographyId.value = null;
     props.onAccept();
