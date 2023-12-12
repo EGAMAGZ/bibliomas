@@ -19,6 +19,8 @@ export default function ReferencesManagement() {
   const deletableBibliographie = useSignal<number | null>(null);
 
   const fetchBibliographies = async () => {
+    isLoading.value = true;
+
     const searchParams = new URLSearchParams();
     searchParams.append("limit", String(DEFAULT_PAGINATION_LIMIT));
     searchParams.append("page", actualPage.value.toString());
@@ -33,13 +35,13 @@ export default function ReferencesManagement() {
     if (response.status === 200) {
       pagination.value = data;
     }
+
+    isLoading.value = false;
   };
 
   // Carga bibliografías al cargar la página
   useSignalEffect(() => {
-    isLoading.value = true;
     fetchBibliographies();
-    isLoading.value = false;
   });
 
   return (
