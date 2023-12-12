@@ -45,7 +45,7 @@ export default function ReferencesManagement() {
   return (
     <>
       <div class="flex flex-col gap-4 w-full">
-        <div className="flex flex-col">
+        <div className="overflow-x-auto">
           <table className="table table-zebra">
             <thead>
               <tr className="font-mono">
@@ -73,21 +73,24 @@ export default function ReferencesManagement() {
               ))}
             </tbody>
           </table>
-          <div class="self-end">
-            <PaginationButtons
-              actualPage={actualPage}
-              totalPages={pagination.value?.pagination.totalPages ?? 1}
-              disabled={isLoading.value}
-            />
-          </div>
+
           <DeleteReferenceDialog
             bibliographyId={deletableBibliographie}
             onAccept={fetchBibliographies}
           />
         </div>
-
+        <div class="self-center lg:self-end">
+          <PaginationButtons
+            actualPage={actualPage}
+            totalPages={pagination.value?.pagination.totalPages ?? 1}
+            disabled={isLoading.value}
+          />
+        </div>
+        <div class="flex justify-center">
+        </div>
         <CreateReferenceButton
           onSubmit={fetchBibliographies}
+          classList="lg:w-fit lg:self-center"
         />
       </div>
     </>

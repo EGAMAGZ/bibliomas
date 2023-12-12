@@ -4,10 +4,11 @@ import ReferenceDialog from "./ReferenceDialog.tsx";
 
 interface CreateReferenceButtonProps {
   onSubmit: () => void;
+  classList?: string;
 }
 
 export default function CreateReferenceButton(
-  { onSubmit }: CreateReferenceButtonProps,
+  { onSubmit, classList }: CreateReferenceButtonProps,
 ) {
   const dialog = useRef<HTMLDialogElement>(null);
 
@@ -30,6 +31,7 @@ export default function CreateReferenceButton(
         state="btn-primary"
         type="button"
         onClick={handleCreate}
+        classList={classList}
       >
         <span>Crear refencia</span>
       </Button>
