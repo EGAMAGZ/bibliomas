@@ -10,18 +10,18 @@ export interface NavbarProps {
 export default function Navbar({ email, username }: NavbarProps) {
   return (
     <div className="navbar font-sans">
-      <div className="flex-none ">
+      <div className="navbar-start">
         <label for="app-drawer" className="btn btn-square btn-ghost lg:hidden">
           <IconMenu2 size={24} />
         </label>
         <NavbarMenu />
       </div>
-      <div className="flex-1">
+      <div className="navbar-center">
         <a href={ROOT_URL} className="btn btn-ghost normal-case text-xl">
           Bibliomas
         </a>
       </div>
-      <div className="flex-none">
+      <div className="navbar-end">
         <div className="badge badge-primary badge-lg">
           <span>
             {username}

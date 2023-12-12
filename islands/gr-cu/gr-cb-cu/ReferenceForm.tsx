@@ -84,7 +84,7 @@ export function WebSiteForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -102,7 +102,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             name="txt_tit_biblio"
             required
           />
@@ -116,7 +116,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             name="txt_aut_biblio"
             required
           />
@@ -130,7 +130,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             name="txt_pag_biblio"
             required
           />
@@ -144,7 +144,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             name="txt_url_biblio"
             required
           />
@@ -159,7 +159,7 @@ export function WebSiteForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           />
         </FormControl>
@@ -173,13 +173,13 @@ export function WebSiteForm(
             type="date"
             className="input input-primary"
             name="txt_fecha_acc_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           />
         </FormControl>
 
         <DialogAction
-          disabled={!IS_BROWSER || loading.value}
+          disabled={loading.value}
           loading={loading.value}
           onCancel={onCancel}
         />
@@ -286,7 +286,7 @@ export function BookForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -304,7 +304,7 @@ export function BookForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             name="txt_tit_biblio"
             required
           />
@@ -318,7 +318,7 @@ export function BookForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             name="txt_aut_biblio"
             required
           />
@@ -333,7 +333,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           />
         </FormControl>
@@ -343,7 +343,7 @@ export function BookForm(
             type="text"
             className="input input-primary"
             name="txt_ubic_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
@@ -352,7 +352,7 @@ export function BookForm(
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
@@ -361,7 +361,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="num_volm_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
@@ -370,7 +370,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="num_edic_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
@@ -382,7 +382,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="num_npag_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
         <FormControl label="URL" error={errors.value.txt_url_biblio}>
@@ -390,7 +390,7 @@ export function BookForm(
             type="text"
             className="input input-primary"
             name="txt_url_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
         <InputFile
@@ -402,7 +402,7 @@ export function BookForm(
           accept=".pdf"
         />
         <DialogAction
-          disabled={!IS_BROWSER || loading.value}
+          disabled={loading.value}
           loading={loading.value}
           onCancel={onCancel}
         />
@@ -458,7 +458,7 @@ export function MoreForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -475,7 +475,7 @@ export function MoreForm(
           <select
             className="select select-primary select-bordered"
             name="txt_tip_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
@@ -495,7 +495,7 @@ export function MoreForm(
               type="checkbox"
               class="checkbox checkbox-primary"
               name="bool_online_biblio"
-              disabled={!IS_BROWSER || loading.value}
+              disabled={loading.value}
             />
           </label>
         </div>
@@ -509,7 +509,7 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_tit_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           />
         </FormControl>
@@ -523,7 +523,7 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_aut_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
             required
           />
         </FormControl>
@@ -536,7 +536,7 @@ export function MoreForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
@@ -545,7 +545,7 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
@@ -557,12 +557,12 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_url_biblio"
-            disabled={!IS_BROWSER || loading.value}
+            disabled={loading.value}
           />
         </FormControl>
 
         <DialogAction
-          disabled={!IS_BROWSER || loading.value}
+          disabled={loading.value}
           loading={loading.value}
           onCancel={onCancel}
         />

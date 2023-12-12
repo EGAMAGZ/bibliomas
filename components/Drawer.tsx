@@ -12,7 +12,7 @@ export default function Drawer({ children, username, email }: DrawerProps) {
   return (
     <div className="drawer">
       <input id="app-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col">
+      <div className="drawer-content flex flex-col pb-4">
         <Navbar username={username} email={email} />
         {children}
       </div>

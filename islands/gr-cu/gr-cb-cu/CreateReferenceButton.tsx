@@ -1,10 +1,15 @@
 import Button from "@/components/Button.tsx";
-import { useSignal } from "@preact/signals";
 import { useRef } from "preact/hooks";
-import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
 import ReferenceDialog from "./ReferenceDialog.tsx";
 
-export default function CreateReferenceButton() {
+interface CreateReferenceButtonProps {
+  onSubmit: () => void;
+  classList?: string;
+}
+
+export default function CreateReferenceButton(
+  { onSubmit, classList }: CreateReferenceButtonProps,
+) {
   const dialog = useRef<HTMLDialogElement>(null);
 
   function handleCreate() {
@@ -16,6 +21,7 @@ export default function CreateReferenceButton() {
   }
 
   function handleSubmit() {
+    onSubmit();
     dialog.current?.close();
   }
 
@@ -25,6 +31,7 @@ export default function CreateReferenceButton() {
         state="btn-primary"
         type="button"
         onClick={handleCreate}
+        classList={classList}
       >
         <span>Crear refencia</span>
       </Button>
