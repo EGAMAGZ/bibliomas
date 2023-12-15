@@ -5,6 +5,7 @@ import CreateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/CreateReferenceDialo
 interface CreateReferenceButtonProps {
   onSubmit: () => void;
   classList?: string;
+  disabled: boolean
 }
 
 export default function CreateReferenceButton(

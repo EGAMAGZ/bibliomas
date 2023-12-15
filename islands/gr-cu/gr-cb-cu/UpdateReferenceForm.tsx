@@ -485,7 +485,6 @@ export function MoreForm(
       ...props.bibliography.value,
       fk_id_carp: bibliomasSessionContext.folderId,
       fk_id_grup: bibliomasSessionContext.groupId,
-      txt_tip_biblio: TYPE_PUBLICATION.ArticuloRevista,
     } as UpdateMoreBibliographie) ?? DEFAULT_FORM,
     async () => {
       props.loading.value = true;
@@ -534,7 +533,11 @@ export function MoreForm(
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
             {Object.entries(MORE_TYPE_PUBLICATION).map(([key, value]) => (
-              <option value={value.value} className="uppercase">
+              <option
+                value={value.value}
+                className="uppercase"
+                selected={value.value === TYPE_PUBLICATION.ArticuloRevista}
+              >
                 {value.name}
               </option>
             ))}

@@ -103,6 +103,7 @@ export default function ReferencesManagement() {
         <CreateReferenceButton
           onSubmit={fetchBibliographies}
           classList="lg:w-fit lg:self-center"
+          disabled={isLoading.value}
         />
       </div>
     </>
