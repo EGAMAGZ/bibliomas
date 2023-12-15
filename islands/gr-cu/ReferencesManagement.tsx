@@ -88,10 +88,12 @@ export default function ReferencesManagement() {
             bibliographyId={deletableBibliographie}
             onAccept={fetchBibliographies}
           />
-          <UpdateReferenceDialog
-            bibliography={editableBibliographie}
-            onSubmit={fetchBibliographies}
-          />
+          {editableBibliographie.value && (
+            <UpdateReferenceDialog
+              bibliography={editableBibliographie}
+              onSubmit={fetchBibliographies}
+            />
+          )}
         </div>
         <div class="self-center lg:self-end">
           <PaginationButtons

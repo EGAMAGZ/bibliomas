@@ -1,4 +1,4 @@
-import { Signal, useSignal } from "@preact/signals";
+import { Signal, useSignal, useSignalEffect } from "@preact/signals";
 import { InputFile } from "../../Input.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import {
@@ -240,7 +240,10 @@ export function BookForm(
       );
       if (response.status === 200) {
         const { data } = (await response.json()) as ApiResponse<Bibliografias>;
-        await uploadFile(data.pk_id_biblio, bibliomasSessionContext.userId);
+        await handleUploadFile(
+          data.pk_id_biblio,
+          bibliomasSessionContext.userId,
+        );
       }
       props.loading.value = false;
       props.onSubmit();
@@ -250,7 +253,7 @@ export function BookForm(
   const file = useSignal<File | null>(null);
   const fileErrors = useSignal("");
 
-  const getBibliographyFile = async (bibliographyId: number) => {
+  const getBibliographyFileInfo = async (bibliographyId: number) => {
     const response = await fetch(
       `/api/bibliographie/file/${bibliographyId}`,
     );
@@ -260,44 +263,54 @@ export function BookForm(
     return data;
   };
 
-  async function uploadFile(bibliographieId: number, userId: string) {
+  async function uploadFile(
+    path: string,
+    newFile: File,
+    existsPreviousFile: boolean,
+  ) {
+    if (existsPreviousFile) {
+      return await supabase
+        .storage
+        .from(Bucket.bibliographyDocuments)
+        .update(
+          path,
+          newFile,
+        );
+    } else {
+      return await supabase
+        .storage
+        .from(Bucket.bibliographyDocuments)
+        .upload(
+          path,
+          newFile,
+        );
+    }
+  }
+
+  async function handleUploadFile(bibliographieId: number, userId: string) {
     if (!file.value) {
       return;
     }
 
     const newBibliographieFile = file.value;
-    const previousFile = await getBibliographyFile(bibliographieId);
+    const previousFile = await getBibliographyFileInfo(bibliographieId);
     const filePath = previousFile
       ? previousFile.txt_url_arch
       : `${userId}/${crypto.randomUUID()}.pdf`;
 
-    let error;
-    if (previousFile) {
-      const response = await supabase
-        .storage
-        .from(Bucket.bibliographyDocuments)
-        .update(
-          filePath,
-          newBibliographieFile,
-        );
-      error = response.error;
-    } else {
-      const response = await supabase
-        .storage
-        .from(Bucket.bibliographyDocuments)
-        .upload(
-          filePath,
-          newBibliographieFile,
-        );
-      error = response.error;
-    }
+    const { data, error } = await uploadFile(
+      filePath,
+      newBibliographieFile,
+      previousFile === null,
+    );
+
     if (error) {
       return;
     }
 
     const body = {
       fk_id_biblio: bibliographieId,
-      txt_url_arch: filePath,
+      txt_url_arch: data.path,
     } as BibliographieFile;
 
     if (previousFile) {
