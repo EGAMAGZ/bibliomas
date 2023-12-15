@@ -10,6 +10,7 @@ import PaginationButtons from "../PaginationButtons.tsx";
 import DeleteReferenceDialog from "@/islands/gr-cu/DeleteReferenceDialog.tsx";
 import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
 import DownloadFileButton from "@/islands/gr-cu/DownloadFileButton.tsx";
+import UpdateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
@@ -18,6 +19,7 @@ export default function ReferencesManagement() {
   const actualPage = useSignal(1);
   const pagination = useSignal<Pagination<Bibliografias> | null>(null);
   const deletableBibliographie = useSignal<number | null>(null);
+  const editableBibliographie = useSignal<Bibliografias | null>(null);
 
   const fetchBibliographies = async () => {
     isLoading.value = true;
@@ -67,7 +69,9 @@ export default function ReferencesManagement() {
                     ((actualPage.value - 1) * DEFAULT_PAGINATION_LIMIT)}
                   key={bibliography.pk_id_biblio}
                   bibliography={bibliography}
-                  onEdit={() => {}}
+                  onEdit={() => {
+                    editableBibliographie.value = bibliography;
+                  }}
                   onDelete={() => {
                     deletableBibliographie.value = bibliography.pk_id_biblio;
                   }}
@@ -83,6 +87,10 @@ export default function ReferencesManagement() {
           <DeleteReferenceDialog
             bibliographyId={deletableBibliographie}
             onAccept={fetchBibliographies}
+          />
+          <UpdateReferenceDialog
+            bibliography={editableBibliographie}
+            onSubmit={fetchBibliographies}
           />
         </div>
         <div class="self-center lg:self-end">

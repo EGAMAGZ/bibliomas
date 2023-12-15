@@ -10,6 +10,25 @@ export const TYPE_PUBLICATION = {
   Varios: "Varios",
 } as const;
 
+export const MORE_TYPE_PUBLICATION = {
+  ArticuloRevista: {
+    name: "Artículo de Revista",
+    value: "ArticuloRevista",
+  },
+  ArticuloPeriodico: {
+    name: "Artículo de Periodico",
+    value: "ArticuloPeriodico",
+  },
+  Peliculas: {
+    name: "Películas",
+    value: "Peliculas",
+  },
+  Varios: {
+    name: "Varios",
+    value: "Varios",
+  },
+} as const;
+
 export const TypPublicationSchema = z.nativeEnum(
   TYPE_PUBLICATION,
 );
@@ -392,4 +411,4 @@ export const CreateBibliographieSchema = BibliographieSchema.omit({
   pk_id_biblio: true,
 });
 
-export const UpdateBookBibliographie = BibliographieSchema;
+export const UpdateBibliographieSchema = BibliographieSchema;

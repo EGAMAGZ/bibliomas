@@ -5,6 +5,7 @@ import {
   CreateBookBibliographieSchema,
   CreateMoreBibliographieSchema,
   CreateWebSiteBibliographieSchema,
+  MORE_TYPE_PUBLICATION,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
   TypePublication,
@@ -479,9 +480,10 @@ export function MoreForm(
             required
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
-            // TODO: Remover sitioweb y libro
-            {Object.entries(TYPE_PUBLICATION).map(([key, value]) => (
-              <option value={key} className="uppercase">{value}</option>
+            {Object.entries(MORE_TYPE_PUBLICATION).map(([key, value]) => (
+              <option value={value.value} className="uppercase">
+                {value.name}
+              </option>
             ))}
           </select>
         </FormControl>

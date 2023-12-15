@@ -1,6 +1,5 @@
 import Button from "@/components/Button.tsx";
 import { useRef } from "preact/hooks";
-import ReferenceDialog from "./ReferenceDialog.tsx";
 import CreateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
 
 interface CreateReferenceButtonProps {

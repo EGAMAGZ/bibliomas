@@ -1,34 +1,82 @@
-import { Signal, useSignal } from "@preact/signals";
 import { Ref } from "preact";
-import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
-import {
-  BookForm,
-  MoreForm,
-  WebSiteForm,
-} from "@/islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
+import { Signal, useSignal, useSignalEffect } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
+import { BookForm, MoreForm, WebSiteForm } from "./UpdateReferenceForm.tsx";
+import { useRef } from "preact/hooks";
+import { Bibliografias } from "@/generated/client/deno/edge.ts";
+
+interface UpdateReferenceDialogProps {
+  onSubmit: () => void;
+  bibliography: Signal<Bibliografias | null>;
+}
+export default function UpdateReferenceDialog(
+  props: UpdateReferenceDialogProps,
+) {
+  const isLoading = useSignal(false);
+  const typePublication = useSignal<TypePublication>(
+    TYPE_PUBLICATION.SitioWeb,
+  );
+
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useSignalEffect(() => {
+    if (props.bibliography.value) {
+      typePublication.value = props.bibliography.value.txt_tip_biblio;
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  });
+
+  const handleSubmit = () => {
+    props.bibliography.value = null;
+    props.onSubmit();
+  };
+
+  const handleCancel = () => {
+    props.bibliography.value = null;
+  };
+
+  return (
+    <ReferenceDialog
+      dialogRef={dialogRef}
+      onSubmit={handleSubmit}
+      onCancel={handleCancel}
+      loading={isLoading}
+      bibliography={props.bibliography}
+      typePublication={typePublication}
+    />
+  );
+}
 
 interface ReferenceDialogProps {
   dialogRef: Ref<HTMLDialogElement>;
   onSubmit: () => void;
   onCancel: () => void;
   loading: Signal<boolean>;
+  bibliography: Signal<Bibliografias | null>;
+  typePublication: Signal<TypePublication>;
 }
 
-export default function ReferenceDialog(
+function ReferenceDialog(
   props: ReferenceDialogProps,
 ) {
-  const typePublication = useSignal<TypePublication>(
-    TYPE_PUBLICATION.SitioWeb,
-  );
-
   return (
-    <dialog ref={props.dialogRef} className="modal modal-bottom sm:modal-middle">
+    <dialog
+      ref={props.dialogRef}
+      className="modal modal-bottom sm:modal-middle"
+      onClose={props.onCancel}
+    >
       <div className="modal-box">
-        <Tabs disabled={props.loading.value} typePublication={typePublication} />
+        <Tabs
+          disabled={props.loading.value}
+          typePublication={props.typePublication}
+        />
         <Form
           loading={props.loading}
-          typePublication={typePublication}
+          typePublication={props.typePublication}
+          bibliography={props.bibliography}
           onCancel={props.onCancel}
           onSubmit={props.onSubmit}
         />
@@ -38,44 +86,48 @@ export default function ReferenceDialog(
 }
 
 interface FormProps {
-  typePublication: Signal<TypePublication>;
   loading: Signal<boolean>;
+  typePublication: Signal<TypePublication>;
+  bibliography: Signal<Bibliografias | null>;
   onCancel: () => void;
   onSubmit: () => void;
 }
 
 function Form(
-  { loading, typePublication, onCancel, onSubmit }: FormProps,
+  props: FormProps,
 ) {
   const handleSubmit = () => {
-    typePublication.value = TYPE_PUBLICATION.SitioWeb;
-    onSubmit();
+    props.typePublication.value = TYPE_PUBLICATION.SitioWeb;
+    props.onSubmit();
   };
 
   function form() {
-    switch (typePublication.value) {
+    switch (props.typePublication.value) {
       case TYPE_PUBLICATION.SitioWeb:
         return (
           <WebSiteForm
-            loading={loading}
-            onCancel={onCancel}
+            loading={props.loading}
+            onCancel={props.onCancel}
             onSubmit={handleSubmit}
+            bibliography={props.bibliography}
           />
         );
       case TYPE_PUBLICATION.Libro:
         return (
           <BookForm
-            loading={loading}
-            onCancel={onCancel}
+            loading={props.loading}
+            onCancel={props.onCancel}
             onSubmit={handleSubmit}
+            bibliography={props.bibliography}
           />
         );
       default:
         return (
           <MoreForm
-            loading={loading}
-            onCancel={onCancel}
+            loading={props.loading}
+            onCancel={props.onCancel}
             onSubmit={handleSubmit}
+            bibliography={props.bibliography}
           />
         );
     }
