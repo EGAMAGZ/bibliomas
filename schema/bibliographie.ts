@@ -119,6 +119,8 @@ const WebSiteBibliographie = z.object({
   }),
 });
 
+export type WebSiteBibliographie = z.infer<typeof WebSiteBibliographie>;
+
 export const CreateWebSiteBibliographieSchema = WebSiteBibliographie.omit({
   pk_id_biblio: true,
 });
@@ -169,7 +171,7 @@ const BookBibliographie = z.object({
     message: "Fecha de publicacion debe tener como minimo 1000",
   }).max(getActualYear(), {
     message: `Fecha de publicacion debe tener como maximo ${getActualYear()}`,
-  }).optional(),
+  }),
   txt_ubic_biblio: z.string({
     required_error: "Ubicacion es requerido",
     invalid_type_error: "Ubicacion debe ser texto plano",
@@ -213,6 +215,8 @@ const BookBibliographie = z.object({
     message: "Id de estante invalido",
   }),
 });
+
+export type BookBibliographie = z.infer<typeof BookBibliographie>;
 
 export const CreateBookBibliographieSchema = BookBibliographie.omit({
   pk_id_biblio: true,
@@ -296,6 +300,8 @@ export const MoreBibliographieSchema = z.object({
     message: "Id de estante invalido",
   }),
 });
+
+export type MoreBibliographie = z.infer<typeof MoreBibliographieSchema>;
 
 export const CreateMoreBibliographieSchema = MoreBibliographieSchema.omit({
   pk_id_biblio: true,

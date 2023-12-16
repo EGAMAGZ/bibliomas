@@ -326,12 +326,14 @@ export function BookForm(
         <FormControl
           label="Fecha de publicación"
           error={errors.value.txt_fecha_pub_biblio}
+          required
         >
           <input
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
             disabled={loading.value}
+            required
           />
         </FormControl>
 

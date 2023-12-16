@@ -1,8 +1,9 @@
 import { Bibliografias } from "@/generated/client/deno/edge.ts";
 import {
+  BookBibliographie,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
-  TypePublication,
+  WebSiteBibliographie,
 } from "@/schema/bibliographie.ts";
 import { formatAccessDate } from "@/utils/date.ts";
 import { authorsRegex } from "@/utils/regex.ts";
@@ -10,14 +11,19 @@ import { authorsRegex } from "@/utils/regex.ts";
 function formatAuthorsName(autors: string) {
   if (!authorsRegex.test(autors)) {
     return autors;
-  } else {
-    return autors.split(";").map((autor, index, array) => {
-      const [name, lastname] = autor.split(" ");
-      return `${array.length === index + 1 ? "y " : ""} ${lastname}, ${
-        name[0]
-      }.`;
-    }).join(", ");
   }
+  const authorsList = autors.split(";");
+  if (authorsList.length === 1) {
+    const [name, lastname] = authorsList[0].split(" ");
+
+    return `${lastname}, ${name[0]}.`;
+  }
+
+  return authorsList.map((author, index, array) => {
+    const [name, lastname] = author.split(" ");
+
+    return `${array.length === index + 1 ? "y " : ""} ${lastname}, ${name[0]}.`;
+  }).join(", ");
 }
 
 interface Reference {
@@ -27,28 +33,49 @@ interface Reference {
 // Formato APA
 class ApaWebSiteReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    const authors = formatAuthorsName(bibliography.txt_aut_biblio);
-    const year = bibliography.txt_fecha_pub_biblio ?? "s.f.";
-    const title = bibliography.txt_tit_biblio;
-    const webSiteName = bibliography.txt_pag_biblio !== authors
-      ? `${bibliography.txt_pag_biblio}. `
+    const info = bibliography as WebSiteBibliographie;
+
+    const authors = formatAuthorsName(info.txt_aut_biblio);
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const title = info.txt_tit_biblio;
+    const webSiteName = info.txt_pag_biblio !== authors
+      ? `${info.txt_pag_biblio}. `
       : "";
-    const accesDate = bibliography.txt_fecha_acc_biblio
+    const accesDate = info.txt_fecha_acc_biblio
       ? `Recuperado el ${
-        formatAccessDate(bibliography.txt_fecha_acc_biblio, navigator.language)
+        formatAccessDate(info.txt_fecha_acc_biblio, navigator.language)
       } de `
       : "";
-    const url = bibliography.txt_url_biblio;
+    const url = info.txt_url_biblio;
 
     const reference =
-      `${authors} (${year}). ${title}. ${webSiteName}${accesDate}${url}.`;
+      `${authors} (${year}). ${title}. ${webSiteName}${accesDate}${url}`;
     return reference;
   }
 }
 
 class ApaBookReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as BookBibliographie;
+
+    const authors = formatAuthorsName(bibliography.txt_aut_biblio);
+    const year = bibliography.txt_fecha_pub_biblio;
+    const title = bibliography.txt_tit_biblio;
+    const editorial = bibliography.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+    const edition = info.num_edic_biblio ? `${info.num_edic_biblio}° ed.` : "";
+    const volume = info.num_volm_biblio ? `Vol. ${info.num_volm_biblio}` : "";
+    const page = info.num_npag_biblio ? `pp. ${info.num_npag_biblio}` : "";
+
+    const bibliographicDataJoined = [edition, volume, page].filter((i) => i)
+      .join(", ");
+    const bibliographicData = bibliographicDataJoined
+      ? `(${bibliographicDataJoined})`
+      : "";
+
+    const reference =
+      `${authors} ${year}. ${title} ${bibliographicData}. ${editorial}. ${url}`;
+    return reference;
   }
 }
 
