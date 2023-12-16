@@ -92,7 +92,7 @@ const WebSiteBibliographie = z.object({
     message: "Fecha de publicacion debe tener como minimo 1000",
   }).max(getActualYear(), {
     message: `Fecha de publicacion debe tener como maximo ${getActualYear()}`,
-  }),
+  }).optional(),
   txt_fecha_acc_biblio: z.coerce.date({
     required_error: "Fecha de acceso es requerido",
     invalid_type_error: "Fecha de acceso debe ser un fecha",
@@ -169,7 +169,7 @@ const BookBibliographie = z.object({
     message: "Fecha de publicacion debe tener como minimo 1000",
   }).max(getActualYear(), {
     message: `Fecha de publicacion debe tener como maximo ${getActualYear()}`,
-  }),
+  }).optional(),
   txt_ubic_biblio: z.string({
     required_error: "Ubicacion es requerido",
     invalid_type_error: "Ubicacion debe ser texto plano",

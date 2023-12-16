@@ -51,12 +51,13 @@ interface IconButtonProps {
   children: ComponentChildren;
   tooltip: string;
   disabled?: boolean;
+  showTooltip?: boolean;
 }
 
 export function IconButton(props: IconButtonProps) {
   return (
     <div
-      class="tooltip tooltip-secondary"
+      class={`tooltip ${props.showTooltip ? "tooltip-open	" : ""}`}
       data-tip={props.tooltip}
     >
       <button

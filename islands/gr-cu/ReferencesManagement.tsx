@@ -11,6 +11,7 @@ import DeleteReferenceDialog from "@/islands/gr-cu/DeleteReferenceDialog.tsx";
 import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
 import DownloadFileButton from "@/islands/gr-cu/DownloadFileButton.tsx";
 import UpdateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
+import GenerateReferenceButton from "@/islands/gr-cu/GenerateReferenceButton.tsx";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
@@ -75,9 +76,6 @@ export default function ReferencesManagement() {
                   onDelete={() => {
                     deletableBibliographie.value = bibliography.pk_id_biblio;
                   }}
-                  onCopy={() => {
-                    console.log("copiar");
-                  }}
                   disabled={isLoading.value}
                 />
               ))}
@@ -117,7 +115,6 @@ interface ReferencesTableRowProps {
   numberBibliography: number;
   onEdit: () => void;
   onDelete: () => void;
-  onCopy: () => void;
   disabled: boolean;
 }
 
@@ -146,13 +143,11 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
           >
             <IconTrash size={20} />
           </IconButton>
-          <IconButton
-            tooltip="Copiar referencia"
-            onClick={props.onCopy}
+
+          <GenerateReferenceButton
+            bibliography={props.bibliography}
             disabled={props.disabled}
-          >
-            <IconCopy size={20} />
-          </IconButton>
+          />
 
           <DownloadFileButton
             bibliographyId={props.bibliography.pk_id_biblio}
