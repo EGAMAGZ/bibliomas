@@ -11,9 +11,11 @@ function formatAuthorsName(autors: string) {
   if (!authorsRegex.test(autors)) {
     return autors;
   } else {
-    return autors.split(";").map((autor) => {
+    return autors.split(";").map((autor, index, array) => {
       const [name, lastname] = autor.split(" ");
-      return `${lastname}, ${name[0]}.`;
+      return `${array.length === index + 1 ? "y " : ""} ${lastname}, ${
+        name[0]
+      }.`;
     }).join(", ");
   }
 }
