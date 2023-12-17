@@ -1,8 +1,8 @@
 import { Ref } from "preact";
 import { Signal, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { TypePublication, TYPE_PUBLICATION } from "@/schema/bibliographie.ts";
-import { WebSiteForm, BookForm, MoreForm } from "./CreateReferenceForm.tsx";
+import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
+import { BookForm, MoreForm, WebSiteForm } from "./CreateReferenceForm.tsx";
 
 interface CreateReferenceDialogProps {
   dialogRef: Ref<HTMLDialogElement>;
@@ -23,7 +23,6 @@ export default function CreateReferenceDialog(
   );
 }
 
-
 interface ReferenceDialogProps {
   dialogRef: Ref<HTMLDialogElement>;
   onSubmit: () => void;
@@ -39,9 +38,15 @@ function ReferenceDialog(
   );
 
   return (
-    <dialog ref={props.dialogRef} className="modal modal-bottom sm:modal-middle">
+    <dialog
+      ref={props.dialogRef}
+      className="modal modal-bottom sm:modal-middle"
+    >
       <div className="modal-box">
-        <Tabs disabled={props.loading.value} typePublication={typePublication} />
+        <Tabs
+          disabled={props.loading.value}
+          typePublication={typePublication}
+        />
         <Form
           loading={props.loading}
           typePublication={typePublication}
@@ -145,13 +150,6 @@ function Tabs({ disabled, typePublication }: TabsProps) {
         disabled={!IS_BROWSER || disabled}
       >
         Más
-      </button>
-      <button
-        className="tab"
-        type="button"
-        disabled={!IS_BROWSER || disabled}
-      >
-        Ayuda
       </button>
     </div>
   );

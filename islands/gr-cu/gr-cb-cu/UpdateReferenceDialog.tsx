@@ -182,13 +182,6 @@ function Tabs({ disabled, typePublication }: TabsProps) {
       >
         Más
       </button>
-      <button
-        className="tab"
-        type="button"
-        disabled={!IS_BROWSER || disabled}
-      >
-        Ayuda
-      </button>
     </div>
   );
 }

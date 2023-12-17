@@ -421,7 +421,7 @@ export function MoreForm(
     txt_tip_biblio: TYPE_PUBLICATION.ArticuloRevista,
     txt_fmt_biblio: TYPE_FORMATS.Apa,
     bool_online_biblio: false,
-    txt_edit_biblio: undefined,
+    txt_edit_biblio: "",
     txt_fecha_pub_biblio: undefined,
     txt_url_biblio: undefined,
     fk_id_est: bibliomasSessionContext.userId,
@@ -540,12 +540,17 @@ export function MoreForm(
           />
         </FormControl>
 
-        <FormControl label="Editorial" error={errors.value.txt_edit_biblio}>
+        <FormControl
+          label="Periodico/Revista/Productora"
+          error={errors.value.txt_edit_biblio}
+          required
+        >
           <input
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
             disabled={loading.value}
+            required
           />
         </FormControl>
 

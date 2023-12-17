@@ -1,18 +1,20 @@
 import { Bibliografias } from "@/generated/client/deno/edge.ts";
 import {
   BookBibliographie,
+  MoreBibliographie,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
+  TypeFormat,
   WebSiteBibliographie,
 } from "@/schema/bibliographie.ts";
 import { formatAccessDate } from "@/utils/date.ts";
 import { authorsRegex } from "@/utils/regex.ts";
 
-function formatAuthorsName(autors: string) {
-  if (!authorsRegex.test(autors)) {
-    return autors;
+function formatAuthorsName(authors: string) {
+  if (!authorsRegex.test(authors)) {
+    return authors;
   }
-  const authorsList = autors.split(";");
+  const authorsList = authors.split(";");
   if (authorsList.length === 1) {
     const [name, lastname] = authorsList[0].split(" ");
 
@@ -24,6 +26,17 @@ function formatAuthorsName(autors: string) {
 
     return `${array.length === index + 1 ? "y " : ""} ${lastname}, ${name[0]}.`;
   }).join(", ");
+}
+
+function getDirectorTitle(authors: string) {
+  if (!authorsRegex.test(authors)) {
+    return "Director";
+  }
+  const authorsList = authors.split(";");
+  if (authorsList.length === 1) {
+    return "Director";
+  }
+  return "Directores";
 }
 
 interface Reference {
@@ -81,19 +94,47 @@ class ApaBookReference implements Reference {
 
 class ApaMagazineReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const autors = formatAuthorsName(info.txt_aut_biblio);
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const title = info.txt_tit_biblio;
+    const magazineName = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+
+    const reference = `${autors} (${year}). ${title}. ${magazineName}.${url}`;
+    return reference;
   }
 }
 
 class ApaNewspaperReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const autors = formatAuthorsName(info.txt_aut_biblio);
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const title = info.txt_tit_biblio;
+    const newspaperName = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+
+    const reference = `${autors} (${year}). ${title}. ${newspaperName}.${url}`;
+    return reference;
   }
 }
 
 class ApaMoviesReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const autors = formatAuthorsName(info.txt_aut_biblio);
+    const directorTitle = getDirectorTitle(info.txt_aut_biblio);
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const title = info.txt_tit_biblio;
+    const procuder = info.txt_edit_biblio;
+
+    const reference =
+      `${autors} (${directorTitle}). (${year}). ${title} [Película]. ${procuder}.`;
+    return reference;
   }
 }
 
@@ -234,8 +275,6 @@ class ApaReferenceFactory implements AbstractRefrenceFactory {
         return new ApaNewspaperReference();
       case TYPE_PUBLICATION.Peliculas:
         return new ApaMoviesReference();
-      case TYPE_PUBLICATION.Varios:
-        return new ApaOthersReference();
       default:
         return new ApaOthersReference();
     }
@@ -255,8 +294,6 @@ class ChicagoReferenceFactory implements AbstractRefrenceFactory {
         return new ChicagoNewspaperReference();
       case TYPE_PUBLICATION.Peliculas:
         return new ChicagoMoviesReference();
-      case TYPE_PUBLICATION.Varios:
-        return new ChicagoOthersReference();
       default:
         return new ChicagoOthersReference();
     }
@@ -276,8 +313,6 @@ class MlaReferenceFactory implements AbstractRefrenceFactory {
         return new MlaNewspaperReference();
       case TYPE_PUBLICATION.Peliculas:
         return new MlaMoviesReference();
-      case TYPE_PUBLICATION.Varios:
-        return new MlaOthersReference();
       default:
         return new MlaOthersReference();
     }
@@ -297,16 +332,14 @@ class IeeeReferenceFactory implements AbstractRefrenceFactory {
         return new IeeeNewspaperReference();
       case TYPE_PUBLICATION.Peliculas:
         return new IeeeMoviesReference();
-      case TYPE_PUBLICATION.Varios:
-        return new IeeeOthersReference();
       default:
         return new IeeeOthersReference();
     }
   }
 }
 
-function createFactory(bibliography: Bibliografias): AbstractRefrenceFactory {
-  switch (bibliography.txt_fmt_biblio) {
+function createFactory(format: TypeFormat): AbstractRefrenceFactory {
+  switch (format) {
     case TYPE_FORMATS.Apa:
       return new ApaReferenceFactory();
     case TYPE_FORMATS.Chicago:
@@ -321,7 +354,7 @@ function createFactory(bibliography: Bibliografias): AbstractRefrenceFactory {
 }
 
 export function generateReference(bibliography: Bibliografias): string {
-  const factory = createFactory(bibliography);
+  const factory = createFactory(bibliography.txt_fmt_biblio);
   const reference = factory.createRefecence(bibliography);
   return reference.generate(bibliography);
 }

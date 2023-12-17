@@ -1,14 +1,9 @@
-import { Signal, useSignal, useSignalEffect } from "@preact/signals";
+import { Signal, useSignal } from "@preact/signals";
 import { InputFile } from "../../Input.tsx";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import {
-  CreateBookBibliographieSchema,
-  CreateMoreBibliographieSchema,
-  CreateWebSiteBibliographieSchema,
   MORE_TYPE_PUBLICATION,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
-  TypePublication,
   UpdateBookBibliographie,
   UpdateBookBibliographieSchema,
   UpdateMoreBibliographie,
@@ -609,12 +604,17 @@ export function MoreForm(
           />
         </FormControl>
 
-        <FormControl label="Editorial" error={errors.value.txt_edit_biblio}>
+        <FormControl
+          label="Periodico/Revista/Productora"
+          error={errors.value.txt_edit_biblio}
+          required
+        >
           <input
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
             disabled={props.loading.value}
+            required
           />
         </FormControl>
 

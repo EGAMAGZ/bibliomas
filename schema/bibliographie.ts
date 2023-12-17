@@ -7,7 +7,6 @@ export const TYPE_PUBLICATION = {
   ArticuloRevista: "ArticuloRevista",
   ArticuloPeriodico: "ArticuloPeriodico",
   Peliculas: "Peliculas",
-  Varios: "Varios",
 } as const;
 
 export const MORE_TYPE_PUBLICATION = {
@@ -22,10 +21,6 @@ export const MORE_TYPE_PUBLICATION = {
   Peliculas: {
     name: "Películas",
     value: "Peliculas",
-  },
-  Varios: {
-    name: "Varios",
-    value: "Varios",
   },
 } as const;
 
@@ -276,7 +271,7 @@ export const MoreBibliographieSchema = z.object({
   txt_edit_biblio: z.string({
     invalid_type_error: "Editorial debe ser texto plano",
     required_error: "Editorial es requerido",
-  }).optional(),
+  }),
   txt_url_biblio: z.string({
     invalid_type_error: "Url debe ser texto plano",
     required_error: "Url es requerido",

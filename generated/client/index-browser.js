@@ -188,8 +188,7 @@ exports.TipoPublicacion = exports.$Enums.TipoPublicacion = {
   Libro: 'Libro',
   ArticuloRevista: 'ArticuloRevista',
   ArticuloPeriodico: 'ArticuloPeriodico',
-  Peliculas: 'Peliculas',
-  Varios: 'Varios'
+  Peliculas: 'Peliculas'
 };
 
 exports.TipoFormato = exports.$Enums.TipoFormato = {
