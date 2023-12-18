@@ -50,7 +50,7 @@ export default function DeleteReferenceDialog(props: DeleteReferenceDialog) {
       <ConfirmDialog
         dialogRef={dialogRef}
         title="Eliminar Referencia"
-        message="¿Está seguro de que desea eliminar esta referencia?"
+        message="¿Está seguro de que desea eliminar esta referencia? chi"
         onAccept={handleAccept}
         onCancel={handleCancel}
         loading={isLoading.value}
