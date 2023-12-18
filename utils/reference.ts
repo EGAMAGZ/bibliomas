@@ -7,10 +7,19 @@ import {
   TypeFormat,
   WebSiteBibliographie,
 } from "@/schema/bibliographie.ts";
-import { formatAccessDate } from "@/utils/date.ts";
 import { authorsRegex } from "@/utils/regex.ts";
 
-function formatAuthorsName(authors: string) {
+export const formatApaAccessDate = (date: Date, lang: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+
+  return new Intl.DateTimeFormat(lang, options).format(new Date());
+};
+
+function formatApaAuthorsName(authors: string) {
   if (!authorsRegex.test(authors)) {
     return authors;
   }
@@ -48,7 +57,7 @@ class ApaWebSiteReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as WebSiteBibliographie;
 
-    const authors = formatAuthorsName(info.txt_aut_biblio);
+    const authors = formatApaAuthorsName(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
     const webSiteName = info.txt_pag_biblio !== authors
@@ -56,7 +65,7 @@ class ApaWebSiteReference implements Reference {
       : "";
     const accesDate = info.txt_fecha_acc_biblio
       ? `Recuperado el ${
-        formatAccessDate(info.txt_fecha_acc_biblio, navigator.language)
+        formatApaAccessDate(info.txt_fecha_acc_biblio, navigator.language)
       } de `
       : "";
     const url = info.txt_url_biblio;
@@ -71,7 +80,7 @@ class ApaBookReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as BookBibliographie;
 
-    const authors = formatAuthorsName(bibliography.txt_aut_biblio);
+    const authors = formatApaAuthorsName(bibliography.txt_aut_biblio);
     const year = bibliography.txt_fecha_pub_biblio;
     const title = bibliography.txt_tit_biblio;
     const editorial = bibliography.txt_edit_biblio;
@@ -96,7 +105,7 @@ class ApaMagazineReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as MoreBibliographie;
 
-    const autors = formatAuthorsName(info.txt_aut_biblio);
+    const autors = formatApaAuthorsName(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
     const magazineName = info.txt_edit_biblio;
@@ -111,7 +120,7 @@ class ApaNewspaperReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as MoreBibliographie;
 
-    const autors = formatAuthorsName(info.txt_aut_biblio);
+    const autors = formatApaAuthorsName(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
     const newspaperName = info.txt_edit_biblio;
@@ -126,7 +135,7 @@ class ApaMoviesReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as MoreBibliographie;
 
-    const autors = formatAuthorsName(info.txt_aut_biblio);
+    const autors = formatApaAuthorsName(info.txt_aut_biblio);
     const directorTitle = getDirectorTitle(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
