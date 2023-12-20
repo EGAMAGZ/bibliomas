@@ -12,6 +12,10 @@ import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
 import DownloadFileButton from "@/islands/gr-cu/DownloadFileButton.tsx";
 import UpdateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
 import GenerateReferenceButton from "@/islands/gr-cu/GenerateReferenceButton.tsx";
+import {
+  TYPE_FORMATS_OPTIONS,
+  TYPE_PUBLICATION_OPTIONS,
+} from "@/schema/bibliographie.ts";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
@@ -60,6 +64,7 @@ export default function ReferencesManagement() {
                 <th>Autor</th>
                 <th>Año</th>
                 <th>Titulo</th>
+                <th>Tipo</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -127,6 +132,16 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
       <td>{props.bibliography.txt_aut_biblio}</td>
       <td>{props.bibliography.txt_fecha_pub_biblio}</td>
       <td>{props.bibliography.txt_tit_biblio}</td>
+      <td>
+        <div>
+          <div class="badge badge-primary font-mono">
+            {TYPE_FORMATS_OPTIONS[props.bibliography.txt_fmt_biblio].name}
+          </div>
+          <div class="text-sm opacity-50 ">
+            {TYPE_PUBLICATION_OPTIONS[props.bibliography.txt_tip_biblio].name}
+          </div>
+        </div>
+      </td>
       <td>
         <div className="flex gap-2">
           <IconButton

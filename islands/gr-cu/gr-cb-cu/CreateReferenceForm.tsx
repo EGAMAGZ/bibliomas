@@ -5,7 +5,7 @@ import {
   CreateBookBibliographieSchema,
   CreateMoreBibliographieSchema,
   CreateWebSiteBibliographieSchema,
-  MORE_TYPE_PUBLICATION,
+  MORE_TYPE_PUBLICATION_OPTIONS,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
   TypePublication,
@@ -478,7 +478,7 @@ export function MoreForm(
             required
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
-            {Object.entries(MORE_TYPE_PUBLICATION).map(([key, value]) => (
+            {Object.entries(MORE_TYPE_PUBLICATION_OPTIONS).map(([key, value]) => (
               <option value={value.value} className="uppercase">
                 {value.name}
               </option>

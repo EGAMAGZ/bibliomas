@@ -9,14 +9,14 @@ import {
 } from "@/schema/bibliographie.ts";
 import { authorsRegex } from "@/utils/regex.ts";
 
-export const formatApaAccessDate = (date: Date, lang: string) => {
+const formatApaAccessDate = (date: Date) => {
   const options: Intl.DateTimeFormatOptions = {
     day: "numeric",
     month: "long",
     year: "numeric",
   };
 
-  return new Intl.DateTimeFormat(lang, options).format(new Date());
+  return new Intl.DateTimeFormat(navigator.language, options).format(date);
 };
 
 function formatApaAuthorsName(authors: string) {
@@ -64,9 +64,7 @@ class ApaWebSiteReference implements Reference {
       ? `${info.txt_pag_biblio}. `
       : "";
     const accesDate = info.txt_fecha_acc_biblio
-      ? `Recuperado el ${
-        formatApaAccessDate(info.txt_fecha_acc_biblio, navigator.language)
-      } de `
+      ? `Recuperado el ${formatApaAccessDate(info.txt_fecha_acc_biblio)} de `
       : "";
     const url = info.txt_url_biblio;
 
@@ -155,9 +153,51 @@ class ApaOthersReference implements Reference {
 
 // Formato Chicago
 
+const formatChicagoAuthorsName = (authors: string) => {
+  if (!authorsRegex.test(authors)) {
+    return authors;
+  }
+
+  const authorsList = authors.split(";");
+
+  if (authorsList.length === 1) {
+    const [name, lastname] = authorsList[0].split(" ");
+    return `${lastname}, ${name}.`;
+  }
+
+  return authorsList.map((author, index, array) => {
+    const [name, lastname] = author.split(" ");
+    if (index === array.length - 1) {
+      return `y ${lastname}, ${name}.`;
+    }
+    return `${lastname}, ${name}`;
+  }).join(", ");
+};
+
+const formatChicagoAccessDate = (date: Date) => {
+  const month = date.toLocaleString(navigator.language, { month: "long" });
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  return `${month} ${day}, ${year}`;
+};
+
 class ChicagoWebSiteReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as WebSiteBibliographie;
+
+    const authors = formatChicagoAuthorsName(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const webSiteName = info.txt_pag_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const url = info.txt_url_biblio;
+    const accesDate = info.txt_fecha_acc_biblio
+      ? `Accedido el ${
+        formatChicagoAccessDate(new Date(info.txt_fecha_acc_biblio))
+      }. `
+      : "";
+
+    return `${authors} ${year}. ${title}. ${webSiteName}. ${accesDate}${url}`;
   }
 }
 

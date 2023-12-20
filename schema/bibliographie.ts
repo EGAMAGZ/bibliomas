@@ -9,18 +9,41 @@ export const TYPE_PUBLICATION = {
   Peliculas: "Peliculas",
 } as const;
 
-export const MORE_TYPE_PUBLICATION = {
+export const TYPE_PUBLICATION_OPTIONS = {
+  SitioWeb: {
+    name: "Sitio Web",
+    value: TYPE_PUBLICATION.SitioWeb,
+  },
+  Libro: {
+    name: "Libro",
+    value: TYPE_PUBLICATION.Libro,
+  },
   ArticuloRevista: {
     name: "Artículo de Revista",
-    value: "ArticuloRevista",
+    value: TYPE_PUBLICATION.ArticuloRevista,
   },
   ArticuloPeriodico: {
     name: "Artículo de Periodico",
-    value: "ArticuloPeriodico",
+    value: TYPE_PUBLICATION.ArticuloPeriodico,
   },
   Peliculas: {
     name: "Películas",
-    value: "Peliculas",
+    value: TYPE_PUBLICATION.Peliculas,
+  },
+} as const;
+
+export const MORE_TYPE_PUBLICATION_OPTIONS = {
+  ArticuloRevista: {
+    name: "Artículo de Revista",
+    value: TYPE_PUBLICATION.ArticuloRevista,
+  },
+  ArticuloPeriodico: {
+    name: "Artículo de Periodico",
+    value: TYPE_PUBLICATION.ArticuloPeriodico,
+  },
+  Peliculas: {
+    name: "Películas",
+    value: TYPE_PUBLICATION.Peliculas,
   },
 } as const;
 
@@ -35,6 +58,25 @@ export const TYPE_FORMATS = {
   Chicago: "Chicago",
   Mla: "Mla",
   Ieee: "Ieee",
+} as const;
+
+export const TYPE_FORMATS_OPTIONS = {
+  Apa: {
+    name: "APA",
+    value: TYPE_FORMATS.Apa,
+  },
+  Chicago: {
+    name: "Chicago",
+    value: TYPE_FORMATS.Chicago,
+  },
+  Mla: {
+    name: "MLA",
+    value: TYPE_FORMATS.Mla,
+  },
+  Ieee: {
+    name: "IEEE",
+    value: TYPE_FORMATS.Ieee,
+  },
 } as const;
 
 export type TypeFormat = keyof typeof TYPE_FORMATS;
