@@ -25,8 +25,12 @@ export async function handler(
   console.log(`Main middleware - User Session: ${userSession}`);
 
   if (userSession === undefined) {
-    // ctx.state.isLoggedIn = false;
-    if (url.pathname === LOGIN_URL || url.pathname === REGISTER_URL) {
+    // KATHY AQUI MODIFICAS
+    if (url.pathname === LOGIN_URL || 
+      url.pathname === REGISTER_URL || 
+      url.pathname === "/" ||
+      url.pathname === "/about" ||
+      url.pathname === "/suscription") {
       return await ctx.next();
     }
 
@@ -56,7 +60,13 @@ export async function handler(
     });
   }
 
-  if (url.pathname === LOGIN_URL || url.pathname === REGISTER_URL) {
+  // KATHY AQUI MODIFICAS
+  if (
+    url.pathname === LOGIN_URL || 
+    url.pathname === REGISTER_URL || 
+    url.pathname === "/" ||
+    url.pathname === "/about" ||
+    url.pathname === "/suscription") {
     return new Response(null, {
       status: 303,
       headers: {
