@@ -168,6 +168,27 @@ const formatChicagoAuthorsName = (authors: string) => {
   }).join(", ");
 };
 
+const formatMlaAuthorsName = (authors: string) => {
+  if (!authorsRegex.test(authors)) {
+    return authors;
+  }
+
+  const authorsList = authors.split(";");
+
+  if (authorsList.length === 1) {
+    const [name, lastname] = authorsList[0].split(" ");
+    return `${lastname}, ${name}.`;
+  }
+
+  return authorsList.map((author, index, array) => {
+    const [name, lastname] = author.split(" ");
+    if (index === array.length - 1) {
+      return `y ${lastname}, ${name}.`;
+    }
+    return `${lastname}, ${name}`;
+  }).join(", ");
+};
+
 const formatChicagoAccessDate = (date: Date) => {
   const month = date.toLocaleString(navigator.language, { month: "long" });
   const day = date.getDate();
@@ -265,31 +286,78 @@ class ChicagoMoviesReference implements Reference {
 
 class MlaWebSiteReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as WebSiteBibliographie;
+
+    const authors = formatMlaAuthorsName(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const webSiteName = info.txt_pag_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const url = info.txt_url_biblio;
+
+    return `${authors}"${title}".${webSiteName}.${year}.${url}`;
   }
 }
 
 class MlaBookReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as BookBibliographie;
+
+    const authors = formatMlaAuthorsName(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const edition = info.num_edic_biblio ? `${info.num_edic_biblio} ed.,` : "";
+    const editorial = info.txt_edit_biblio ?? "";
+    const volume = info.num_volm_biblio ? `Vol. ${info.num_volm_biblio},` : "";
+    const page = info.num_npag_biblio ? `pp. ${info.num_npag_biblio}.` : "";
+    const url = info.txt_url_biblio ?? "";
+
+    return `${authors}${title}.${edition}${volume}${editorial},${year}, ${page}${url}`;
   }
 }
 
 class MlaMagazineReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatMlaAuthorsName(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const magazineName = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+
+    const reference = `${authors}"${title}".${magazineName}.${year}.${url}`;
+    return reference;
   }
 }
 
 class MlaNewspaperReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatMlaAuthorsName(info.txt_aut_biblio);
+    const title = info.txt_tit_biblio;
+    const newspaperName = info.txt_edit_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const url = info.txt_url_biblio ?? "";
+
+    const reference = `${authors}"${title}".${newspaperName}.${year}.${url}`;
+    return reference;
   }
 }
 
 class MlaMoviesReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatMlaAuthorsName(info.txt_aut_biblio);
+    const title = info.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const publisher = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ? `,${info.txt_url_biblio}` : "";
+
+    const reference =
+      `${title}. Directed by ${authors},${publisher},${year}${url}`;
+    return reference;
   }
 }
 
