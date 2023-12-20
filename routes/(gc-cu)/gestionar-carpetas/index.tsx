@@ -8,31 +8,42 @@ import { useSignal } from "@preact/signals";
 import { FolderManagementStates } from "@/schema/states.ts";
 import ListFolders from "@/islands/gc-cu/ListFolders.tsx";
 import BibliomasSessionProvider from "@/islands/SessionProvider.tsx";
+import { FolderWithBibliographies } from "@/schema/folder.ts";
+import DeleteFolderDialog from "@/islands/gc-cu/DeleteFolderDialog.tsx";
 
-export const handler: Handlers<Data<Carpetas[]>, SessionState> = {
-  async GET(_req, ctx: HandlerContext<Data<Carpetas[]>, SessionState>) {
-    const userId = ctx.state._id;
+export const handler: Handlers<Data<FolderWithBibliographies[]>, SessionState> =
+  {
+    async GET(
+      _req,
+      ctx: HandlerContext<Data<FolderWithBibliographies[]>, SessionState>,
+    ) {
+      const userId = ctx.state._id;
 
-    const folders = await prismaClient.carpetas.findMany({
-      where: {
-        fk_id_est: userId,
-        fk_id_grup: null,
-      },
-    });
-    return await ctx.render({
-      data: folders,
-      error: "",
-    });
-  },
-};
+      const folders = await prismaClient.carpetas.findMany({
+        where: {
+          fk_id_est: userId,
+          fk_id_grup: null,
+        },
+        include: {
+          Bibliografias: true,
+        },
+      });
+      return await ctx.render({
+        data: folders,
+        error: "",
+      });
+    },
+  };
 
 export default function GestionarCarpetasPage(
-  props: PageProps<Data<Carpetas[]>, SessionState>,
+  props: PageProps<Data<FolderWithBibliographies[]>, SessionState>,
 ) {
   const managerState = useSignal<FolderManagementStates>(
     FolderManagementStates.IDLE,
   );
   const folders = useSignal(props.data.data);
+
+  const deletableFolderId = useSignal<number | null>(null);
 
   return (
     <div className="flex justify-center">
@@ -55,8 +66,13 @@ export default function GestionarCarpetasPage(
               />
               <CreateFolderButton managerState={managerState} />
             </div>
-            <ListFolders folders={folders} managerState={managerState} />
+            <ListFolders
+              folders={folders}
+              managerState={managerState}
+              deletableFolderId={deletableFolderId}
+            />
           </div>
+          <DeleteFolderDialog folders={folders} folderId={deletableFolderId} />
         </BibliomasSessionProvider>
       </div>
     </div>
