@@ -145,12 +145,6 @@ class ApaMoviesReference implements Reference {
   }
 }
 
-class ApaOthersReference implements Reference {
-  generate(bibliography: Bibliografias): string {
-    return "";
-  }
-}
-
 // Formato Chicago
 
 const formatChicagoAuthorsName = (authors: string) => {
@@ -235,12 +229,6 @@ class ChicagoMoviesReference implements Reference {
   }
 }
 
-class ChicagoOthersReference implements Reference {
-  generate(bibliography: Bibliografias): string {
-    return "";
-  }
-}
-
 interface AbstractRefrenceFactory {
   createRefecence(bibliography: Bibliografias): Reference;
 }
@@ -272,12 +260,6 @@ class MlaNewspaperReference implements Reference {
 }
 
 class MlaMoviesReference implements Reference {
-  generate(bibliography: Bibliografias): string {
-    return "";
-  }
-}
-
-class MlaOthersReference implements Reference {
   generate(bibliography: Bibliografias): string {
     return "";
   }
@@ -315,12 +297,6 @@ class IeeeMoviesReference implements Reference {
   }
 }
 
-class IeeeOthersReference implements Reference {
-  generate(bibliography: Bibliografias): string {
-    return "";
-  }
-}
-
 class ApaReferenceFactory implements AbstractRefrenceFactory {
   createRefecence(bibliography: Bibliografias): Reference {
     switch (bibliography.txt_tip_biblio) {
@@ -335,7 +311,7 @@ class ApaReferenceFactory implements AbstractRefrenceFactory {
       case TYPE_PUBLICATION.Peliculas:
         return new ApaMoviesReference();
       default:
-        return new ApaOthersReference();
+        return new ApaWebSiteReference();
     }
   }
 }
@@ -354,7 +330,7 @@ class ChicagoReferenceFactory implements AbstractRefrenceFactory {
       case TYPE_PUBLICATION.Peliculas:
         return new ChicagoMoviesReference();
       default:
-        return new ChicagoOthersReference();
+        return new ChicagoWebSiteReference();
     }
   }
 }
@@ -373,7 +349,7 @@ class MlaReferenceFactory implements AbstractRefrenceFactory {
       case TYPE_PUBLICATION.Peliculas:
         return new MlaMoviesReference();
       default:
-        return new MlaOthersReference();
+        return new MlaWebSiteReference();
     }
   }
 }
@@ -392,7 +368,7 @@ class IeeeReferenceFactory implements AbstractRefrenceFactory {
       case TYPE_PUBLICATION.Peliculas:
         return new IeeeMoviesReference();
       default:
-        return new IeeeOthersReference();
+        return new IeeeWebSiteReference();
     }
   }
 }
