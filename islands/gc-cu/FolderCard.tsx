@@ -8,7 +8,7 @@ import { FolderManagementStates } from "@/schema/states.ts";
 import { Signal, useSignal } from "@preact/signals";
 import { Form } from "formika";
 import Button from "@/components/Button.tsx";
-import { EditableFolderCard } from "@/components/FolderCard.tsx";
+import { EditableFolderCard } from "../../components/EditableFolderCard.tsx";
 import FormControl from "@/components/FormControl.tsx";
 import { useBibliomasSessionContext } from "@/context/session-context.ts";
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
@@ -62,7 +62,7 @@ function ViewFolderCard(props: ViewFolderCardProps) {
           class="flex flex-col items-center"
         >
           <IconFolder size={96} />
-          <span class="text-lg break-all font-sans font-semibold">
+          <span class="text-lg break-all font-sans font-semibold text-center">
             {props.folder.txt_nom_carp}
           </span>
         </a>

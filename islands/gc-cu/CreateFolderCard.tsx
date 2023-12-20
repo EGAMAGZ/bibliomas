@@ -1,4 +1,4 @@
-import { EditableFolderCard } from "@/components/FolderCard.tsx";
+import { EditableFolderCard } from "../../components/EditableFolderCard.tsx";
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
 import {
   CreateFolderSchema,
