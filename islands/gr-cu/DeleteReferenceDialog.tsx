@@ -45,17 +45,16 @@ export default function DeleteReferenceDialog(props: DeleteReferenceDialog) {
     props.bibliographyId.value = null;
   };
 
+  
   return (
-    <>
-      <ConfirmDialog
-        dialogRef={dialogRef}
-        title="Eliminar Referencia"
-        message="¿Está seguro de que desea eliminar esta referencia? chi"
-        onAccept={handleAccept}
-        onCancel={handleCancel}
-        loading={isLoading.value}
-        disabled={isLoading.value}
-      />
-    </>
+    <ConfirmDialog
+      dialogRef={dialogRef}
+      title="Eliminar Referencia"
+      message="¿Está seguro de que desea eliminar esta referencia?"
+      onAccept={handleAccept}
+      onCancel={handleCancel}
+      loading={isLoading.value}
+      disabled={isLoading.value}
+    />
   );
 }

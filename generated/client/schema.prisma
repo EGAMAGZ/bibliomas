@@ -33,7 +33,6 @@ enum TipoPublicacion {
   ArticuloRevista
   ArticuloPeriodico
   Peliculas
-  Varios
 }
 
 enum TipoFormato {

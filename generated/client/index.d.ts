@@ -58,8 +58,7 @@ export namespace $Enums {
   Libro: 'Libro',
   ArticuloRevista: 'ArticuloRevista',
   ArticuloPeriodico: 'ArticuloPeriodico',
-  Peliculas: 'Peliculas',
-  Varios: 'Varios'
+  Peliculas: 'Peliculas'
 };
 
 export type TipoPublicacion = (typeof TipoPublicacion)[keyof typeof TipoPublicacion]
