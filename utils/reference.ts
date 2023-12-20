@@ -203,7 +203,17 @@ class ChicagoWebSiteReference implements Reference {
 
 class ChicagoBookReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as BookBibliographie;
+
+    const authors = formatChicagoAuthorsName(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const edition = info.num_edic_biblio ? `${info.num_edic_biblio}.` : "";
+    const placePublished = info.txt_ubic_biblio ?? "";
+    const editorial = info.txt_edit_biblio ?? "";
+    const page = info.num_npag_biblio ? `${info.num_npag_biblio}.` : "";
+
+    return `${authors} ${year}.${title}.${edition}${placePublished}:${editorial}, ${year}.${page}`;
   }
 }
 
