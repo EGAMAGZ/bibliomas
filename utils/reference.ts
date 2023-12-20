@@ -103,13 +103,13 @@ class ApaMagazineReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as MoreBibliographie;
 
-    const autors = formatApaAuthorsName(info.txt_aut_biblio);
+    const authors = formatApaAuthorsName(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
     const magazineName = info.txt_edit_biblio;
     const url = info.txt_url_biblio ?? "";
 
-    const reference = `${autors} (${year}). ${title}. ${magazineName}.${url}`;
+    const reference = `${authors} (${year}). ${title}. ${magazineName}.${url}`;
     return reference;
   }
 }
@@ -118,13 +118,13 @@ class ApaNewspaperReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as MoreBibliographie;
 
-    const autors = formatApaAuthorsName(info.txt_aut_biblio);
+    const authors = formatApaAuthorsName(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
     const newspaperName = info.txt_edit_biblio;
     const url = info.txt_url_biblio ?? "";
 
-    const reference = `${autors} (${year}). ${title}. ${newspaperName}.${url}`;
+    const reference = `${authors} (${year}). ${title}. ${newspaperName}.${url}`;
     return reference;
   }
 }
@@ -133,14 +133,14 @@ class ApaMoviesReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as MoreBibliographie;
 
-    const autors = formatApaAuthorsName(info.txt_aut_biblio);
+    const authors = formatApaAuthorsName(info.txt_aut_biblio);
     const directorTitle = getDirectorTitle(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
     const producer = info.txt_edit_biblio;
 
     const reference =
-      `${autors} (${directorTitle}). (${year}). ${title} [Película]. ${producer}.`;
+      `${authors} (${directorTitle}). (${year}). ${title} [Película]. ${producer}.`;
     return reference;
   }
 }
@@ -221,13 +221,24 @@ class ChicagoMagazineReference implements Reference {
     const year = info.txt_fecha_pub_biblio;
     const magazineName = info.txt_edit_biblio;
     const url = info.txt_url_biblio ?? "";
-    return `${authors}. ${title}.${magazineName}.${year}.${url}`;
+
+    const reference = `${authors}. "${title}".${magazineName}.${year}.${url}`;
+    return reference;
   }
 }
 
 class ChicagoNewspaperReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatChicagoAuthorsName(info.txt_aut_biblio);
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const title = info.txt_tit_biblio;
+    const newspaperName = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+
+    const reference = `${authors}"${title}".${newspaperName}.${year}.${url}`;
+    return reference;
   }
 }
 
