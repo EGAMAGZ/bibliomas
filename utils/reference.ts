@@ -137,10 +137,10 @@ class ApaMoviesReference implements Reference {
     const directorTitle = getDirectorTitle(info.txt_aut_biblio);
     const year = info.txt_fecha_pub_biblio ?? "s.f.";
     const title = info.txt_tit_biblio;
-    const procuder = info.txt_edit_biblio;
+    const producer = info.txt_edit_biblio;
 
     const reference =
-      `${autors} (${directorTitle}). (${year}). ${title} [Película]. ${procuder}.`;
+      `${autors} (${directorTitle}). (${year}). ${title} [Película]. ${producer}.`;
     return reference;
   }
 }
@@ -225,12 +225,21 @@ class ChicagoNewspaperReference implements Reference {
 
 class ChicagoMoviesReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
-  }
-}
+    const info = bibliography as MoreBibliographie;
 
-interface AbstractRefrenceFactory {
-  createRefecence(bibliography: Bibliografias): Reference;
+    const authors = formatChicagoAuthorsName(bibliography.txt_aut_biblio);
+    const directorTitle = getDirectorTitle(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio
+      ? `${info.txt_fecha_pub_biblio}.`
+      : "s.f.";
+    const producer = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+
+    const reference =
+      `${authors}, ${directorTitle}. ${title}. ${producer}. ${year} ${url}`;
+    return reference;
+  }
 }
 
 // Formato Mla
@@ -314,6 +323,10 @@ class ApaReferenceFactory implements AbstractRefrenceFactory {
         return new ApaWebSiteReference();
     }
   }
+}
+
+interface AbstractRefrenceFactory {
+  createRefecence(bibliography: Bibliografias): Reference;
 }
 
 class ChicagoReferenceFactory implements AbstractRefrenceFactory {

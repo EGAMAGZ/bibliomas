@@ -319,7 +319,7 @@ export const MoreBibliographieSchema = z.object({
     required_error: "Url es requerido",
   }).url({
     message: "Url invalida",
-  }).optional().or(z.literal("")),
+  }).optional().nullable().or(z.literal("")),
   fk_id_grup: z.number({
     invalid_type_error: "Id de grupo debe ser un numero",
     required_error: "Id de grupo es requerido",
@@ -391,7 +391,7 @@ export const BibliographieSchema = z.object({
     required_error: "Url es requerido",
   }).url({
     message: "Url invalida",
-  }).optional().or(z.literal("")),
+  }).optional().nullable().or(z.literal("")),
   txt_fecha_pub_biblio: z.number({
     required_error: "Fecha de publicacion es requerido",
     invalid_type_error: "Fecha de publicacion debe ser un numero",
