@@ -45,6 +45,7 @@ export default function DeleteReferenceDialog(props: DeleteReferenceDialog) {
     props.bibliographyId.value = null;
   };
 
+  
   return (
     <ConfirmDialog
       dialogRef={dialogRef}
