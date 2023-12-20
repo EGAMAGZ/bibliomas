@@ -213,7 +213,15 @@ class ChicagoBookReference implements Reference {
 
 class ChicagoMagazineReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatChicagoAuthorsName(bibliography.txt_aut_biblio);
+
+    const title = bibliography.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio;
+    const magazineName = info.txt_edit_biblio;
+    const url = info.txt_url_biblio ?? "";
+    return `${authors}. ${title}.${magazineName}.${year}.${url}`;
   }
 }
 
