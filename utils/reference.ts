@@ -363,33 +363,121 @@ class MlaMoviesReference implements Reference {
 
 // Formato Ieee
 
+function formatIeeeAuthorsName(authors: string): string {
+  if (!authorsRegex.test(authors)) {
+    return authors;
+  }
+  const authorsList = authors.split(";");
+
+  if (authorsList.length === 1) {
+    const [name, lastname] = authorsList[0].split(" ");
+    return `${name[0]}.${lastname}.`;
+  }
+  return authorsList.map((author, index, array) => {
+    const [name, lastname] = author.split(" ");
+    if (index === array.length - 1) {
+      return `y ${name[0]}.${lastname}.`;
+    }
+    return `${name[0]}.${lastname}`;
+  }).join(", ");
+}
+
+const formatIeeeAccessDate = (date: Date): string => {
+  const month = date.toLocaleString(navigator.language, { month: "long" });
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  return `(Accedido ${month} ${day}, ${year})`;
+};
+
 class IeeeWebSiteReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as WebSiteBibliographie;
+
+    const authors = formatIeeeAuthorsName(bibliography.txt_aut_biblio);
+    const title = bibliography.txt_tit_biblio;
+    const webSiteName = info.txt_pag_biblio;
+    const accesDate = info.txt_fecha_acc_biblio
+      ? formatIeeeAccessDate(new Date(info.txt_fecha_acc_biblio))
+      : "";
+    const url = info.txt_url_biblio;
+
+    const reference = `${authors}"${title}".${webSiteName}.${url} ${accesDate}`;
+    return reference;
   }
 }
 
 class IeeeBookReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as BookBibliographie;
+
+    const authors = formatIeeeAuthorsName(info.txt_aut_biblio);
+    const title = info.txt_tit_biblio;
+    const country = info.txt_ubic_biblio;
+    const publisher = info.txt_edit_biblio;
+    const year = info.txt_fecha_pub_biblio;
+    const page = info.num_npag_biblio ? `pp. ${info.num_npag_biblio}` : "";
+    const edition = info.num_edic_biblio ? `,${info.num_edic_biblio} ed.` : "";
+    const url = info.txt_url_biblio
+      ? `[En linea].Disponible: ${info.txt_url_biblio}`
+      : "";
+
+    const reference =
+      `${authors},${title}${edition},${country}:${publisher},${year}.${url} ${page}`;
+    return reference;
   }
 }
 
 class IeeeMagazineReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatIeeeAuthorsName(info.txt_aut_biblio);
+    const title = info.txt_tit_biblio;
+    const newspaperName = info.txt_edit_biblio;
+    const year = info.txt_fecha_pub_biblio;
+    const url = info.txt_url_biblio
+      ? `[En linea].Disponible:${info.txt_url_biblio}`
+      : "";
+
+    const reference = `${authors},"${title}".${newspaperName}.${year}.${url}`;
+    return reference;
   }
 }
 
 class IeeeNewspaperReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatIeeeAuthorsName(info.txt_aut_biblio);
+    const title = info.txt_tit_biblio;
+    const newspaperName = info.txt_edit_biblio;
+    const year = info.txt_fecha_pub_biblio;
+    const url = info.txt_url_biblio
+      ? `[En linea].Disponible:${info.txt_url_biblio}`
+      : "";
+
+    const reference = `${authors},"${title}".${newspaperName}.${year}.${url}`;
+    return reference;
   }
 }
 
 class IeeeMoviesReference implements Reference {
   generate(bibliography: Bibliografias): string {
-    return "";
+    const info = bibliography as MoreBibliographie;
+
+    const authors = formatIeeeAuthorsName(info.txt_aut_biblio);
+    const title = info.txt_tit_biblio;
+    const year = info.txt_fecha_pub_biblio ?? "s.f.";
+    const publisher = info.txt_edit_biblio;
+    const directorTitle = getDirectorTitle(info.txt_aut_biblio);
+    const url = info.txt_url_biblio
+      ? `. Disponible:${info.txt_url_biblio}`
+      : "";
+
+    const reference =
+      `${authors},${directorTitle}."${title}".${publisher},${year}${url}`;
+    return reference;
   }
 }
 
