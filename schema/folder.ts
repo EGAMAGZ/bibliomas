@@ -31,6 +31,10 @@ export const CreateFolderSchema = FolderSchema.omit({
 
 export type CreateFolder = z.infer<typeof CreateFolderSchema>;
 
+export const UpdateFolderSchema = FolderSchema;
+
+export type UpdateFolder = z.infer<typeof UpdateFolderSchema>;
+
 export type FolderWithBibliographies = Carpetas & {
   Bibliografias: Bibliografias[];
 };

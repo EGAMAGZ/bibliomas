@@ -17,6 +17,8 @@ export default function ListFolders(props: ListFoldersProps) {
       {props.folders.value.map((folder) => (
         <FolderCard
           folder={folder}
+          folders={props.folders}
+          managerState={props.managerState}
           onDelete={(folderId) => {
             props.deletableFolderId.value = folderId;
           }}
