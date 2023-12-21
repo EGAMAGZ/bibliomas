@@ -11,6 +11,9 @@ export const handler: Handlers = {
     const result = CreateFolderSchema.parse(body);
     const folder = await prismaClient.carpetas.create({
       data: result,
+      include: {
+        Bibliografias: true,
+      },
     });
     return new Response(
       JSON.stringify({

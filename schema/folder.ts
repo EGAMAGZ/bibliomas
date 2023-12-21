@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { Bibliografias } from "@/generated/client/deno/edge.ts";
+import { Carpetas } from "@/generated/client/deno/edge.ts";
 
 const FolderSchema = z.object({
   pk_id_carp: z.number({
@@ -28,3 +30,11 @@ export const CreateFolderSchema = FolderSchema.omit({
 });
 
 export type CreateFolder = z.infer<typeof CreateFolderSchema>;
+
+export const UpdateFolderSchema = FolderSchema;
+
+export type UpdateFolder = z.infer<typeof UpdateFolderSchema>;
+
+export type FolderWithBibliographies = Carpetas & {
+  Bibliografias: Bibliografias[];
+};

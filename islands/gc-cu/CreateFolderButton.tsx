@@ -19,7 +19,7 @@ export default function CreateFolderButton(props: CreateFolderButtonProps) {
       }}
       disabled={disabled.value}
     >
-      <span>Crear refencia</span>
+      <span>Crear carpeta</span>
     </Button>
   );
 }

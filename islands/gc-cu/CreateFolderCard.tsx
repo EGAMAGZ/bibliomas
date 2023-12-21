@@ -1,6 +1,9 @@
-import { EditableFolderCard } from "@/components/FolderCard.tsx";
+import { EditableFolderCard } from "../../components/EditableFolderCard.tsx";
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
-import { CreateFolderSchema } from "@/schema/folder.ts";
+import {
+  CreateFolderSchema,
+  FolderWithBibliographies,
+} from "@/schema/folder.ts";
 import { useBibliomasSessionContext } from "@/context/session-context.ts";
 import { Form } from "formika";
 import FormControl from "@/components/FormControl.tsx";
@@ -12,7 +15,7 @@ import { ApiResponse } from "@/schema/api-response.ts";
 import { FolderManagementStates } from "@/schema/states.ts";
 
 interface CreateFolderCardProps {
-  folders: Signal<Carpetas[]>;
+  folders: Signal<FolderWithBibliographies[]>;
   managerState: Signal<FolderManagementStates>;
 }
 
@@ -41,12 +44,18 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
         return;
       }
 
-      const { data } = (await response.json()) as ApiResponse<Carpetas>;
+      const { data } = (await response.json()) as ApiResponse<
+        FolderWithBibliographies
+      >;
       props.folders.value = [...props.folders.value, data];
       isLoading.value = false;
       props.managerState.value = FolderManagementStates.IDLE;
     },
   );
+
+  const handleCancel = () => {
+    props.managerState.value = FolderManagementStates.IDLE;
+  };
 
   return (
     <EditableFolderCard>
@@ -55,27 +64,38 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
         onChange={handleChange}
         onSubmit={handleSubmit}
       >
-        <FormControl
-          label="Nombre de Carpeta:"
-          error={errors.value.txt_nom_carp}
-          required
-        >
-          <input
-            type="text"
-            class="input input-primary input-sm"
-            name="txt_nom_carp"
+        <div class="flex flex-col gap-1">
+          <FormControl
+            label="Nombre de Carpeta:"
+            error={errors.value.txt_nom_carp}
             required
-          />
-        </FormControl>
-        <Button
-          type="submit"
-          state="btn-primary"
-          classList="btn-sm w-full"
-          disabled={isLoading.value}
-          loading={isLoading.value}
-        >
-          Crear Carpeta
-        </Button>
+          >
+            <input
+              type="text"
+              class="input input-primary input-sm"
+              name="txt_nom_carp"
+              required
+            />
+          </FormControl>
+          <Button
+            type="submit"
+            state="btn-primary"
+            classList="btn-sm"
+            disabled={isLoading.value}
+            loading={isLoading.value}
+          >
+            Crear Carpeta
+          </Button>
+          <Button
+            type="button"
+            state="btn-secondary"
+            classList="btn-sm"
+            disabled={isLoading.value}
+            onClick={handleCancel}
+          >
+            Cancelar
+          </Button>
+        </div>
       </Form>
     </EditableFolderCard>
   );
