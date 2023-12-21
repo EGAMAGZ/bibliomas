@@ -57,13 +57,7 @@ export default function GestionarCarpetasPage(
           }}
         >
           <div class="flex flex-col gap-4">
-            <div class="flex">
-              <input
-                type="text"
-                class="input input-primary flex-1"
-                name="txt_nom_carp"
-                disabled={managerState.value !== FolderManagementStates.IDLE}
-              />
+            <div class="flex justify-end">
               <CreateFolderButton managerState={managerState} />
             </div>
             <ListFolders
