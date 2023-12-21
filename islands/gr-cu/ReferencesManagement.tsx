@@ -33,6 +33,9 @@ export default function ReferencesManagement() {
     searchParams.append("limit", String(DEFAULT_PAGINATION_LIMIT));
     searchParams.append("page", actualPage.value.toString());
     searchParams.append("userId", bibliomasContext.userId);
+    if (bibliomasContext.folderId) {
+      searchParams.append("folderId", String(bibliomasContext.folderId));
+    }
 
     const response = await fetch(
       `/api/bibliographie?${searchParams.toString()}`,

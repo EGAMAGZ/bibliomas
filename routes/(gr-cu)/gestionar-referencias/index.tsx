@@ -2,7 +2,7 @@ import { PageProps } from "$fresh/server.ts";
 import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
 import BibliomasSessionProvider from "@/islands/SessionProvider.tsx";
-import ReferencesManagement from "../../../islands/gr-cu/ReferencesManagement.tsx";
+import ReferencesManagement from "@/islands/gr-cu/ReferencesManagement.tsx";
 
 export default function GestionarReferenciasPage(
   props: PageProps<Data, SessionState>,
