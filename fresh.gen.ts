@@ -13,15 +13,17 @@ import * as $7 from "./routes/_404.tsx";
 import * as $8 from "./routes/_app.tsx";
 import * as $9 from "./routes/_layout.tsx";
 import * as $10 from "./routes/_middleware.ts";
-import * as $11 from "./routes/api/_middleware.ts";
-import * as $12 from "./routes/api/bibliographie/[id].tsx";
-import * as $13 from "./routes/api/bibliographie/file/[id].tsx";
-import * as $14 from "./routes/api/bibliographie/file/index.ts";
-import * as $15 from "./routes/api/bibliographie/index.ts";
-import * as $16 from "./routes/api/folder/[id].tsx";
-import * as $17 from "./routes/api/folder/index.ts";
-import * as $18 from "./routes/api/index.ts";
-import * as $19 from "./routes/index.ts";
+import * as $11 from "./routes/about.tsx";
+import * as $12 from "./routes/api/_middleware.ts";
+import * as $13 from "./routes/api/bibliographie/[id].tsx";
+import * as $14 from "./routes/api/bibliographie/file/[id].tsx";
+import * as $15 from "./routes/api/bibliographie/file/index.ts";
+import * as $16 from "./routes/api/bibliographie/index.ts";
+import * as $17 from "./routes/api/folder/[id].tsx";
+import * as $18 from "./routes/api/folder/index.ts";
+import * as $19 from "./routes/api/index.ts";
+import * as $20 from "./routes/index.tsx";
+import * as $21 from "./routes/suscription.tsx";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/PaginationButtons.tsx";
 import * as $$2 from "./islands/Select.tsx";
@@ -56,15 +58,17 @@ const manifest = {
     "./routes/_app.tsx": $8,
     "./routes/_layout.tsx": $9,
     "./routes/_middleware.ts": $10,
-    "./routes/api/_middleware.ts": $11,
-    "./routes/api/bibliographie/[id].tsx": $12,
-    "./routes/api/bibliographie/file/[id].tsx": $13,
-    "./routes/api/bibliographie/file/index.ts": $14,
-    "./routes/api/bibliographie/index.ts": $15,
-    "./routes/api/folder/[id].tsx": $16,
-    "./routes/api/folder/index.ts": $17,
-    "./routes/api/index.ts": $18,
-    "./routes/index.ts": $19,
+    "./routes/about.tsx": $11,
+    "./routes/api/_middleware.ts": $12,
+    "./routes/api/bibliographie/[id].tsx": $13,
+    "./routes/api/bibliographie/file/[id].tsx": $14,
+    "./routes/api/bibliographie/file/index.ts": $15,
+    "./routes/api/bibliographie/index.ts": $16,
+    "./routes/api/folder/[id].tsx": $17,
+    "./routes/api/folder/index.ts": $18,
+    "./routes/api/index.ts": $19,
+    "./routes/index.tsx": $20,
+    "./routes/suscription.tsx": $21,
   },
   islands: {
     "./islands/Input.tsx": $$0,

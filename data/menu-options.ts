@@ -26,3 +26,22 @@ export const menuOptions: MenuOption[] = [
     href: LOGOUT_URL,
   },
 ];
+
+export const startOptions: MenuOption[] = [
+  {
+    name: "Inicio",
+    href: "/",
+  },
+  {
+    name: "Sobre nosotros",
+    href: "/about",
+  },
+  {
+    name: "Suscripciones",
+    href: "/suscription",
+  },
+  {
+    name: "Entrar",
+    href: "/inicio-sesion/iniciar-sesion",
+  },
+];
