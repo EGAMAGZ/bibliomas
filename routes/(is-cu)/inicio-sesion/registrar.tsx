@@ -96,7 +96,6 @@ export const handler: Handlers<Data, SessionState> = {
   },
 };
 
-// TODO: Hacer responsiva esta pantalla
 export default function RegistrarPage({ data }: PageProps) {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center p-4">
