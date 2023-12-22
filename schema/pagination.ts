@@ -26,6 +26,10 @@ export const PaginationParamsSchema = z.object({
   }).uuid({
     message: "Id de usuario invalido",
   }),
+  folderId: z.coerce.number({
+    invalid_type_error: "Id de carpeta debe ser un numero",
+    required_error: "Id de carpeta es requerido",
+  }).nullable(),
 });
 
 export type Pagination<T> = {

@@ -18,12 +18,13 @@ export function useFormicaForm<TValues>(
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
     const result = schema.safeParse(form.value);
+    console.log("result", result);
+
     if (!result.success) {
       errors.value = formatErrors(result.error);
     } else {
       errors.value = clearErrors();
       await onSubmit(result.data);
-
     }
   };
 

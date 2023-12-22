@@ -1,10 +1,11 @@
 import Button from "@/components/Button.tsx";
 import { useRef } from "preact/hooks";
-import ReferenceDialog from "./ReferenceDialog.tsx";
+import CreateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
 
 interface CreateReferenceButtonProps {
   onSubmit: () => void;
   classList?: string;
+  disabled: boolean
 }
 
 export default function CreateReferenceButton(
@@ -36,7 +37,7 @@ export default function CreateReferenceButton(
         <span>Crear refencia</span>
       </Button>
 
-      <ReferenceDialog
+      <CreateReferenceDialog
         dialogRef={dialog}
         onSubmit={handleSubmit}
         onCancel={handleCancel}

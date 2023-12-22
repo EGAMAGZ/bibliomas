@@ -9,6 +9,7 @@ export async function handler(
     const res = await ctx.next();
     return res;
   } catch (error) {
+    console.error(error)
     if (error instanceof ZodError) {
       return new Response(
         JSON.stringify({

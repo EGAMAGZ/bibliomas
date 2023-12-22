@@ -7,7 +7,44 @@ export const TYPE_PUBLICATION = {
   ArticuloRevista: "ArticuloRevista",
   ArticuloPeriodico: "ArticuloPeriodico",
   Peliculas: "Peliculas",
-  Varios: "Varios",
+} as const;
+
+export const TYPE_PUBLICATION_OPTIONS = {
+  SitioWeb: {
+    name: "Sitio Web",
+    value: TYPE_PUBLICATION.SitioWeb,
+  },
+  Libro: {
+    name: "Libro",
+    value: TYPE_PUBLICATION.Libro,
+  },
+  ArticuloRevista: {
+    name: "Artículo de Revista",
+    value: TYPE_PUBLICATION.ArticuloRevista,
+  },
+  ArticuloPeriodico: {
+    name: "Artículo de Periodico",
+    value: TYPE_PUBLICATION.ArticuloPeriodico,
+  },
+  Peliculas: {
+    name: "Películas",
+    value: TYPE_PUBLICATION.Peliculas,
+  },
+} as const;
+
+export const MORE_TYPE_PUBLICATION_OPTIONS = {
+  ArticuloRevista: {
+    name: "Artículo de Revista",
+    value: TYPE_PUBLICATION.ArticuloRevista,
+  },
+  ArticuloPeriodico: {
+    name: "Artículo de Periodico",
+    value: TYPE_PUBLICATION.ArticuloPeriodico,
+  },
+  Peliculas: {
+    name: "Películas",
+    value: TYPE_PUBLICATION.Peliculas,
+  },
 } as const;
 
 export const TypPublicationSchema = z.nativeEnum(
@@ -21,6 +58,25 @@ export const TYPE_FORMATS = {
   Chicago: "Chicago",
   Mla: "Mla",
   Ieee: "Ieee",
+} as const;
+
+export const TYPE_FORMATS_OPTIONS = {
+  Apa: {
+    name: "APA",
+    value: TYPE_FORMATS.Apa,
+  },
+  Chicago: {
+    name: "Chicago",
+    value: TYPE_FORMATS.Chicago,
+  },
+  Mla: {
+    name: "MLA",
+    value: TYPE_FORMATS.Mla,
+  },
+  Ieee: {
+    name: "IEEE",
+    value: TYPE_FORMATS.Ieee,
+  },
 } as const;
 
 export type TypeFormat = keyof typeof TYPE_FORMATS;
@@ -73,7 +129,7 @@ const WebSiteBibliographie = z.object({
     message: "Fecha de publicacion debe tener como minimo 1000",
   }).max(getActualYear(), {
     message: `Fecha de publicacion debe tener como maximo ${getActualYear()}`,
-  }),
+  }).optional(),
   txt_fecha_acc_biblio: z.coerce.date({
     required_error: "Fecha de acceso es requerido",
     invalid_type_error: "Fecha de acceso debe ser un fecha",
@@ -100,12 +156,20 @@ const WebSiteBibliographie = z.object({
   }),
 });
 
+export type WebSiteBibliographie = z.infer<typeof WebSiteBibliographie>;
+
 export const CreateWebSiteBibliographieSchema = WebSiteBibliographie.omit({
   pk_id_biblio: true,
 });
 
 export type CreateWebSiteBibliographie = z.infer<
   typeof CreateWebSiteBibliographieSchema
+>;
+
+export const UpdateWebSiteBibliographieSchema = WebSiteBibliographie;
+
+export type UpdateWebSiteBibliographie = z.infer<
+  typeof UpdateWebSiteBibliographieSchema
 >;
 
 const BookBibliographie = z.object({
@@ -148,23 +212,23 @@ const BookBibliographie = z.object({
   txt_ubic_biblio: z.string({
     required_error: "Ubicacion es requerido",
     invalid_type_error: "Ubicacion debe ser texto plano",
-  }).optional(),
+  }).optional().nullable(),
   txt_edit_biblio: z.string({
     invalid_type_error: "Editorial debe ser texto plano",
     required_error: "Editorial es requerido",
-  }).optional(),
+  }).optional().nullable(),
   num_volm_biblio: z.number({
     invalid_type_error: "Volumen debe ser un numero",
     required_error: "Volumen es requerido",
-  }).optional(),
+  }).optional().nullable(),
   num_edic_biblio: z.number({
     invalid_type_error: "Edicion debe ser un numero",
     required_error: "Edicion es requerido",
-  }).optional(),
+  }).optional().nullable(),
   num_npag_biblio: z.number({
     invalid_type_error: "Numero de pagina debe ser un numero",
     required_error: "Numero de pagina es requerido",
-  }).optional(),
+  }).optional().nullable(),
   txt_url_biblio: z.string({
     invalid_type_error: "Url debe ser texto plano",
     required_error: "Url es requerido",
@@ -189,12 +253,20 @@ const BookBibliographie = z.object({
   }),
 });
 
+export type BookBibliographie = z.infer<typeof BookBibliographie>;
+
 export const CreateBookBibliographieSchema = BookBibliographie.omit({
   pk_id_biblio: true,
 });
 
 export type CreateBookBibliographie = z.infer<
   typeof CreateBookBibliographieSchema
+>;
+
+export const UpdateBookBibliographieSchema = BookBibliographie;
+
+export type UpdateBookBibliographie = z.infer<
+  typeof UpdateBookBibliographieSchema
 >;
 
 export const MoreBibliographieSchema = z.object({
@@ -241,13 +313,13 @@ export const MoreBibliographieSchema = z.object({
   txt_edit_biblio: z.string({
     invalid_type_error: "Editorial debe ser texto plano",
     required_error: "Editorial es requerido",
-  }).optional(),
+  }),
   txt_url_biblio: z.string({
     invalid_type_error: "Url debe ser texto plano",
     required_error: "Url es requerido",
   }).url({
     message: "Url invalida",
-  }).optional().or(z.literal("")),
+  }).optional().nullable().or(z.literal("")),
   fk_id_grup: z.number({
     invalid_type_error: "Id de grupo debe ser un numero",
     required_error: "Id de grupo es requerido",
@@ -266,6 +338,8 @@ export const MoreBibliographieSchema = z.object({
   }),
 });
 
+export type MoreBibliographie = z.infer<typeof MoreBibliographieSchema>;
+
 export const CreateMoreBibliographieSchema = MoreBibliographieSchema.omit({
   pk_id_biblio: true,
 });
@@ -273,7 +347,13 @@ export type CreateMoreBibliographie = z.infer<
   typeof CreateMoreBibliographieSchema
 >;
 
-export const Bibliographie = z.object({
+export const UpdateMoreBibliographieSchema = MoreBibliographieSchema;
+
+export type UpdateMoreBibliographie = z.infer<
+  typeof UpdateMoreBibliographieSchema
+>;
+
+export const BibliographieSchema = z.object({
   pk_id_biblio: z.number({
     invalid_type_error: "Id de bibliografía debe ser un numero",
     required_error: "Id de bibliografía es requerido",
@@ -305,13 +385,13 @@ export const Bibliographie = z.object({
   txt_pag_biblio: z.string({
     invalid_type_error: "Nombre de la página debe ser texto plano",
     required_error: "Nombre de la página es requerido",
-  }).optional(),
+  }).optional().nullable(),
   txt_url_biblio: z.string({
     invalid_type_error: "Url debe ser texto plano",
     required_error: "Url es requerido",
   }).url({
     message: "Url invalida",
-  }).optional().or(z.literal("")),
+  }).optional().nullable().or(z.literal("")),
   txt_fecha_pub_biblio: z.number({
     required_error: "Fecha de publicacion es requerido",
     invalid_type_error: "Fecha de publicacion debe ser un numero",
@@ -319,7 +399,7 @@ export const Bibliographie = z.object({
     message: "Fecha de publicacion debe tener como minimo 1000",
   }).max(getActualYear(), {
     message: `Fecha de publicacion debe tener como maximo ${getActualYear()}`,
-  }).optional(),
+  }).optional().nullable(),
   txt_fecha_acc_biblio: z.coerce.date({
     required_error: "Fecha de acceso es requerido",
     invalid_type_error: "Fecha de acceso debe ser un fecha",
@@ -327,39 +407,39 @@ export const Bibliographie = z.object({
     message: `Fecha de acceso debe tener como maximo ${
       formatDate(new Date(), navigator.language)
     }`,
-  }).optional(),
+  }).optional().nullable(),
   txt_ubic_biblio: z.string({
     required_error: "Ubicacion es requerido",
     invalid_type_error: "Ubicacion debe ser texto plano",
-  }).optional(),
+  }).optional().nullable(),
   txt_edit_biblio: z.string({
     invalid_type_error: "Editorial debe ser texto plano",
     required_error: "Editorial es requerido",
-  }).optional(),
+  }).optional().nullable(),
   num_volm_biblio: z.number({
     invalid_type_error: "Volumen debe ser un numero",
     required_error: "Volumen es requerido",
-  }).optional(),
+  }).optional().nullable(),
   num_edic_biblio: z.number({
     invalid_type_error: "Edicion debe ser un numero",
     required_error: "Edicion es requerido",
-  }).optional(),
+  }).optional().nullable(),
   num_npag_biblio: z.number({
     invalid_type_error: "Numero de pagina debe ser un numero",
     required_error: "Numero de pagina es requerido",
-  }).optional(),
+  }).optional().nullable(),
   bool_online_biblio: z.boolean({
     invalid_type_error: "Fuente online debe ser booleano",
     required_error: "Fuente online es requerido",
-  }).optional(),
+  }).optional().nullable(),
   fk_id_grup: z.number({
     invalid_type_error: "Id de grupo debe ser un numero",
     required_error: "Id de grupo es requerido",
-  }).optional(),
+  }).optional().nullable(),
   fk_id_carp: z.number({
     invalid_type_error: "Id de carpeta debe ser un numero",
     required_error: "Id de carpeta es requerido",
-  }).optional(),
+  }).optional().nullable(),
   fk_id_est: z.string({
     invalid_type_error: "Id de estante debe ser un texto",
     required_error: "Id de estante es requerido",
@@ -370,6 +450,8 @@ export const Bibliographie = z.object({
   }),
 });
 
-export const CreateBibliographieSchema = Bibliographie.omit({
+export const CreateBibliographieSchema = BibliographieSchema.omit({
   pk_id_biblio: true,
 });
+
+export const UpdateBibliographieSchema = BibliographieSchema;

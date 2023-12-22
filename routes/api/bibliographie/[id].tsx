@@ -4,14 +4,15 @@ import prismaClient from "@/database/prisma.ts";
 import { ApiResponse } from "@/schema/api-response.ts";
 import { Bibliografias } from "@/generated/client/deno/edge.ts";
 import { Bucket, supabase } from "@/database/supabase.ts";
+import { UpdateBibliographieSchema } from "@/schema/bibliographie.ts";
 
 export const handler: Handlers = {
   async DELETE(req: Request, ctx: HandlerContext) {
-    const result = z.coerce.number().parse(ctx.params.id);
+    const pk_id_biblio = z.coerce.number().parse(ctx.params.id);
 
     const bibiliographie = await prismaClient.bibliografias.delete({
       where: {
-        pk_id_biblio: result,
+        pk_id_biblio,
       },
       include: {
         Archivos: true,
@@ -31,6 +32,59 @@ export const handler: Handlers = {
       } as ApiResponse<Bibliografias>),
       {
         status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  },
+
+  async GET(_req: Request, ctx: HandlerContext) {
+    const pk_id_biblio = z.coerce.number().parse(ctx.params.id);
+
+    const bibiliographie = await prismaClient.bibliografias.findUnique({
+      where: {
+        pk_id_biblio,
+      },
+    });
+
+    return new Response(
+      JSON.stringify({
+        data: bibiliographie,
+        message: "Bibliografía encontrada",
+      } as ApiResponse<Bibliografias>),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  },
+  async PUT(req: Request, ctx: HandlerContext) {
+    const pk_id_biblio = z.coerce.number().parse(ctx.params.id);
+
+    const body = (await req.json()) as Bibliografias;
+
+    const result = UpdateBibliographieSchema.parse(body);
+
+    const bibiliographie = await prismaClient.bibliografias.update({
+      where: {
+        pk_id_biblio,
+      },
+      data: result,
+    });
+
+    return new Response(
+      JSON.stringify({
+        data: bibiliographie,
+        message: "Bibliografía actualizada",
+      } as ApiResponse<Bibliografias>),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
     );
   },

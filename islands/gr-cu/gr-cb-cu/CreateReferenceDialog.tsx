@@ -1,37 +1,57 @@
-import { Signal, useSignal } from "@preact/signals";
 import { Ref } from "preact";
-import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
-import {
-  BookForm,
-  MoreForm,
-  WebSiteForm,
-} from "@/islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
+import { Signal, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
+import { BookForm, MoreForm, WebSiteForm } from "./CreateReferenceForm.tsx";
+
+interface CreateReferenceDialogProps {
+  dialogRef: Ref<HTMLDialogElement>;
+  onSubmit: () => void;
+  onCancel: () => void;
+}
+export default function CreateReferenceDialog(
+  props: CreateReferenceDialogProps,
+) {
+  const isLoading = useSignal(false);
+  return (
+    <ReferenceDialog
+      dialogRef={props.dialogRef}
+      onSubmit={props.onSubmit}
+      onCancel={props.onCancel}
+      loading={isLoading}
+    />
+  );
+}
 
 interface ReferenceDialogProps {
   dialogRef: Ref<HTMLDialogElement>;
   onSubmit: () => void;
   onCancel: () => void;
+  loading: Signal<boolean>;
 }
 
-export default function ReferenceDialog(
-  { onCancel, onSubmit, dialogRef }: ReferenceDialogProps,
+function ReferenceDialog(
+  props: ReferenceDialogProps,
 ) {
   const typePublication = useSignal<TypePublication>(
     TYPE_PUBLICATION.SitioWeb,
   );
 
-  const isLoading = useSignal(false);
-
   return (
-    <dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
+    <dialog
+      ref={props.dialogRef}
+      className="modal modal-bottom sm:modal-middle"
+    >
       <div className="modal-box">
-        <Tabs disabled={isLoading.value} typePublication={typePublication} />
-        <Form
-          loading={isLoading}
+        <Tabs
+          disabled={props.loading.value}
           typePublication={typePublication}
-          onCancel={onCancel}
-          onSubmit={onSubmit}
+        />
+        <Form
+          loading={props.loading}
+          typePublication={typePublication}
+          onCancel={props.onCancel}
+          onSubmit={props.onSubmit}
         />
       </div>
     </dialog>
@@ -130,13 +150,6 @@ function Tabs({ disabled, typePublication }: TabsProps) {
         disabled={!IS_BROWSER || disabled}
       >
         Más
-      </button>
-      <button
-        className="tab"
-        type="button"
-        disabled={!IS_BROWSER || disabled}
-      >
-        Ayuda
       </button>
     </div>
   );

@@ -1,13 +1,15 @@
 import { Signal, useSignal } from "@preact/signals";
 import { InputFile } from "../../Input.tsx";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import {
-  CreateBookBibliographieSchema,
-  CreateMoreBibliographieSchema,
-  CreateWebSiteBibliographieSchema,
+  MORE_TYPE_PUBLICATION_OPTIONS,
   TYPE_FORMATS,
   TYPE_PUBLICATION,
-  TypePublication,
+  UpdateBookBibliographie,
+  UpdateBookBibliographieSchema,
+  UpdateMoreBibliographie,
+  UpdateMoreBibliographieSchema,
+  UpdateWebSiteBibliographie,
+  UpdateWebSiteBibliographieSchema,
 } from "@/schema/bibliographie.ts";
 import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
 import { Form } from "formika";
@@ -16,22 +18,24 @@ import FormControl from "@/components/FormControl.tsx";
 import { getActualYear } from "@/utils/date.ts";
 import { useBibliomasSessionContext } from "@/context/session-context.ts";
 import { ApiResponse } from "@/schema/api-response.ts";
-import { Bibliografias } from "@/generated/client/deno/edge.ts";
+import { Archivos, Bibliografias } from "@/generated/client/deno/edge.ts";
 import { Bucket, supabase } from "@/database/supabase.ts";
 import { BibliographieFile } from "@/schema/files.ts";
 
 interface FormProps {
   loading: Signal<boolean>;
+  bibliography: Signal<Bibliografias | null>;
   onCancel: () => void;
   onSubmit: () => void;
 }
 
 export function WebSiteForm(
-  { loading, onCancel, onSubmit }: FormProps,
+  props: FormProps,
 ) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
   const DEFAULT_FORM = {
+    pk_id_biblio: 0,
     txt_tip_biblio: TYPE_PUBLICATION.SitioWeb,
     txt_fmt_biblio: TYPE_FORMATS.Apa,
     txt_tit_biblio: "",
@@ -46,20 +50,26 @@ export function WebSiteForm(
   };
 
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
-    CreateWebSiteBibliographieSchema,
-    DEFAULT_FORM,
+    UpdateWebSiteBibliographieSchema,
+    ({
+      ...props.bibliography.value,
+      fk_id_carp: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
+      txt_tip_biblio: TYPE_PUBLICATION.SitioWeb,
+    } as UpdateWebSiteBibliographie) ?? DEFAULT_FORM,
     async (data) => {
-      loading.value = true;
-      await fetch("/api/bibliographie", {
-        method: "POST",
+      props.loading.value = true;
+
+      await fetch(`/api/bibliographie/${form.value.pk_id_biblio}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
       form.value = DEFAULT_FORM;
-      loading.value = false;
-      onSubmit();
+      props.loading.value = false;
+      props.onSubmit();
     },
   );
 
@@ -70,12 +80,6 @@ export function WebSiteForm(
         onChange={handleChange}
         onSubmit={handleSubmit}
       >
-        <input
-          type="hidden"
-          name="txt_tip_biblio"
-          value={TYPE_PUBLICATION.SitioWeb}
-        />
-
         <FormControl
           label="Formato"
           error={errors.value.txt_fmt_biblio}
@@ -84,7 +88,7 @@ export function WebSiteForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -102,7 +106,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={loading.value}
+            disabled={props.loading.value}
             name="txt_tit_biblio"
             required
           />
@@ -116,7 +120,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={loading.value}
+            disabled={props.loading.value}
             name="txt_aut_biblio"
             required
           />
@@ -130,7 +134,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={loading.value}
+            disabled={props.loading.value}
             name="txt_pag_biblio"
             required
           />
@@ -144,7 +148,7 @@ export function WebSiteForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={loading.value}
+            disabled={props.loading.value}
             name="txt_url_biblio"
             required
           />
@@ -153,14 +157,12 @@ export function WebSiteForm(
         <FormControl
           label="Fecha de publicación"
           error={errors.value.txt_fecha_pub_biblio}
-          required
         >
           <input
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={loading.value}
-            required
+            disabled={props.loading.value}
           />
         </FormControl>
 
@@ -173,15 +175,15 @@ export function WebSiteForm(
             type="date"
             className="input input-primary"
             name="txt_fecha_acc_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           />
         </FormControl>
 
         <DialogAction
-          disabled={loading.value}
-          loading={loading.value}
-          onCancel={onCancel}
+          disabled={props.loading.value}
+          loading={props.loading.value}
+          onCancel={props.onCancel}
         />
       </Form>
     </div>
@@ -189,7 +191,7 @@ export function WebSiteForm(
 }
 
 export function BookForm(
-  { loading, onCancel, onSubmit }: FormProps,
+  props: FormProps,
 ) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
@@ -210,59 +212,117 @@ export function BookForm(
   };
 
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
-    CreateBookBibliographieSchema,
-    DEFAULT_FORM,
+    UpdateBookBibliographieSchema,
+    ({
+      ...props.bibliography.value,
+      fk_id_carp: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
+      txt_tip_biblio: TYPE_PUBLICATION.Libro,
+    } as UpdateBookBibliographie) ?? DEFAULT_FORM,
     async (data) => {
-      loading.value = true;
-      const response = await fetch("/api/bibliographie", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      props.loading.value = true;
+      const response = await fetch(
+        `/api/bibliographie/${form.value.pk_id_biblio}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      });
+      );
       if (response.status === 200) {
         const { data } = (await response.json()) as ApiResponse<Bibliografias>;
-        await uploadFile(data.pk_id_biblio, bibliomasSessionContext.userId);
+        await handleUploadFile(
+          data.pk_id_biblio,
+          bibliomasSessionContext.userId,
+        );
       }
-      loading.value = false;
-      onSubmit();
+      props.loading.value = false;
+      props.onSubmit();
     },
   );
 
   const file = useSignal<File | null>(null);
   const fileErrors = useSignal("");
 
-  async function uploadFile(bibliographieId: number, userId: string) {
+  const getBibliographyFileInfo = async (bibliographyId: number) => {
+    const response = await fetch(
+      `/api/bibliographie/file/${bibliographyId}`,
+    );
+
+    const { data } = (await response.json()) as ApiResponse<Archivos | null>;
+
+    return data;
+  };
+
+  async function uploadFile(
+    path: string,
+    newFile: File,
+    existsPreviousFile: boolean,
+  ) {
+    if (existsPreviousFile) {
+      return await supabase
+        .storage
+        .from(Bucket.bibliographyDocuments)
+        .update(
+          path,
+          newFile,
+        );
+    } else {
+      return await supabase
+        .storage
+        .from(Bucket.bibliographyDocuments)
+        .upload(
+          path,
+          newFile,
+        );
+    }
+  }
+
+  async function handleUploadFile(bibliographieId: number, userId: string) {
     if (!file.value) {
       return;
     }
 
-    const bibliographieFile = file.value;
-    const filePath = `${userId}/${crypto.randomUUID()}.pdf`;
-    const { data, error } = await supabase
-      .storage
-      .from(Bucket.bibliographyDocuments)
-      .upload(
-        filePath,
-        bibliographieFile,
-      );
+    const newBibliographieFile = file.value;
+    const previousFile = await getBibliographyFileInfo(bibliographieId);
+    const filePath = previousFile
+      ? previousFile.txt_url_arch
+      : `${userId}/${crypto.randomUUID()}.pdf`;
+
+    const { data, error } = await uploadFile(
+      filePath,
+      newBibliographieFile,
+      previousFile === null,
+    );
 
     if (error) {
       return;
     }
+
     const body = {
       fk_id_biblio: bibliographieId,
       txt_url_arch: data.path,
     } as BibliographieFile;
 
-    await fetch("/api/bibliographie/file", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    if (previousFile) {
+      await fetch(`/api/bibliographie/file/${previousFile.pk_id_arch}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+    } else {
+      await fetch("/api/bibliographie/file", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+    }
   }
 
   return (
@@ -272,12 +332,6 @@ export function BookForm(
         onChange={handleChange}
         onSubmit={handleSubmit}
       >
-        <input
-          type="hidden"
-          name="txt_tip_biblio"
-          value={TYPE_PUBLICATION.Libro}
-        />
-
         <FormControl
           label="Formato"
           error={errors.value.txt_fmt_biblio}
@@ -286,7 +340,7 @@ export function BookForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -304,7 +358,7 @@ export function BookForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={loading.value}
+            disabled={props.loading.value}
             name="txt_tit_biblio"
             required
           />
@@ -318,7 +372,7 @@ export function BookForm(
           <input
             type="text"
             className="input input-primary"
-            disabled={loading.value}
+            disabled={props.loading.value}
             name="txt_aut_biblio"
             required
           />
@@ -333,7 +387,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           />
         </FormControl>
@@ -343,7 +397,7 @@ export function BookForm(
             type="text"
             className="input input-primary"
             name="txt_ubic_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
 
@@ -352,7 +406,7 @@ export function BookForm(
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
 
@@ -361,7 +415,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="num_volm_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
 
@@ -370,7 +424,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="num_edic_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
 
@@ -382,7 +436,7 @@ export function BookForm(
             type="number"
             className="input input-primary"
             name="num_npag_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
         <FormControl label="URL" error={errors.value.txt_url_biblio}>
@@ -390,7 +444,7 @@ export function BookForm(
             type="text"
             className="input input-primary"
             name="txt_url_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
         <InputFile
@@ -398,13 +452,13 @@ export function BookForm(
           value={file}
           error={fileErrors}
           name="file"
-          disabled={loading.value}
+          disabled={props.loading.value}
           accept=".pdf"
         />
         <DialogAction
-          disabled={loading.value}
-          loading={loading.value}
-          onCancel={onCancel}
+          disabled={props.loading.value}
+          loading={props.loading.value}
+          onCancel={props.onCancel}
         />
       </Form>
     </div>
@@ -412,11 +466,12 @@ export function BookForm(
 }
 
 export function MoreForm(
-  { loading, onCancel, onSubmit }: FormProps,
+  props: FormProps,
 ) {
   const bibliomasSessionContext = useBibliomasSessionContext();
 
   const DEFAULT_FORM = {
+    pk_id_biblio: 0,
     txt_aut_biblio: "",
     txt_tit_biblio: "",
     txt_tip_biblio: TYPE_PUBLICATION.ArticuloRevista,
@@ -431,19 +486,23 @@ export function MoreForm(
   };
 
   const { form, errors, handleChange, handleSubmit } = useFormicaForm(
-    CreateMoreBibliographieSchema,
-    DEFAULT_FORM,
+    UpdateMoreBibliographieSchema,
+    ({
+      ...props.bibliography.value,
+      fk_id_carp: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
+    } as UpdateMoreBibliographie) ?? DEFAULT_FORM,
     async () => {
-      loading.value = true;
-      await fetch("/api/bibliographie", {
-        method: "POST",
+      props.loading.value = true;
+      await fetch(`/api/bibliographie/${form.value.pk_id_biblio}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(form.value),
       });
-      loading.value = false;
-      onSubmit();
+      props.loading.value = false;
+      props.onSubmit();
     },
   );
 
@@ -458,7 +517,7 @@ export function MoreForm(
           <select
             className="select select-primary select-bordered"
             name="txt_fmt_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           >
             <option value="" disabled>Seleccione un formato</option>
@@ -475,13 +534,18 @@ export function MoreForm(
           <select
             className="select select-primary select-bordered"
             name="txt_tip_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           >
             <option value="" disabled>Seleccione un tipo de publicación</option>
-            // TODO: Remover sitioweb y libro
-            {Object.entries(TYPE_PUBLICATION).map(([key, value]) => (
-              <option value={key} className="uppercase">{value}</option>
+            {Object.entries(MORE_TYPE_PUBLICATION_OPTIONS).map(([key, value]) => (
+              <option
+                value={value.value}
+                className="uppercase"
+                selected={value.value === TYPE_PUBLICATION.ArticuloRevista}
+              >
+                {value.name}
+              </option>
             ))}
           </select>
         </FormControl>
@@ -495,7 +559,7 @@ export function MoreForm(
               type="checkbox"
               class="checkbox checkbox-primary"
               name="bool_online_biblio"
-              disabled={loading.value}
+              disabled={props.loading.value}
             />
           </label>
         </div>
@@ -509,7 +573,7 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_tit_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           />
         </FormControl>
@@ -523,7 +587,7 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_aut_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
             required
           />
         </FormControl>
@@ -536,16 +600,21 @@ export function MoreForm(
             type="number"
             className="input input-primary"
             name="txt_fecha_pub_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
 
-        <FormControl label="Editorial" error={errors.value.txt_edit_biblio}>
+        <FormControl
+          label="Periodico/Revista/Productora"
+          error={errors.value.txt_edit_biblio}
+          required
+        >
           <input
             type="text"
             className="input input-primary"
             name="txt_edit_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
+            required
           />
         </FormControl>
 
@@ -557,14 +626,14 @@ export function MoreForm(
             type="text"
             className="input input-primary"
             name="txt_url_biblio"
-            disabled={loading.value}
+            disabled={props.loading.value}
           />
         </FormControl>
 
         <DialogAction
-          disabled={loading.value}
-          loading={loading.value}
-          onCancel={onCancel}
+          disabled={props.loading.value}
+          loading={props.loading.value}
+          onCancel={props.onCancel}
         />
       </Form>
     </div>

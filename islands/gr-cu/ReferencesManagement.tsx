@@ -10,6 +10,12 @@ import PaginationButtons from "../PaginationButtons.tsx";
 import DeleteReferenceDialog from "@/islands/gr-cu/DeleteReferenceDialog.tsx";
 import { DEFAULT_PAGINATION_LIMIT } from "@/utils/constants.ts";
 import DownloadFileButton from "@/islands/gr-cu/DownloadFileButton.tsx";
+import UpdateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
+import GenerateReferenceButton from "@/islands/gr-cu/GenerateReferenceButton.tsx";
+import {
+  TYPE_FORMATS_OPTIONS,
+  TYPE_PUBLICATION_OPTIONS,
+} from "@/schema/bibliographie.ts";
 
 export default function ReferencesManagement() {
   const bibliomasContext = useBibliomasSessionContext();
@@ -18,6 +24,7 @@ export default function ReferencesManagement() {
   const actualPage = useSignal(1);
   const pagination = useSignal<Pagination<Bibliografias> | null>(null);
   const deletableBibliographie = useSignal<number | null>(null);
+  const editableBibliographie = useSignal<Bibliografias | null>(null);
 
   const fetchBibliographies = async () => {
     isLoading.value = true;
@@ -26,6 +33,9 @@ export default function ReferencesManagement() {
     searchParams.append("limit", String(DEFAULT_PAGINATION_LIMIT));
     searchParams.append("page", actualPage.value.toString());
     searchParams.append("userId", bibliomasContext.userId);
+    if (bibliomasContext.folderId) {
+      searchParams.append("folderId", String(bibliomasContext.folderId));
+    }
 
     const response = await fetch(
       `/api/bibliographie?${searchParams.toString()}`,
@@ -57,6 +67,7 @@ export default function ReferencesManagement() {
                 <th>Autor</th>
                 <th>Año</th>
                 <th>Titulo</th>
+                <th>Tipo</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -67,12 +78,11 @@ export default function ReferencesManagement() {
                     ((actualPage.value - 1) * DEFAULT_PAGINATION_LIMIT)}
                   key={bibliography.pk_id_biblio}
                   bibliography={bibliography}
-                  onEdit={() => {}}
+                  onEdit={() => {
+                    editableBibliographie.value = bibliography;
+                  }}
                   onDelete={() => {
                     deletableBibliographie.value = bibliography.pk_id_biblio;
-                  }}
-                  onCopy={() => {
-                    console.log("copiar");
                   }}
                   disabled={isLoading.value}
                 />
@@ -84,6 +94,12 @@ export default function ReferencesManagement() {
             bibliographyId={deletableBibliographie}
             onAccept={fetchBibliographies}
           />
+          {editableBibliographie.value && (
+            <UpdateReferenceDialog
+              bibliography={editableBibliographie}
+              onSubmit={fetchBibliographies}
+            />
+          )}
         </div>
         <div class="self-center lg:self-end">
           <PaginationButtons
@@ -95,6 +111,7 @@ export default function ReferencesManagement() {
         <CreateReferenceButton
           onSubmit={fetchBibliographies}
           classList="lg:w-fit lg:self-center"
+          disabled={isLoading.value}
         />
       </div>
     </>
@@ -106,7 +123,6 @@ interface ReferencesTableRowProps {
   numberBibliography: number;
   onEdit: () => void;
   onDelete: () => void;
-  onCopy: () => void;
   disabled: boolean;
 }
 
@@ -119,6 +135,16 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
       <td>{props.bibliography.txt_aut_biblio}</td>
       <td>{props.bibliography.txt_fecha_pub_biblio}</td>
       <td>{props.bibliography.txt_tit_biblio}</td>
+      <td>
+        <div>
+          <div class="badge badge-primary font-mono">
+            {TYPE_FORMATS_OPTIONS[props.bibliography.txt_fmt_biblio].name}
+          </div>
+          <div class="text-sm opacity-50 ">
+            {TYPE_PUBLICATION_OPTIONS[props.bibliography.txt_tip_biblio].name}
+          </div>
+        </div>
+      </td>
       <td>
         <div className="flex gap-2">
           <IconButton
@@ -135,13 +161,11 @@ function ReferencesTableRow(props: ReferencesTableRowProps) {
           >
             <IconTrash size={20} />
           </IconButton>
-          <IconButton
-            tooltip="Copiar referencia"
-            onClick={props.onCopy}
+
+          <GenerateReferenceButton
+            bibliography={props.bibliography}
             disabled={props.disabled}
-          >
-            <IconCopy size={20} />
-          </IconButton>
+          />
 
           <DownloadFileButton
             bibliographyId={props.bibliography.pk_id_biblio}

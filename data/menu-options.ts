@@ -14,11 +14,11 @@ export const menuOptions: MenuOption[] = [
     href: "/gestionar-referencias",
   },
   {
-    name: "Mis grupos",
-    href: "#",
+    name: "Mis carpetas",
+    href: "/gestionar-carpetas",
   },
   {
-    name: "Mis carpetas",
+    name: "Mis grupos",
     href: "#",
   },
   {
