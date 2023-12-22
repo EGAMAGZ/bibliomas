@@ -1,15 +1,15 @@
 import Button from "@/components/Button.tsx";
-import { useSignal } from "@preact/signals";
 import { useRef } from "preact/hooks";
-import { TYPE_PUBLICATION, TypePublication } from "@/schema/bibliographie.ts";
-import ReferenceDialog from "./ReferenceDialog.tsx";
+import CreateReferenceDialog from "@/islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
 
 interface CreateReferenceButtonProps {
-  disabled: boolean;
+  onSubmit: () => void;
+  classList?: string;
+  disabled: boolean
 }
 
 export default function CreateReferenceButton(
-  { disabled }: CreateReferenceButtonProps,
+  { onSubmit, classList }: CreateReferenceButtonProps,
 ) {
   const dialog = useRef<HTMLDialogElement>(null);
 
@@ -21,9 +21,8 @@ export default function CreateReferenceButton(
     dialog.current?.close();
   }
 
-  function handleSubmit(event: Event) {
-    event.preventDefault();
-
+  function handleSubmit() {
+    onSubmit();
     dialog.current?.close();
   }
 
@@ -32,13 +31,13 @@ export default function CreateReferenceButton(
       <Button
         state="btn-primary"
         type="button"
-        disabled={disabled}
         onClick={handleCreate}
+        classList={classList}
       >
         <span>Crear refencia</span>
       </Button>
 
-      <ReferenceDialog
+      <CreateReferenceDialog
         dialogRef={dialog}
         onSubmit={handleSubmit}
         onCancel={handleCancel}

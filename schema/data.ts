@@ -1,2 +1,2 @@
 // deno-lint-ignore no-explicit-any
-export type Data<T = any> = T & { error: string };
+export type Data<T = any> = { error: string; data: T };

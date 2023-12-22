@@ -45,3 +45,29 @@ export default function Button(props: ButtonProps) {
     </button>
   );
 }
+
+interface IconButtonProps {
+  onClick?: (event: Event) => void;
+  children: ComponentChildren;
+  tooltip: string;
+  disabled?: boolean;
+  showTooltip?: boolean;
+}
+
+export function IconButton(props: IconButtonProps) {
+  return (
+    <div
+      class={`tooltip ${props.showTooltip ? "tooltip-open	" : ""}`}
+      data-tip={props.tooltip}
+    >
+      <button
+        class="btn btn-circle btn-sm btn-secondary"
+        onClick={props.onClick}
+        type="button"
+        disabled={!IS_BROWSER || props.disabled}
+      >
+        {props.children}
+      </button>
+    </div>
+  );
+}

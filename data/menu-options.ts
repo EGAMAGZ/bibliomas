@@ -14,15 +14,34 @@ export const menuOptions: MenuOption[] = [
     href: "/gestionar-referencias",
   },
   {
-    name: "Mis grupos",
-    href: "#",
+    name: "Mis carpetas",
+    href: "/gestionar-carpetas",
   },
   {
-    name: "Mis carpetas",
-    href: "#",
+    name: "Mis grupos",
+    href: "/gestionar-grupos",
   },
   {
     name: "Cerrar sesión",
     href: LOGOUT_URL,
+  },
+];
+
+export const startOptions: MenuOption[] = [
+  {
+    name: "Inicio",
+    href: "/",
+  },
+  {
+    name: "Sobre nosotros",
+    href: "/about",
+  },
+  {
+    name: "Suscripciones",
+    href: "/suscription",
+  },
+  {
+    name: "Entrar",
+    href: "/inicio-sesion/iniciar-sesion",
   },
 ];

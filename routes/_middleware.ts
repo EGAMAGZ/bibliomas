@@ -12,7 +12,9 @@ export async function handler(
   if (ctx.destination !== "route") return await ctx.next();
 
   const url = new URL(req.url);
-  console.log(`Main middleware - Pathname: ${url.pathname}`);
+  console.log(
+    `Main middleware - Pathname: ${url.pathname} - Method: ${req.method}`,
+  );
 
   // Se salta validacion para API
   if (url.pathname.startsWith("/api")) {
@@ -23,8 +25,12 @@ export async function handler(
   console.log(`Main middleware - User Session: ${userSession}`);
 
   if (userSession === undefined) {
-    ctx.state.isLoggedIn = false;
-    if (url.pathname === LOGIN_URL || url.pathname === REGISTER_URL) {
+    // KATHY AQUI MODIFICAS
+    if (url.pathname === LOGIN_URL || 
+      url.pathname === REGISTER_URL || 
+      url.pathname === "/" ||
+      url.pathname === "/about" ||
+      url.pathname === "/suscription") {
       return await ctx.next();
     }
 
@@ -40,7 +46,7 @@ export async function handler(
   try {
     const { payload } = await verifyJWT(userSession);
 
-    ctx.state.isLoggedIn = true;
+    // ctx.state.isLoggedIn = true;
     ctx.state._id = payload.id as string;
     ctx.state.username = payload.username as string;
     ctx.state.email = payload.email as string;
@@ -54,7 +60,13 @@ export async function handler(
     });
   }
 
-  if (url.pathname === LOGIN_URL || url.pathname === REGISTER_URL) {
+  // KATHY AQUI MODIFICAS
+  if (
+    url.pathname === LOGIN_URL || 
+    url.pathname === REGISTER_URL || 
+    url.pathname === "/" ||
+    url.pathname === "/about" ||
+    url.pathname === "/suscription") {
     return new Response(null, {
       status: 303,
       headers: {

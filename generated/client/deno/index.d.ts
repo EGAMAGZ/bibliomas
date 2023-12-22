@@ -50,6 +50,40 @@ export type Grupos = $Result.DefaultSelection<Prisma.$GruposPayload>
 export type Cambios = $Result.DefaultSelection<Prisma.$CambiosPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const TipoPublicacion: {
+  SitioWeb: 'SitioWeb',
+  Libro: 'Libro',
+  ArticuloRevista: 'ArticuloRevista',
+  ArticuloPeriodico: 'ArticuloPeriodico',
+  Peliculas: 'Peliculas'
+};
+
+export type TipoPublicacion = (typeof TipoPublicacion)[keyof typeof TipoPublicacion]
+
+
+export const TipoFormato: {
+  Apa: 'Apa',
+  Chicago: 'Chicago',
+  Mla: 'Mla',
+  Ieee: 'Ieee'
+};
+
+export type TipoFormato = (typeof TipoFormato)[keyof typeof TipoFormato]
+
+}
+
+export type TipoPublicacion = $Enums.TipoPublicacion
+
+export const TipoPublicacion: typeof $Enums.TipoPublicacion
+
+export type TipoFormato = $Enums.TipoFormato
+
+export const TipoFormato: typeof $Enums.TipoFormato
+
+/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
@@ -2656,11 +2690,9 @@ export namespace Prisma {
 
   export type BibliografiasAvgAggregateOutputType = {
     pk_id_biblio: number | null
-    num_tip_biblio: number | null
-    num_fmt_biblio: number | null
     txt_fecha_pub_biblio: number | null
-    num_edic_biblio: number | null
     num_volm_biblio: number | null
+    num_edic_biblio: number | null
     num_npag_biblio: number | null
     fk_id_grup: number | null
     fk_id_carp: number | null
@@ -2668,11 +2700,9 @@ export namespace Prisma {
 
   export type BibliografiasSumAggregateOutputType = {
     pk_id_biblio: number | null
-    num_tip_biblio: number | null
-    num_fmt_biblio: number | null
     txt_fecha_pub_biblio: number | null
-    num_edic_biblio: number | null
     num_volm_biblio: number | null
+    num_edic_biblio: number | null
     num_npag_biblio: number | null
     fk_id_grup: number | null
     fk_id_carp: number | null
@@ -2680,19 +2710,20 @@ export namespace Prisma {
 
   export type BibliografiasMinAggregateOutputType = {
     pk_id_biblio: number | null
-    num_tip_biblio: number | null
-    num_fmt_biblio: number | null
+    txt_tip_biblio: $Enums.TipoPublicacion | null
+    txt_fmt_biblio: $Enums.TipoFormato | null
     txt_tit_biblio: string | null
     txt_aut_biblio: string | null
     txt_pag_biblio: string | null
-    txt_dir_biblio: string | null
+    txt_url_biblio: string | null
     txt_fecha_pub_biblio: number | null
     txt_fecha_acc_biblio: Date | null
-    txt_edit_biblio: string | null
-    num_edic_biblio: number | null
-    num_volm_biblio: number | null
-    num_npag_biblio: number | null
     txt_ubic_biblio: string | null
+    txt_edit_biblio: string | null
+    num_volm_biblio: number | null
+    num_edic_biblio: number | null
+    num_npag_biblio: number | null
+    bool_online_biblio: boolean | null
     fk_id_grup: number | null
     fk_id_carp: number | null
     fk_id_est: string | null
@@ -2700,19 +2731,20 @@ export namespace Prisma {
 
   export type BibliografiasMaxAggregateOutputType = {
     pk_id_biblio: number | null
-    num_tip_biblio: number | null
-    num_fmt_biblio: number | null
+    txt_tip_biblio: $Enums.TipoPublicacion | null
+    txt_fmt_biblio: $Enums.TipoFormato | null
     txt_tit_biblio: string | null
     txt_aut_biblio: string | null
     txt_pag_biblio: string | null
-    txt_dir_biblio: string | null
+    txt_url_biblio: string | null
     txt_fecha_pub_biblio: number | null
     txt_fecha_acc_biblio: Date | null
-    txt_edit_biblio: string | null
-    num_edic_biblio: number | null
-    num_volm_biblio: number | null
-    num_npag_biblio: number | null
     txt_ubic_biblio: string | null
+    txt_edit_biblio: string | null
+    num_volm_biblio: number | null
+    num_edic_biblio: number | null
+    num_npag_biblio: number | null
+    bool_online_biblio: boolean | null
     fk_id_grup: number | null
     fk_id_carp: number | null
     fk_id_est: string | null
@@ -2720,19 +2752,20 @@ export namespace Prisma {
 
   export type BibliografiasCountAggregateOutputType = {
     pk_id_biblio: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: number
+    txt_fmt_biblio: number
     txt_tit_biblio: number
     txt_aut_biblio: number
     txt_pag_biblio: number
-    txt_dir_biblio: number
+    txt_url_biblio: number
     txt_fecha_pub_biblio: number
     txt_fecha_acc_biblio: number
-    txt_edit_biblio: number
-    num_edic_biblio: number
-    num_volm_biblio: number
-    num_npag_biblio: number
     txt_ubic_biblio: number
+    txt_edit_biblio: number
+    num_volm_biblio: number
+    num_edic_biblio: number
+    num_npag_biblio: number
+    bool_online_biblio: number
     fk_id_grup: number
     fk_id_carp: number
     fk_id_est: number
@@ -2742,11 +2775,9 @@ export namespace Prisma {
 
   export type BibliografiasAvgAggregateInputType = {
     pk_id_biblio?: true
-    num_tip_biblio?: true
-    num_fmt_biblio?: true
     txt_fecha_pub_biblio?: true
-    num_edic_biblio?: true
     num_volm_biblio?: true
+    num_edic_biblio?: true
     num_npag_biblio?: true
     fk_id_grup?: true
     fk_id_carp?: true
@@ -2754,11 +2785,9 @@ export namespace Prisma {
 
   export type BibliografiasSumAggregateInputType = {
     pk_id_biblio?: true
-    num_tip_biblio?: true
-    num_fmt_biblio?: true
     txt_fecha_pub_biblio?: true
-    num_edic_biblio?: true
     num_volm_biblio?: true
+    num_edic_biblio?: true
     num_npag_biblio?: true
     fk_id_grup?: true
     fk_id_carp?: true
@@ -2766,19 +2795,20 @@ export namespace Prisma {
 
   export type BibliografiasMinAggregateInputType = {
     pk_id_biblio?: true
-    num_tip_biblio?: true
-    num_fmt_biblio?: true
+    txt_tip_biblio?: true
+    txt_fmt_biblio?: true
     txt_tit_biblio?: true
     txt_aut_biblio?: true
     txt_pag_biblio?: true
-    txt_dir_biblio?: true
+    txt_url_biblio?: true
     txt_fecha_pub_biblio?: true
     txt_fecha_acc_biblio?: true
-    txt_edit_biblio?: true
-    num_edic_biblio?: true
-    num_volm_biblio?: true
-    num_npag_biblio?: true
     txt_ubic_biblio?: true
+    txt_edit_biblio?: true
+    num_volm_biblio?: true
+    num_edic_biblio?: true
+    num_npag_biblio?: true
+    bool_online_biblio?: true
     fk_id_grup?: true
     fk_id_carp?: true
     fk_id_est?: true
@@ -2786,19 +2816,20 @@ export namespace Prisma {
 
   export type BibliografiasMaxAggregateInputType = {
     pk_id_biblio?: true
-    num_tip_biblio?: true
-    num_fmt_biblio?: true
+    txt_tip_biblio?: true
+    txt_fmt_biblio?: true
     txt_tit_biblio?: true
     txt_aut_biblio?: true
     txt_pag_biblio?: true
-    txt_dir_biblio?: true
+    txt_url_biblio?: true
     txt_fecha_pub_biblio?: true
     txt_fecha_acc_biblio?: true
-    txt_edit_biblio?: true
-    num_edic_biblio?: true
-    num_volm_biblio?: true
-    num_npag_biblio?: true
     txt_ubic_biblio?: true
+    txt_edit_biblio?: true
+    num_volm_biblio?: true
+    num_edic_biblio?: true
+    num_npag_biblio?: true
+    bool_online_biblio?: true
     fk_id_grup?: true
     fk_id_carp?: true
     fk_id_est?: true
@@ -2806,19 +2837,20 @@ export namespace Prisma {
 
   export type BibliografiasCountAggregateInputType = {
     pk_id_biblio?: true
-    num_tip_biblio?: true
-    num_fmt_biblio?: true
+    txt_tip_biblio?: true
+    txt_fmt_biblio?: true
     txt_tit_biblio?: true
     txt_aut_biblio?: true
     txt_pag_biblio?: true
-    txt_dir_biblio?: true
+    txt_url_biblio?: true
     txt_fecha_pub_biblio?: true
     txt_fecha_acc_biblio?: true
-    txt_edit_biblio?: true
-    num_edic_biblio?: true
-    num_volm_biblio?: true
-    num_npag_biblio?: true
     txt_ubic_biblio?: true
+    txt_edit_biblio?: true
+    num_volm_biblio?: true
+    num_edic_biblio?: true
+    num_npag_biblio?: true
+    bool_online_biblio?: true
     fk_id_grup?: true
     fk_id_carp?: true
     fk_id_est?: true
@@ -2913,21 +2945,22 @@ export namespace Prisma {
 
   export type BibliografiasGroupByOutputType = {
     pk_id_biblio: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio: string | null
-    txt_dir_biblio: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio: string | null
+    txt_fecha_pub_biblio: number | null
     txt_fecha_acc_biblio: Date | null
-    txt_edit_biblio: string | null
-    num_edic_biblio: number | null
-    num_volm_biblio: number | null
-    num_npag_biblio: number | null
     txt_ubic_biblio: string | null
-    fk_id_grup: number
-    fk_id_carp: number
+    txt_edit_biblio: string | null
+    num_volm_biblio: number | null
+    num_edic_biblio: number | null
+    num_npag_biblio: number | null
+    bool_online_biblio: boolean | null
+    fk_id_grup: number | null
+    fk_id_carp: number | null
     fk_id_est: string
     _count: BibliografiasCountAggregateOutputType | null
     _avg: BibliografiasAvgAggregateOutputType | null
@@ -2952,24 +2985,25 @@ export namespace Prisma {
 
   export type BibliografiasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_biblio?: boolean
-    num_tip_biblio?: boolean
-    num_fmt_biblio?: boolean
+    txt_tip_biblio?: boolean
+    txt_fmt_biblio?: boolean
     txt_tit_biblio?: boolean
     txt_aut_biblio?: boolean
     txt_pag_biblio?: boolean
-    txt_dir_biblio?: boolean
+    txt_url_biblio?: boolean
     txt_fecha_pub_biblio?: boolean
     txt_fecha_acc_biblio?: boolean
-    txt_edit_biblio?: boolean
-    num_edic_biblio?: boolean
-    num_volm_biblio?: boolean
-    num_npag_biblio?: boolean
     txt_ubic_biblio?: boolean
+    txt_edit_biblio?: boolean
+    num_volm_biblio?: boolean
+    num_edic_biblio?: boolean
+    num_npag_biblio?: boolean
+    bool_online_biblio?: boolean
     fk_id_grup?: boolean
     fk_id_carp?: boolean
     fk_id_est?: boolean
-    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
-    Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
+    Grupo?: boolean | Bibliografias$GrupoArgs<ExtArgs>
+    Carpeta?: boolean | Bibliografias$CarpetaArgs<ExtArgs>
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
     Archivos?: boolean | Bibliografias$ArchivosArgs<ExtArgs>
     _count?: boolean | BibliografiasCountOutputTypeDefaultArgs<ExtArgs>
@@ -2977,27 +3011,28 @@ export namespace Prisma {
 
   export type BibliografiasSelectScalar = {
     pk_id_biblio?: boolean
-    num_tip_biblio?: boolean
-    num_fmt_biblio?: boolean
+    txt_tip_biblio?: boolean
+    txt_fmt_biblio?: boolean
     txt_tit_biblio?: boolean
     txt_aut_biblio?: boolean
     txt_pag_biblio?: boolean
-    txt_dir_biblio?: boolean
+    txt_url_biblio?: boolean
     txt_fecha_pub_biblio?: boolean
     txt_fecha_acc_biblio?: boolean
-    txt_edit_biblio?: boolean
-    num_edic_biblio?: boolean
-    num_volm_biblio?: boolean
-    num_npag_biblio?: boolean
     txt_ubic_biblio?: boolean
+    txt_edit_biblio?: boolean
+    num_volm_biblio?: boolean
+    num_edic_biblio?: boolean
+    num_npag_biblio?: boolean
+    bool_online_biblio?: boolean
     fk_id_grup?: boolean
     fk_id_carp?: boolean
     fk_id_est?: boolean
   }
 
   export type BibliografiasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
-    Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
+    Grupo?: boolean | Bibliografias$GrupoArgs<ExtArgs>
+    Carpeta?: boolean | Bibliografias$CarpetaArgs<ExtArgs>
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
     Archivos?: boolean | Bibliografias$ArchivosArgs<ExtArgs>
     _count?: boolean | BibliografiasCountOutputTypeDefaultArgs<ExtArgs>
@@ -3007,28 +3042,29 @@ export namespace Prisma {
   export type $BibliografiasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Bibliografias"
     objects: {
-      Grupo: Prisma.$GruposPayload<ExtArgs>
-      Carpeta: Prisma.$CarpetasPayload<ExtArgs>
+      Grupo: Prisma.$GruposPayload<ExtArgs> | null
+      Carpeta: Prisma.$CarpetasPayload<ExtArgs> | null
       Estudiante: Prisma.$EstudiantesPayload<ExtArgs>
       Archivos: Prisma.$ArchivosPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_biblio: number
-      num_tip_biblio: number
-      num_fmt_biblio: number
+      txt_tip_biblio: $Enums.TipoPublicacion
+      txt_fmt_biblio: $Enums.TipoFormato
       txt_tit_biblio: string
       txt_aut_biblio: string
       txt_pag_biblio: string | null
-      txt_dir_biblio: string | null
-      txt_fecha_pub_biblio: number
+      txt_url_biblio: string | null
+      txt_fecha_pub_biblio: number | null
       txt_fecha_acc_biblio: Date | null
-      txt_edit_biblio: string | null
-      num_edic_biblio: number | null
-      num_volm_biblio: number | null
-      num_npag_biblio: number | null
       txt_ubic_biblio: string | null
-      fk_id_grup: number
-      fk_id_carp: number
+      txt_edit_biblio: string | null
+      num_volm_biblio: number | null
+      num_edic_biblio: number | null
+      num_npag_biblio: number | null
+      bool_online_biblio: boolean | null
+      fk_id_grup: number | null
+      fk_id_carp: number | null
       fk_id_est: string
     }, ExtArgs["result"]["bibliografias"]>
     composites: {}
@@ -3395,9 +3431,9 @@ export namespace Prisma {
   export interface Prisma__BibliografiasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Grupo<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    Grupo<T extends Bibliografias$GrupoArgs<ExtArgs> = {}>(args?: Subset<T, Bibliografias$GrupoArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
-    Carpeta<T extends CarpetasDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarpetasDefaultArgs<ExtArgs>>): Prisma__CarpetasClient<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    Carpeta<T extends Bibliografias$CarpetaArgs<ExtArgs> = {}>(args?: Subset<T, Bibliografias$CarpetaArgs<ExtArgs>>): Prisma__CarpetasClient<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     Estudiante<T extends EstudiantesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EstudiantesDefaultArgs<ExtArgs>>): Prisma__EstudiantesClient<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
@@ -3432,19 +3468,20 @@ export namespace Prisma {
    */ 
   interface BibliografiasFieldRefs {
     readonly pk_id_biblio: FieldRef<"Bibliografias", 'Int'>
-    readonly num_tip_biblio: FieldRef<"Bibliografias", 'Int'>
-    readonly num_fmt_biblio: FieldRef<"Bibliografias", 'Int'>
+    readonly txt_tip_biblio: FieldRef<"Bibliografias", 'TipoPublicacion'>
+    readonly txt_fmt_biblio: FieldRef<"Bibliografias", 'TipoFormato'>
     readonly txt_tit_biblio: FieldRef<"Bibliografias", 'String'>
     readonly txt_aut_biblio: FieldRef<"Bibliografias", 'String'>
     readonly txt_pag_biblio: FieldRef<"Bibliografias", 'String'>
-    readonly txt_dir_biblio: FieldRef<"Bibliografias", 'String'>
+    readonly txt_url_biblio: FieldRef<"Bibliografias", 'String'>
     readonly txt_fecha_pub_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly txt_fecha_acc_biblio: FieldRef<"Bibliografias", 'DateTime'>
-    readonly txt_edit_biblio: FieldRef<"Bibliografias", 'String'>
-    readonly num_edic_biblio: FieldRef<"Bibliografias", 'Int'>
-    readonly num_volm_biblio: FieldRef<"Bibliografias", 'Int'>
-    readonly num_npag_biblio: FieldRef<"Bibliografias", 'Int'>
     readonly txt_ubic_biblio: FieldRef<"Bibliografias", 'String'>
+    readonly txt_edit_biblio: FieldRef<"Bibliografias", 'String'>
+    readonly num_volm_biblio: FieldRef<"Bibliografias", 'Int'>
+    readonly num_edic_biblio: FieldRef<"Bibliografias", 'Int'>
+    readonly num_npag_biblio: FieldRef<"Bibliografias", 'Int'>
+    readonly bool_online_biblio: FieldRef<"Bibliografias", 'Boolean'>
     readonly fk_id_grup: FieldRef<"Bibliografias", 'Int'>
     readonly fk_id_carp: FieldRef<"Bibliografias", 'Int'>
     readonly fk_id_est: FieldRef<"Bibliografias", 'String'>
@@ -3760,6 +3797,38 @@ export namespace Prisma {
 
 
   /**
+   * Bibliografias.Grupo
+   */
+  export type Bibliografias$GrupoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grupos
+     */
+    select?: GruposSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GruposInclude<ExtArgs> | null
+    where?: GruposWhereInput
+  }
+
+
+  /**
+   * Bibliografias.Carpeta
+   */
+  export type Bibliografias$CarpetaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carpetas
+     */
+    select?: CarpetasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CarpetasInclude<ExtArgs> | null
+    where?: CarpetasWhereInput
+  }
+
+
+  /**
    * Bibliografias.Archivos
    */
   export type Bibliografias$ArchivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3820,19 +3889,19 @@ export namespace Prisma {
 
   export type ArchivosMinAggregateOutputType = {
     pk_id_arch: number | null
-    txt_dir_arch: string | null
+    txt_url_arch: string | null
     fk_id_biblio: number | null
   }
 
   export type ArchivosMaxAggregateOutputType = {
     pk_id_arch: number | null
-    txt_dir_arch: string | null
+    txt_url_arch: string | null
     fk_id_biblio: number | null
   }
 
   export type ArchivosCountAggregateOutputType = {
     pk_id_arch: number
-    txt_dir_arch: number
+    txt_url_arch: number
     fk_id_biblio: number
     _all: number
   }
@@ -3850,19 +3919,19 @@ export namespace Prisma {
 
   export type ArchivosMinAggregateInputType = {
     pk_id_arch?: true
-    txt_dir_arch?: true
+    txt_url_arch?: true
     fk_id_biblio?: true
   }
 
   export type ArchivosMaxAggregateInputType = {
     pk_id_arch?: true
-    txt_dir_arch?: true
+    txt_url_arch?: true
     fk_id_biblio?: true
   }
 
   export type ArchivosCountAggregateInputType = {
     pk_id_arch?: true
-    txt_dir_arch?: true
+    txt_url_arch?: true
     fk_id_biblio?: true
     _all?: true
   }
@@ -3955,7 +4024,7 @@ export namespace Prisma {
 
   export type ArchivosGroupByOutputType = {
     pk_id_arch: number
-    txt_dir_arch: string
+    txt_url_arch: string
     fk_id_biblio: number
     _count: ArchivosCountAggregateOutputType | null
     _avg: ArchivosAvgAggregateOutputType | null
@@ -3980,14 +4049,14 @@ export namespace Prisma {
 
   export type ArchivosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pk_id_arch?: boolean
-    txt_dir_arch?: boolean
+    txt_url_arch?: boolean
     fk_id_biblio?: boolean
     Bibliografias?: boolean | BibliografiasDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["archivos"]>
 
   export type ArchivosSelectScalar = {
     pk_id_arch?: boolean
-    txt_dir_arch?: boolean
+    txt_url_arch?: boolean
     fk_id_biblio?: boolean
   }
 
@@ -4003,7 +4072,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       pk_id_arch: number
-      txt_dir_arch: string
+      txt_url_arch: string
       fk_id_biblio: number
     }, ExtArgs["result"]["archivos"]>
     composites: {}
@@ -4401,7 +4470,7 @@ export namespace Prisma {
    */ 
   interface ArchivosFieldRefs {
     readonly pk_id_arch: FieldRef<"Archivos", 'Int'>
-    readonly txt_dir_arch: FieldRef<"Archivos", 'String'>
+    readonly txt_url_arch: FieldRef<"Archivos", 'String'>
     readonly fk_id_biblio: FieldRef<"Archivos", 'Int'>
   }
     
@@ -4896,7 +4965,7 @@ export namespace Prisma {
   export type CarpetasGroupByOutputType = {
     pk_id_carp: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup: number | null
     fk_id_est: string
     _count: CarpetasCountAggregateOutputType | null
     _avg: CarpetasAvgAggregateOutputType | null
@@ -4924,7 +4993,7 @@ export namespace Prisma {
     txt_nom_carp?: boolean
     fk_id_grup?: boolean
     fk_id_est?: boolean
-    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Grupo?: boolean | Carpetas$GrupoArgs<ExtArgs>
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
     Cambios?: boolean | Carpetas$CambiosArgs<ExtArgs>
     Bibliografias?: boolean | Carpetas$BibliografiasArgs<ExtArgs>
@@ -4939,7 +5008,7 @@ export namespace Prisma {
   }
 
   export type CarpetasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Grupo?: boolean | GruposDefaultArgs<ExtArgs>
+    Grupo?: boolean | Carpetas$GrupoArgs<ExtArgs>
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
     Cambios?: boolean | Carpetas$CambiosArgs<ExtArgs>
     Bibliografias?: boolean | Carpetas$BibliografiasArgs<ExtArgs>
@@ -4950,7 +5019,7 @@ export namespace Prisma {
   export type $CarpetasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Carpetas"
     objects: {
-      Grupo: Prisma.$GruposPayload<ExtArgs>
+      Grupo: Prisma.$GruposPayload<ExtArgs> | null
       Estudiante: Prisma.$EstudiantesPayload<ExtArgs>
       Cambios: Prisma.$CambiosPayload<ExtArgs>[]
       Bibliografias: Prisma.$BibliografiasPayload<ExtArgs>[]
@@ -4958,7 +5027,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       pk_id_carp: number
       txt_nom_carp: string
-      fk_id_grup: number
+      fk_id_grup: number | null
       fk_id_est: string
     }, ExtArgs["result"]["carpetas"]>
     composites: {}
@@ -5325,7 +5394,7 @@ export namespace Prisma {
   export interface Prisma__CarpetasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Grupo<T extends GruposDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GruposDefaultArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    Grupo<T extends Carpetas$GrupoArgs<ExtArgs> = {}>(args?: Subset<T, Carpetas$GrupoArgs<ExtArgs>>): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     Estudiante<T extends EstudiantesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EstudiantesDefaultArgs<ExtArgs>>): Prisma__EstudiantesClient<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
@@ -5673,6 +5742,22 @@ export namespace Prisma {
      * Filter which Carpetas to delete
      */
     where?: CarpetasWhereInput
+  }
+
+
+  /**
+   * Carpetas.Grupo
+   */
+  export type Carpetas$GrupoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grupos
+     */
+    select?: GruposSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GruposInclude<ExtArgs> | null
+    where?: GruposWhereInput
   }
 
 
@@ -8706,19 +8791,20 @@ export namespace Prisma {
 
   export const BibliografiasScalarFieldEnum: {
     pk_id_biblio: 'pk_id_biblio',
-    num_tip_biblio: 'num_tip_biblio',
-    num_fmt_biblio: 'num_fmt_biblio',
+    txt_tip_biblio: 'txt_tip_biblio',
+    txt_fmt_biblio: 'txt_fmt_biblio',
     txt_tit_biblio: 'txt_tit_biblio',
     txt_aut_biblio: 'txt_aut_biblio',
     txt_pag_biblio: 'txt_pag_biblio',
-    txt_dir_biblio: 'txt_dir_biblio',
+    txt_url_biblio: 'txt_url_biblio',
     txt_fecha_pub_biblio: 'txt_fecha_pub_biblio',
     txt_fecha_acc_biblio: 'txt_fecha_acc_biblio',
-    txt_edit_biblio: 'txt_edit_biblio',
-    num_edic_biblio: 'num_edic_biblio',
-    num_volm_biblio: 'num_volm_biblio',
-    num_npag_biblio: 'num_npag_biblio',
     txt_ubic_biblio: 'txt_ubic_biblio',
+    txt_edit_biblio: 'txt_edit_biblio',
+    num_volm_biblio: 'num_volm_biblio',
+    num_edic_biblio: 'num_edic_biblio',
+    num_npag_biblio: 'num_npag_biblio',
+    bool_online_biblio: 'bool_online_biblio',
     fk_id_grup: 'fk_id_grup',
     fk_id_carp: 'fk_id_carp',
     fk_id_est: 'fk_id_est'
@@ -8729,7 +8815,7 @@ export namespace Prisma {
 
   export const ArchivosScalarFieldEnum: {
     pk_id_arch: 'pk_id_arch',
-    txt_dir_arch: 'txt_dir_arch',
+    txt_url_arch: 'txt_url_arch',
     fk_id_biblio: 'fk_id_biblio'
   };
 
@@ -8833,6 +8919,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'TipoPublicacion'
+   */
+  export type EnumTipoPublicacionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPublicacion'>
+    
+
+
+  /**
+   * Reference to a field of type 'TipoPublicacion[]'
+   */
+  export type ListEnumTipoPublicacionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPublicacion[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TipoFormato'
+   */
+  export type EnumTipoFormatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoFormato'>
+    
+
+
+  /**
+   * Reference to a field of type 'TipoFormato[]'
+   */
+  export type ListEnumTipoFormatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoFormato[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -8843,6 +8957,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -8937,45 +9058,47 @@ export namespace Prisma {
     OR?: BibliografiasWhereInput[]
     NOT?: BibliografiasWhereInput | BibliografiasWhereInput[]
     pk_id_biblio?: IntFilter<"Bibliografias"> | number
-    num_tip_biblio?: IntFilter<"Bibliografias"> | number
-    num_fmt_biblio?: IntFilter<"Bibliografias"> | number
+    txt_tip_biblio?: EnumTipoPublicacionFilter<"Bibliografias"> | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFilter<"Bibliografias"> | $Enums.TipoFormato
     txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringFilter<"Bibliografias"> | string
     txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_fecha_pub_biblio?: IntFilter<"Bibliografias"> | number
+    txt_url_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_fecha_acc_biblio?: DateTimeNullableFilter<"Bibliografias"> | Date | string | null
-    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
-    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
-    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    fk_id_grup?: IntFilter<"Bibliografias"> | number
-    fk_id_carp?: IntFilter<"Bibliografias"> | number
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    bool_online_biblio?: BoolNullableFilter<"Bibliografias"> | boolean | null
+    fk_id_grup?: IntNullableFilter<"Bibliografias"> | number | null
+    fk_id_carp?: IntNullableFilter<"Bibliografias"> | number | null
     fk_id_est?: StringFilter<"Bibliografias"> | string
-    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
-    Carpeta?: XOR<CarpetasRelationFilter, CarpetasWhereInput>
+    Grupo?: XOR<GruposNullableRelationFilter, GruposWhereInput> | null
+    Carpeta?: XOR<CarpetasNullableRelationFilter, CarpetasWhereInput> | null
     Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
     Archivos?: ArchivosListRelationFilter
   }
 
   export type BibliografiasOrderByWithRelationInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
+    txt_tip_biblio?: SortOrder
+    txt_fmt_biblio?: SortOrder
     txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
     txt_pag_biblio?: SortOrderInput | SortOrder
-    txt_dir_biblio?: SortOrderInput | SortOrder
-    txt_fecha_pub_biblio?: SortOrder
+    txt_url_biblio?: SortOrderInput | SortOrder
+    txt_fecha_pub_biblio?: SortOrderInput | SortOrder
     txt_fecha_acc_biblio?: SortOrderInput | SortOrder
-    txt_edit_biblio?: SortOrderInput | SortOrder
-    num_edic_biblio?: SortOrderInput | SortOrder
-    num_volm_biblio?: SortOrderInput | SortOrder
-    num_npag_biblio?: SortOrderInput | SortOrder
     txt_ubic_biblio?: SortOrderInput | SortOrder
-    fk_id_grup?: SortOrder
-    fk_id_carp?: SortOrder
+    txt_edit_biblio?: SortOrderInput | SortOrder
+    num_volm_biblio?: SortOrderInput | SortOrder
+    num_edic_biblio?: SortOrderInput | SortOrder
+    num_npag_biblio?: SortOrderInput | SortOrder
+    bool_online_biblio?: SortOrderInput | SortOrder
+    fk_id_grup?: SortOrderInput | SortOrder
+    fk_id_carp?: SortOrderInput | SortOrder
     fk_id_est?: SortOrder
     Grupo?: GruposOrderByWithRelationInput
     Carpeta?: CarpetasOrderByWithRelationInput
@@ -8988,45 +9111,47 @@ export namespace Prisma {
     AND?: BibliografiasWhereInput | BibliografiasWhereInput[]
     OR?: BibliografiasWhereInput[]
     NOT?: BibliografiasWhereInput | BibliografiasWhereInput[]
-    num_tip_biblio?: IntFilter<"Bibliografias"> | number
-    num_fmt_biblio?: IntFilter<"Bibliografias"> | number
+    txt_tip_biblio?: EnumTipoPublicacionFilter<"Bibliografias"> | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFilter<"Bibliografias"> | $Enums.TipoFormato
     txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringFilter<"Bibliografias"> | string
     txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_fecha_pub_biblio?: IntFilter<"Bibliografias"> | number
+    txt_url_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_fecha_acc_biblio?: DateTimeNullableFilter<"Bibliografias"> | Date | string | null
-    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
-    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
-    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    fk_id_grup?: IntFilter<"Bibliografias"> | number
-    fk_id_carp?: IntFilter<"Bibliografias"> | number
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    bool_online_biblio?: BoolNullableFilter<"Bibliografias"> | boolean | null
+    fk_id_grup?: IntNullableFilter<"Bibliografias"> | number | null
+    fk_id_carp?: IntNullableFilter<"Bibliografias"> | number | null
     fk_id_est?: StringFilter<"Bibliografias"> | string
-    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
-    Carpeta?: XOR<CarpetasRelationFilter, CarpetasWhereInput>
+    Grupo?: XOR<GruposNullableRelationFilter, GruposWhereInput> | null
+    Carpeta?: XOR<CarpetasNullableRelationFilter, CarpetasWhereInput> | null
     Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
     Archivos?: ArchivosListRelationFilter
   }, "pk_id_biblio">
 
   export type BibliografiasOrderByWithAggregationInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
+    txt_tip_biblio?: SortOrder
+    txt_fmt_biblio?: SortOrder
     txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
     txt_pag_biblio?: SortOrderInput | SortOrder
-    txt_dir_biblio?: SortOrderInput | SortOrder
-    txt_fecha_pub_biblio?: SortOrder
+    txt_url_biblio?: SortOrderInput | SortOrder
+    txt_fecha_pub_biblio?: SortOrderInput | SortOrder
     txt_fecha_acc_biblio?: SortOrderInput | SortOrder
-    txt_edit_biblio?: SortOrderInput | SortOrder
-    num_edic_biblio?: SortOrderInput | SortOrder
-    num_volm_biblio?: SortOrderInput | SortOrder
-    num_npag_biblio?: SortOrderInput | SortOrder
     txt_ubic_biblio?: SortOrderInput | SortOrder
-    fk_id_grup?: SortOrder
-    fk_id_carp?: SortOrder
+    txt_edit_biblio?: SortOrderInput | SortOrder
+    num_volm_biblio?: SortOrderInput | SortOrder
+    num_edic_biblio?: SortOrderInput | SortOrder
+    num_npag_biblio?: SortOrderInput | SortOrder
+    bool_online_biblio?: SortOrderInput | SortOrder
+    fk_id_grup?: SortOrderInput | SortOrder
+    fk_id_carp?: SortOrderInput | SortOrder
     fk_id_est?: SortOrder
     _count?: BibliografiasCountOrderByAggregateInput
     _avg?: BibliografiasAvgOrderByAggregateInput
@@ -9040,21 +9165,22 @@ export namespace Prisma {
     OR?: BibliografiasScalarWhereWithAggregatesInput[]
     NOT?: BibliografiasScalarWhereWithAggregatesInput | BibliografiasScalarWhereWithAggregatesInput[]
     pk_id_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
-    num_tip_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
-    num_fmt_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
+    txt_tip_biblio?: EnumTipoPublicacionWithAggregatesFilter<"Bibliografias"> | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoWithAggregatesFilter<"Bibliografias"> | $Enums.TipoFormato
     txt_tit_biblio?: StringWithAggregatesFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringWithAggregatesFilter<"Bibliografias"> | string
     txt_pag_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
-    txt_fecha_pub_biblio?: IntWithAggregatesFilter<"Bibliografias"> | number
+    txt_url_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     txt_fecha_acc_biblio?: DateTimeNullableWithAggregatesFilter<"Bibliografias"> | Date | string | null
-    txt_edit_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
-    num_edic_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
-    num_volm_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
-    num_npag_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
-    fk_id_grup?: IntWithAggregatesFilter<"Bibliografias"> | number
-    fk_id_carp?: IntWithAggregatesFilter<"Bibliografias"> | number
+    txt_edit_biblio?: StringNullableWithAggregatesFilter<"Bibliografias"> | string | null
+    num_volm_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
+    num_edic_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
+    num_npag_biblio?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
+    bool_online_biblio?: BoolNullableWithAggregatesFilter<"Bibliografias"> | boolean | null
+    fk_id_grup?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
+    fk_id_carp?: IntNullableWithAggregatesFilter<"Bibliografias"> | number | null
     fk_id_est?: StringWithAggregatesFilter<"Bibliografias"> | string
   }
 
@@ -9063,14 +9189,14 @@ export namespace Prisma {
     OR?: ArchivosWhereInput[]
     NOT?: ArchivosWhereInput | ArchivosWhereInput[]
     pk_id_arch?: IntFilter<"Archivos"> | number
-    txt_dir_arch?: StringFilter<"Archivos"> | string
+    txt_url_arch?: StringFilter<"Archivos"> | string
     fk_id_biblio?: IntFilter<"Archivos"> | number
     Bibliografias?: XOR<BibliografiasRelationFilter, BibliografiasWhereInput>
   }
 
   export type ArchivosOrderByWithRelationInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
     Bibliografias?: BibliografiasOrderByWithRelationInput
   }
@@ -9080,14 +9206,14 @@ export namespace Prisma {
     AND?: ArchivosWhereInput | ArchivosWhereInput[]
     OR?: ArchivosWhereInput[]
     NOT?: ArchivosWhereInput | ArchivosWhereInput[]
-    txt_dir_arch?: StringFilter<"Archivos"> | string
+    txt_url_arch?: StringFilter<"Archivos"> | string
     fk_id_biblio?: IntFilter<"Archivos"> | number
     Bibliografias?: XOR<BibliografiasRelationFilter, BibliografiasWhereInput>
   }, "pk_id_arch">
 
   export type ArchivosOrderByWithAggregationInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
     _count?: ArchivosCountOrderByAggregateInput
     _avg?: ArchivosAvgOrderByAggregateInput
@@ -9101,7 +9227,7 @@ export namespace Prisma {
     OR?: ArchivosScalarWhereWithAggregatesInput[]
     NOT?: ArchivosScalarWhereWithAggregatesInput | ArchivosScalarWhereWithAggregatesInput[]
     pk_id_arch?: IntWithAggregatesFilter<"Archivos"> | number
-    txt_dir_arch?: StringWithAggregatesFilter<"Archivos"> | string
+    txt_url_arch?: StringWithAggregatesFilter<"Archivos"> | string
     fk_id_biblio?: IntWithAggregatesFilter<"Archivos"> | number
   }
 
@@ -9111,9 +9237,9 @@ export namespace Prisma {
     NOT?: CarpetasWhereInput | CarpetasWhereInput[]
     pk_id_carp?: IntFilter<"Carpetas"> | number
     txt_nom_carp?: StringFilter<"Carpetas"> | string
-    fk_id_grup?: IntFilter<"Carpetas"> | number
+    fk_id_grup?: IntNullableFilter<"Carpetas"> | number | null
     fk_id_est?: StringFilter<"Carpetas"> | string
-    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Grupo?: XOR<GruposNullableRelationFilter, GruposWhereInput> | null
     Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
     Cambios?: CambiosListRelationFilter
     Bibliografias?: BibliografiasListRelationFilter
@@ -9122,7 +9248,7 @@ export namespace Prisma {
   export type CarpetasOrderByWithRelationInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    fk_id_grup?: SortOrder
+    fk_id_grup?: SortOrderInput | SortOrder
     fk_id_est?: SortOrder
     Grupo?: GruposOrderByWithRelationInput
     Estudiante?: EstudiantesOrderByWithRelationInput
@@ -9136,9 +9262,9 @@ export namespace Prisma {
     OR?: CarpetasWhereInput[]
     NOT?: CarpetasWhereInput | CarpetasWhereInput[]
     txt_nom_carp?: StringFilter<"Carpetas"> | string
-    fk_id_grup?: IntFilter<"Carpetas"> | number
+    fk_id_grup?: IntNullableFilter<"Carpetas"> | number | null
     fk_id_est?: StringFilter<"Carpetas"> | string
-    Grupo?: XOR<GruposRelationFilter, GruposWhereInput>
+    Grupo?: XOR<GruposNullableRelationFilter, GruposWhereInput> | null
     Estudiante?: XOR<EstudiantesRelationFilter, EstudiantesWhereInput>
     Cambios?: CambiosListRelationFilter
     Bibliografias?: BibliografiasListRelationFilter
@@ -9147,7 +9273,7 @@ export namespace Prisma {
   export type CarpetasOrderByWithAggregationInput = {
     pk_id_carp?: SortOrder
     txt_nom_carp?: SortOrder
-    fk_id_grup?: SortOrder
+    fk_id_grup?: SortOrderInput | SortOrder
     fk_id_est?: SortOrder
     _count?: CarpetasCountOrderByAggregateInput
     _avg?: CarpetasAvgOrderByAggregateInput
@@ -9162,7 +9288,7 @@ export namespace Prisma {
     NOT?: CarpetasScalarWhereWithAggregatesInput | CarpetasScalarWhereWithAggregatesInput[]
     pk_id_carp?: IntWithAggregatesFilter<"Carpetas"> | number
     txt_nom_carp?: StringWithAggregatesFilter<"Carpetas"> | string
-    fk_id_grup?: IntWithAggregatesFilter<"Carpetas"> | number
+    fk_id_grup?: IntNullableWithAggregatesFilter<"Carpetas"> | number | null
     fk_id_est?: StringWithAggregatesFilter<"Carpetas"> | string
   }
 
@@ -9416,184 +9542,191 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateInput = {
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
-    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    Grupo?: GruposCreateNestedOneWithoutBibliografiasInput
+    Carpeta?: CarpetasCreateNestedOneWithoutBibliografiasInput
     Estudiante: EstudiantesCreateNestedOneWithoutBibliografiasInput
     Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUncheckedCreateInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
+    fk_id_carp?: number | null
     fk_id_est: string
     Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUpdateInput = {
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
-    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Grupo?: GruposUpdateOneWithoutBibliografiasNestedInput
+    Carpeta?: CarpetasUpdateOneWithoutBibliografiasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutBibliografiasNestedInput
     Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
     Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasCreateManyInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
+    fk_id_carp?: number | null
     fk_id_est: string
   }
 
   export type BibliografiasUpdateManyMutationInput = {
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type BibliografiasUncheckedUpdateManyInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosCreateInput = {
-    txt_dir_arch: string
+    txt_url_arch: string
     Bibliografias: BibliografiasCreateNestedOneWithoutArchivosInput
   }
 
   export type ArchivosUncheckedCreateInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
     fk_id_biblio: number
   }
 
   export type ArchivosUpdateInput = {
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
     Bibliografias?: BibliografiasUpdateOneRequiredWithoutArchivosNestedInput
   }
 
   export type ArchivosUncheckedUpdateInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
     fk_id_biblio?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArchivosCreateManyInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
     fk_id_biblio: number
   }
 
   export type ArchivosUpdateManyMutationInput = {
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosUncheckedUpdateManyInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
     fk_id_biblio?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarpetasCreateInput = {
     txt_nom_carp: string
-    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Grupo?: GruposCreateNestedOneWithoutCarpetasInput
     Estudiante: EstudiantesCreateNestedOneWithoutCarpetasInput
     Cambios?: CambiosCreateNestedManyWithoutCarpetaInput
     Bibliografias?: BibliografiasCreateNestedManyWithoutCarpetaInput
@@ -9602,7 +9735,7 @@ export namespace Prisma {
   export type CarpetasUncheckedCreateInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup?: number | null
     fk_id_est: string
     Cambios?: CambiosUncheckedCreateNestedManyWithoutCarpetaInput
     Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput
@@ -9610,7 +9743,7 @@ export namespace Prisma {
 
   export type CarpetasUpdateInput = {
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Grupo?: GruposUpdateOneWithoutCarpetasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutCarpetasNestedInput
     Cambios?: CambiosUpdateManyWithoutCarpetaNestedInput
     Bibliografias?: BibliografiasUpdateManyWithoutCarpetaNestedInput
@@ -9619,7 +9752,7 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
     Cambios?: CambiosUncheckedUpdateManyWithoutCarpetaNestedInput
     Bibliografias?: BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput
@@ -9628,7 +9761,7 @@ export namespace Prisma {
   export type CarpetasCreateManyInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup?: number | null
     fk_id_est: string
   }
 
@@ -9639,7 +9772,7 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateManyInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9930,6 +10063,20 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumTipoPublicacionFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoPublicacion | EnumTipoPublicacionFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoPublicacionFilter<$PrismaModel> | $Enums.TipoPublicacion
+  }
+
+  export type EnumTipoFormatoFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoFormato | EnumTipoFormatoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoFormatoFilter<$PrismaModel> | $Enums.TipoFormato
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9945,17 +10092,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -9967,14 +10103,30 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type GruposRelationFilter = {
-    is?: GruposWhereInput
-    isNot?: GruposWhereInput
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type CarpetasRelationFilter = {
-    is?: CarpetasWhereInput
-    isNot?: CarpetasWhereInput
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type GruposNullableRelationFilter = {
+    is?: GruposWhereInput | null
+    isNot?: GruposWhereInput | null
+  }
+
+  export type CarpetasNullableRelationFilter = {
+    is?: CarpetasWhereInput | null
+    isNot?: CarpetasWhereInput | null
   }
 
   export type EstudiantesRelationFilter = {
@@ -9999,19 +10151,20 @@ export namespace Prisma {
 
   export type BibliografiasCountOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
+    txt_tip_biblio?: SortOrder
+    txt_fmt_biblio?: SortOrder
     txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
     txt_pag_biblio?: SortOrder
-    txt_dir_biblio?: SortOrder
+    txt_url_biblio?: SortOrder
     txt_fecha_pub_biblio?: SortOrder
     txt_fecha_acc_biblio?: SortOrder
-    txt_edit_biblio?: SortOrder
-    num_edic_biblio?: SortOrder
-    num_volm_biblio?: SortOrder
-    num_npag_biblio?: SortOrder
     txt_ubic_biblio?: SortOrder
+    txt_edit_biblio?: SortOrder
+    num_volm_biblio?: SortOrder
+    num_edic_biblio?: SortOrder
+    num_npag_biblio?: SortOrder
+    bool_online_biblio?: SortOrder
     fk_id_grup?: SortOrder
     fk_id_carp?: SortOrder
     fk_id_est?: SortOrder
@@ -10019,11 +10172,9 @@ export namespace Prisma {
 
   export type BibliografiasAvgOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
     txt_fecha_pub_biblio?: SortOrder
-    num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
+    num_edic_biblio?: SortOrder
     num_npag_biblio?: SortOrder
     fk_id_grup?: SortOrder
     fk_id_carp?: SortOrder
@@ -10031,19 +10182,20 @@ export namespace Prisma {
 
   export type BibliografiasMaxOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
+    txt_tip_biblio?: SortOrder
+    txt_fmt_biblio?: SortOrder
     txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
     txt_pag_biblio?: SortOrder
-    txt_dir_biblio?: SortOrder
+    txt_url_biblio?: SortOrder
     txt_fecha_pub_biblio?: SortOrder
     txt_fecha_acc_biblio?: SortOrder
-    txt_edit_biblio?: SortOrder
-    num_edic_biblio?: SortOrder
-    num_volm_biblio?: SortOrder
-    num_npag_biblio?: SortOrder
     txt_ubic_biblio?: SortOrder
+    txt_edit_biblio?: SortOrder
+    num_volm_biblio?: SortOrder
+    num_edic_biblio?: SortOrder
+    num_npag_biblio?: SortOrder
+    bool_online_biblio?: SortOrder
     fk_id_grup?: SortOrder
     fk_id_carp?: SortOrder
     fk_id_est?: SortOrder
@@ -10051,19 +10203,20 @@ export namespace Prisma {
 
   export type BibliografiasMinOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
+    txt_tip_biblio?: SortOrder
+    txt_fmt_biblio?: SortOrder
     txt_tit_biblio?: SortOrder
     txt_aut_biblio?: SortOrder
     txt_pag_biblio?: SortOrder
-    txt_dir_biblio?: SortOrder
+    txt_url_biblio?: SortOrder
     txt_fecha_pub_biblio?: SortOrder
     txt_fecha_acc_biblio?: SortOrder
-    txt_edit_biblio?: SortOrder
-    num_edic_biblio?: SortOrder
-    num_volm_biblio?: SortOrder
-    num_npag_biblio?: SortOrder
     txt_ubic_biblio?: SortOrder
+    txt_edit_biblio?: SortOrder
+    num_volm_biblio?: SortOrder
+    num_edic_biblio?: SortOrder
+    num_npag_biblio?: SortOrder
+    bool_online_biblio?: SortOrder
     fk_id_grup?: SortOrder
     fk_id_carp?: SortOrder
     fk_id_est?: SortOrder
@@ -10071,14 +10224,32 @@ export namespace Prisma {
 
   export type BibliografiasSumOrderByAggregateInput = {
     pk_id_biblio?: SortOrder
-    num_tip_biblio?: SortOrder
-    num_fmt_biblio?: SortOrder
     txt_fecha_pub_biblio?: SortOrder
-    num_edic_biblio?: SortOrder
     num_volm_biblio?: SortOrder
+    num_edic_biblio?: SortOrder
     num_npag_biblio?: SortOrder
     fk_id_grup?: SortOrder
     fk_id_carp?: SortOrder
+  }
+
+  export type EnumTipoPublicacionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoPublicacion | EnumTipoPublicacionFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoPublicacionWithAggregatesFilter<$PrismaModel> | $Enums.TipoPublicacion
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTipoPublicacionFilter<$PrismaModel>
+    _max?: NestedEnumTipoPublicacionFilter<$PrismaModel>
+  }
+
+  export type EnumTipoFormatoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoFormato | EnumTipoFormatoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoFormatoWithAggregatesFilter<$PrismaModel> | $Enums.TipoFormato
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTipoFormatoFilter<$PrismaModel>
+    _max?: NestedEnumTipoFormatoFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10099,20 +10270,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -10129,6 +10286,28 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type BibliografiasRelationFilter = {
     is?: BibliografiasWhereInput
     isNot?: BibliografiasWhereInput
@@ -10136,7 +10315,7 @@ export namespace Prisma {
 
   export type ArchivosCountOrderByAggregateInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
   }
 
@@ -10147,13 +10326,13 @@ export namespace Prisma {
 
   export type ArchivosMaxOrderByAggregateInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
   }
 
   export type ArchivosMinOrderByAggregateInput = {
     pk_id_arch?: SortOrder
-    txt_dir_arch?: SortOrder
+    txt_url_arch?: SortOrder
     fk_id_biblio?: SortOrder
   }
 
@@ -10191,6 +10370,11 @@ export namespace Prisma {
   export type CarpetasSumOrderByAggregateInput = {
     pk_id_carp?: SortOrder
     fk_id_grup?: SortOrder
+  }
+
+  export type GruposRelationFilter = {
+    is?: GruposWhereInput
+    isNot?: GruposWhereInput
   }
 
   export type GrupoConAccesoFk_id_grupFk_id_estCompoundUniqueInput = {
@@ -10256,6 +10440,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type CarpetasRelationFilter = {
+    is?: CarpetasWhereInput
+    isNot?: CarpetasWhereInput
   }
 
   export type CambiosCountOrderByAggregateInput = {
@@ -10567,12 +10756,16 @@ export namespace Prisma {
     connect?: ArchivosWhereUniqueInput | ArchivosWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type EnumTipoPublicacionFieldUpdateOperationsInput = {
+    set?: $Enums.TipoPublicacion
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
+  export type EnumTipoFormatoFieldUpdateOperationsInput = {
+    set?: $Enums.TipoFormato
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -10583,18 +10776,30 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type GruposUpdateOneRequiredWithoutBibliografiasNestedInput = {
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type GruposUpdateOneWithoutBibliografiasNestedInput = {
     create?: XOR<GruposCreateWithoutBibliografiasInput, GruposUncheckedCreateWithoutBibliografiasInput>
     connectOrCreate?: GruposCreateOrConnectWithoutBibliografiasInput
     upsert?: GruposUpsertWithoutBibliografiasInput
+    disconnect?: GruposWhereInput | boolean
+    delete?: GruposWhereInput | boolean
     connect?: GruposWhereUniqueInput
     update?: XOR<XOR<GruposUpdateToOneWithWhereWithoutBibliografiasInput, GruposUpdateWithoutBibliografiasInput>, GruposUncheckedUpdateWithoutBibliografiasInput>
   }
 
-  export type CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput = {
+  export type CarpetasUpdateOneWithoutBibliografiasNestedInput = {
     create?: XOR<CarpetasCreateWithoutBibliografiasInput, CarpetasUncheckedCreateWithoutBibliografiasInput>
     connectOrCreate?: CarpetasCreateOrConnectWithoutBibliografiasInput
     upsert?: CarpetasUpsertWithoutBibliografiasInput
+    disconnect?: CarpetasWhereInput | boolean
+    delete?: CarpetasWhereInput | boolean
     connect?: CarpetasWhereUniqueInput
     update?: XOR<XOR<CarpetasUpdateToOneWithWhereWithoutBibliografiasInput, CarpetasUpdateWithoutBibliografiasInput>, CarpetasUncheckedUpdateWithoutBibliografiasInput>
   }
@@ -10689,10 +10894,12 @@ export namespace Prisma {
     connect?: BibliografiasWhereUniqueInput | BibliografiasWhereUniqueInput[]
   }
 
-  export type GruposUpdateOneRequiredWithoutCarpetasNestedInput = {
+  export type GruposUpdateOneWithoutCarpetasNestedInput = {
     create?: XOR<GruposCreateWithoutCarpetasInput, GruposUncheckedCreateWithoutCarpetasInput>
     connectOrCreate?: GruposCreateOrConnectWithoutCarpetasInput
     upsert?: GruposUpsertWithoutCarpetasInput
+    disconnect?: GruposWhereInput | boolean
+    delete?: GruposWhereInput | boolean
     connect?: GruposWhereUniqueInput
     update?: XOR<XOR<GruposUpdateToOneWithWhereWithoutCarpetasInput, GruposUpdateWithoutCarpetasInput>, GruposUncheckedUpdateWithoutCarpetasInput>
   }
@@ -11086,6 +11293,20 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumTipoPublicacionFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoPublicacion | EnumTipoPublicacionFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoPublicacionFilter<$PrismaModel> | $Enums.TipoPublicacion
+  }
+
+  export type NestedEnumTipoFormatoFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoFormato | EnumTipoFormatoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoFormatoFilter<$PrismaModel> | $Enums.TipoFormato
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11100,6 +11321,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -11111,15 +11343,29 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedEnumTipoPublicacionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoPublicacion | EnumTipoPublicacionFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoPublicacion[] | ListEnumTipoPublicacionFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoPublicacionWithAggregatesFilter<$PrismaModel> | $Enums.TipoPublicacion
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTipoPublicacionFilter<$PrismaModel>
+    _max?: NestedEnumTipoPublicacionFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTipoFormatoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoFormato | EnumTipoFormatoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoFormato[] | ListEnumTipoFormatoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoFormatoWithAggregatesFilter<$PrismaModel> | $Enums.TipoFormato
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTipoFormatoFilter<$PrismaModel>
+    _max?: NestedEnumTipoFormatoFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11137,20 +11383,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11178,6 +11410,28 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -11277,7 +11531,7 @@ export namespace Prisma {
 
   export type CarpetasCreateWithoutEstudianteInput = {
     txt_nom_carp: string
-    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Grupo?: GruposCreateNestedOneWithoutCarpetasInput
     Cambios?: CambiosCreateNestedManyWithoutCarpetaInput
     Bibliografias?: BibliografiasCreateNestedManyWithoutCarpetaInput
   }
@@ -11285,7 +11539,7 @@ export namespace Prisma {
   export type CarpetasUncheckedCreateWithoutEstudianteInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup?: number | null
     Cambios?: CambiosUncheckedCreateNestedManyWithoutCarpetaInput
     Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput
   }
@@ -11301,41 +11555,43 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutEstudianteInput = {
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
-    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    Grupo?: GruposCreateNestedOneWithoutBibliografiasInput
+    Carpeta?: CarpetasCreateNestedOneWithoutBibliografiasInput
     Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUncheckedCreateWithoutEstudianteInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
+    fk_id_carp?: number | null
     Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
   }
 
@@ -11448,7 +11704,7 @@ export namespace Prisma {
     NOT?: CarpetasScalarWhereInput | CarpetasScalarWhereInput[]
     pk_id_carp?: IntFilter<"Carpetas"> | number
     txt_nom_carp?: StringFilter<"Carpetas"> | string
-    fk_id_grup?: IntFilter<"Carpetas"> | number
+    fk_id_grup?: IntNullableFilter<"Carpetas"> | number | null
     fk_id_est?: StringFilter<"Carpetas"> | string
   }
 
@@ -11473,21 +11729,22 @@ export namespace Prisma {
     OR?: BibliografiasScalarWhereInput[]
     NOT?: BibliografiasScalarWhereInput | BibliografiasScalarWhereInput[]
     pk_id_biblio?: IntFilter<"Bibliografias"> | number
-    num_tip_biblio?: IntFilter<"Bibliografias"> | number
-    num_fmt_biblio?: IntFilter<"Bibliografias"> | number
+    txt_tip_biblio?: EnumTipoPublicacionFilter<"Bibliografias"> | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFilter<"Bibliografias"> | $Enums.TipoFormato
     txt_tit_biblio?: StringFilter<"Bibliografias"> | string
     txt_aut_biblio?: StringFilter<"Bibliografias"> | string
     txt_pag_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_dir_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    txt_fecha_pub_biblio?: IntFilter<"Bibliografias"> | number
+    txt_url_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    txt_fecha_pub_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_fecha_acc_biblio?: DateTimeNullableFilter<"Bibliografias"> | Date | string | null
-    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
-    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
-    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
     txt_ubic_biblio?: StringNullableFilter<"Bibliografias"> | string | null
-    fk_id_grup?: IntFilter<"Bibliografias"> | number
-    fk_id_carp?: IntFilter<"Bibliografias"> | number
+    txt_edit_biblio?: StringNullableFilter<"Bibliografias"> | string | null
+    num_volm_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_edic_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    num_npag_biblio?: IntNullableFilter<"Bibliografias"> | number | null
+    bool_online_biblio?: BoolNullableFilter<"Bibliografias"> | boolean | null
+    fk_id_grup?: IntNullableFilter<"Bibliografias"> | number | null
+    fk_id_carp?: IntNullableFilter<"Bibliografias"> | number | null
     fk_id_est?: StringFilter<"Bibliografias"> | string
   }
 
@@ -11515,7 +11772,7 @@ export namespace Prisma {
 
   export type CarpetasCreateWithoutBibliografiasInput = {
     txt_nom_carp: string
-    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Grupo?: GruposCreateNestedOneWithoutCarpetasInput
     Estudiante: EstudiantesCreateNestedOneWithoutCarpetasInput
     Cambios?: CambiosCreateNestedManyWithoutCarpetaInput
   }
@@ -11523,7 +11780,7 @@ export namespace Prisma {
   export type CarpetasUncheckedCreateWithoutBibliografiasInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup?: number | null
     fk_id_est: string
     Cambios?: CambiosUncheckedCreateNestedManyWithoutCarpetaInput
   }
@@ -11563,12 +11820,12 @@ export namespace Prisma {
   }
 
   export type ArchivosCreateWithoutBibliografiasInput = {
-    txt_dir_arch: string
+    txt_url_arch: string
   }
 
   export type ArchivosUncheckedCreateWithoutBibliografiasInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
   }
 
   export type ArchivosCreateOrConnectWithoutBibliografiasInput = {
@@ -11622,7 +11879,7 @@ export namespace Prisma {
 
   export type CarpetasUpdateWithoutBibliografiasInput = {
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Grupo?: GruposUpdateOneWithoutCarpetasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutCarpetasNestedInput
     Cambios?: CambiosUpdateManyWithoutCarpetaNestedInput
   }
@@ -11630,7 +11887,7 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateWithoutBibliografiasInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
     Cambios?: CambiosUncheckedUpdateManyWithoutCarpetaNestedInput
   }
@@ -11691,46 +11948,48 @@ export namespace Prisma {
     OR?: ArchivosScalarWhereInput[]
     NOT?: ArchivosScalarWhereInput | ArchivosScalarWhereInput[]
     pk_id_arch?: IntFilter<"Archivos"> | number
-    txt_dir_arch?: StringFilter<"Archivos"> | string
+    txt_url_arch?: StringFilter<"Archivos"> | string
     fk_id_biblio?: IntFilter<"Archivos"> | number
   }
 
   export type BibliografiasCreateWithoutArchivosInput = {
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
-    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    Grupo?: GruposCreateNestedOneWithoutBibliografiasInput
+    Carpeta?: CarpetasCreateNestedOneWithoutBibliografiasInput
     Estudiante: EstudiantesCreateNestedOneWithoutBibliografiasInput
   }
 
   export type BibliografiasUncheckedCreateWithoutArchivosInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
+    fk_id_carp?: number | null
     fk_id_est: string
   }
 
@@ -11751,41 +12010,43 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutArchivosInput = {
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
-    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Grupo?: GruposUpdateOneWithoutBibliografiasNestedInput
+    Carpeta?: CarpetasUpdateOneWithoutBibliografiasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateWithoutArchivosInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 
@@ -11866,40 +12127,42 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutCarpetaInput = {
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    Grupo: GruposCreateNestedOneWithoutBibliografiasInput
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    Grupo?: GruposCreateNestedOneWithoutBibliografiasInput
     Estudiante: EstudiantesCreateNestedOneWithoutBibliografiasInput
     Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUncheckedCreateWithoutCarpetaInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
     fk_id_est: string
     Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
   }
@@ -12203,40 +12466,42 @@ export namespace Prisma {
   }
 
   export type BibliografiasCreateWithoutGrupoInput = {
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    Carpeta: CarpetasCreateNestedOneWithoutBibliografiasInput
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    Carpeta?: CarpetasCreateNestedOneWithoutBibliografiasInput
     Estudiante: EstudiantesCreateNestedOneWithoutBibliografiasInput
     Archivos?: ArchivosCreateNestedManyWithoutBibliografiasInput
   }
 
   export type BibliografiasUncheckedCreateWithoutGrupoInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_carp?: number | null
     fk_id_est: string
     Archivos?: ArchivosUncheckedCreateNestedManyWithoutBibliografiasInput
   }
@@ -12399,7 +12664,7 @@ export namespace Prisma {
 
   export type CarpetasCreateWithoutCambiosInput = {
     txt_nom_carp: string
-    Grupo: GruposCreateNestedOneWithoutCarpetasInput
+    Grupo?: GruposCreateNestedOneWithoutCarpetasInput
     Estudiante: EstudiantesCreateNestedOneWithoutCarpetasInput
     Bibliografias?: BibliografiasCreateNestedManyWithoutCarpetaInput
   }
@@ -12407,7 +12672,7 @@ export namespace Prisma {
   export type CarpetasUncheckedCreateWithoutCambiosInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup?: number | null
     fk_id_est: string
     Bibliografias?: BibliografiasUncheckedCreateNestedManyWithoutCarpetaInput
   }
@@ -12487,7 +12752,7 @@ export namespace Prisma {
 
   export type CarpetasUpdateWithoutCambiosInput = {
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Grupo?: GruposUpdateOneWithoutCarpetasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutCarpetasNestedInput
     Bibliografias?: BibliografiasUpdateManyWithoutCarpetaNestedInput
   }
@@ -12495,7 +12760,7 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateWithoutCambiosInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
     Bibliografias?: BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput
   }
@@ -12548,26 +12813,27 @@ export namespace Prisma {
   export type CarpetasCreateManyEstudianteInput = {
     pk_id_carp?: number
     txt_nom_carp: string
-    fk_id_grup: number
+    fk_id_grup?: number | null
   }
 
   export type BibliografiasCreateManyEstudianteInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
+    fk_id_carp?: number | null
   }
 
   export type CambiosUpdateWithoutEstudianteInput = {
@@ -12629,7 +12895,7 @@ export namespace Prisma {
 
   export type CarpetasUpdateWithoutEstudianteInput = {
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    Grupo?: GruposUpdateOneRequiredWithoutCarpetasNestedInput
+    Grupo?: GruposUpdateOneWithoutCarpetasNestedInput
     Cambios?: CambiosUpdateManyWithoutCarpetaNestedInput
     Bibliografias?: BibliografiasUpdateManyWithoutCarpetaNestedInput
   }
@@ -12637,7 +12903,7 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateWithoutEstudianteInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     Cambios?: CambiosUncheckedUpdateManyWithoutCarpetaNestedInput
     Bibliografias?: BibliografiasUncheckedUpdateManyWithoutCarpetaNestedInput
   }
@@ -12645,84 +12911,87 @@ export namespace Prisma {
   export type CarpetasUncheckedUpdateManyWithoutEstudianteInput = {
     pk_id_carp?: IntFieldUpdateOperationsInput | number
     txt_nom_carp?: StringFieldUpdateOperationsInput | string
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type BibliografiasUpdateWithoutEstudianteInput = {
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
-    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Grupo?: GruposUpdateOneWithoutBibliografiasNestedInput
+    Carpeta?: CarpetasUpdateOneWithoutBibliografiasNestedInput
     Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateWithoutEstudianteInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
     Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateManyWithoutEstudianteInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ArchivosCreateManyBibliografiasInput = {
     pk_id_arch?: number
-    txt_dir_arch: string
+    txt_url_arch: string
   }
 
   export type ArchivosUpdateWithoutBibliografiasInput = {
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosUncheckedUpdateWithoutBibliografiasInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type ArchivosUncheckedUpdateManyWithoutBibliografiasInput = {
     pk_id_arch?: IntFieldUpdateOperationsInput | number
-    txt_dir_arch?: StringFieldUpdateOperationsInput | string
+    txt_url_arch?: StringFieldUpdateOperationsInput | string
   }
 
   export type CambiosCreateManyCarpetaInput = {
@@ -12735,20 +13004,21 @@ export namespace Prisma {
 
   export type BibliografiasCreateManyCarpetaInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_grup: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_grup?: number | null
     fk_id_est: string
   }
 
@@ -12776,60 +13046,63 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutCarpetaInput = {
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    Grupo?: GruposUpdateOneRequiredWithoutBibliografiasNestedInput
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Grupo?: GruposUpdateOneWithoutBibliografiasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutBibliografiasNestedInput
     Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateWithoutCarpetaInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
     Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateManyWithoutCarpetaInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_grup?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_grup?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 
@@ -12849,20 +13122,21 @@ export namespace Prisma {
 
   export type BibliografiasCreateManyGrupoInput = {
     pk_id_biblio?: number
-    num_tip_biblio: number
-    num_fmt_biblio: number
+    txt_tip_biblio: $Enums.TipoPublicacion
+    txt_fmt_biblio: $Enums.TipoFormato
     txt_tit_biblio: string
     txt_aut_biblio: string
     txt_pag_biblio?: string | null
-    txt_dir_biblio?: string | null
-    txt_fecha_pub_biblio: number
+    txt_url_biblio?: string | null
+    txt_fecha_pub_biblio?: number | null
     txt_fecha_acc_biblio?: Date | string | null
-    txt_edit_biblio?: string | null
-    num_edic_biblio?: number | null
-    num_volm_biblio?: number | null
-    num_npag_biblio?: number | null
     txt_ubic_biblio?: string | null
-    fk_id_carp: number
+    txt_edit_biblio?: string | null
+    num_volm_biblio?: number | null
+    num_edic_biblio?: number | null
+    num_npag_biblio?: number | null
+    bool_online_biblio?: boolean | null
+    fk_id_carp?: number | null
     fk_id_est: string
   }
 
@@ -12915,60 +13189,63 @@ export namespace Prisma {
   }
 
   export type BibliografiasUpdateWithoutGrupoInput = {
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    Carpeta?: CarpetasUpdateOneRequiredWithoutBibliografiasNestedInput
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Carpeta?: CarpetasUpdateOneWithoutBibliografiasNestedInput
     Estudiante?: EstudiantesUpdateOneRequiredWithoutBibliografiasNestedInput
     Archivos?: ArchivosUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateWithoutGrupoInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
     Archivos?: ArchivosUncheckedUpdateManyWithoutBibliografiasNestedInput
   }
 
   export type BibliografiasUncheckedUpdateManyWithoutGrupoInput = {
     pk_id_biblio?: IntFieldUpdateOperationsInput | number
-    num_tip_biblio?: IntFieldUpdateOperationsInput | number
-    num_fmt_biblio?: IntFieldUpdateOperationsInput | number
+    txt_tip_biblio?: EnumTipoPublicacionFieldUpdateOperationsInput | $Enums.TipoPublicacion
+    txt_fmt_biblio?: EnumTipoFormatoFieldUpdateOperationsInput | $Enums.TipoFormato
     txt_tit_biblio?: StringFieldUpdateOperationsInput | string
     txt_aut_biblio?: StringFieldUpdateOperationsInput | string
     txt_pag_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_dir_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    txt_fecha_pub_biblio?: IntFieldUpdateOperationsInput | number
+    txt_url_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    txt_fecha_pub_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_fecha_acc_biblio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
-    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
     txt_ubic_biblio?: NullableStringFieldUpdateOperationsInput | string | null
-    fk_id_carp?: IntFieldUpdateOperationsInput | number
+    txt_edit_biblio?: NullableStringFieldUpdateOperationsInput | string | null
+    num_volm_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_edic_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    num_npag_biblio?: NullableIntFieldUpdateOperationsInput | number | null
+    bool_online_biblio?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fk_id_carp?: NullableIntFieldUpdateOperationsInput | number | null
     fk_id_est?: StringFieldUpdateOperationsInput | string
   }
 

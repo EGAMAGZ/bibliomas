@@ -7,10 +7,8 @@ export default function Layout(
   { Component, state }: LayoutProps<Data, SessionState>,
 ) {
   return (
-    <>
-      <Drawer username={state.username} email={state.email}>
-        <Component />
-      </Drawer>
-    </>
+    <Drawer username={state.username} email={state.email}>
+      <Component />
+    </Drawer>
   );
 }
