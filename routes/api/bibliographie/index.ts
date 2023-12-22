@@ -9,12 +9,14 @@ export const handler: Handlers = {
   async GET(req: Request, _ctx: HandlerContext) {
     const url = new URL(req.url);
 
-    const { page, limit, userId, folderId } = PaginationParamsSchema.parse({
-      page: url.searchParams.get("page"),
-      limit: url.searchParams.get("limit"),
-      userId: url.searchParams.get("userId"),
-      folderId: url.searchParams.get("folderId"),
-    });
+    const { page, limit, userId, folderId, groupId } = PaginationParamsSchema
+      .parse({
+        page: url.searchParams.get("page"),
+        limit: url.searchParams.get("limit"),
+        userId: url.searchParams.get("userId"),
+        folderId: url.searchParams.get("folderId"),
+        groupId: url.searchParams.get("groupId"),
+      });
 
     const [bibliographie, totalRecords] = await Promise.all([
       prismaClient.bibliografias.findMany({
@@ -23,12 +25,14 @@ export const handler: Handlers = {
         where: {
           fk_id_est: userId,
           fk_id_carp: folderId,
+          fk_id_grup: groupId,
         },
       }),
       prismaClient.bibliografias.count({
         where: {
           fk_id_est: userId,
           fk_id_carp: folderId,
+          fk_id_grup: groupId,
         },
       }),
     ]);

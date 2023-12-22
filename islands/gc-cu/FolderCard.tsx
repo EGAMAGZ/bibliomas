@@ -54,11 +54,14 @@ interface ViewFolderCardProps {
 }
 
 function ViewFolderCard(props: ViewFolderCardProps) {
+  const bibliomasSessionContext = useBibliomasSessionContext();
   return (
     <div class="card bg-neutral text-neutral-content">
       <div class="grid grid-cols-2 justify-center items-center p-4 gap-2">
         <a
-          href={`/gestionar-carpetas/${props.folder.pk_id_carp}`}
+          href={bibliomasSessionContext.groupId
+            ? `/gestionar-grupos/${bibliomasSessionContext.groupId}/${props.folder.pk_id_carp}`
+            : `/gestionar-carpetas/${props.folder.pk_id_carp}`}
           class="flex flex-col items-center"
         >
           <IconFolder size={96} />

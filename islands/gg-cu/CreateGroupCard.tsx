@@ -1,38 +1,32 @@
-import { EditableFolderCard } from "../../components/EditableFolderCard.tsx";
-import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
-import {
-  CreateFolderSchema,
-  FolderWithBibliographies,
-} from "@/schema/folder.ts";
-import { useBibliomasSessionContext } from "@/context/session-context.ts";
+import { EditableGroupCard } from "@/components/gg-cu/EditableGroupCard.tsx";
 import { Form } from "formika";
-import FormControl from "@/components/FormControl.tsx";
-import { useEffect } from "preact/hooks";
+import { useFormicaForm } from "@/hooks/use-formica-form.tsx";
+import { CreateGroupSchema, GroupWithBibliographies } from "@/schema/groups.ts";
 import { Signal, useSignal, useSignalEffect } from "@preact/signals";
+import { useBibliomasSessionContext } from "@/context/session-context.ts";
+import FormControl from "@/components/FormControl.tsx";
 import Button from "@/components/Button.tsx";
-import { Carpetas } from "@/generated/client/deno/edge.ts";
+import { GroupManagementStates } from "@/schema/states.ts";
 import { ApiResponse } from "@/schema/api-response.ts";
-import { FolderManagementStates } from "@/schema/states.ts";
 
-interface CreateFolderCardProps {
-  folders: Signal<FolderWithBibliographies[]>;
-  managerState: Signal<FolderManagementStates>;
+interface CreateGroupCardProps {
+  groups: Signal<GroupWithBibliographies[]>;
+  managerState: Signal<GroupManagementStates>;
 }
 
-export default function CreateFolderCard(props: CreateFolderCardProps) {
+export default function CreateGroupCard(props: CreateGroupCardProps) {
   const bibliomasSessionContext = useBibliomasSessionContext();
   const isLoading = useSignal(false);
 
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
-    CreateFolderSchema,
+    CreateGroupSchema,
     {
-      txt_nom_carp: "",
+      txt_nom_grup: "",
       fk_id_est: bibliomasSessionContext.userId,
-      fk_id_grup: bibliomasSessionContext.groupId,
     },
     async (formData) => {
       isLoading.value = true;
-      const response = await fetch("/api/folder", {
+      const response = await fetch("/api/group", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,20 +39,20 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
       }
 
       const { data } = (await response.json()) as ApiResponse<
-        FolderWithBibliographies
+        GroupWithBibliographies
       >;
-      props.folders.value = [...props.folders.value, data];
+
+      props.groups.value = [...props.groups.value, data];
       isLoading.value = false;
-      props.managerState.value = FolderManagementStates.IDLE;
+      props.managerState.value = GroupManagementStates.IDLE;
     },
   );
 
   const handleCancel = () => {
-    props.managerState.value = FolderManagementStates.IDLE;
+    props.managerState.value = GroupManagementStates.IDLE;
   };
-
   return (
-    <EditableFolderCard>
+    <EditableGroupCard>
       <Form
         value={form.value}
         onChange={handleChange}
@@ -66,17 +60,18 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
       >
         <div class="flex flex-col gap-1">
           <FormControl
-            label="Nombre de Carpeta:"
-            error={errors.value.txt_nom_carp}
+            label="Nombre de Grupo:"
+            error={errors.value.txt_nom_grup}
             required
           >
             <input
               type="text"
               class="input input-primary input-sm"
-              name="txt_nom_carp"
+              name="txt_nom_grup"
               required
             />
           </FormControl>
+
           <Button
             type="submit"
             state="btn-primary"
@@ -84,7 +79,7 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
             disabled={isLoading.value}
             loading={isLoading.value}
           >
-            Crear Carpeta
+            Crear Grupo
           </Button>
           <Button
             type="button"
@@ -97,6 +92,6 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
           </Button>
         </div>
       </Form>
-    </EditableFolderCard>
+    </EditableGroupCard>
   );
 }
