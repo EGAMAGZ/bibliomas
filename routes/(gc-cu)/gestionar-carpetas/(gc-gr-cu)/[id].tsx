@@ -21,6 +21,14 @@ export default function GestionarReferenciaCarpetaPage(
         >
           <ReferencesManagement />
         </BibliomasSessionProvider>
+        <div class="flex w-full flex-col lg:flex-row justify-center gap-4 mt-4">
+          <a
+            href="/gestionar-carpetas"
+            class="btn btn-secondary font-sans lg:w-fit"
+          >
+            Regresar
+          </a>
+        </div>
       </div>
     </div>
   );
