@@ -1,7 +1,6 @@
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
 import SessionState from "@/schema/session-state.ts";
 import { Data } from "@/schema/data.ts";
-import { Carpetas } from "@/generated/client/deno/edge.ts";
 import prismaClient from "@/database/prisma.ts";
 import CreateFolderButton from "@/islands/gc-cu/CreateFolderButton.tsx";
 import { useSignal } from "@preact/signals";

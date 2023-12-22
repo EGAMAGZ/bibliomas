@@ -36,6 +36,9 @@ export default function ReferencesManagement() {
     if (bibliomasContext.folderId) {
       searchParams.append("folderId", String(bibliomasContext.folderId));
     }
+    if(bibliomasContext.groupId) {
+      searchParams.append("groupId", String(bibliomasContext.groupId));
+    }
 
     const response = await fetch(
       `/api/bibliographie?${searchParams.toString()}`,

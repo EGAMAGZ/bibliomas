@@ -23,16 +23,12 @@ export default function CreateFolderCard(props: CreateFolderCardProps) {
   const bibliomasSessionContext = useBibliomasSessionContext();
   const isLoading = useSignal(false);
 
-  useSignalEffect(() => {
-    console.log(form.value);
-  });
-
   const { form, handleChange, handleSubmit, errors } = useFormicaForm(
     CreateFolderSchema,
     {
       txt_nom_carp: "",
       fk_id_est: bibliomasSessionContext.userId,
-      fk_id_grup: bibliomasSessionContext.folderId,
+      fk_id_grup: bibliomasSessionContext.groupId,
     },
     async (formData) => {
       isLoading.value = true;
