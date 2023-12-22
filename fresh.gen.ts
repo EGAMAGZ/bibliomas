@@ -22,9 +22,10 @@ import * as $16 from "./routes/api/bibliographie/file/index.ts";
 import * as $17 from "./routes/api/bibliographie/index.ts";
 import * as $18 from "./routes/api/folder/[id].tsx";
 import * as $19 from "./routes/api/folder/index.ts";
-import * as $20 from "./routes/api/index.ts";
-import * as $21 from "./routes/index.tsx";
-import * as $22 from "./routes/suscription.tsx";
+import * as $20 from "./routes/api/group/index.ts";
+import * as $21 from "./routes/api/index.ts";
+import * as $22 from "./routes/index.tsx";
+import * as $23 from "./routes/suscription.tsx";
 import * as $$0 from "./islands/Input.tsx";
 import * as $$1 from "./islands/PaginationButtons.tsx";
 import * as $$2 from "./islands/Select.tsx";
@@ -34,17 +35,20 @@ import * as $$5 from "./islands/gc-cu/CreateFolderCard.tsx";
 import * as $$6 from "./islands/gc-cu/DeleteFolderDialog.tsx";
 import * as $$7 from "./islands/gc-cu/FolderCard.tsx";
 import * as $$8 from "./islands/gc-cu/ListFolders.tsx";
-import * as $$9 from "./islands/gr-cu/DeleteReferenceDialog.tsx";
-import * as $$10 from "./islands/gr-cu/DownloadFileButton.tsx";
-import * as $$11 from "./islands/gr-cu/GenerateReferenceButton.tsx";
-import * as $$12 from "./islands/gr-cu/ReferencesManagement.tsx";
-import * as $$13 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
-import * as $$14 from "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
-import * as $$15 from "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx";
-import * as $$16 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
-import * as $$17 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx";
-import * as $$18 from "./islands/is-cu/LoginForm.tsx";
-import * as $$19 from "./islands/is-cu/RegisterForm.tsx";
+import * as $$9 from "./islands/gg-cu/CreateGroupButton.tsx";
+import * as $$10 from "./islands/gg-cu/CreateGroupCard.tsx";
+import * as $$11 from "./islands/gg-cu/ListGroups.tsx";
+import * as $$12 from "./islands/gr-cu/DeleteReferenceDialog.tsx";
+import * as $$13 from "./islands/gr-cu/DownloadFileButton.tsx";
+import * as $$14 from "./islands/gr-cu/GenerateReferenceButton.tsx";
+import * as $$15 from "./islands/gr-cu/ReferencesManagement.tsx";
+import * as $$16 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
+import * as $$17 from "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
+import * as $$18 from "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx";
+import * as $$19 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
+import * as $$20 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx";
+import * as $$21 from "./islands/is-cu/LoginForm.tsx";
+import * as $$22 from "./islands/is-cu/RegisterForm.tsx";
 
 const manifest = {
   routes: {
@@ -68,9 +72,10 @@ const manifest = {
     "./routes/api/bibliographie/index.ts": $17,
     "./routes/api/folder/[id].tsx": $18,
     "./routes/api/folder/index.ts": $19,
-    "./routes/api/index.ts": $20,
-    "./routes/index.tsx": $21,
-    "./routes/suscription.tsx": $22,
+    "./routes/api/group/index.ts": $20,
+    "./routes/api/index.ts": $21,
+    "./routes/index.tsx": $22,
+    "./routes/suscription.tsx": $23,
   },
   islands: {
     "./islands/Input.tsx": $$0,
@@ -82,17 +87,20 @@ const manifest = {
     "./islands/gc-cu/DeleteFolderDialog.tsx": $$6,
     "./islands/gc-cu/FolderCard.tsx": $$7,
     "./islands/gc-cu/ListFolders.tsx": $$8,
-    "./islands/gr-cu/DeleteReferenceDialog.tsx": $$9,
-    "./islands/gr-cu/DownloadFileButton.tsx": $$10,
-    "./islands/gr-cu/GenerateReferenceButton.tsx": $$11,
-    "./islands/gr-cu/ReferencesManagement.tsx": $$12,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$13,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx": $$14,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx": $$15,
-    "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx": $$16,
-    "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx": $$17,
-    "./islands/is-cu/LoginForm.tsx": $$18,
-    "./islands/is-cu/RegisterForm.tsx": $$19,
+    "./islands/gg-cu/CreateGroupButton.tsx": $$9,
+    "./islands/gg-cu/CreateGroupCard.tsx": $$10,
+    "./islands/gg-cu/ListGroups.tsx": $$11,
+    "./islands/gr-cu/DeleteReferenceDialog.tsx": $$12,
+    "./islands/gr-cu/DownloadFileButton.tsx": $$13,
+    "./islands/gr-cu/GenerateReferenceButton.tsx": $$14,
+    "./islands/gr-cu/ReferencesManagement.tsx": $$15,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$16,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx": $$17,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx": $$18,
+    "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx": $$19,
+    "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx": $$20,
+    "./islands/is-cu/LoginForm.tsx": $$21,
+    "./islands/is-cu/RegisterForm.tsx": $$22,
   },
   baseUrl: import.meta.url,
 };
