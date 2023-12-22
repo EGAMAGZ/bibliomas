@@ -9,10 +9,11 @@ export const handler: Handlers = {
   async GET(req: Request, _ctx: HandlerContext) {
     const url = new URL(req.url);
 
-    const { page, limit, userId } = PaginationParamsSchema.parse({
+    const { page, limit, userId, folderId } = PaginationParamsSchema.parse({
       page: url.searchParams.get("page"),
       limit: url.searchParams.get("limit"),
       userId: url.searchParams.get("userId"),
+      folderId: url.searchParams.get("folderId"),
     });
 
     const [bibliographie, totalRecords] = await Promise.all([
@@ -21,9 +22,15 @@ export const handler: Handlers = {
         take: limit,
         where: {
           fk_id_est: userId,
+          fk_id_carp: folderId,
         },
       }),
-      prismaClient.bibliografias.count(),
+      prismaClient.bibliografias.count({
+        where: {
+          fk_id_est: userId,
+          fk_id_carp: folderId,
+        },
+      }),
     ]);
 
     const totalPages = Math.ceil(totalRecords / limit);
