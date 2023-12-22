@@ -72,15 +72,23 @@ export default function ManageFoldersGroupPage(
               folders={folders}
               folderId={deletableFolderId}
             />
+                <ReferencesManagement />
+                <div class="flex w-full flex-col lg:flex-row justify-center gap-4 mt-4">
+                  <a
+                    href={`/gestionar-grupos/${props.params.groupId}`}
+                    class="btn btn-secondary font-sans lg:w-fit"
+                  >
+                    Regresar
+                  </a>
+                </div>
           </BibliomasSessionProvider>
-          <BibliomasSessionProvider
+          {/* <BibliomasSessionProvider
             value={{
               userId: props.state._id,
               groupId: Number(props.params.groupId),
             }}
           >
-            <ReferencesManagement />
-          </BibliomasSessionProvider>
+          </BibliomasSessionProvider> */}
         </div>
       </div>
     </span>
