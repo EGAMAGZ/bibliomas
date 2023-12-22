@@ -50,10 +50,12 @@ import * as $$17 from "./islands/gr-cu/ReferencesManagement.tsx";
 import * as $$18 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
 import * as $$19 from "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
 import * as $$20 from "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx";
-import * as $$21 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
-import * as $$22 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx";
-import * as $$23 from "./islands/is-cu/LoginForm.tsx";
-import * as $$24 from "./islands/is-cu/RegisterForm.tsx";
+import * as $$21 from "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx";
+import * as $$22 from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
+import * as $$23 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
+import * as $$24 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx";
+import * as $$25 from "./islands/is-cu/LoginForm.tsx";
+import * as $$26 from "./islands/is-cu/RegisterForm.tsx";
 
 const manifest = {
   routes: {
@@ -107,10 +109,12 @@ const manifest = {
     "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$18,
     "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx": $$19,
     "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx": $$20,
-    "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx": $$21,
-    "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx": $$22,
-    "./islands/is-cu/LoginForm.tsx": $$23,
-    "./islands/is-cu/RegisterForm.tsx": $$24,
+    "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx": $$21,
+    "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $$22,
+    "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx": $$23,
+    "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx": $$24,
+    "./islands/is-cu/LoginForm.tsx": $$25,
+    "./islands/is-cu/RegisterForm.tsx": $$26,
   },
   baseUrl: import.meta.url,
 };
