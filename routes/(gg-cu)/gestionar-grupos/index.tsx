@@ -8,6 +8,7 @@ import { useSignal } from "@preact/signals";
 import { GroupManagementStates } from "@/schema/states.ts";
 import ListGroups from "@/islands/gg-cu/ListGroups.tsx";
 import CreateGroupButton from "@/islands/gg-cu/CreateGroupButton.tsx";
+import DeleteGroupDialog from "@/islands/gg-cu/DeleteGroupDialog.tsx";
 
 export const handler: Handlers<Data<GroupWithBibliographies[]>, SessionState> =
   {
@@ -65,6 +66,7 @@ export default function Page(
               deletableGroupId={deletableGroupId}
             />
           </div>
+          <DeleteGroupDialog groups={groups} groupId={deletableGroupId} />
         </BibliomasSessionProvider>
       </div>
     </div>
