@@ -53,8 +53,10 @@ export default function DeleteGroupDialog(props: DeleteGroupDialogProps) {
     <dialog ref={dialogRef} class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
         <h3 class="font-bold text-lg font-sans">Eliminar Grupo</h3>
-        <p class="font-sans">
-          ¿Está seguro de que desea eliminar este grupo?
+        <p class="font-sans text-center">
+          ¿Está usted seguro de eliminar el siguiente grupo el cual contiene
+          referencias y carpetas creadas en este? Se le informa que se le
+          notificará a los demás estudiantes que tenían acceso a este grupo
         </p>
         <div class="modal-action">
           <Button
