@@ -3,7 +3,7 @@ import { z } from "zod";
 import prismaClient from "@/database/prisma.ts";
 import { ApiResponse } from "@/schema/api-response.ts";
 import { Carpetas } from "@/generated/client/deno/edge.ts";
-import { FolderWithBibliographies, UpdateFolder } from "@/schema/folder.ts";
+import { FolderWithBibliographies, UpdateFolder, UpdateFolderSchema } from "@/schema/folder.ts";
 
 export const handler: Handlers = {
   async DELETE(req: Request, ctx: HandlerContext) {
@@ -31,12 +31,14 @@ export const handler: Handlers = {
   async PUT(req: Request, ctx: HandlerContext) {
     const body = (await req.json()) as UpdateFolder;
 
+    const { pk_id_carp, txt_nom_carp } = UpdateFolderSchema.parse(body);
+
     const folder = await prismaClient.carpetas.update({
       where: {
-        pk_id_carp: body.pk_id_carp,
+        pk_id_carp
       },
       data: {
-        txt_nom_carp: body.txt_nom_carp,
+        txt_nom_carp
       },
       include: {
         Bibliografias: true,

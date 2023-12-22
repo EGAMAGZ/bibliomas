@@ -28,6 +28,10 @@ export const CreateGroupSchema = GroupSchema.omit({
 
 export type CreateGroup = z.infer<typeof CreateGroupSchema>;
 
+export const UpdateGroupSchema = GroupSchema;
+
+export type UpdateGroup = z.infer<typeof UpdateGroupSchema>;
+
 export type GroupWithBibliographies = Grupos & {
   Bibliografias: Bibliografias[];
 };
