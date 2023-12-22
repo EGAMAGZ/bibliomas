@@ -19,7 +19,7 @@ export const menuOptions: MenuOption[] = [
   },
   {
     name: "Mis grupos",
-    href: "#",
+    href: "/gestionar-grupos",
   },
   {
     name: "Cerrar sesión",
