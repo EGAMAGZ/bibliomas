@@ -21,7 +21,6 @@ export const handler: Handlers<Data<FolderWithBibliographies[]>, SessionState> =
 
       const folders = await prismaClient.carpetas.findMany({
         where: {
-          fk_id_est: userId,
           fk_id_grup: Number(ctx.params.groupId),
         },
         include: {
@@ -72,23 +71,16 @@ export default function ManageFoldersGroupPage(
               folders={folders}
               folderId={deletableFolderId}
             />
-                <ReferencesManagement />
-                <div class="flex w-full flex-col lg:flex-row justify-center gap-4 mt-4">
-                  <a
-                    href={`/gestionar-grupos/${props.params.groupId}`}
-                    class="btn btn-secondary font-sans lg:w-fit"
-                  >
-                    Regresar
-                  </a>
-                </div>
+            <ReferencesManagement />
+            <div class="flex w-full flex-col lg:flex-row justify-center gap-4 mt-4">
+              <a
+                href={`/gestionar-grupos/`}
+                class="btn btn-secondary font-sans lg:w-fit"
+              >
+                Regresar
+              </a>
+            </div>
           </BibliomasSessionProvider>
-          {/* <BibliomasSessionProvider
-            value={{
-              userId: props.state._id,
-              groupId: Number(props.params.groupId),
-            }}
-          >
-          </BibliomasSessionProvider> */}
         </div>
       </div>
     </span>

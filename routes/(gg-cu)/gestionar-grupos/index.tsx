@@ -27,8 +27,24 @@ export const handler: Handlers<Data<GroupWithBibliographies[]>, SessionState> =
             },
           },
         );
+
+      const groupWithAccess = await prismaClient.grupoConAcceso.findMany({
+        where: {
+          fk_id_est: ctx.state._id,
+        },
+        include: {
+          Grupo: {
+            include: {
+              Bibliografias: true,
+            },
+          },
+        },
+      });
+
+      const allGroups = [...groups, ...groupWithAccess.map((g) => g.Grupo)];
+
       return await ctx.render({
-        data: groups,
+        data: allGroups,
         error: "",
       });
     },
