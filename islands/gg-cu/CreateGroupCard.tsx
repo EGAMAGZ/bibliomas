@@ -12,6 +12,7 @@ import { ApiResponse } from "@/schema/api-response.ts";
 interface CreateGroupCardProps {
   groups: Signal<GroupWithBibliographies[]>;
   managerState: Signal<GroupManagementStates>;
+  onAfterCreate: (groupId: number) => void;
 }
 
 export default function CreateGroupCard(props: CreateGroupCardProps) {
@@ -45,6 +46,7 @@ export default function CreateGroupCard(props: CreateGroupCardProps) {
       props.groups.value = [...props.groups.value, data];
       isLoading.value = false;
       props.managerState.value = GroupManagementStates.IDLE;
+      props.onAfterCreate(data.pk_id_grup);
     },
   );
 

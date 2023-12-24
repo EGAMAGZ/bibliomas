@@ -32,11 +32,13 @@ export default function ReferencesManagement() {
     const searchParams = new URLSearchParams();
     searchParams.append("limit", String(DEFAULT_PAGINATION_LIMIT));
     searchParams.append("page", actualPage.value.toString());
-    searchParams.append("userId", bibliomasContext.userId);
+    if (bibliomasContext.userId) {
+      searchParams.append("userId", bibliomasContext.userId);
+    }
     if (bibliomasContext.folderId) {
       searchParams.append("folderId", String(bibliomasContext.folderId));
     }
-    if(bibliomasContext.groupId) {
+    if (bibliomasContext.groupId) {
       searchParams.append("groupId", String(bibliomasContext.groupId));
     }
 
