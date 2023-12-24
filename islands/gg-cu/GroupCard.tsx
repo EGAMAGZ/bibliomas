@@ -15,6 +15,7 @@ interface FolderCardProps {
   groups: Signal<GroupWithBibliographies[]>;
   managerState: Signal<GroupManagementStates>;
   onDelete: (id: number) => void;
+  onEditAccess: (id: number) => void;
 }
 
 export default function FolderCard(props: FolderCardProps) {
@@ -37,6 +38,7 @@ export default function FolderCard(props: FolderCardProps) {
             managerState={props.managerState}
             editing={isEditing}
             onDelete={props.onDelete}
+            onEditAccess={props.onEditAccess}
           />
         )}
     </>
@@ -143,12 +145,18 @@ interface ViewGroupCardProps {
   managerState: Signal<GroupManagementStates>;
   editing: Signal<boolean>;
   onDelete: (id: number) => void;
+  onEditAccess: (id: number) => void;
 }
 
 function ViewGroupCard(props: ViewGroupCardProps) {
+  const bibliomasSessionContext = useBibliomasSessionContext();
   const handleEdit = () => {
     props.managerState.value = GroupManagementStates.EDITING;
     props.editing.value = true;
+  };
+
+  const handleEditAccess = () => {
+    props.onEditAccess(props.group.pk_id_grup);
   };
 
   const handleDelete = () => {
@@ -182,9 +190,26 @@ function ViewGroupCard(props: ViewGroupCardProps) {
               GroupManagementStates.IDLE}
           >
             <IconEdit size={16} />
-            Editar
+            Editar Nombre
           </Button>
         </div>
+
+        {props.group.fk_id_est === bibliomasSessionContext.userId &&
+          (
+            <div class="tooltip font-mono" data-tip="Editar grupo">
+              <Button
+                state="btn-secondary"
+                classList="w-full btn-sm"
+                type="button"
+                onClick={handleEditAccess}
+                disabled={props.managerState.value !==
+                  GroupManagementStates.IDLE}
+              >
+                <IconEdit size={16} />
+                Editar acceso
+              </Button>
+            </div>
+          )}
         <div class="tooltip font-mono" data-tip="Eliminar grupo">
           <Button
             state="btn-secondary"

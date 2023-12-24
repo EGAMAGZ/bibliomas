@@ -18,8 +18,27 @@ export const handler: Handlers = {
         groupId: url.searchParams.get("groupId"),
       });
 
-    const [bibliographie, totalRecords] = await Promise.all([
-      prismaClient.bibliografias.findMany({
+    let bibliographies: Bibliografias[];
+    let totalRecords: number;
+    
+    if (groupId) {
+      bibliographies = await prismaClient.bibliografias.findMany({
+        skip: (page - 1) * limit,
+        take: limit,
+        where: {
+          fk_id_carp: folderId,
+          fk_id_grup: groupId,
+        },
+      });
+
+      totalRecords = await prismaClient.bibliografias.count({
+        where: {
+          fk_id_carp: folderId,
+          fk_id_grup: groupId,
+        },
+      });
+    } else {
+      bibliographies = await prismaClient.bibliografias.findMany({
         skip: (page - 1) * limit,
         take: limit,
         where: {
@@ -27,22 +46,23 @@ export const handler: Handlers = {
           fk_id_carp: folderId,
           fk_id_grup: groupId,
         },
-      }),
-      prismaClient.bibliografias.count({
+      });
+
+      totalRecords = await prismaClient.bibliografias.count({
         where: {
           fk_id_est: userId,
           fk_id_carp: folderId,
           fk_id_grup: groupId,
         },
-      }),
-    ]);
+      });
+    }
 
     const totalPages = Math.ceil(totalRecords / limit);
 
     return new Response(
       JSON.stringify({
         data: {
-          content: bibliographie,
+          content: bibliographies,
           pagination: {
             currentPage: page,
             totalPages,
