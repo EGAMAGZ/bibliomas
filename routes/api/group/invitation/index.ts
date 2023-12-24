@@ -43,6 +43,9 @@ export const handler: Handlers = {
       },
     );
 
+    console.log(studentsWithAccess);
+    
+
     return new Response(
       JSON.stringify({
         data: studentsWithAccess,

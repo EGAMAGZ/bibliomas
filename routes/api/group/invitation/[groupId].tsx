@@ -80,7 +80,7 @@ export const handler: Handlers = {
       fk_id_est: student.fk_id_est,
       fk_id_grup: student.fk_id_grup,
       txt_user_est: student.Estudiante.txt_user_est,
-      bool_access_grup: true,
+      bool_access_grup: false,
     };
 
     return new Response(

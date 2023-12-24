@@ -13,6 +13,9 @@ interface ListGroupProps {
 
 export default function ListGroups(props: ListGroupProps) {
   const createdGroupId = useSignal<number | null>(null);
+
+  const editableAccessGroupId = useSignal<number | null>(null);
+
   return (
     <>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -22,6 +25,7 @@ export default function ListGroups(props: ListGroupProps) {
             managerState={props.managerState}
             groups={props.groups}
             onDelete={(id) => props.deletableGroupId.value = id}
+            onEditAccess={(id) => editableAccessGroupId.value = id}
           />
         ))}
 
@@ -34,6 +38,10 @@ export default function ListGroups(props: ListGroupProps) {
         )}
       </div>
       {createdGroupId.value && <InvitationDialog groupId={createdGroupId} />}
+
+      {editableAccessGroupId.value && (
+        <InvitationDialog groupId={editableAccessGroupId} />
+      )}
     </>
   );
 }

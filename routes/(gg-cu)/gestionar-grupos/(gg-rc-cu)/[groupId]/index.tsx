@@ -47,7 +47,7 @@ export default function ManageFoldersGroupPage(
   return (
     <span>
       <div className="flex justify-center">
-        <div className="container p-4 2xl:p-0 flex flex-col ">
+        <div className="container p-4 2xl:p-0 flex flex-col gap-4">
           <span className="text-2xl lg:text-6xl font-sans font-bold mt-8 mb-16 self-center">
             Gestionar referencias y carpetas de grupo
           </span>
@@ -67,12 +67,8 @@ export default function ManageFoldersGroupPage(
                 deletableFolderId={deletableFolderId}
               />
             </div>
-            <DeleteFolderDialog
-              folders={folders}
-              folderId={deletableFolderId}
-            />
             <ReferencesManagement />
-            <div class="flex w-full flex-col lg:flex-row justify-center gap-4 mt-4">
+            <div class="flex w-full flex-col lg:flex-row justify-center gap-4">
               <a
                 href={`/gestionar-grupos/`}
                 class="btn btn-secondary font-sans lg:w-fit"
@@ -80,6 +76,10 @@ export default function ManageFoldersGroupPage(
                 Regresar
               </a>
             </div>
+            <DeleteFolderDialog
+              folders={folders}
+              folderId={deletableFolderId}
+            />
           </BibliomasSessionProvider>
         </div>
       </div>
