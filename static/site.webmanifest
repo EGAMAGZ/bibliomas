@@ -1,11 +1,11 @@
 {
   "name": "Bibliomas",
-  "description": "Bibliomas - The Open Source Library",
+  "description": "Bibliomas - Generador de referencias bibliográficas",
   "short_name": "Bibliomas",
   "theme_color": "#034359",
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "display_override": ["window-controls-overlay"],
+  "display_override": ["standalone"],
   "start_url": "/",
   "launch_handler": {
     "client_mode": ["focus-existing", "auto"]
