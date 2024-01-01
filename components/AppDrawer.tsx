@@ -1,19 +1,21 @@
 import { ComponentChildren } from "preact";
-import Navbar from "@/components/Navbar.tsx";
-import { MenuOption, menuOptions } from "../data/menu-options.ts";
+import AppNavbar from "./AppNavbar.tsx";
+import { MenuOption, menuOptions } from "@/data/menu-options.ts";
 
-interface DrawerProps {
+interface AppDrawerProps {
   children: ComponentChildren;
   username: string;
   email: string;
 }
 
-export default function Drawer({ children, username, email }: DrawerProps) {
+export default function AppDrawer(
+  { children, username, email }: AppDrawerProps,
+) {
   return (
     <div className="drawer">
       <input id="app-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col pb-4">
-        <Navbar username={username} email={email} />
+        <AppNavbar username={username} email={email} />
         {children}
       </div>
       <div className="drawer-side">
@@ -23,13 +25,13 @@ export default function Drawer({ children, username, email }: DrawerProps) {
           className="drawer-overlay"
         />
 
-        <DraweMenu />
+        <DrawerMenu />
       </div>
     </div>
   );
 }
 
-function DraweMenu() {
+function DrawerMenu() {
   return (
     <ul className="menu p-4 w-80 min-h-full bg-base-200">
       {menuOptions.map((menuOption) => (

@@ -1,17 +1,19 @@
 import { RouteConfig } from "$fresh/server.ts";
-import Startnav from "@/components/Starnav.tsx";
+import HomeDrawer from "@/components/HomeDrawer.tsx";
+import HomeNavbar from "../components/HomeNavbar.tsx";
 import Footer from "@/components/Footer.tsx";
 
 export const config: RouteConfig = {
-  skipInheritedLayouts: true, // Skip already inherited layouts
+  skipInheritedLayouts: true,
 };
 
 export default function Home() {
   return (
-    <>
-      <Startnav />
+    <HomeDrawer>
       <div class="hero bg-slate-100 ">
-        <h1 class="mt-10 font-sans text-5xl font-bold ">Acerca de nosotros</h1>
+        <h1 class="mt-10 font-sans text-5xl font-bold ">
+          Acerca de nosotros
+        </h1>
       </div>
       <div class="hero min-h-screen bg-slate-100 ">
         <div class="hero-content flex-col lg:flex-row-reverse">
@@ -43,21 +45,13 @@ export default function Home() {
               Eleva tu investigación.
             </p>
           </div>
-          <img src="/img/computer.jpg" class="max-w-lg rounded-lg shadow-2xl" />
+          <img
+            src="/img/computer.jpg"
+            class="max-w-lg rounded-lg shadow-2xl"
+          />
         </div>
       </div>
       <Footer />
-      {
-        /*<Button state="btn-primary" type="button">
-        <span>Clickeame</span>
-      </Button>
-      <div class="bg-[#50d71e]">
-        <nav class="navbar font-mono">hola buenos dias</nav>  botttones y taps
-        <h1 class="font-sans">Hola mundo</h1>
-        <IconGenderMale size={48} />
-        <img src="/img/computer.jpg" />
-      </div>*/
-      }
-    </>
+    </HomeDrawer>
   );
 }

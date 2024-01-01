@@ -16,6 +16,7 @@ import {
 } from "@/utils/config.ts";
 import { z } from "zod";
 import { RouteConfig } from "$fresh/server.ts";
+import HomeDrawer from "@/components/HomeDrawer.tsx";
 
 export const config: RouteConfig = {
   skipInheritedLayouts: true,
@@ -87,21 +88,23 @@ export const handler: Handlers<Data, SessionState> = {
 
 export default function IniciarSesionPage({ data }: PageProps) {
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center p-4">
-      <div className="flex flex-col w-full max-w-2xl gap-4">
-        <IconBook2 size={128} className="self-center" />
-        {data.error && (
-          <div className="alert alert-error font-sans">
-            <IconCircleX size={24} />
-            <span>{data.error}</span>
-          </div>
-        )}
-        <span className="self-center text-5xl font-bold font-sans">
-          Introduzca sus credenciales
-        </span>
+    <HomeDrawer>
+      <div className="w-full h-full flex flex-col justify-center items-center p-4">
+        <div className="flex flex-col w-full max-w-2xl gap-4">
+          <IconBook2 size={128} className="self-center" />
+          {data.error && (
+            <div className="alert alert-error font-sans">
+              <IconCircleX size={24} />
+              <span>{data.error}</span>
+            </div>
+          )}
+          <span className="self-center text-5xl font-bold font-sans">
+            Introduzca sus credenciales
+          </span>
 
-        <LoginForm />
+          <LoginForm />
+        </div>
       </div>
-    </div>
+    </HomeDrawer>
   );
 }
