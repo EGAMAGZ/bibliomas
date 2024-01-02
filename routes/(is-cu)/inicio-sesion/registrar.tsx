@@ -21,6 +21,7 @@ import {
 import { z } from "zod";
 import { setCookie } from "$cookies";
 import { Prisma } from "@/generated/client/deno/edge.ts";
+import HomeDrawer from "@/components/HomeDrawer.tsx";
 
 export const config: RouteConfig = {
   skipInheritedLayouts: true,
@@ -98,22 +99,24 @@ export const handler: Handlers<Data, SessionState> = {
 
 export default function RegistrarPage({ data }: PageProps) {
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center p-4">
-      <div className="flex flex-col w-full max-w-2xl gap-4">
-        <IconBook2 size={128} className="self-center" />
+    <HomeDrawer>
+      <div className="w-full h-full flex flex-col justify-center items-center p-4">
+        <div className="flex flex-col w-full max-w-2xl gap-4">
+          <IconBook2 size={128} className="self-center" />
 
-        {data.error && (
-          <div className="alert alert-error font-sans">
-            <IconCircleX size={24} />
-            <span>{data.error}</span>
-          </div>
-        )}
+          {data.error && (
+            <div className="alert alert-error font-sans">
+              <IconCircleX size={24} />
+              <span>{data.error}</span>
+            </div>
+          )}
 
-        <span className="self-center text-5xl font-bold font-sans">
-          Nuevo usuario a registrarse
-        </span>
-        <RegisterForm />
+          <span className="self-center text-5xl font-bold font-sans">
+            Nuevo usuario a registrarse
+          </span>
+          <RegisterForm />
+        </div>
       </div>
-    </div>
+    </HomeDrawer>
   );
 }

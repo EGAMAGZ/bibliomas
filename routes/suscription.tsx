@@ -1,15 +1,15 @@
 import { RouteConfig } from "$fresh/server.ts";
-import Startnav from "@/components/Starnav.tsx";
+import HomeNavbar from "@/components/HomeNavbar.tsx";
 import Footer from "@/components/Footer.tsx";
+import HomeDrawer from "@/components/HomeDrawer.tsx";
 
 export const config: RouteConfig = {
-  skipInheritedLayouts: true, // Skip already inherited layouts
+  skipInheritedLayouts: true,
 };
 
 export default function Home() {
   return (
-    <>
-      <Startnav />
+    <HomeDrawer>
       <div class="hero bg-slate-100 ">
         <h1 class="mt-5 font-sans text-5xl font-bold ">
           Suscripciones a Bibliomas
@@ -29,7 +29,9 @@ export default function Home() {
                 />
               </figure>
               <div class="card-body">
-                <h2 class="card-title font-sans text-slate-200 text-3xl">Paquete estándar</h2>
+                <h2 class="card-title font-sans text-slate-200 text-3xl">
+                  Paquete estándar
+                </h2>
                 <p class="font-sans text-slate-200 text-xl">$100.00/mes</p>
                 <div class="card-actions justify-end">
                   <button class="btn btn-primary font-sans">Suscribete</button>
@@ -44,7 +46,9 @@ export default function Home() {
                 />
               </figure>
               <div class="card-body">
-                <h2 class="card-title font-sans text-slate-200 text-3xl">Paquete empresarial</h2>
+                <h2 class="card-title font-sans text-slate-200 text-3xl">
+                  Paquete empresarial
+                </h2>
                 <p class="font-sans text-slate-200 text-xl">$2000.00/mes</p>
                 <div class="card-actions justify-end">
                   <button class="btn btn-primary font-sans">Suscribete</button>
@@ -55,6 +59,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </>
+    </HomeDrawer>
   );
 }

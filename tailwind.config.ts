@@ -1,6 +1,7 @@
 import daisyui from "daisyui";
 import tailwindForms from "@tailwindcss/forms";
 import tailwindTypography from "@tailwindcss/typography";
+import plugin from "@tailwindcss/plugin";
 
 export default {
   content: [
@@ -12,6 +13,9 @@ export default {
     tailwindForms,
     tailwindTypography,
     daisyui,
+    plugin(({ addVariant }) => {
+      addVariant("pwa", "@media (display-mode: standalone)");
+    }),
   ],
   daisyui: {
     themes: [
