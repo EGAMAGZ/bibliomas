@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-window-prefix
 import { useComputed, useSignal, useSignalEffect } from "@preact/signals";
 import { IconDownload } from "@tabler-icons";
 import { IS_BROWSER } from "$fresh/runtime.ts";
@@ -10,7 +11,8 @@ export default function InstallButton(props: InstallButtonProps) {
   const isLoading = useSignal(true);
   const isInstalled = useSignal(false);
   const isDisabled = useComputed(() => isLoading.value);
-  const installPromptEvent = useSignal<Event | null>(null);
+  // deno-lint-ignore no-explicit-any
+  const installPromptEvent = useSignal<any | null>(null);
 
   useSignalEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {
