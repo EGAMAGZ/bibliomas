@@ -1,15 +1,14 @@
 import { RouteConfig } from "$fresh/server.ts";
-import Startnav from "@/components/Starnav.tsx";
 import Footer from "@/components/Footer.tsx";
+import HomeDrawer from "@/components/HomeDrawer.tsx";
 
 export const config: RouteConfig = {
-  skipInheritedLayouts: true, // Skip already inherited layouts
+  skipInheritedLayouts: true,
 };
 
 export default function Home() {
   return (
-    <>
-      <Startnav />
+    <HomeDrawer>
       <div class="hero bg-slate-100 ">
         <h1 class="mt-10 font-sans text-5xl font-bold ">
           Bienvenido a Bibliomas
@@ -51,6 +50,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </>
+    </HomeDrawer>
   );
 }

@@ -16,7 +16,7 @@ export default function App(
           href="/site.webmanifest"
           crossorigin="use-credentials"
         />
-        <meta name="theme-color" content="#D1C1D7" />
+        <meta name="theme-color" content="#034359" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="Bibliomas" />

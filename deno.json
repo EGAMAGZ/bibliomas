@@ -41,6 +41,7 @@
     "daisyui": "https://esm.sh/daisyui@3.1.7",
     "@tailwindcss/forms": "https://esm.sh/@tailwindcss/forms@0.5.6",
     "@tailwindcss/typography": "https://esm.sh/@tailwindcss/typography@0.5.10",
+    "@tailwindcss/plugin": "https://esm.sh/tailwindcss@3.4.0/plugin",
     "formika": "https://esm.sh/@shelacek/formica@2.0.0",
     "@prisma/extension-accelerate": "npm:@prisma/extension-accelerate@^0.6.2",
     "@/": "./"

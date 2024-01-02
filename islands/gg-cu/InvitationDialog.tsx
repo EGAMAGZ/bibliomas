@@ -61,7 +61,7 @@ export default function InvitationDialog(props: InvitationDialogProps) {
     <dialog ref={dialogRef} class="modal modal-bottom sm:modal-middle">
       <div class="modal-box">
         <h3 class="font-bold text-lg font-sans">Compartir acceso</h3>
-        <div class="max-h-40 overflow-y-auto flex flex-col divide-y-1 gap-2">
+        <div class="sm:max-h-40 overflow-y-auto flex flex-col divide-y-1 gap-2">
           {collaborators.value.map((collaborator) => (
             <InvitationRow studentWithAccess={collaborator} />
           ))}
