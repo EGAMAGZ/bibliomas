@@ -62,7 +62,7 @@ export default function InstallButton(props: InstallButtonProps) {
       disabled={!IS_BROWSER || isDisabled.value}
     >
       <IconDownload size={18} />
-      <span>Instalar {String(isInstalled.value)}</span>
+      <span>Instalar</span>
     </button>
   );
 }
