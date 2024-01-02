@@ -462,11 +462,37 @@
   ],
   "screenshots": [
     {
-      "src": "img/screenshots/screenshot1.jpg",
+      "src": "img/screenshots/desktop1.jpeg",
       "sizes": "1280x720",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "Register new user"
+      "label": "Gestionar referencias"
+    },
+    {
+      "src": "img/screenshots/desktop2.jpeg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Panel de información"
+    },
+    {
+      "src": "img/screenshots/desktop3.jpeg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Gestionar referencias y carpetas por grupo"
+    },
+    {
+      "src": "img/screenshots/phone1.jpeg",
+      "sizes": "360x640",
+      "type": "image/jpeg",
+      "label": "Panel de información"
+    },
+    {
+      "src": "img/screenshots/phone2.jpeg",
+      "sizes": "360x640",
+      "type": "image/jpeg",
+      "label": "Gestionar carpetas"
     }
   ]
 }

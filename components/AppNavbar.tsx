@@ -1,6 +1,7 @@
 import { IconBook2, IconMenu2 } from "@tabler-icons";
 import { ROOT_URL } from "@/utils/config.ts";
 import { MenuOption, menuOptions } from "../data/menu-options.ts";
+import InstallButton from "@/islands/InstallButton.tsx";
 
 export interface AppNavbarProps {
   username: string;
@@ -21,12 +22,13 @@ export default function AppNavbar({ email, username }: AppNavbarProps) {
           Bibliomas
         </a>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-2">
+        <InstallButton classList="hidden lg:btn lg:btn-xs text-xs lg:btn-accent" />
         <div className="badge badge-primary badge-lg">
           <span>
             {username}
           </span>
-          <span className="hidden md:inline-block">
+          <span className="hidden lg:inline-block">
             - {email}
           </span>
         </div>

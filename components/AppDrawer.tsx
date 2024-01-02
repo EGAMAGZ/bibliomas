@@ -1,6 +1,7 @@
 import { ComponentChildren } from "preact";
 import AppNavbar from "./AppNavbar.tsx";
 import { MenuOption, menuOptions } from "@/data/menu-options.ts";
+import InstallButton from "@/islands/InstallButton.tsx";
 
 interface AppDrawerProps {
   children: ComponentChildren;
@@ -24,7 +25,6 @@ export default function AppDrawer(
           aria-label="close sidebar"
           className="drawer-overlay"
         />
-
         <DrawerMenu />
       </div>
     </div>
@@ -33,11 +33,16 @@ export default function AppDrawer(
 
 function DrawerMenu() {
   return (
-    <ul className="menu p-4 w-80 min-h-full bg-base-200">
-      {menuOptions.map((menuOption) => (
-        <DrawerMenuItem menuOption={menuOption} />
-      ))}
-    </ul>
+    <>
+      <ul className="menu p-4 w-80 min-h-full bg-base-200">
+        {menuOptions.map((menuOption) => (
+          <DrawerMenuItem menuOption={menuOption} />
+        ))}
+        <li class="mt-4">
+          <InstallButton classList="btn btn-accent btn-sm font-sans" />
+        </li>
+      </ul>
+    </>
   );
 }
 
