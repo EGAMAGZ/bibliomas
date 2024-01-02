@@ -39,7 +39,7 @@ function DrawerMenu() {
           <DrawerMenuItem menuOption={menuOption} />
         ))}
         <li class="mt-4">
-          <InstallButton classList="btn btn-accent btn-sm font-sans" />
+          <InstallButton classList="btn btn-accent btn-sm font-sans pwa:hidden" />
         </li>
       </ul>
     </>

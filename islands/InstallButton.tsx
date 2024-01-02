@@ -9,7 +9,7 @@ interface InstallButtonProps {
 
 export default function InstallButton(props: InstallButtonProps) {
   const isLoading = useSignal(true);
-  const isInstalled = useSignal(false);
+  const isInstalled = useSignal(true);
   const isDisabled = useComputed(() => isLoading.value);
   // deno-lint-ignore no-explicit-any
   const installPromptEvent = useSignal<any | null>(null);
@@ -20,6 +20,7 @@ export default function InstallButton(props: InstallButtonProps) {
 
       installPromptEvent.value = event;
       isLoading.value = false;
+      isInstalled.value = false;
     };
 
     const handleAppInstalled = () => {
@@ -56,13 +57,12 @@ export default function InstallButton(props: InstallButtonProps) {
   return (
     <button
       type="button"
-      class={props.classList}
+      class={`${isInstalled.value ? "hidden" : props.classList}`}
       onClick={handleClick}
       disabled={!IS_BROWSER || isDisabled.value}
-      hidden={isInstalled.value}
     >
       <IconDownload size={18} />
-      <span>Instalar</span>
+      <span>Instalar {String(isInstalled.value)}</span>
     </button>
   );
 }

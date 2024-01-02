@@ -23,7 +23,7 @@ export default function AppNavbar({ email, username }: AppNavbarProps) {
         </a>
       </div>
       <div className="navbar-end gap-2">
-        <InstallButton classList="hidden lg:btn lg:btn-xs text-xs lg:btn-accent" />
+        <InstallButton classList="hidden lg:btn lg:btn-xs text-xs lg:btn-accent pwa:hidden" />
         <div className="badge badge-primary badge-lg">
           <span>
             {username}

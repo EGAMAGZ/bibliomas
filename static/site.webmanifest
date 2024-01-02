@@ -6,7 +6,7 @@
   "background_color": "#FFFFFF",
   "display": "standalone",
   "display_override": ["standalone"],
-  "start_url": "/",
+  "start_url": "/inicio-sesion",
   "launch_handler": {
     "client_mode": ["focus-existing", "auto"]
   },
