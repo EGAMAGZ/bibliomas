@@ -15,8 +15,7 @@ const formatApaAccessDate = (date: Date) => {
     month: "long",
     year: "numeric",
   };
-
-  return new Intl.DateTimeFormat(navigator.language, options).format(date);
+  return new Intl.DateTimeFormat(navigator.language, options).format(new Date(date));
 };
 
 function formatApaAuthorsName(authors: string) {
