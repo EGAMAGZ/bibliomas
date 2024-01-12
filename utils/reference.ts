@@ -73,6 +73,7 @@ class ApaWebSiteReference implements Reference {
   }
 }
 
+
 class ApaBookReference implements Reference {
   generate(bibliography: Bibliografias): string {
     const info = bibliography as BookBibliographie;
