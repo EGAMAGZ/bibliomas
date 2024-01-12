@@ -2,133 +2,152 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/(gc-cu)/gestionar-carpetas/(gc-gr-cu)/[id].tsx";
-import * as $1 from "./routes/(gc-cu)/gestionar-carpetas/index.tsx";
-import * as $2 from "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/[folderId].tsx";
-import * as $3 from "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/_middleware.ts";
-import * as $4 from "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/index.tsx";
-import * as $5 from "./routes/(gg-cu)/gestionar-grupos/index.tsx";
-import * as $6 from "./routes/(gr-cu)/gestionar-referencias/index.tsx";
-import * as $7 from "./routes/(is-cu)/inicio-sesion/cerrar-sesion.ts";
-import * as $8 from "./routes/(is-cu)/inicio-sesion/index.tsx";
-import * as $9 from "./routes/(is-cu)/inicio-sesion/iniciar-sesion.tsx";
-import * as $10 from "./routes/(is-cu)/inicio-sesion/registrar.tsx";
-import * as $11 from "./routes/_404.tsx";
-import * as $12 from "./routes/_app.tsx";
-import * as $13 from "./routes/_layout.tsx";
-import * as $14 from "./routes/_middleware.ts";
-import * as $15 from "./routes/about.tsx";
-import * as $16 from "./routes/api/_middleware.ts";
-import * as $17 from "./routes/api/bibliographie/[id].tsx";
-import * as $18 from "./routes/api/bibliographie/file/[id].tsx";
-import * as $19 from "./routes/api/bibliographie/file/index.ts";
-import * as $20 from "./routes/api/bibliographie/index.ts";
-import * as $21 from "./routes/api/folder/[id].tsx";
-import * as $22 from "./routes/api/folder/index.ts";
-import * as $23 from "./routes/api/group/[id].tsx";
-import * as $24 from "./routes/api/group/index.ts";
-import * as $25 from "./routes/api/group/invitation/[groupId].tsx";
-import * as $26 from "./routes/api/group/invitation/index.ts";
-import * as $27 from "./routes/api/index.ts";
-import * as $28 from "./routes/index.tsx";
-import * as $29 from "./routes/suscription.tsx";
-import * as $$0 from "./islands/Input.tsx";
-import * as $$1 from "./islands/InstallButton.tsx";
-import * as $$2 from "./islands/PaginationButtons.tsx";
-import * as $$3 from "./islands/Select.tsx";
-import * as $$4 from "./islands/SessionProvider.tsx";
-import * as $$5 from "./islands/gc-cu/CreateFolderButton.tsx";
-import * as $$6 from "./islands/gc-cu/CreateFolderCard.tsx";
-import * as $$7 from "./islands/gc-cu/DeleteFolderDialog.tsx";
-import * as $$8 from "./islands/gc-cu/FolderCard.tsx";
-import * as $$9 from "./islands/gc-cu/ListFolders.tsx";
-import * as $$10 from "./islands/gg-cu/AddCollaboratorButton.tsx";
-import * as $$11 from "./islands/gg-cu/CreateGroupButton.tsx";
-import * as $$12 from "./islands/gg-cu/CreateGroupCard.tsx";
-import * as $$13 from "./islands/gg-cu/DeleteGroupDialog.tsx";
-import * as $$14 from "./islands/gg-cu/GroupCard.tsx";
-import * as $$15 from "./islands/gg-cu/InvitationDialog.tsx";
-import * as $$16 from "./islands/gg-cu/ListGroups.tsx";
-import * as $$17 from "./islands/gr-cu/DeleteReferenceDialog.tsx";
-import * as $$18 from "./islands/gr-cu/DownloadFileButton.tsx";
-import * as $$19 from "./islands/gr-cu/GenerateReferenceButton.tsx";
-import * as $$20 from "./islands/gr-cu/ReferencesManagement.tsx";
-import * as $$21 from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
-import * as $$22 from "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
-import * as $$23 from "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx";
-import * as $$24 from "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx";
-import * as $$25 from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
-import * as $$26 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
-import * as $$27 from "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx";
-import * as $$28 from "./islands/is-cu/LoginForm.tsx";
-import * as $$29 from "./islands/is-cu/RegisterForm.tsx";
+import * as $_gc_cu_gestionar_carpetas_gc_gr_cu_id_ from "./routes/(gc-cu)/gestionar-carpetas/(gc-gr-cu)/[id].tsx";
+import * as $_gc_cu_gestionar_carpetas_index from "./routes/(gc-cu)/gestionar-carpetas/index.tsx";
+import * as $_gg_cu_gestionar_grupos_gg_rc_cu_groupId_folderId_ from "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/[folderId].tsx";
+import * as $_gg_cu_gestionar_grupos_gg_rc_cu_groupId_middleware from "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/_middleware.ts";
+import * as $_gg_cu_gestionar_grupos_gg_rc_cu_groupId_index from "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/index.tsx";
+import * as $_gg_cu_gestionar_grupos_index from "./routes/(gg-cu)/gestionar-grupos/index.tsx";
+import * as $_gr_cu_gestionar_referencias_index from "./routes/(gr-cu)/gestionar-referencias/index.tsx";
+import * as $_is_cu_inicio_sesion_cerrar_sesion from "./routes/(is-cu)/inicio-sesion/cerrar-sesion.ts";
+import * as $_is_cu_inicio_sesion_index from "./routes/(is-cu)/inicio-sesion/index.tsx";
+import * as $_is_cu_inicio_sesion_iniciar_sesion from "./routes/(is-cu)/inicio-sesion/iniciar-sesion.tsx";
+import * as $_is_cu_inicio_sesion_registrar from "./routes/(is-cu)/inicio-sesion/registrar.tsx";
+import * as $_404 from "./routes/_404.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $_middleware from "./routes/_middleware.ts";
+import * as $about from "./routes/about.tsx";
+import * as $api_middleware from "./routes/api/_middleware.ts";
+import * as $api_bibliographie_id_ from "./routes/api/bibliographie/[id].tsx";
+import * as $api_bibliographie_file_id_ from "./routes/api/bibliographie/file/[id].tsx";
+import * as $api_bibliographie_file_index from "./routes/api/bibliographie/file/index.ts";
+import * as $api_bibliographie_index from "./routes/api/bibliographie/index.ts";
+import * as $api_folder_id_ from "./routes/api/folder/[id].tsx";
+import * as $api_folder_index from "./routes/api/folder/index.ts";
+import * as $api_group_id_ from "./routes/api/group/[id].tsx";
+import * as $api_group_index from "./routes/api/group/index.ts";
+import * as $api_group_invitation_groupId_ from "./routes/api/group/invitation/[groupId].tsx";
+import * as $api_group_invitation_index from "./routes/api/group/invitation/index.ts";
+import * as $api_index from "./routes/api/index.ts";
+import * as $index from "./routes/index.tsx";
+import * as $suscription from "./routes/suscription.tsx";
+import * as $Input from "./islands/Input.tsx";
+import * as $InstallButton from "./islands/InstallButton.tsx";
+import * as $PaginationButtons from "./islands/PaginationButtons.tsx";
+import * as $Select from "./islands/Select.tsx";
+import * as $SessionProvider from "./islands/SessionProvider.tsx";
+import * as $gc_cu_CreateFolderButton from "./islands/gc-cu/CreateFolderButton.tsx";
+import * as $gc_cu_CreateFolderCard from "./islands/gc-cu/CreateFolderCard.tsx";
+import * as $gc_cu_DeleteFolderDialog from "./islands/gc-cu/DeleteFolderDialog.tsx";
+import * as $gc_cu_FolderCard from "./islands/gc-cu/FolderCard.tsx";
+import * as $gc_cu_ListFolders from "./islands/gc-cu/ListFolders.tsx";
+import * as $gg_cu_AddCollaboratorButton from "./islands/gg-cu/AddCollaboratorButton.tsx";
+import * as $gg_cu_CreateGroupButton from "./islands/gg-cu/CreateGroupButton.tsx";
+import * as $gg_cu_CreateGroupCard from "./islands/gg-cu/CreateGroupCard.tsx";
+import * as $gg_cu_DeleteGroupDialog from "./islands/gg-cu/DeleteGroupDialog.tsx";
+import * as $gg_cu_GroupCard from "./islands/gg-cu/GroupCard.tsx";
+import * as $gg_cu_InvitationDialog from "./islands/gg-cu/InvitationDialog.tsx";
+import * as $gg_cu_ListGroups from "./islands/gg-cu/ListGroups.tsx";
+import * as $gr_cu_DeleteReferenceDialog from "./islands/gr-cu/DeleteReferenceDialog.tsx";
+import * as $gr_cu_DownloadFileButton from "./islands/gr-cu/DownloadFileButton.tsx";
+import * as $gr_cu_GenerateReferenceButton from "./islands/gr-cu/GenerateReferenceButton.tsx";
+import * as $gr_cu_ReferencesManagement from "./islands/gr-cu/ReferencesManagement.tsx";
+import * as $gr_cu_gr_cb_cu_CreateReferenceButton from "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx";
+import * as $gr_cu_gr_cb_cu_CreateReferenceDialog from "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx";
+import * as $gr_cu_gr_cb_cu_CreateReferenceForm from "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx";
+import * as $gr_cu_gr_cb_cu_ReferenceDialog from "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx";
+import * as $gr_cu_gr_cb_cu_ReferenceForm from "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx";
+import * as $gr_cu_gr_cb_cu_UpdateReferenceDialog from "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx";
+import * as $gr_cu_gr_cb_cu_UpdateReferenceForm from "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx";
+import * as $is_cu_LoginForm from "./islands/is-cu/LoginForm.tsx";
+import * as $is_cu_RegisterForm from "./islands/is-cu/RegisterForm.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/(gc-cu)/gestionar-carpetas/(gc-gr-cu)/[id].tsx": $0,
-    "./routes/(gc-cu)/gestionar-carpetas/index.tsx": $1,
-    "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/[folderId].tsx": $2,
-    "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/_middleware.ts": $3,
-    "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/index.tsx": $4,
-    "./routes/(gg-cu)/gestionar-grupos/index.tsx": $5,
-    "./routes/(gr-cu)/gestionar-referencias/index.tsx": $6,
-    "./routes/(is-cu)/inicio-sesion/cerrar-sesion.ts": $7,
-    "./routes/(is-cu)/inicio-sesion/index.tsx": $8,
-    "./routes/(is-cu)/inicio-sesion/iniciar-sesion.tsx": $9,
-    "./routes/(is-cu)/inicio-sesion/registrar.tsx": $10,
-    "./routes/_404.tsx": $11,
-    "./routes/_app.tsx": $12,
-    "./routes/_layout.tsx": $13,
-    "./routes/_middleware.ts": $14,
-    "./routes/about.tsx": $15,
-    "./routes/api/_middleware.ts": $16,
-    "./routes/api/bibliographie/[id].tsx": $17,
-    "./routes/api/bibliographie/file/[id].tsx": $18,
-    "./routes/api/bibliographie/file/index.ts": $19,
-    "./routes/api/bibliographie/index.ts": $20,
-    "./routes/api/folder/[id].tsx": $21,
-    "./routes/api/folder/index.ts": $22,
-    "./routes/api/group/[id].tsx": $23,
-    "./routes/api/group/index.ts": $24,
-    "./routes/api/group/invitation/[groupId].tsx": $25,
-    "./routes/api/group/invitation/index.ts": $26,
-    "./routes/api/index.ts": $27,
-    "./routes/index.tsx": $28,
-    "./routes/suscription.tsx": $29,
+    "./routes/(gc-cu)/gestionar-carpetas/(gc-gr-cu)/[id].tsx":
+      $_gc_cu_gestionar_carpetas_gc_gr_cu_id_,
+    "./routes/(gc-cu)/gestionar-carpetas/index.tsx":
+      $_gc_cu_gestionar_carpetas_index,
+    "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/[folderId].tsx":
+      $_gg_cu_gestionar_grupos_gg_rc_cu_groupId_folderId_,
+    "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/_middleware.ts":
+      $_gg_cu_gestionar_grupos_gg_rc_cu_groupId_middleware,
+    "./routes/(gg-cu)/gestionar-grupos/(gg-rc-cu)/[groupId]/index.tsx":
+      $_gg_cu_gestionar_grupos_gg_rc_cu_groupId_index,
+    "./routes/(gg-cu)/gestionar-grupos/index.tsx":
+      $_gg_cu_gestionar_grupos_index,
+    "./routes/(gr-cu)/gestionar-referencias/index.tsx":
+      $_gr_cu_gestionar_referencias_index,
+    "./routes/(is-cu)/inicio-sesion/cerrar-sesion.ts":
+      $_is_cu_inicio_sesion_cerrar_sesion,
+    "./routes/(is-cu)/inicio-sesion/index.tsx": $_is_cu_inicio_sesion_index,
+    "./routes/(is-cu)/inicio-sesion/iniciar-sesion.tsx":
+      $_is_cu_inicio_sesion_iniciar_sesion,
+    "./routes/(is-cu)/inicio-sesion/registrar.tsx":
+      $_is_cu_inicio_sesion_registrar,
+    "./routes/_404.tsx": $_404,
+    "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/_middleware.ts": $_middleware,
+    "./routes/about.tsx": $about,
+    "./routes/api/_middleware.ts": $api_middleware,
+    "./routes/api/bibliographie/[id].tsx": $api_bibliographie_id_,
+    "./routes/api/bibliographie/file/[id].tsx": $api_bibliographie_file_id_,
+    "./routes/api/bibliographie/file/index.ts": $api_bibliographie_file_index,
+    "./routes/api/bibliographie/index.ts": $api_bibliographie_index,
+    "./routes/api/folder/[id].tsx": $api_folder_id_,
+    "./routes/api/folder/index.ts": $api_folder_index,
+    "./routes/api/group/[id].tsx": $api_group_id_,
+    "./routes/api/group/index.ts": $api_group_index,
+    "./routes/api/group/invitation/[groupId].tsx":
+      $api_group_invitation_groupId_,
+    "./routes/api/group/invitation/index.ts": $api_group_invitation_index,
+    "./routes/api/index.ts": $api_index,
+    "./routes/index.tsx": $index,
+    "./routes/suscription.tsx": $suscription,
   },
   islands: {
-    "./islands/Input.tsx": $$0,
-    "./islands/InstallButton.tsx": $$1,
-    "./islands/PaginationButtons.tsx": $$2,
-    "./islands/Select.tsx": $$3,
-    "./islands/SessionProvider.tsx": $$4,
-    "./islands/gc-cu/CreateFolderButton.tsx": $$5,
-    "./islands/gc-cu/CreateFolderCard.tsx": $$6,
-    "./islands/gc-cu/DeleteFolderDialog.tsx": $$7,
-    "./islands/gc-cu/FolderCard.tsx": $$8,
-    "./islands/gc-cu/ListFolders.tsx": $$9,
-    "./islands/gg-cu/AddCollaboratorButton.tsx": $$10,
-    "./islands/gg-cu/CreateGroupButton.tsx": $$11,
-    "./islands/gg-cu/CreateGroupCard.tsx": $$12,
-    "./islands/gg-cu/DeleteGroupDialog.tsx": $$13,
-    "./islands/gg-cu/GroupCard.tsx": $$14,
-    "./islands/gg-cu/InvitationDialog.tsx": $$15,
-    "./islands/gg-cu/ListGroups.tsx": $$16,
-    "./islands/gr-cu/DeleteReferenceDialog.tsx": $$17,
-    "./islands/gr-cu/DownloadFileButton.tsx": $$18,
-    "./islands/gr-cu/GenerateReferenceButton.tsx": $$19,
-    "./islands/gr-cu/ReferencesManagement.tsx": $$20,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx": $$21,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx": $$22,
-    "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx": $$23,
-    "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx": $$24,
-    "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $$25,
-    "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx": $$26,
-    "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx": $$27,
-    "./islands/is-cu/LoginForm.tsx": $$28,
-    "./islands/is-cu/RegisterForm.tsx": $$29,
+    "./islands/Input.tsx": $Input,
+    "./islands/InstallButton.tsx": $InstallButton,
+    "./islands/PaginationButtons.tsx": $PaginationButtons,
+    "./islands/Select.tsx": $Select,
+    "./islands/SessionProvider.tsx": $SessionProvider,
+    "./islands/gc-cu/CreateFolderButton.tsx": $gc_cu_CreateFolderButton,
+    "./islands/gc-cu/CreateFolderCard.tsx": $gc_cu_CreateFolderCard,
+    "./islands/gc-cu/DeleteFolderDialog.tsx": $gc_cu_DeleteFolderDialog,
+    "./islands/gc-cu/FolderCard.tsx": $gc_cu_FolderCard,
+    "./islands/gc-cu/ListFolders.tsx": $gc_cu_ListFolders,
+    "./islands/gg-cu/AddCollaboratorButton.tsx": $gg_cu_AddCollaboratorButton,
+    "./islands/gg-cu/CreateGroupButton.tsx": $gg_cu_CreateGroupButton,
+    "./islands/gg-cu/CreateGroupCard.tsx": $gg_cu_CreateGroupCard,
+    "./islands/gg-cu/DeleteGroupDialog.tsx": $gg_cu_DeleteGroupDialog,
+    "./islands/gg-cu/GroupCard.tsx": $gg_cu_GroupCard,
+    "./islands/gg-cu/InvitationDialog.tsx": $gg_cu_InvitationDialog,
+    "./islands/gg-cu/ListGroups.tsx": $gg_cu_ListGroups,
+    "./islands/gr-cu/DeleteReferenceDialog.tsx": $gr_cu_DeleteReferenceDialog,
+    "./islands/gr-cu/DownloadFileButton.tsx": $gr_cu_DownloadFileButton,
+    "./islands/gr-cu/GenerateReferenceButton.tsx":
+      $gr_cu_GenerateReferenceButton,
+    "./islands/gr-cu/ReferencesManagement.tsx": $gr_cu_ReferencesManagement,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceButton.tsx":
+      $gr_cu_gr_cb_cu_CreateReferenceButton,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceDialog.tsx":
+      $gr_cu_gr_cb_cu_CreateReferenceDialog,
+    "./islands/gr-cu/gr-cb-cu/CreateReferenceForm.tsx":
+      $gr_cu_gr_cb_cu_CreateReferenceForm,
+    "./islands/gr-cu/gr-cb-cu/ReferenceDialog.tsx":
+      $gr_cu_gr_cb_cu_ReferenceDialog,
+    "./islands/gr-cu/gr-cb-cu/ReferenceForm.tsx": $gr_cu_gr_cb_cu_ReferenceForm,
+    "./islands/gr-cu/gr-cb-cu/UpdateReferenceDialog.tsx":
+      $gr_cu_gr_cb_cu_UpdateReferenceDialog,
+    "./islands/gr-cu/gr-cb-cu/UpdateReferenceForm.tsx":
+      $gr_cu_gr_cb_cu_UpdateReferenceForm,
+    "./islands/is-cu/LoginForm.tsx": $is_cu_LoginForm,
+    "./islands/is-cu/RegisterForm.tsx": $is_cu_RegisterForm,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
