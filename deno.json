@@ -1,5 +1,6 @@
 {
   "lock": false,
+  "nodeModulesDir": true,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "start": "deno run -A --watch=static/,routes/ dev.ts",
@@ -13,21 +14,12 @@
     "seed": "deno run -A --unstable prisma/seed.ts",
     "test": "deno test --allow-read --allow-env --allow-net"
   },
-  "lint": {
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
-    }
-  },
-  "exclude": [
-    "**/_fresh/*"
-  ],
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
+  "exclude": ["**/_fresh/*"],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.5.4/",
-    "preact": "https://esm.sh/preact@10.18.1",
-    "preact/": "https://esm.sh/preact@10.18.1/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.1/",
+    "preact": "https://esm.sh/preact@10.19.2",
+    "preact/": "https://esm.sh/preact@10.19.2/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
@@ -37,17 +29,15 @@
     "$cookies": "https://deno.land/std@0.203.0/http/cookie.ts",
     "jose": "https://deno.land/x/jose@v4.15.1/index.ts",
     "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.38.0",
-    "@tailwindcss": "https://deno.land/x/fresh_tailwindcss@1.0.0/mod.ts",
     "daisyui": "https://esm.sh/daisyui@3.1.7",
-    "@tailwindcss/forms": "https://esm.sh/@tailwindcss/forms@0.5.6",
-    "@tailwindcss/typography": "https://esm.sh/@tailwindcss/typography@0.5.10",
-    "@tailwindcss/plugin": "https://esm.sh/tailwindcss@3.4.0/plugin",
+    "tailwindcss/forms": "https://esm.sh/@tailwindcss/forms@0.5.6",
+    "tailwindcss/typography": "https://esm.sh/@tailwindcss/typography@0.5.10",
+    "tailwindcss": "npm:tailwindcss@3.3.5",
+    "tailwindcss/": "npm:/tailwindcss@3.3.5/",
+    "tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
     "formika": "https://esm.sh/@shelacek/formica@2.0.0",
     "@prisma/extension-accelerate": "npm:@prisma/extension-accelerate@^0.6.2",
     "@/": "./"
   },
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  }
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }
