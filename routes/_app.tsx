@@ -20,6 +20,7 @@ export default function App(
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="Bibliomas" />
+        <link rel="stylesheet" href="/styles.css" />
         <title>Bibliomas</title>
       </head>
       <body>

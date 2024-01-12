@@ -1,13 +1,12 @@
 import daisyui from "daisyui";
-import tailwindForms from "@tailwindcss/forms";
-import tailwindTypography from "@tailwindcss/typography";
-import plugin from "@tailwindcss/plugin";
+import tailwindForms from "tailwindcss/forms";
+import tailwindTypography from "tailwindcss/typography";
+import plugin from "tailwindcss/plugin";
+import { type Config } from "tailwindcss";
 
 export default {
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./islands/**/*.{js,ts,jsx,tsx,mdx}",
-    "./routes/**/*.{js,ts,jsx,tsx,mdx}",
+    "{routes,islands,components}/**/*.{ts,tsx}",
   ],
   plugins: [
     tailwindForms,
@@ -22,4 +21,4 @@ export default {
       "pastel",
     ],
   },
-};
+} satisfies Config;
