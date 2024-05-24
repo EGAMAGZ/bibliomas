@@ -331,8 +331,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.5.2
-   * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
+   * Prisma Client JS version: 5.14.0
+   * Query Engine version: e9771e62de70f79a5e1c604a2d7c8e2a0a874b48
    */
   export type PrismaVersion = {
     client: string
@@ -459,6 +459,11 @@ export namespace Prisma {
     include: any
   }
 
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
   /**
    * Get the type of the value, that the Promise holds.
    */
@@ -507,7 +512,9 @@ export namespace Prisma {
   } &
     (T extends SelectAndInclude
       ? 'Please either choose `select` or `include`.'
-      : {})
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
 
   /**
    * Subset + Intersection
@@ -803,6 +810,10 @@ export namespace Prisma {
             args: Prisma.EstudiantesCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.EstudiantesCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EstudiantesPayload>[]
+          }
           delete: {
             args: Prisma.EstudiantesDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$EstudiantesPayload>
@@ -868,6 +879,10 @@ export namespace Prisma {
           createMany: {
             args: Prisma.BibliografiasCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BibliografiasCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BibliografiasPayload>[]
           }
           delete: {
             args: Prisma.BibliografiasDeleteArgs<ExtArgs>,
@@ -935,6 +950,10 @@ export namespace Prisma {
             args: Prisma.ArchivosCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.ArchivosCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArchivosPayload>[]
+          }
           delete: {
             args: Prisma.ArchivosDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ArchivosPayload>
@@ -1000,6 +1019,10 @@ export namespace Prisma {
           createMany: {
             args: Prisma.CarpetasCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CarpetasCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CarpetasPayload>[]
           }
           delete: {
             args: Prisma.CarpetasDeleteArgs<ExtArgs>,
@@ -1067,6 +1090,10 @@ export namespace Prisma {
             args: Prisma.GrupoConAccesoCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.GrupoConAccesoCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>[]
+          }
           delete: {
             args: Prisma.GrupoConAccesoDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$GrupoConAccesoPayload>
@@ -1133,6 +1160,10 @@ export namespace Prisma {
             args: Prisma.GruposCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.GruposCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GruposPayload>[]
+          }
           delete: {
             args: Prisma.GruposDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$GruposPayload>
@@ -1198,6 +1229,10 @@ export namespace Prisma {
           createMany: {
             args: Prisma.CambiosCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CambiosCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CambiosPayload>[]
           }
           delete: {
             args: Prisma.CambiosDeleteArgs<ExtArgs>,
@@ -1290,6 +1325,16 @@ export namespace Prisma {
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
     log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
   }
 
   /* Types for Logging */
@@ -1328,6 +1373,7 @@ export namespace Prisma {
     | 'findFirstOrThrow'
     | 'create'
     | 'createMany'
+    | 'createManyAndReturn'
     | 'update'
     | 'updateMany'
     | 'upsert'
@@ -1398,7 +1444,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * EstudiantesCountOutputType without action
    */
@@ -1409,14 +1454,12 @@ export namespace Prisma {
     select?: EstudiantesCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * EstudiantesCountOutputType without action
    */
   export type EstudiantesCountOutputTypeCountCambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CambiosWhereInput
   }
-
 
   /**
    * EstudiantesCountOutputType without action
@@ -1425,14 +1468,12 @@ export namespace Prisma {
     where?: GruposWhereInput
   }
 
-
   /**
    * EstudiantesCountOutputType without action
    */
   export type EstudiantesCountOutputTypeCountGrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GrupoConAccesoWhereInput
   }
-
 
   /**
    * EstudiantesCountOutputType without action
@@ -1441,14 +1482,12 @@ export namespace Prisma {
     where?: CarpetasWhereInput
   }
 
-
   /**
    * EstudiantesCountOutputType without action
    */
   export type EstudiantesCountOutputTypeCountBibliografiasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BibliografiasWhereInput
   }
-
 
 
   /**
@@ -1464,7 +1503,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * BibliografiasCountOutputType without action
    */
@@ -1475,14 +1513,12 @@ export namespace Prisma {
     select?: BibliografiasCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * BibliografiasCountOutputType without action
    */
   export type BibliografiasCountOutputTypeCountArchivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ArchivosWhereInput
   }
-
 
 
   /**
@@ -1500,7 +1536,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * CarpetasCountOutputType without action
    */
@@ -1511,7 +1546,6 @@ export namespace Prisma {
     select?: CarpetasCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * CarpetasCountOutputType without action
    */
@@ -1519,14 +1553,12 @@ export namespace Prisma {
     where?: CambiosWhereInput
   }
 
-
   /**
    * CarpetasCountOutputType without action
    */
   export type CarpetasCountOutputTypeCountBibliografiasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BibliografiasWhereInput
   }
-
 
 
   /**
@@ -1548,7 +1580,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * GruposCountOutputType without action
    */
@@ -1559,14 +1590,12 @@ export namespace Prisma {
     select?: GruposCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * GruposCountOutputType without action
    */
   export type GruposCountOutputTypeCountCambiosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CambiosWhereInput
   }
-
 
   /**
    * GruposCountOutputType without action
@@ -1575,7 +1604,6 @@ export namespace Prisma {
     where?: CarpetasWhereInput
   }
 
-
   /**
    * GruposCountOutputType without action
    */
@@ -1583,14 +1611,12 @@ export namespace Prisma {
     where?: BibliografiasWhereInput
   }
 
-
   /**
    * GruposCountOutputType without action
    */
   export type GruposCountOutputTypeCountGrupoConAccesoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GrupoConAccesoWhereInput
   }
-
 
 
   /**
@@ -1811,6 +1837,7 @@ export namespace Prisma {
     num_sub_est?: boolean
   }
 
+
   export type EstudiantesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Cambios?: boolean | Estudiantes$CambiosArgs<ExtArgs>
     Grupos?: boolean | Estudiantes$GruposArgs<ExtArgs>
@@ -1844,7 +1871,7 @@ export namespace Prisma {
   type EstudiantesGetPayload<S extends boolean | null | undefined | EstudiantesDefaultArgs> = $Result.GetResult<Prisma.$EstudiantesPayload, S>
 
   type EstudiantesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<EstudiantesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<EstudiantesFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: EstudiantesCountAggregateInputType | true
     }
 
@@ -1866,8 +1893,8 @@ export namespace Prisma {
     ): Prisma__EstudiantesClient<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Estudiantes that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Estudiantes that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {EstudiantesFindUniqueOrThrowArgs} args - Arguments to find a Estudiantes
      * @example
      * // Get one Estudiantes
@@ -1920,7 +1947,7 @@ export namespace Prisma {
      * Find zero or more Estudiantes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EstudiantesFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {EstudiantesFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Estudiantes
      * const estudiantes = await prisma.estudiantes.findMany()
@@ -1954,19 +1981,45 @@ export namespace Prisma {
 
     /**
      * Create many Estudiantes.
-     *     @param {EstudiantesCreateManyArgs} args - Arguments to create many Estudiantes.
-     *     @example
-     *     // Create many Estudiantes
-     *     const estudiantes = await prisma.estudiantes.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {EstudiantesCreateManyArgs} args - Arguments to create many Estudiantes.
+     * @example
+     * // Create many Estudiantes
+     * const estudiantes = await prisma.estudiantes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends EstudiantesCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, EstudiantesCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Estudiantes and returns the data saved in the database.
+     * @param {EstudiantesCreateManyAndReturnArgs} args - Arguments to create many Estudiantes.
+     * @example
+     * // Create many Estudiantes
+     * const estudiantes = await prisma.estudiantes.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Estudiantes and only return the `pk_id_est`
+     * const estudiantesWithPk_id_estOnly = await prisma.estudiantes.createManyAndReturn({ 
+     *   select: { pk_id_est: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends EstudiantesCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, EstudiantesCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EstudiantesPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Estudiantes.
@@ -2248,7 +2301,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Estudiantes findUnique
    */
@@ -2258,7 +2310,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2266,7 +2318,6 @@ export namespace Prisma {
      */
     where: EstudiantesWhereUniqueInput
   }
-
 
   /**
    * Estudiantes findUniqueOrThrow
@@ -2277,7 +2328,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2285,7 +2336,6 @@ export namespace Prisma {
      */
     where: EstudiantesWhereUniqueInput
   }
-
 
   /**
    * Estudiantes findFirst
@@ -2296,7 +2346,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2334,7 +2384,6 @@ export namespace Prisma {
      */
     distinct?: EstudiantesScalarFieldEnum | EstudiantesScalarFieldEnum[]
   }
-
 
   /**
    * Estudiantes findFirstOrThrow
@@ -2345,7 +2394,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2384,7 +2433,6 @@ export namespace Prisma {
     distinct?: EstudiantesScalarFieldEnum | EstudiantesScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes findMany
    */
@@ -2394,7 +2442,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2428,7 +2476,6 @@ export namespace Prisma {
     distinct?: EstudiantesScalarFieldEnum | EstudiantesScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes create
    */
@@ -2438,7 +2485,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2446,7 +2493,6 @@ export namespace Prisma {
      */
     data: XOR<EstudiantesCreateInput, EstudiantesUncheckedCreateInput>
   }
-
 
   /**
    * Estudiantes createMany
@@ -2459,6 +2505,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Estudiantes createManyAndReturn
+   */
+  export type EstudiantesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Estudiantes
+     */
+    select?: EstudiantesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EstudiantesInclude<ExtArgs> | null
+    /**
+     * The data used to create many Estudiantes.
+     */
+    data: EstudiantesCreateManyInput | EstudiantesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Estudiantes update
@@ -2469,7 +2533,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2481,7 +2545,6 @@ export namespace Prisma {
      */
     where: EstudiantesWhereUniqueInput
   }
-
 
   /**
    * Estudiantes updateMany
@@ -2497,7 +2560,6 @@ export namespace Prisma {
     where?: EstudiantesWhereInput
   }
 
-
   /**
    * Estudiantes upsert
    */
@@ -2507,7 +2569,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2524,7 +2586,6 @@ export namespace Prisma {
     update: XOR<EstudiantesUpdateInput, EstudiantesUncheckedUpdateInput>
   }
 
-
   /**
    * Estudiantes delete
    */
@@ -2534,7 +2595,7 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
     /**
@@ -2542,7 +2603,6 @@ export namespace Prisma {
      */
     where: EstudiantesWhereUniqueInput
   }
-
 
   /**
    * Estudiantes deleteMany
@@ -2554,7 +2614,6 @@ export namespace Prisma {
     where?: EstudiantesWhereInput
   }
 
-
   /**
    * Estudiantes.Cambios
    */
@@ -2564,7 +2623,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     where?: CambiosWhereInput
@@ -2575,7 +2634,6 @@ export namespace Prisma {
     distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes.Grupos
    */
@@ -2585,7 +2643,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     where?: GruposWhereInput
@@ -2596,7 +2654,6 @@ export namespace Prisma {
     distinct?: GruposScalarFieldEnum | GruposScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes.GrupoConAcceso
    */
@@ -2606,7 +2663,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     where?: GrupoConAccesoWhereInput
@@ -2617,7 +2674,6 @@ export namespace Prisma {
     distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes.Carpetas
    */
@@ -2627,7 +2683,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     where?: CarpetasWhereInput
@@ -2638,7 +2694,6 @@ export namespace Prisma {
     distinct?: CarpetasScalarFieldEnum | CarpetasScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes.Bibliografias
    */
@@ -2648,7 +2703,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     where?: BibliografiasWhereInput
@@ -2659,7 +2714,6 @@ export namespace Prisma {
     distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
   }
 
-
   /**
    * Estudiantes without action
    */
@@ -2669,11 +2723,10 @@ export namespace Prisma {
      */
     select?: EstudiantesSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: EstudiantesInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -3030,6 +3083,7 @@ export namespace Prisma {
     fk_id_est?: boolean
   }
 
+
   export type BibliografiasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Grupo?: boolean | Bibliografias$GrupoArgs<ExtArgs>
     Carpeta?: boolean | Bibliografias$CarpetaArgs<ExtArgs>
@@ -3074,7 +3128,7 @@ export namespace Prisma {
   type BibliografiasGetPayload<S extends boolean | null | undefined | BibliografiasDefaultArgs> = $Result.GetResult<Prisma.$BibliografiasPayload, S>
 
   type BibliografiasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<BibliografiasFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<BibliografiasFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: BibliografiasCountAggregateInputType | true
     }
 
@@ -3096,8 +3150,8 @@ export namespace Prisma {
     ): Prisma__BibliografiasClient<$Result.GetResult<Prisma.$BibliografiasPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Bibliografias that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Bibliografias that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {BibliografiasFindUniqueOrThrowArgs} args - Arguments to find a Bibliografias
      * @example
      * // Get one Bibliografias
@@ -3150,7 +3204,7 @@ export namespace Prisma {
      * Find zero or more Bibliografias that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BibliografiasFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {BibliografiasFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Bibliografias
      * const bibliografias = await prisma.bibliografias.findMany()
@@ -3184,19 +3238,45 @@ export namespace Prisma {
 
     /**
      * Create many Bibliografias.
-     *     @param {BibliografiasCreateManyArgs} args - Arguments to create many Bibliografias.
-     *     @example
-     *     // Create many Bibliografias
-     *     const bibliografias = await prisma.bibliografias.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {BibliografiasCreateManyArgs} args - Arguments to create many Bibliografias.
+     * @example
+     * // Create many Bibliografias
+     * const bibliografias = await prisma.bibliografias.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends BibliografiasCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, BibliografiasCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Bibliografias and returns the data saved in the database.
+     * @param {BibliografiasCreateManyAndReturnArgs} args - Arguments to create many Bibliografias.
+     * @example
+     * // Create many Bibliografias
+     * const bibliografias = await prisma.bibliografias.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Bibliografias and only return the `pk_id_biblio`
+     * const bibliografiasWithPk_id_biblioOnly = await prisma.bibliografias.createManyAndReturn({ 
+     *   select: { pk_id_biblio: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends BibliografiasCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, BibliografiasCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BibliografiasPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Bibliografias.
@@ -3489,7 +3569,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Bibliografias findUnique
    */
@@ -3499,7 +3578,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3507,7 +3586,6 @@ export namespace Prisma {
      */
     where: BibliografiasWhereUniqueInput
   }
-
 
   /**
    * Bibliografias findUniqueOrThrow
@@ -3518,7 +3596,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3526,7 +3604,6 @@ export namespace Prisma {
      */
     where: BibliografiasWhereUniqueInput
   }
-
 
   /**
    * Bibliografias findFirst
@@ -3537,7 +3614,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3575,7 +3652,6 @@ export namespace Prisma {
      */
     distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
   }
-
 
   /**
    * Bibliografias findFirstOrThrow
@@ -3586,7 +3662,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3625,7 +3701,6 @@ export namespace Prisma {
     distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
   }
 
-
   /**
    * Bibliografias findMany
    */
@@ -3635,7 +3710,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3669,7 +3744,6 @@ export namespace Prisma {
     distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
   }
 
-
   /**
    * Bibliografias create
    */
@@ -3679,7 +3753,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3687,7 +3761,6 @@ export namespace Prisma {
      */
     data: XOR<BibliografiasCreateInput, BibliografiasUncheckedCreateInput>
   }
-
 
   /**
    * Bibliografias createMany
@@ -3700,6 +3773,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Bibliografias createManyAndReturn
+   */
+  export type BibliografiasCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bibliografias
+     */
+    select?: BibliografiasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BibliografiasInclude<ExtArgs> | null
+    /**
+     * The data used to create many Bibliografias.
+     */
+    data: BibliografiasCreateManyInput | BibliografiasCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Bibliografias update
@@ -3710,7 +3801,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3722,7 +3813,6 @@ export namespace Prisma {
      */
     where: BibliografiasWhereUniqueInput
   }
-
 
   /**
    * Bibliografias updateMany
@@ -3738,7 +3828,6 @@ export namespace Prisma {
     where?: BibliografiasWhereInput
   }
 
-
   /**
    * Bibliografias upsert
    */
@@ -3748,7 +3837,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3765,7 +3854,6 @@ export namespace Prisma {
     update: XOR<BibliografiasUpdateInput, BibliografiasUncheckedUpdateInput>
   }
 
-
   /**
    * Bibliografias delete
    */
@@ -3775,7 +3863,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     /**
@@ -3783,7 +3871,6 @@ export namespace Prisma {
      */
     where: BibliografiasWhereUniqueInput
   }
-
 
   /**
    * Bibliografias deleteMany
@@ -3795,7 +3882,6 @@ export namespace Prisma {
     where?: BibliografiasWhereInput
   }
 
-
   /**
    * Bibliografias.Grupo
    */
@@ -3805,12 +3891,11 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     where?: GruposWhereInput
   }
-
 
   /**
    * Bibliografias.Carpeta
@@ -3821,12 +3906,11 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     where?: CarpetasWhereInput
   }
-
 
   /**
    * Bibliografias.Archivos
@@ -3837,7 +3921,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     where?: ArchivosWhereInput
@@ -3848,7 +3932,6 @@ export namespace Prisma {
     distinct?: ArchivosScalarFieldEnum | ArchivosScalarFieldEnum[]
   }
 
-
   /**
    * Bibliografias without action
    */
@@ -3858,11 +3941,10 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -4060,6 +4142,7 @@ export namespace Prisma {
     fk_id_biblio?: boolean
   }
 
+
   export type ArchivosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Bibliografias?: boolean | BibliografiasDefaultArgs<ExtArgs>
   }
@@ -4082,7 +4165,7 @@ export namespace Prisma {
   type ArchivosGetPayload<S extends boolean | null | undefined | ArchivosDefaultArgs> = $Result.GetResult<Prisma.$ArchivosPayload, S>
 
   type ArchivosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<ArchivosFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<ArchivosFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: ArchivosCountAggregateInputType | true
     }
 
@@ -4104,8 +4187,8 @@ export namespace Prisma {
     ): Prisma__ArchivosClient<$Result.GetResult<Prisma.$ArchivosPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Archivos that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Archivos that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {ArchivosFindUniqueOrThrowArgs} args - Arguments to find a Archivos
      * @example
      * // Get one Archivos
@@ -4158,7 +4241,7 @@ export namespace Prisma {
      * Find zero or more Archivos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArchivosFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ArchivosFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Archivos
      * const archivos = await prisma.archivos.findMany()
@@ -4192,19 +4275,45 @@ export namespace Prisma {
 
     /**
      * Create many Archivos.
-     *     @param {ArchivosCreateManyArgs} args - Arguments to create many Archivos.
-     *     @example
-     *     // Create many Archivos
-     *     const archivos = await prisma.archivos.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {ArchivosCreateManyArgs} args - Arguments to create many Archivos.
+     * @example
+     * // Create many Archivos
+     * const archivos = await prisma.archivos.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends ArchivosCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, ArchivosCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Archivos and returns the data saved in the database.
+     * @param {ArchivosCreateManyAndReturnArgs} args - Arguments to create many Archivos.
+     * @example
+     * // Create many Archivos
+     * const archivos = await prisma.archivos.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Archivos and only return the `pk_id_arch`
+     * const archivosWithPk_id_archOnly = await prisma.archivos.createManyAndReturn({ 
+     *   select: { pk_id_arch: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends ArchivosCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArchivosCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArchivosPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Archivos.
@@ -4476,7 +4585,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Archivos findUnique
    */
@@ -4486,7 +4594,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4494,7 +4602,6 @@ export namespace Prisma {
      */
     where: ArchivosWhereUniqueInput
   }
-
 
   /**
    * Archivos findUniqueOrThrow
@@ -4505,7 +4612,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4513,7 +4620,6 @@ export namespace Prisma {
      */
     where: ArchivosWhereUniqueInput
   }
-
 
   /**
    * Archivos findFirst
@@ -4524,7 +4630,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4562,7 +4668,6 @@ export namespace Prisma {
      */
     distinct?: ArchivosScalarFieldEnum | ArchivosScalarFieldEnum[]
   }
-
 
   /**
    * Archivos findFirstOrThrow
@@ -4573,7 +4678,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4612,7 +4717,6 @@ export namespace Prisma {
     distinct?: ArchivosScalarFieldEnum | ArchivosScalarFieldEnum[]
   }
 
-
   /**
    * Archivos findMany
    */
@@ -4622,7 +4726,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4656,7 +4760,6 @@ export namespace Prisma {
     distinct?: ArchivosScalarFieldEnum | ArchivosScalarFieldEnum[]
   }
 
-
   /**
    * Archivos create
    */
@@ -4666,7 +4769,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4674,7 +4777,6 @@ export namespace Prisma {
      */
     data: XOR<ArchivosCreateInput, ArchivosUncheckedCreateInput>
   }
-
 
   /**
    * Archivos createMany
@@ -4687,6 +4789,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Archivos createManyAndReturn
+   */
+  export type ArchivosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Archivos
+     */
+    select?: ArchivosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArchivosInclude<ExtArgs> | null
+    /**
+     * The data used to create many Archivos.
+     */
+    data: ArchivosCreateManyInput | ArchivosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Archivos update
@@ -4697,7 +4817,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4709,7 +4829,6 @@ export namespace Prisma {
      */
     where: ArchivosWhereUniqueInput
   }
-
 
   /**
    * Archivos updateMany
@@ -4725,7 +4844,6 @@ export namespace Prisma {
     where?: ArchivosWhereInput
   }
 
-
   /**
    * Archivos upsert
    */
@@ -4735,7 +4853,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4752,7 +4870,6 @@ export namespace Prisma {
     update: XOR<ArchivosUpdateInput, ArchivosUncheckedUpdateInput>
   }
 
-
   /**
    * Archivos delete
    */
@@ -4762,7 +4879,7 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
     /**
@@ -4770,7 +4887,6 @@ export namespace Prisma {
      */
     where: ArchivosWhereUniqueInput
   }
-
 
   /**
    * Archivos deleteMany
@@ -4782,7 +4898,6 @@ export namespace Prisma {
     where?: ArchivosWhereInput
   }
 
-
   /**
    * Archivos without action
    */
@@ -4792,11 +4907,10 @@ export namespace Prisma {
      */
     select?: ArchivosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArchivosInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -5007,6 +5121,7 @@ export namespace Prisma {
     fk_id_est?: boolean
   }
 
+
   export type CarpetasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Grupo?: boolean | Carpetas$GrupoArgs<ExtArgs>
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
@@ -5037,7 +5152,7 @@ export namespace Prisma {
   type CarpetasGetPayload<S extends boolean | null | undefined | CarpetasDefaultArgs> = $Result.GetResult<Prisma.$CarpetasPayload, S>
 
   type CarpetasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CarpetasFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<CarpetasFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: CarpetasCountAggregateInputType | true
     }
 
@@ -5059,8 +5174,8 @@ export namespace Prisma {
     ): Prisma__CarpetasClient<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Carpetas that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Carpetas that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {CarpetasFindUniqueOrThrowArgs} args - Arguments to find a Carpetas
      * @example
      * // Get one Carpetas
@@ -5113,7 +5228,7 @@ export namespace Prisma {
      * Find zero or more Carpetas that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarpetasFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {CarpetasFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Carpetas
      * const carpetas = await prisma.carpetas.findMany()
@@ -5147,19 +5262,45 @@ export namespace Prisma {
 
     /**
      * Create many Carpetas.
-     *     @param {CarpetasCreateManyArgs} args - Arguments to create many Carpetas.
-     *     @example
-     *     // Create many Carpetas
-     *     const carpetas = await prisma.carpetas.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {CarpetasCreateManyArgs} args - Arguments to create many Carpetas.
+     * @example
+     * // Create many Carpetas
+     * const carpetas = await prisma.carpetas.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends CarpetasCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, CarpetasCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Carpetas and returns the data saved in the database.
+     * @param {CarpetasCreateManyAndReturnArgs} args - Arguments to create many Carpetas.
+     * @example
+     * // Create many Carpetas
+     * const carpetas = await prisma.carpetas.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Carpetas and only return the `pk_id_carp`
+     * const carpetasWithPk_id_carpOnly = await prisma.carpetas.createManyAndReturn({ 
+     *   select: { pk_id_carp: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends CarpetasCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, CarpetasCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarpetasPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Carpetas.
@@ -5438,7 +5579,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Carpetas findUnique
    */
@@ -5448,7 +5588,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5456,7 +5596,6 @@ export namespace Prisma {
      */
     where: CarpetasWhereUniqueInput
   }
-
 
   /**
    * Carpetas findUniqueOrThrow
@@ -5467,7 +5606,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5475,7 +5614,6 @@ export namespace Prisma {
      */
     where: CarpetasWhereUniqueInput
   }
-
 
   /**
    * Carpetas findFirst
@@ -5486,7 +5624,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5524,7 +5662,6 @@ export namespace Prisma {
      */
     distinct?: CarpetasScalarFieldEnum | CarpetasScalarFieldEnum[]
   }
-
 
   /**
    * Carpetas findFirstOrThrow
@@ -5535,7 +5672,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5574,7 +5711,6 @@ export namespace Prisma {
     distinct?: CarpetasScalarFieldEnum | CarpetasScalarFieldEnum[]
   }
 
-
   /**
    * Carpetas findMany
    */
@@ -5584,7 +5720,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5618,7 +5754,6 @@ export namespace Prisma {
     distinct?: CarpetasScalarFieldEnum | CarpetasScalarFieldEnum[]
   }
 
-
   /**
    * Carpetas create
    */
@@ -5628,7 +5763,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5636,7 +5771,6 @@ export namespace Prisma {
      */
     data: XOR<CarpetasCreateInput, CarpetasUncheckedCreateInput>
   }
-
 
   /**
    * Carpetas createMany
@@ -5649,6 +5783,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Carpetas createManyAndReturn
+   */
+  export type CarpetasCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carpetas
+     */
+    select?: CarpetasSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarpetasInclude<ExtArgs> | null
+    /**
+     * The data used to create many Carpetas.
+     */
+    data: CarpetasCreateManyInput | CarpetasCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Carpetas update
@@ -5659,7 +5811,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5671,7 +5823,6 @@ export namespace Prisma {
      */
     where: CarpetasWhereUniqueInput
   }
-
 
   /**
    * Carpetas updateMany
@@ -5687,7 +5838,6 @@ export namespace Prisma {
     where?: CarpetasWhereInput
   }
 
-
   /**
    * Carpetas upsert
    */
@@ -5697,7 +5847,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5714,7 +5864,6 @@ export namespace Prisma {
     update: XOR<CarpetasUpdateInput, CarpetasUncheckedUpdateInput>
   }
 
-
   /**
    * Carpetas delete
    */
@@ -5724,7 +5873,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     /**
@@ -5732,7 +5881,6 @@ export namespace Prisma {
      */
     where: CarpetasWhereUniqueInput
   }
-
 
   /**
    * Carpetas deleteMany
@@ -5744,7 +5892,6 @@ export namespace Prisma {
     where?: CarpetasWhereInput
   }
 
-
   /**
    * Carpetas.Grupo
    */
@@ -5754,12 +5901,11 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     where?: GruposWhereInput
   }
-
 
   /**
    * Carpetas.Cambios
@@ -5770,7 +5916,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     where?: CambiosWhereInput
@@ -5781,7 +5927,6 @@ export namespace Prisma {
     distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
   }
 
-
   /**
    * Carpetas.Bibliografias
    */
@@ -5791,7 +5936,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     where?: BibliografiasWhereInput
@@ -5802,7 +5947,6 @@ export namespace Prisma {
     distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
   }
 
-
   /**
    * Carpetas without action
    */
@@ -5812,11 +5956,10 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -6002,6 +6145,7 @@ export namespace Prisma {
     fk_id_est?: boolean
   }
 
+
   export type GrupoConAccesoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Grupo?: boolean | GruposDefaultArgs<ExtArgs>
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
@@ -6025,7 +6169,7 @@ export namespace Prisma {
   type GrupoConAccesoGetPayload<S extends boolean | null | undefined | GrupoConAccesoDefaultArgs> = $Result.GetResult<Prisma.$GrupoConAccesoPayload, S>
 
   type GrupoConAccesoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<GrupoConAccesoFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<GrupoConAccesoFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: GrupoConAccesoCountAggregateInputType | true
     }
 
@@ -6047,8 +6191,8 @@ export namespace Prisma {
     ): Prisma__GrupoConAccesoClient<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one GrupoConAcceso that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one GrupoConAcceso that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {GrupoConAccesoFindUniqueOrThrowArgs} args - Arguments to find a GrupoConAcceso
      * @example
      * // Get one GrupoConAcceso
@@ -6101,7 +6245,7 @@ export namespace Prisma {
      * Find zero or more GrupoConAccesos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GrupoConAccesoFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {GrupoConAccesoFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all GrupoConAccesos
      * const grupoConAccesos = await prisma.grupoConAcceso.findMany()
@@ -6135,19 +6279,45 @@ export namespace Prisma {
 
     /**
      * Create many GrupoConAccesos.
-     *     @param {GrupoConAccesoCreateManyArgs} args - Arguments to create many GrupoConAccesos.
-     *     @example
-     *     // Create many GrupoConAccesos
-     *     const grupoConAcceso = await prisma.grupoConAcceso.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {GrupoConAccesoCreateManyArgs} args - Arguments to create many GrupoConAccesos.
+     * @example
+     * // Create many GrupoConAccesos
+     * const grupoConAcceso = await prisma.grupoConAcceso.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends GrupoConAccesoCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, GrupoConAccesoCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GrupoConAccesos and returns the data saved in the database.
+     * @param {GrupoConAccesoCreateManyAndReturnArgs} args - Arguments to create many GrupoConAccesos.
+     * @example
+     * // Create many GrupoConAccesos
+     * const grupoConAcceso = await prisma.grupoConAcceso.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GrupoConAccesos and only return the `fk_id_grup`
+     * const grupoConAccesoWithFk_id_grupOnly = await prisma.grupoConAcceso.createManyAndReturn({ 
+     *   select: { fk_id_grup: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends GrupoConAccesoCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrupoConAccesoCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrupoConAccesoPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a GrupoConAcceso.
@@ -6420,7 +6590,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * GrupoConAcceso findUnique
    */
@@ -6430,7 +6599,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6438,7 +6607,6 @@ export namespace Prisma {
      */
     where: GrupoConAccesoWhereUniqueInput
   }
-
 
   /**
    * GrupoConAcceso findUniqueOrThrow
@@ -6449,7 +6617,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6457,7 +6625,6 @@ export namespace Prisma {
      */
     where: GrupoConAccesoWhereUniqueInput
   }
-
 
   /**
    * GrupoConAcceso findFirst
@@ -6468,7 +6635,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6506,7 +6673,6 @@ export namespace Prisma {
      */
     distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
   }
-
 
   /**
    * GrupoConAcceso findFirstOrThrow
@@ -6517,7 +6683,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6556,7 +6722,6 @@ export namespace Prisma {
     distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
   }
 
-
   /**
    * GrupoConAcceso findMany
    */
@@ -6566,7 +6731,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6600,7 +6765,6 @@ export namespace Prisma {
     distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
   }
 
-
   /**
    * GrupoConAcceso create
    */
@@ -6610,7 +6774,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6618,7 +6782,6 @@ export namespace Prisma {
      */
     data: XOR<GrupoConAccesoCreateInput, GrupoConAccesoUncheckedCreateInput>
   }
-
 
   /**
    * GrupoConAcceso createMany
@@ -6631,6 +6794,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * GrupoConAcceso createManyAndReturn
+   */
+  export type GrupoConAccesoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrupoConAcceso
+     */
+    select?: GrupoConAccesoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrupoConAccesoInclude<ExtArgs> | null
+    /**
+     * The data used to create many GrupoConAccesos.
+     */
+    data: GrupoConAccesoCreateManyInput | GrupoConAccesoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * GrupoConAcceso update
@@ -6641,7 +6822,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6653,7 +6834,6 @@ export namespace Prisma {
      */
     where: GrupoConAccesoWhereUniqueInput
   }
-
 
   /**
    * GrupoConAcceso updateMany
@@ -6669,7 +6849,6 @@ export namespace Prisma {
     where?: GrupoConAccesoWhereInput
   }
 
-
   /**
    * GrupoConAcceso upsert
    */
@@ -6679,7 +6858,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6696,7 +6875,6 @@ export namespace Prisma {
     update: XOR<GrupoConAccesoUpdateInput, GrupoConAccesoUncheckedUpdateInput>
   }
 
-
   /**
    * GrupoConAcceso delete
    */
@@ -6706,7 +6884,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     /**
@@ -6714,7 +6892,6 @@ export namespace Prisma {
      */
     where: GrupoConAccesoWhereUniqueInput
   }
-
 
   /**
    * GrupoConAcceso deleteMany
@@ -6726,7 +6903,6 @@ export namespace Prisma {
     where?: GrupoConAccesoWhereInput
   }
 
-
   /**
    * GrupoConAcceso without action
    */
@@ -6736,11 +6912,10 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -6939,6 +7114,7 @@ export namespace Prisma {
     fk_id_est?: boolean
   }
 
+
   export type GruposInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
     Cambios?: boolean | Grupos$CambiosArgs<ExtArgs>
@@ -6970,7 +7146,7 @@ export namespace Prisma {
   type GruposGetPayload<S extends boolean | null | undefined | GruposDefaultArgs> = $Result.GetResult<Prisma.$GruposPayload, S>
 
   type GruposCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<GruposFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<GruposFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: GruposCountAggregateInputType | true
     }
 
@@ -6992,8 +7168,8 @@ export namespace Prisma {
     ): Prisma__GruposClient<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Grupos that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Grupos that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {GruposFindUniqueOrThrowArgs} args - Arguments to find a Grupos
      * @example
      * // Get one Grupos
@@ -7046,7 +7222,7 @@ export namespace Prisma {
      * Find zero or more Grupos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GruposFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {GruposFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Grupos
      * const grupos = await prisma.grupos.findMany()
@@ -7080,19 +7256,45 @@ export namespace Prisma {
 
     /**
      * Create many Grupos.
-     *     @param {GruposCreateManyArgs} args - Arguments to create many Grupos.
-     *     @example
-     *     // Create many Grupos
-     *     const grupos = await prisma.grupos.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {GruposCreateManyArgs} args - Arguments to create many Grupos.
+     * @example
+     * // Create many Grupos
+     * const grupos = await prisma.grupos.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends GruposCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, GruposCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Grupos and returns the data saved in the database.
+     * @param {GruposCreateManyAndReturnArgs} args - Arguments to create many Grupos.
+     * @example
+     * // Create many Grupos
+     * const grupos = await prisma.grupos.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Grupos and only return the `pk_id_grup`
+     * const gruposWithPk_id_grupOnly = await prisma.grupos.createManyAndReturn({ 
+     *   select: { pk_id_grup: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends GruposCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, GruposCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GruposPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Grupos.
@@ -7372,7 +7574,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Grupos findUnique
    */
@@ -7382,7 +7583,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7390,7 +7591,6 @@ export namespace Prisma {
      */
     where: GruposWhereUniqueInput
   }
-
 
   /**
    * Grupos findUniqueOrThrow
@@ -7401,7 +7601,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7409,7 +7609,6 @@ export namespace Prisma {
      */
     where: GruposWhereUniqueInput
   }
-
 
   /**
    * Grupos findFirst
@@ -7420,7 +7619,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7458,7 +7657,6 @@ export namespace Prisma {
      */
     distinct?: GruposScalarFieldEnum | GruposScalarFieldEnum[]
   }
-
 
   /**
    * Grupos findFirstOrThrow
@@ -7469,7 +7667,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7508,7 +7706,6 @@ export namespace Prisma {
     distinct?: GruposScalarFieldEnum | GruposScalarFieldEnum[]
   }
 
-
   /**
    * Grupos findMany
    */
@@ -7518,7 +7715,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7552,7 +7749,6 @@ export namespace Prisma {
     distinct?: GruposScalarFieldEnum | GruposScalarFieldEnum[]
   }
 
-
   /**
    * Grupos create
    */
@@ -7562,7 +7758,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7570,7 +7766,6 @@ export namespace Prisma {
      */
     data: XOR<GruposCreateInput, GruposUncheckedCreateInput>
   }
-
 
   /**
    * Grupos createMany
@@ -7583,6 +7778,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Grupos createManyAndReturn
+   */
+  export type GruposCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grupos
+     */
+    select?: GruposSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GruposInclude<ExtArgs> | null
+    /**
+     * The data used to create many Grupos.
+     */
+    data: GruposCreateManyInput | GruposCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Grupos update
@@ -7593,7 +7806,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7605,7 +7818,6 @@ export namespace Prisma {
      */
     where: GruposWhereUniqueInput
   }
-
 
   /**
    * Grupos updateMany
@@ -7621,7 +7833,6 @@ export namespace Prisma {
     where?: GruposWhereInput
   }
 
-
   /**
    * Grupos upsert
    */
@@ -7631,7 +7842,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7648,7 +7859,6 @@ export namespace Prisma {
     update: XOR<GruposUpdateInput, GruposUncheckedUpdateInput>
   }
 
-
   /**
    * Grupos delete
    */
@@ -7658,7 +7868,7 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
     /**
@@ -7666,7 +7876,6 @@ export namespace Prisma {
      */
     where: GruposWhereUniqueInput
   }
-
 
   /**
    * Grupos deleteMany
@@ -7678,7 +7887,6 @@ export namespace Prisma {
     where?: GruposWhereInput
   }
 
-
   /**
    * Grupos.Cambios
    */
@@ -7688,7 +7896,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     where?: CambiosWhereInput
@@ -7699,7 +7907,6 @@ export namespace Prisma {
     distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
   }
 
-
   /**
    * Grupos.Carpetas
    */
@@ -7709,7 +7916,7 @@ export namespace Prisma {
      */
     select?: CarpetasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CarpetasInclude<ExtArgs> | null
     where?: CarpetasWhereInput
@@ -7720,7 +7927,6 @@ export namespace Prisma {
     distinct?: CarpetasScalarFieldEnum | CarpetasScalarFieldEnum[]
   }
 
-
   /**
    * Grupos.Bibliografias
    */
@@ -7730,7 +7936,7 @@ export namespace Prisma {
      */
     select?: BibliografiasSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: BibliografiasInclude<ExtArgs> | null
     where?: BibliografiasWhereInput
@@ -7741,7 +7947,6 @@ export namespace Prisma {
     distinct?: BibliografiasScalarFieldEnum | BibliografiasScalarFieldEnum[]
   }
 
-
   /**
    * Grupos.GrupoConAcceso
    */
@@ -7751,7 +7956,7 @@ export namespace Prisma {
      */
     select?: GrupoConAccesoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GrupoConAccesoInclude<ExtArgs> | null
     where?: GrupoConAccesoWhereInput
@@ -7762,7 +7967,6 @@ export namespace Prisma {
     distinct?: GrupoConAccesoScalarFieldEnum | GrupoConAccesoScalarFieldEnum[]
   }
 
-
   /**
    * Grupos without action
    */
@@ -7772,11 +7976,10 @@ export namespace Prisma {
      */
     select?: GruposSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GruposInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -8011,6 +8214,7 @@ export namespace Prisma {
     fk_id_grup?: boolean
   }
 
+
   export type CambiosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Estudiante?: boolean | EstudiantesDefaultArgs<ExtArgs>
     Carpeta?: boolean | CarpetasDefaultArgs<ExtArgs>
@@ -8040,7 +8244,7 @@ export namespace Prisma {
   type CambiosGetPayload<S extends boolean | null | undefined | CambiosDefaultArgs> = $Result.GetResult<Prisma.$CambiosPayload, S>
 
   type CambiosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CambiosFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<CambiosFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: CambiosCountAggregateInputType | true
     }
 
@@ -8062,8 +8266,8 @@ export namespace Prisma {
     ): Prisma__CambiosClient<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Cambios that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Cambios that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {CambiosFindUniqueOrThrowArgs} args - Arguments to find a Cambios
      * @example
      * // Get one Cambios
@@ -8116,7 +8320,7 @@ export namespace Prisma {
      * Find zero or more Cambios that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CambiosFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {CambiosFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Cambios
      * const cambios = await prisma.cambios.findMany()
@@ -8150,19 +8354,45 @@ export namespace Prisma {
 
     /**
      * Create many Cambios.
-     *     @param {CambiosCreateManyArgs} args - Arguments to create many Cambios.
-     *     @example
-     *     // Create many Cambios
-     *     const cambios = await prisma.cambios.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {CambiosCreateManyArgs} args - Arguments to create many Cambios.
+     * @example
+     * // Create many Cambios
+     * const cambios = await prisma.cambios.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends CambiosCreateManyArgs<ExtArgs>>(
       args?: SelectSubset<T, CambiosCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Cambios and returns the data saved in the database.
+     * @param {CambiosCreateManyAndReturnArgs} args - Arguments to create many Cambios.
+     * @example
+     * // Create many Cambios
+     * const cambios = await prisma.cambios.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Cambios and only return the `pk_id_camb`
+     * const cambiosWithPk_id_cambOnly = await prisma.cambios.createManyAndReturn({ 
+     *   select: { pk_id_camb: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends CambiosCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, CambiosCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CambiosPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Cambios.
@@ -8441,7 +8671,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Cambios findUnique
    */
@@ -8451,7 +8680,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8459,7 +8688,6 @@ export namespace Prisma {
      */
     where: CambiosWhereUniqueInput
   }
-
 
   /**
    * Cambios findUniqueOrThrow
@@ -8470,7 +8698,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8478,7 +8706,6 @@ export namespace Prisma {
      */
     where: CambiosWhereUniqueInput
   }
-
 
   /**
    * Cambios findFirst
@@ -8489,7 +8716,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8527,7 +8754,6 @@ export namespace Prisma {
      */
     distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
   }
-
 
   /**
    * Cambios findFirstOrThrow
@@ -8538,7 +8764,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8577,7 +8803,6 @@ export namespace Prisma {
     distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
   }
 
-
   /**
    * Cambios findMany
    */
@@ -8587,7 +8812,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8621,7 +8846,6 @@ export namespace Prisma {
     distinct?: CambiosScalarFieldEnum | CambiosScalarFieldEnum[]
   }
 
-
   /**
    * Cambios create
    */
@@ -8631,7 +8855,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8639,7 +8863,6 @@ export namespace Prisma {
      */
     data: XOR<CambiosCreateInput, CambiosUncheckedCreateInput>
   }
-
 
   /**
    * Cambios createMany
@@ -8652,6 +8875,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Cambios createManyAndReturn
+   */
+  export type CambiosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cambios
+     */
+    select?: CambiosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CambiosInclude<ExtArgs> | null
+    /**
+     * The data used to create many Cambios.
+     */
+    data: CambiosCreateManyInput | CambiosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Cambios update
@@ -8662,7 +8903,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8674,7 +8915,6 @@ export namespace Prisma {
      */
     where: CambiosWhereUniqueInput
   }
-
 
   /**
    * Cambios updateMany
@@ -8690,7 +8930,6 @@ export namespace Prisma {
     where?: CambiosWhereInput
   }
 
-
   /**
    * Cambios upsert
    */
@@ -8700,7 +8939,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8717,7 +8956,6 @@ export namespace Prisma {
     update: XOR<CambiosUpdateInput, CambiosUncheckedUpdateInput>
   }
 
-
   /**
    * Cambios delete
    */
@@ -8727,7 +8965,7 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
     /**
@@ -8735,7 +8973,6 @@ export namespace Prisma {
      */
     where: CambiosWhereUniqueInput
   }
-
 
   /**
    * Cambios deleteMany
@@ -8747,7 +8984,6 @@ export namespace Prisma {
     where?: CambiosWhereInput
   }
 
-
   /**
    * Cambios without action
    */
@@ -8757,11 +8993,10 @@ export namespace Prisma {
      */
     select?: CambiosSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: CambiosInclude<ExtArgs> | null
   }
-
 
 
   /**

@@ -25,19 +25,9 @@ const students: Prisma.EstudiantesCreateInput[] = [
     txt_pass_est: generateHash("Katherine"),
   },
   {
-    txt_user_est: "Mike",
-    txt_email_est: "miguel@bibliomas.com",
-    txt_pass_est: generateHash("Miguel"),
-  },
-  {
-    txt_user_est: "Nenfo",
-    txt_email_est: "nenfo@bibliomas.com",
-    txt_pass_est: generateHash("Nenfo"),
-  },
-  {
-    txt_user_est: "Jedo",
-    txt_email_est: "jedo@bibliomas.com",
-    txt_pass_est: generateHash("Jedo"),
+    txt_user_est: "Amairani",
+    txt_email_est: "Amairani@bibliomas.com",
+    txt_pass_est: generateHash("Amairani"),
   },
 ];
 
